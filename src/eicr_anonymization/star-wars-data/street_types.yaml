@@ -1,0 +1,689 @@
+# https://pe.usps.com/text/pub28/28apc_002.htm
+- value: Alley
+  abbreviations:
+    - Aly
+- value: Annex
+  abbreviations:
+    - Annx
+    - Anx
+- value: Arcade
+  abbreviations:
+    - Arc
+- value: Avenue
+  abbreviations:
+    - Av
+    - Ave
+    - Avn
+- value: Bayou
+  abbreviations:
+    - Byu
+- value: Beach
+  abbreviations:
+    - Bch
+- value: Bend
+  abbreviations:
+    - Bnd
+- value: Bluff
+  abbreviations:
+    - Blf
+    - Bluf
+- value: Bluffs
+- value: Bottom
+  abbreviations:
+    - Bot
+    - Btm
+    - Bottm
+- value: Boulevard
+  abbreviations:
+    - Blvd
+    - Boul
+    - Boulv
+- value: Branch
+  abbreviations:
+    - Br
+    - Brnch
+- value: Bridge
+  abbreviations:
+    - Brdge
+    - Brg
+- value: Brook
+  abbreviations:
+    - Brk
+- value: Brooks
+  abbreviations:
+    - Brks
+- value: Burg
+  abbreviations:
+    - Bg
+    - Burg
+- value: Burgs
+  abbreviations:
+    - Bgs
+- value: Bypass
+  abbreviations:
+    - Byp
+    - Bypa
+    - Byps
+- value: Camp
+  abbreviations:
+    - Cp
+    - Cmp
+- value: Canyon
+  abbreviations:
+    - Cnyn
+    - Cyn
+- value: Cape
+  abbreviations:
+    - Cpe
+- value: Causeway
+  abbreviations:
+    - Cswy
+- value: Center
+  abbreviations:
+    - Cen
+    - Cent
+    - Centr
+    - Ctr
+- value: Centre
+  abbreviations:
+    - Cen
+    - Cent
+    - Centr
+    - Ctr
+- value: Centers
+  abbreviations:
+    - Ctrs
+- value: Circle
+  abbreviations:
+    - Cir
+    - Circ
+    - Crcl
+    - Crcle
+- value: Circles
+  abbreviations:
+    - Cirs
+- value: Cliff
+  abbreviations:
+    - Clf
+- value: Cliffs
+  abbreviations:
+    - Clfs
+- value: Club
+  abbreviations:
+    - Clb
+- value: Common
+  abbreviations:
+    - Cmn
+- value: Commons
+  abbreviations:
+    - Cmns
+- value: Corner
+  abbreviations:
+    - Cor
+- value: Corners
+  abbreviations:
+    - Cors
+- value: Course
+  abbreviations:
+    - Crse
+- value: Court
+  abbreviations:
+    - Ct
+- value: Courts
+  abbreviations:
+    - Cts
+- value: Cove
+  abbreviations:
+    - Cv
+- value: Coves
+  abbreviations:
+    - Cvs
+- value: Creek
+  abbreviations:
+    - Crk
+- value: Crescent
+  abbreviations:
+    - Cres
+    - Crsnt
+- value: Crest
+  abbreviations:
+    - Crst
+- value: Crossing
+  abbreviations:
+    - Crssng
+    - Xing
+- value: Crossroad
+  abbreviations:
+    - Xrd
+- value: Crossroads
+  abbreviations:
+    - Xrds
+- value: Curve
+  abbreviations:
+    - Curv
+- value: Dale
+  abbreviations:
+    - Dl
+- value: Dam
+  abbreviations:
+    - Dm
+- value: Divide
+  abbreviations:
+    - Div
+    - Dv
+    - Dvd
+- value: Drive
+  abbreviations:
+    - Dr
+    - Driv
+    - Drv
+- value: Drives
+  abbreviations:
+    - Drs
+- value: Estate
+  abbreviations:
+    - est
+- value: Estates
+  abbreviations:
+    - Ests
+- value: Expressway
+  abbreviations:
+    - Exp
+    - Expr
+    - Express
+    - Expw
+    - Expy
+- value: Extension
+  abbreviations:
+    - Ext
+    - Extn
+    - Extnsn
+- value: Extensions
+  abbreviations:
+    - Exts
+- value: Fall
+- value: Falls
+  abbreviations:
+    - Fls
+- value: Ferry
+  abbreviations:
+    - Frry
+    - Fry
+- value: Field
+  abbreviations:
+    - Fld
+- value: Fields
+  abbreviations:
+    - Flds
+- value: Flat
+  abbreviations:
+    - Flt
+- value: Flats
+  abbreviations:
+    - Flts
+- value: Ford
+  abbreviations:
+    - Frd
+- value: Fords
+  abbreviations:
+    - Frds
+- value: Forest
+  abbreviations:
+    - Frst
+- value: Forge
+  abbreviations:
+    - Forg
+    - Frg
+- value: Forges
+  abbreviations:
+    - Frgs
+- value: Fork
+  abbreviations:
+    - Frk
+- value: Fort
+  abbreviations:
+    - Frt
+- value: Freeway
+  abbreviations:
+    - Freewy
+    - Frway
+    - Frwy
+    - Fwy
+- value: Garden
+  abbreviations:
+    - Gardn
+    - Grden
+    - Grdn
+    - Gdn
+- value: Gardens
+  abbreviations:
+    - Gdns
+    - Grdns
+- value: Gateway
+  abbreviations:
+    - Gatewy
+    - Gatway
+    - Gtway
+    - Gtwy
+- value: Glen
+  abbreviations:
+    - Gln
+- value: Glens
+  abbreviations:
+    - Glns
+- value: Green
+  abbreviations:
+    - Grn
+- value: Greens
+  abbreviations:
+    - Grns
+- value: Grove
+  abbreviations:
+    - Grov
+    - Grv
+- value: Groves
+  abbreviations:
+    - Grvs
+- value: Harbor
+  abbreviations:
+    - Harb
+    - Harbr
+    - Hbr
+    - Hrbor
+- value: Harbors
+  abbreviations:
+    - Hbrs
+- value: Haven
+  abbreviations:
+    - Hvn
+- value: Heights
+  abbreviations:
+    - Ht
+- value: Highway
+  abbreviations:
+    - Highwy
+    - Hiway
+    - Hiwy
+    - Hway
+    - Hwy
+- value: Hill
+  abbreviations:
+    - Hl
+- value: Hills
+  abbreviations:
+    - Hls
+- value: Hollow
+  abbreviations:
+    - Hllw
+    - Holw
+    - Holws
+- value: Inlet
+  abbreviations:
+    - Is
+- value: Island
+  abbreviations:
+    - Islnd
+    - Is
+- value: Islands
+  abbreviations:
+    - Islnds
+    - Iss
+- value: Isle
+- value: Junction
+  abbreviations:
+    - Jct
+    - Jction
+    - Jctn
+    - Junctn
+- value: Junctions
+  abbreviations:
+    - Jctns
+    - Jcts
+- value: Key
+  abbreviations:
+    - Ky
+- value: Keys
+  abbreviations:
+    - Kys
+- value: Knoll
+  abbreviations:
+    - Knl
+- value: knolls
+  abbreviations:
+    - Knls
+- value: Lake
+  abbreviations:
+    - Lk
+- value: Lakes
+  abbreviations:
+    - Lks
+- value: Land
+- value: Landing
+  abbreviations:
+    - Lndg
+    - Lndng
+- value: Lane
+  abbreviations:
+    - Ln
+- value: Light
+  abbreviations:
+    - Lght
+    - Lgt
+- value: Lights
+  abbreviations:
+    - Lghts
+- value: Loaf
+  abbreviations:
+    - Lf
+- value: Lock
+  abbreviations:
+    - Lck
+- value: Locks
+  abbreviations:
+    - Lcks
+- value: Lodge
+  abbreviations:
+    - Ldg
+    - Ldge
+    - Lodg
+- value: Loop
+- value: Mall
+- value: Manor
+  abbreviations:
+    - Manr
+- value: Manors
+  abbreviations:
+    - Mnrs
+- value: Meadow
+  abbreviations:
+    - Mdw
+- value: Meadows
+  abbreviations:
+    - Mdws
+- value: Mews
+- value: Mill
+  abbreviations:
+    - Ml
+- value: Mills
+  abbreviations:
+    - Mls
+- value: Mission
+  abbreviations:
+    - Msn
+- value: Motorway
+  abbreviations:
+    - Mtwy
+- value: Mount
+  abbreviations:
+    - Mnt
+    - Mt
+- value: Mountain
+  abbreviations:
+    - Mntain
+    - Mntn
+    - Mtin
+    - Mtn
+- value: Mountains
+  abbreviations:
+    - Mntns
+- value: Neck
+  abbreviations:
+    - Nck
+- value: Orchard
+  abbreviations:
+    - Orch
+    - Orchrd
+- value: Oval
+  abbreviations:
+    - Ovl
+- value: Overpass
+  abbreviations:
+    - Opas
+- value: Park
+  abbreviations:
+    - Prk
+- value: Parks
+  abbreviations:
+    - Park
+- value: Parkway
+  abbreviations:
+    - Parkwy
+    - Pkway
+    - Pkwy
+    - Pky
+- value: Parkways
+  abbreviations:
+    - Pkwys
+    - Pkwy
+- value: Pass
+- value: Passage
+  abbreviations:
+    - Psge
+- value: Path
+- value: Pike
+- value: Pine
+  abbreviations:
+    - Pne
+- value: Pines
+  abbreviations:
+    - Pnes
+- value: Place
+  abbreviations:
+    - Pl
+- value: Plain
+  abbreviations:
+    - Pln
+- value: Plains
+  abbreviations:
+    - PLns
+- value: Plaza
+  abbreviations:
+    - Plz
+- value: Point
+  abbreviations:
+    - Pt
+- value: Points
+  abbreviations:
+    - Pts
+- value: Port
+  abbreviations:
+    - Prt
+- value: Ports
+  abbreviations:
+    - Prts
+- value: Prairie
+  abbreviations:
+    - Pr
+    - Prr
+- value: Radial
+  abbreviations:
+    - Rad
+    - Radl
+- value: Ramp
+- value: Ranch
+- value: Rapid
+  abbreviations:
+    - Rpd
+- value: Rapids
+  abbreviations:
+    - Rpds
+- value: Rest
+  abbreviations:
+    - Rst
+- value: Ridge
+  abbreviations:
+    - Rdgs
+- value: River
+  abbreviations:
+    - Riv
+    - Rvr
+    - Rivr
+- value: Road
+  abbreviations:
+    - Rd
+- value: Roads
+  abbreviations:
+    - Rds
+- value: Route
+  abbreviations:
+    - Rte
+- value: Row
+- value: Rue
+- value: Run
+- value: Shoal
+  abbreviations:
+    - Shl
+- value: Shoals
+  abbreviations:
+    - Shls
+- value: Shore
+  abbreviations:
+    - Shr
+- value: Shores
+  abbreviations:
+    - Shrs
+- value: Skyway
+- value: Spring
+  abbreviations:
+    - Spg
+    - Spng
+    - Sprng
+- value: Springs
+  abbreviations:
+    - Spgs
+    - Spngs
+    - Sprngs
+- value: Spur
+- value: Spurs
+  abbreviations:
+    - Spur
+- value: Sqaure
+  abbreviations:
+    - Sq
+    - Sqr
+    - Sqre
+- value: Squares
+  abbreviations:
+    - Sqrs
+    - Sqs
+- value: Station
+  abbreviations:
+    - Sta
+    - Statn
+    - Stn
+- value: Stravenue
+  abbreviations:
+    - Stra
+    - Strav
+    - Straven
+    - Stravn
+    - Strvnue
+- value: Stream
+  abbreviations:
+    - Strm
+- value: Street
+  abbreviations:
+    - Strt
+    - St
+    - Str
+- value: Streets
+  abbreviations:
+    - Sts
+- value: Summit
+  abbreviations:
+    - Smt
+- value: Terrace
+  abbreviations:
+    - Ter
+    - Terr
+- value: Throughway
+  abbreviations:
+    - Trwy
+- value: Trace
+  abbreviations:
+    - Trce
+- value: Track
+  abbreviations:
+    - Trk
+    - Trks
+- value: Trafficway
+  abbreviations:
+    - Trfy
+- value: Trail
+  abbreviations:
+    - Trl
+    - Trls
+- value: Trailer
+  abbreviations:
+    - Trlr
+    - Trlrs
+- value: Tunnel
+  abbreviations:
+    - Tunl
+    - Tunls
+    - Tunnl
+- value: Turnpike
+  abbreviations:
+    - Trnpk
+    - Turnpk
+    - Tpke
+- value: Underpass
+  abbreviations:
+    - Upas
+- value: Union
+  abbreviations:
+    - Un
+- value: Unions
+  abbreviations:
+    - Uns
+- value: Valley
+  abbreviations:
+    - Vlly
+    - Vly
+- value: Valleys
+  abbreviations:
+    - Vlys
+- value: Viaduct
+  abbreviations:
+    - Vdct
+    - Via
+    - Viadct
+- value: View
+  abbreviations:
+    - Vw
+- value: Views
+  abbreviations:
+    - Vws
+- value: Village
+  abbreviations:
+    - Vill
+    - Villag
+    - Villg
+    - Vlg
+- value: Villages
+  abbreviations:
+    - Vlgs
+- value: Ville
+  abbreviations:
+    - Vl
+- value: Vista
+  abbreviations:
+    - Vis
+    - Vist
+    - Vst
+    - Vsta
+- value: Walk
+- value: Walks
+  abbreviations:
+    - Walk
+- value: Wall
+- value: Way
+  abbreviations:
+    - Wy
+- value: Ways
+- value: Well
+  abbreviations:
+    - Wl
+- value: Wells
+  abbreviations:
+    - Wls

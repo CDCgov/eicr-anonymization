@@ -1,0 +1,45 @@
+# Normal terms of address
+- value: Mr
+  abbreviation_only: true
+- value: Mrs
+  abbreviation_only: true
+- value: Miss
+  abbreviation_only: true
+- value: Ms
+  abbreviation_only: true
+- value: Mx
+  abbreviation_only: true
+# Military ranks with US equivalent: https://www.defense.gov/resources/insignia/
+- value: Admiral
+  abbreviations:
+    - Adm
+- value: Captain
+  abbreviations:
+    - Capt
+- value: General
+  abbreviations:
+    - Gen
+- value: Lieutenant
+  abbreviations: Lt
+# Other titles with real world equivalents
+- value: Ambassador
+  abbreviations:
+    - Amb
+- value: Chancellor
+  abbreviations:
+    - Chan
+- value: Doctor
+  abbreviations:
+    - Dr
+- value: Senator
+  abbreviations:
+    - Sen
+# Star Wars Nonsense
+- value: Darth
+- value: Jedi
+- value: Jedi Knight
+- value: Jedi Master
+- value: Sith Lord
+# Star Wars military ranks with no US equivalent
+- value: Junior Lieutenant
+- value: Senior Lieutenant
