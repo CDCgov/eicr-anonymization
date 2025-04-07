@@ -4,5 +4,16 @@
         "CFPB",
         "ISSO",
         "cybersecurity"
+    ],
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.cwd": "${workspaceFolder}",
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.extraPaths": [
+        "./src"
     ]
 }
