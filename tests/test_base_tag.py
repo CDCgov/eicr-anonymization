@@ -2,28 +2,28 @@
 
 import pytest
 
-from eicr_anonymization.tags.Tag import FamilyTag, Tag
+from eicr_anonymization.tags.Tag import FamilyTag, ReadOnlyAttribute, Tag
 
 
 def test_immutable_name():
     """Test that the name of the tag is immutable."""
     tag = FamilyTag()
-    with pytest.raises(AttributeError):
-        tag.name = "new_name"
+    with pytest.raises(ReadOnlyAttribute):
+        tag.name = "new_name" # type: ignore
 
 
 def test_immutable_attributes():
     """Test that the attributes of the tag are immutable."""
     tag = FamilyTag()
     with pytest.raises(AttributeError):
-        tag.sensitive_attr = "new_value"
+        tag.sensitive_attr = ("new_value") # type: ignore
 
 
 def test_immutable_replacement_values():
     """Test that the replacement values of the tag are immutable."""
     tag = FamilyTag()
     with pytest.raises(AttributeError):
-        tag.replacement_values = "new_value"
+        tag.replacement_values = ["new_value"] # type: ignore
 
 
 def test_get_registry():

@@ -6,7 +6,6 @@ import os
 from argparse import Namespace
 
 from lxml import etree
-from lxml.etree import Element
 from tabulate import tabulate
 from tqdm import tqdm
 
@@ -31,7 +30,7 @@ def _delete_old_anonymized_files(input_location: str) -> None:
         os.remove(output_file)
 
 
-def _find_elements(root: Element, path: str) -> list[Element]:
+def _find_elements(root, path: str) -> list:
     """Find all elements for a given path with the HL7 namespace in an EICR XML file.
 
     Args:
@@ -45,7 +44,7 @@ def _find_elements(root: Element, path: str) -> list[Element]:
     return root.xpath(path, namespaces=NAMESPACES)
 
 
-def _should_anonymize_element(element: Element, tag: Tag) -> bool:
+def _should_anonymize_element(element, tag: type[Tag]) -> bool:
     """Determine if an XML element should be anonymized.
 
     Args:
@@ -87,7 +86,7 @@ def _build_xpath_query(instance: Tag) -> str:
     return "".join(xpath_parts)
 
 
-def _collect_sensitive_tag_groups(root: Element) -> NormalizedTagGroups:
+def _collect_sensitive_tag_groups(root) -> NormalizedTagGroups:
     """Collect sensitive tag groups from the XML root.
 
     Args:
@@ -114,7 +113,7 @@ def _collect_sensitive_tag_groups(root: Element) -> NormalizedTagGroups:
 
 
 def _replace_sensitive_information(
-    root: Element, sensitive_tag_groups: NormalizedTagGroups
+    root, sensitive_tag_groups: NormalizedTagGroups
 ) -> list[tuple[Tag, Tag]]:
     """Replace sensitive information in the XML root.
 
@@ -161,7 +160,7 @@ def anonymize_eicr_file(xml_file: str, debug: bool = False) -> None:
 
     """
     # Parse the XML file
-    tree = etree.parse(xml_file)
+    tree = etree.parse(xml_file, None)
     root = tree.getroot()
 
     # Collect sensitive tags

@@ -1,6 +1,7 @@
 """Tag Class."""
 
 import re
+from abc import ABC, ABCMeta
 from datetime import datetime, timedelta
 from random import choice, randint, random
 from typing import ClassVar, Literal, NotRequired, TypedDict
@@ -70,18 +71,41 @@ def _get_random_int(digits: int):
     return randint(10 ** (digits - 1), 10**digits - 1)
 
 
-class Tag:
+class TagMeta(ABCMeta):
+    """Meta class for Tag to handle read-only attributes."""
+
+    def __setattr__(cls, name, value):
+        """Make name, sensitive_attr, and replacements read-only."""
+        if name == "name" and hasattr(cls, "name") and cls.__name__ != "Tag":
+            raise ReadOnlyAttribute(name)
+        if name == "sensitive_attr" and hasattr(cls, "sensitive_attr") and cls.__name__ != "Tag":
+            raise ReadOnlyAttribute(name)
+        if (
+            name == "replacement_values"
+            and hasattr(cls, "replacement_values")
+            and cls.__name__ != "Tag"
+        ):
+            raise ReadOnlyAttribute(name)
+        super().__setattr__(name, value)
+
+
+class Tag(ABC, metaclass=TagMeta):
     """Tag class."""
+
+    name: ClassVar[str] = "tag"
+    replacement_values: ClassVar[list[ReplacementType]] = []
+    sensitive_attr: ClassVar[tuple[str, ...]] = ()
 
     default_replace_value = "REMOVED"
 
-    _registry: ClassVar[dict[str, "Tag"]] = {}
+    _registry: ClassVar[dict[str, type["Tag"]]] = {}
 
     def __init_subclass__(cls, **kwargs) -> None:
         """Register the tag class."""
         super().__init_subclass__(**kwargs)
-        if hasattr(cls, "name") and cls.name:
-            Tag._registry[cls.name] = cls
+        tag_name = getattr(cls, "name", None)
+        if tag_name:
+            Tag._registry[tag_name] = cls
         cls._used_replacements: set[str] = set()
 
     def __init__(self, text: str | None = None, attributes: dict[str, str] | None = None):
@@ -105,7 +129,7 @@ class Tag:
     def __setattr__(self, name, value):
         """Make name, sensitive_attr, and replacements read-only."""
         if name in ("name", "sensitive_attr", "replacement_values"):
-            raise AttributeError(f"{name} is read-only")
+            raise ReadOnlyAttribute(name)
         super().__setattr__(name, value)
 
     def __eq__(self, other: object) -> bool:
@@ -137,7 +161,7 @@ class Tag:
         )
 
     @classmethod
-    def get_registry(cls) -> dict[str, "Tag"]:
+    def get_registry(cls) -> dict[str, type["Tag"]]:
         """Get a list of all registered tags."""
         return cls._registry
 
@@ -158,7 +182,8 @@ class Tag:
 
         mapping = {}
         for tag in raw_values:
-            attribute_replacements = tag.attributes.copy() if tag.attributes else None
+            attribute_replacements = tag.attributes.copy() if tag.attributes else {}
+
             if sensitive_attr_replacements:
                 for attr, value in sensitive_attr_replacements.items():
                     if attr in attribute_replacements:
@@ -187,7 +212,7 @@ class Tag:
         return replacement
 
     @classmethod
-    def normalize(cls, value: str | None) -> str:
+    def normalize(cls, value: str | None) -> str | None:
         """Normalize a string."""
         if value is None:
             return None
@@ -195,12 +220,12 @@ class Tag:
             return value.lower().strip().replace(".", "")
 
     @property
-    def text(self) -> str:
+    def text(self) -> str | None:
         """Get the text of the tag."""
         return self._text
 
     @property
-    def normalized_text(self) -> str:
+    def normalized_text(self) -> str | None:
         """Get the normalized text of the tag."""
         return self.normalize(self._text)
 
@@ -210,7 +235,7 @@ class Tag:
         return self._attributes
 
     @property
-    def normalized_attributes(self) -> tuple[str, str]:
+    def normalized_attributes(self) -> tuple[tuple[str, str | None], ...]:
         """Get the hash of the attributes."""
         return tuple(
             [(key, self.normalize(value)) for key, value in sorted(self.attributes.items())]
@@ -228,7 +253,7 @@ class Tag:
             )
         )
 
-    def _tuple_attributes(self) -> int:
+    def _tuple_attributes(self) -> tuple[tuple[str, str], ...]:
         """Get the tuples of the attributes."""
         return tuple(sorted(self.attributes.items()))
 
@@ -367,7 +392,7 @@ class TelecomTag(Tag):
     def get_replacement_value(
         cls,
         raw_values: set["Tag"],
-    ) -> dict[str, str]:
+    ) -> str:
         """Get a replacement value."""
         replacement = ""
 
@@ -389,7 +414,7 @@ class NameTag(Tag):
     def get_replacement_value(
         cls,
         raw_values: set["Tag"],
-    ) -> dict[str, str]:
+    ) -> str:
         """Get a replacement value."""
         type = ["Medical Center", "Hospital", "Clinic", "Laboratory", "Pharmacy", "Lab"]
         names = [
@@ -455,7 +480,7 @@ class TemporalTag(Tag):
 
         mapping = {}
         for tag in raw_values:
-            attribute_replacements = tag.attributes.copy() if tag.attributes else None
+            attribute_replacements = tag.attributes.copy() if tag.attributes else {}
             attribute_replacements["value"] = date_time.strftime(fmt)
 
             mapping[tag] = tag.__class__(text=tag.text, attributes=attribute_replacements)
@@ -500,12 +525,12 @@ class IdTag(Tag):
         """Initialize the ID tag."""
         super().__init__(text, attributes)
 
-        if self.__class__.oid_pattern.match(self.attributes.get("root")):
+        if "root" in self.attributes and self.__class__.oid_pattern.match(self.attributes["root"]):
             segments = self.attributes["root"].split(".")
             for i, segment in enumerate(segments):
                 if segment not in self._root_oids:
-                    self.__class__._root_oids.setdefault(i, {})[segment] = _get_random_int(
-                        len(segment)
+                    self.__class__._root_oids.setdefault(i, {})[segment] = str(
+                        _get_random_int(len(segment))
                     )
         if self.attributes.get("extension") and self.__class__.oid_pattern.match(
             self.attributes["extension"]
@@ -513,12 +538,12 @@ class IdTag(Tag):
             segments = self.attributes["extension"].split(".")
             for i, segment in enumerate(segments):
                 if segment not in self._extension_oids:
-                    self.__class__._extension_oids.setdefault(i, {})[segment] = _get_random_int(
-                        len(segment)
+                    self.__class__._extension_oids.setdefault(i, {})[segment] = str(
+                        _get_random_int(len(segment))
                     )
 
     @classmethod
-    def normalize(cls, value: str | None) -> str:
+    def normalize(cls, value: str | None) -> str | None:
         """Normalize a string."""
         if value is None:
             return None
@@ -540,9 +565,7 @@ class IdTag(Tag):
                     str(cls._root_oids[i][segment]) for i, segment in enumerate(segments)
                 ]
             except KeyError as exc:
-                raise ValueError(
-                    f"Segment {exc.args[0]} not found in root OID mapping for {normalized_tag.name}"
-                ) from exc
+                raise UnknownIodMapping(normalized_tag.name) from exc
 
             sensitive_attr_replacements = {"root": ".".join(replacement_parts)}
             if "extension" in normalized_tag.attributes:
@@ -592,7 +615,22 @@ class TextTag(Tag):
     name = "text"
 
 
-class UnknownDateFormat(Exception):
+class ReadOnlyAttribute(AttributeError):
+    """Read-only attribute exception."""
+
+    def __init__(self, attr_name):
+        """Initialize the exception."""
+        super().__init__(f"{attr_name} is read-only")
+
+
+class UnknownIodMapping(KeyError):
+    """Unknown OID mapping exception."""
+
+    def __init__(self, tag_name):
+        """Initialize the exception."""
+        super().__init__(f"Segment {self.args[0]} not found in root OID mapping for {tag_name}")
+
+class UnknownDateFormat(ValueError):
     """Unknown date format exception."""
 
     def __init__(self, date):

@@ -38,7 +38,7 @@ class NormalizedTagGroup:
         return iter(self._group)
 
     @property
-    def type(self) -> Tag:
+    def type(self) -> type[Tag]:
         """Get the class type of the tags in the group.
 
         Returns:
@@ -60,7 +60,7 @@ class NormalizedTagGroup:
         if isinstance(tag, self.type):
             self._group.add(tag)
         else:
-            raise TypeError(f"Tag type {tag.__class__} does not match group type {self.type}.")
+            raise TagTypeMismatchError(tag.__class__, self.type)
 
     def get_replacement_mapping(self) -> dict[Tag, Tag]:
         """Generate mapping from the orginal tag to the replacement tag.
@@ -77,7 +77,7 @@ class NormalizedTagGroups:
 
     def __init__(self):
         """Initialize the data structure."""
-        self._groups: dict[int, set[Tag]] = {}
+        self._groups: dict[int, NormalizedTagGroup] = {}
 
     def __len__(self) -> int:
         """Get the total number of tag groups, i.e., the number of unique normalized tags.
@@ -98,3 +98,11 @@ class NormalizedTagGroups:
     def __iter__(self):
         """Iterate over the cache."""
         yield from self._groups.values()
+
+
+class TagTypeMismatchError(TypeError):
+    """Custom exception for tag type mismatch errors."""
+
+    def __init__(self, tag_class: type[Tag], group_type: type[Tag]):
+        """Initialize the exception."""
+        super().__init__(f"Tag type {tag_class} does not match group type {group_type}.")
