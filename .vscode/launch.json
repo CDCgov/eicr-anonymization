@@ -8,9 +8,10 @@
             "name": "Python Debugger: Current File with Arguments",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/main.py",
+            "module": "eicr_anonymization",
             "console": "integratedTerminal",
-            "args": "./data/eicr22 -d"
+            "args": "./3.1_Sample -d",
+            "justMyCode": false
         }
     ]
 }

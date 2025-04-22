@@ -426,22 +426,30 @@ class TemporalTag(Tag):
     ) -> dict[str, str]:
         """Get a replacement value."""
         # Convert the value into a datetime object
-        # Indfering datetime format is hard. So far I have seen 3 formats:
+        # Infering datetime format is hard. 4 formats have been seen before:
         # 1. YYYYMMDDHHMMSS
         # 2. YYYYMMDDHHMMSS+/-HHMM
         # 3. YYYYMMDD
+        # 4. YYYY
+        # They need to be in order of specificity, least specific to most specific.
         known_formats = [
+            "%Y",
+            "%Y%m%d",
+            "%Y%m%d%H%M",
             "%Y%m%d%H%M%S",
             "%Y%m%d%H%M%S%z",
-            "%Y%m%d",
         ]
         # Check if the value is in one of the known formats
+        date_time = None
         for fmt in known_formats:
             try:
                 date_time = datetime.strptime(normalized_tag.attributes["value"], fmt)
                 break
             except ValueError:
                 continue
+
+        if not date_time:
+            raise UnknownDateFormat(normalized_tag.attributes["value"])
 
         date_time = date_time - timedelta(seconds=cls.main_offset)
 
@@ -582,3 +590,11 @@ class TextTag(Tag):
     """Text tag class."""
 
     name = "text"
+
+
+class UnknownDateFormat(Exception):
+    """Unknown date format exception."""
+
+    def __init__(self, date):
+        """Initialize the exception."""
+        super().__init__(f"Unknown date format: {date}")

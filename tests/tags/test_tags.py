@@ -1,3 +1,5 @@
+"""Test cases for the Tag classes in the eicr_anonymization package."""
+
 import random
 
 import pytest
@@ -17,21 +19,7 @@ from eicr_anonymization.tags.Tag import (
     StreetAddressLineTag,
     SuffixTag,
     TelecomTag,
-    TimeTag,
 )
-
-
-@pytest.fixture
-def set_random_seed(request):
-    """Set up a random seed for reproducibility.
-
-    This fixture ensures that the random seed is set to a fixed value for the first iteration of
-    each test function. This ensures that we get deterministic results regardless of the order
-    in which the tests are run.
-    """
-    callspec = getattr(request.node, "callspec", None)
-    repeat_iteration = callspec.params.get("__pytest_repeat_step_number", 0) if callspec else 0
-    random.seed(repeat_iteration)
 
 
 class TestFamilyTag:
@@ -497,32 +485,6 @@ class TestNameTag:
     def test_repr(self, text, attributes, expected):
         """Test the __repr__ method."""
         tag = NameTag(text, attributes)
-        assert repr(tag) == expected
-
-
-class TestTimeTag:
-    """Test the TimeTag class."""
-
-    def test_name(self):
-        """Test the name property."""
-        tag = TimeTag()
-        assert tag.name == "time"
-
-    @pytest.mark.parametrize(
-        ("text", "attributes", "expected"),
-        [
-            (None, None, "<time />"),
-            ("test", None, "<time>test</time>"),
-            (
-                "test",
-                {"test_attr": "test_value"},
-                '<time test_attr="test_value">test</time>',
-            ),
-        ],
-    )
-    def test_repr(self, text, attributes, expected):
-        """Test the __repr__ method."""
-        tag = TimeTag(text, attributes)
         assert repr(tag) == expected
 
 
