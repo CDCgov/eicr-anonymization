@@ -55,6 +55,14 @@ def _compare_normalized_values(old_value: str, new_value: str):
     """Compare the normalized values of the old and new values."""
     return _normalize_value(old_value) == _normalize_value(new_value)
 
+def _is_in_replacements(value: str, replacements: dict[str, str]):
+    """Check if a replacement is needed."""
+    return any(
+        _compare_normalized_values(value, replacement)
+        for replacement in replacements.values()
+    )
+
+
 
 
 class Anonymizer:
@@ -72,7 +80,7 @@ class Anonymizer:
     def anonymize_TS_value(self, element: Element):
         """Anonymize TS elements."""
         value = element.attributes["value"]
-        if value in self.TS_replacements:
+        if _is_in_replacements(value, self.TS_replacements):
             return _match_formatting(value, self.TS_replacements[value])
 
         known_formats = [
@@ -108,7 +116,7 @@ class Anonymizer:
     def anonymize_II_value(self, element: Element):
         """Anonymize II elements."""
         extension = element.attributes["extension"]
-        if extension in self.II_replacements:
+        if _is_in_replacements(extension, self.II_replacements):
             return _match_formatting(extension, self.II_replacements[extension])
         replacement = ""
         for i, char in enumerate(extension):
