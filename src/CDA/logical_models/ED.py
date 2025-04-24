@@ -3,12 +3,16 @@
 https://build.fhir.org/ig/HL7/CDA-core-2.0/StructureDefinition-ED.html
 """
 
+from typing import TYPE_CHECKING
+
 from pydantic import BaseModel, Field, model_validator
 
 from CDA.data_types.string_validators import bin, cs, st
-from CDA.logical_models.TEL import TEL
 from CDA.value_sets.CompressionAlgorithm import CompressionAlgorithm
 from CDA.value_sets.IntegrityCheckAlgorithm import IntegrityCheckAlgorithm
+
+if TYPE_CHECKING:
+    from CDA.logical_models.TEL import TEL
 
 
 class ED(BaseModel):
@@ -25,7 +29,7 @@ class ED(BaseModel):
     representation: cs | None = Field(json_schema_extra={"xml_type": "attribute"})
     dataString: st | None = Field(json_schema_extra={"xml_type": "element"})
     dataBase64Binary: bin | None = Field(json_schema_extra={"xml_type": "element"})
-    reference: TEL | None = Field(
+    reference: "TEL | None" = Field(
         default=None,
         json_schema_extra={"xml_type": "element"},
     )
@@ -35,7 +39,7 @@ class ED(BaseModel):
     )
 
     @model_validator(mode="after")
-    def validate_data_fields(self) -> "ED":
+    def validate_data_fields(self):
         """Ensure that only one of dataString or dataBase64Binary is set."""
         if self.dataString is not None and self.dataBase64Binary is not None:
             raise DataFieldsException()

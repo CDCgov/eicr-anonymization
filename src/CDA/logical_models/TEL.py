@@ -1,8 +1,7 @@
 """Logical Model: TEL: TelecommunicationAddress (V3 Data Type)."""
-
 from pydantic import Field
 
-from CDA.data_types.string_validators import cs, url
+from CDA.data_types.string_validators import url
 from CDA.logical_models.ANY import ANY
 from CDA.logical_models.EIVL_TS import EIVL_TS
 from CDA.logical_models.IVL_TS import IVL_TS

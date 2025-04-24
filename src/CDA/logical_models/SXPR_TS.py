@@ -17,6 +17,6 @@ class SXPR_TS(SXCM_TS):
     https://build.fhir.org/ig/HL7/CDA-core-2.0/StructureDefinition-SXPR-TS.html
     """
 
-    comps: list[SXCM_TS | IVL_TS | EIVL_TS | PIVL_TS | "SXPR_TS"] | None = Field(
+    comps: "list[SXCM_TS | IVL_TS | EIVL_TS | PIVL_TS | SXPR_TS] | None" = Field(
         json_schema_extra={"xml_type": "element"}, min_length=2
     )
