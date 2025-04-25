@@ -96,6 +96,7 @@ class Anonymizer:
 
         self.mappings: dict[str, dict[str, str]] = {
             "II": {},
+            "country": {},
             "state": {},
             "county": {},
             "city": {},

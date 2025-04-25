@@ -1,2 +1,14 @@
 - value: Galactic Republic
+  abbreviation: GR
 - value: Galactic Empire
+  abbreviation: GE
+- value: Rebel Alliance
+  abbreviation: RA
+- value: Hutt Space
+  abbreviation: HS
+- value: Trade Federation
+  abbreviation: TF
+- value: Separatist Alliance
+  abbreviation: SA
+- value: First Order
+  abbreviation: FO
