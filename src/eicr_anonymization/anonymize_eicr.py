@@ -77,10 +77,10 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                 debug_output.append((element, Element(match, "II")))
             case "ADXP":
                 match element.name:
-                    case "{urn:hl7-org:v3}city":
-                        match = _find_element(root, element.path)
-                        match.text = anonymizer.anonymize_city_value(element)
-                        debug_output.append((element, Element(match, "ADXP")))
+                    # case "{urn:hl7-org:v3}city":
+                    #     match = _find_element(root, element.path)
+                    #     match.text = anonymizer.anonymize_city_value(element)
+                    #     debug_output.append((element, Element(match, "ADXP")))
                     case "{urn:hl7-org:v3}streetAddressLine":
                         match = _find_element(root, element.path)
                         match.text = anonymizer.anonymize_streetAddressLine_value(element)

@@ -29,10 +29,10 @@ class Element:
 
     def __repr__(self) -> str:
         """Get a string representation of the tag."""
-        root_tag = str(self.name).removeprefix('{urn:hl7-org:v3}')
+        root_tag = str(self.name).removeprefix("{urn:hl7-org:v3}")
         repr = f"{self.cda_type}: <{root_tag}"
         for key, value in self.attributes.items():
-            root_key = key.removeprefix('{http://www.w3.org/2001/XMLSchema-instance}')
+            root_key = key.removeprefix("{http://www.w3.org/2001/XMLSchema-instance}")
             repr += f' {root_key}="{value}"'
 
         if self.text:
@@ -146,7 +146,7 @@ class Parser:
 
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}usablePeriod":
+                case "{urn:hl7-org:v3}useablePeriod":
                     match child.get("{http://www.w3.org/2001/XMLSchema-instance}type"):
                         case "IVL_TS":
                             self.parse_IVL_TS(child)
@@ -240,6 +240,11 @@ class Parser:
 
     def parse_PIVL_TS(self, element: _Element):
         """Parse a PIVL_TS (Periodic Interval Timestamp) XML element."""
+        # PIVL_TS should not have a value attribute, however the 3.1 example eICR has it
+        for atribute in element.items():
+            match atribute[0]:
+                case "value":
+                    self.add_sensitive_element(element, "PIVL_TS!")
         for child in element:
             match child.tag:
                 case "{urn:hl7-org:v3}phase":
@@ -412,7 +417,7 @@ class Parser:
                     | "{urn:hl7-org:v3}precinct"
                 ):
                     self.parse_ADXP(child)
-                case "{urn:hl7-org:v3}usablePeriod":
+                case "{urn:hl7-org:v3}useablePeriod":
                     match child.get("{http://www.w3.org/2001/XMLSchema-instance}type"):
                         case "IVL_TS":
                             self.parse_IVL_TS(child)
@@ -1005,7 +1010,7 @@ class Parser:
                     for ep_child in child:
                         match ep_child.tag:
                             case "{urn:hl7-org:v3}healthCareFacility":
-                                self.parse_HealthCareFacility(rp_child)
+                                self.parse_HealthCareFacility(ep_child)
 
     def parse_EncounterParticipant(self, element: _Element):
         """Logical Model: EncounterParticipant (CDA Class).
