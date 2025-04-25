@@ -63,7 +63,6 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
     sensitive_elements = parser.find_sensitive_elements(first_element)
 
     debug_output: list[tuple[Element, Element | str]] = []
-    addresses = set()
 
     for element in sensitive_elements:
         match element.cda_type:

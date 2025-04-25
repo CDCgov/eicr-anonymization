@@ -1342,8 +1342,6 @@ class Parser:
                     self.parse_PN(child)
                 case "{urn:hl7-org:v3}birthTime":
                     self.parse_TS(child)
-                case "{urn:hl7-org:v3}desc":
-                    self.parse_ED(child)
 
     def parse_Entity(self, element: _Element):
         """Logical Model: Entity (CDA Class).
