@@ -33,7 +33,7 @@ def _delete_old_anonymized_files(input_location: str) -> None:
         os.remove(output_file)
 
 
-def anonymize_eicr_file(xml_file: str, debug: bool = False) -> None:
+def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = False) -> None:
     """Anonymize a single EICR XML file.
 
     Args:
@@ -62,9 +62,8 @@ def anonymize_eicr_file(xml_file: str, debug: bool = False) -> None:
 
     sensitive_elements = parser.find_sensitive_elements(first_element)
 
-    anonymizer = Anonymizer()
-
-    debug_output = []
+    debug_output: list[tuple[Element, Element | str]] = []
+    addresses = set()
 
     for element in sensitive_elements:
         match element.cda_type:
@@ -76,32 +75,52 @@ def anonymize_eicr_file(xml_file: str, debug: bool = False) -> None:
                 match = _find_element(root, element.path)
                 match.attrib["extension"] = anonymizer.anonymize_II_value(element)
                 debug_output.append((element, Element(match, "II")))
+            case "ADXP":
+                match element.name:
+                    case "{urn:hl7-org:v3}city":
+                        match = _find_element(root, element.path)
+                        match.text = anonymizer.anonymize_city_value(element)
+                        debug_output.append((element, Element(match, "ADXP")))
+                    case "{urn:hl7-org:v3}streetAddressLine":
+                        match = _find_element(root, element.path)
+                        match.text = anonymizer.anonymize_streetAddressLine_value(element)
+                        debug_output.append((element, Element(match, "ADXP")))
+                    case _:
+                        match = _find_element(root, element.path)
+                        match.text = "REMOVED"
+                        debug_output.append((element, Element(match, "ADXP")))
+            case "xhtml":
+                match = _find_element(root, element.path)
+                for child in match:
+                    match.remove(child)
+                match.text = "REMOVED"
+                debug_output.append((element, Element(match, "xhtml")))
             case _:
-                debug_output.append((element, ""))
+                if element.attributes.get("value") is not None:
+                    match = _find_element(root, element.path)
+                    match.attrib["value"] = "REMOVED"
+                if element.text is not None:
+                    match = _find_element(root, element.path)
+                    match.text = "REMOVED"
+                debug_output.append((element, Element(match, element.cda_type)))
+
 
     print(
         tabulate(
-            debug_output,
+            sorted(debug_output, key=lambda x: (x[0].name, x[0].cda_type, x[0].text)),
             headers=("Orginal", "Replacement"),
             tablefmt="fancy_outline",
         )
     )
 
-
-def _print_debug(debug_output: list[tuple[Tag, Tag]]) -> None:
-    """Print debug information for each replacement made.
-
-    Args:
-        debug_output: List of original and replacement tag instances
-
-    """
-    print(
-        tabulate(
-            debug_output,
-            headers=["Original", "Replacement"],
-            tablefmt="fancy_outline",
-        )
+    # Save the anonymized XML file
+    anonymized_file = os.path.join(
+        os.path.dirname(xml_file),
+        f"{os.path.basename(xml_file)}.anonymized.xml",
     )
+
+    tree.write(anonymized_file)
+
 
 
 def _find_element(root: _Element, path: str):
@@ -123,5 +142,6 @@ def anonymize(args: Namespace) -> None:
     _delete_old_anonymized_files(args.input_location)
 
     xml_files = glob.glob(os.path.join(args.input_location, "*.xml"))
+    anonymizer = Anonymizer()
     for xml_file in xml_files:
-        anonymize_eicr_file(xml_file, debug=args.debug)
+        anonymize_eicr_file(xml_file, anonymizer, debug=args.debug)

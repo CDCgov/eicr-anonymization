@@ -1,8 +1,27 @@
 from datetime import datetime, timedelta
 from random import choice, randint
 from string import ascii_lowercase, ascii_uppercase
+from typing import Literal, NotRequired, TypedDict
+
+import usaddress
+import yaml
 
 from eicr_anonymization.element_parser import Element
+
+
+class ReplacementType(TypedDict):
+    """Type definition for a replacement."""
+
+    value: str
+    abbreviation_only: NotRequired[Literal[True]]
+    abbreviations: NotRequired[list[str]]
+    qualifier: NotRequired[str]
+
+
+def _read_yaml(file_name: str) -> list[ReplacementType]:
+    """Read a YAML file and return its contents as a list of strings."""
+    with open("src/eicr_anonymization/star-wars-data/" + file_name) as file:
+        return yaml.safe_load(file)
 
 
 def _get_leading_trailing_whitespace(value: str) -> tuple[str, str]:
@@ -51,18 +70,30 @@ def _normalize_value(value: str):
     """Normalize the value by removing leading and trailing whitespace and converting to lowercase."""
     return value.lower().strip().replace(".", "")
 
+
 def _compare_normalized_values(old_value: str, new_value: str):
     """Compare the normalized values of the old and new values."""
     return _normalize_value(old_value) == _normalize_value(new_value)
 
+
 def _is_in_replacements(value: str, replacements: dict[str, str]):
     """Check if a replacement is needed."""
-    return any(
-        _compare_normalized_values(value, replacement)
-        for replacement in replacements.values()
-    )
+    return any(_compare_normalized_values(value, replacement) for replacement in replacements)
 
 
+def _replace_each_char_with_like(string: str):
+    """Replace each character in a string with a random character of the same type."""
+    new_string = ""
+    for char in str(string):
+        if char.isdigit():
+            new_string += str(randint(0, 9))
+        elif char.isalpha() and char.islower():
+            new_string += choice(ascii_lowercase)
+        elif char.isalpha() and char.isupper():
+            new_string += choice(ascii_uppercase)
+        else:
+            new_string += char
+    return new_string
 
 
 class Anonymizer:
@@ -76,6 +107,15 @@ class Anonymizer:
 
         self.TS_replacements: dict[str, str] = {}
         self.II_replacements: dict[str, str] = {}
+        self.addressNumber_replacements: dict[str, str] = {}
+        self.addressNumberSuffix_replacements: dict[str, str] = {}
+        self.occupancyIdentifier_replacements: dict[str, str] = {}
+        self.placeName_replacements: dict[str, str] = {}
+        self.stateName_replacements: dict[str, str] = {}
+        self.streetName_replacements: dict[str, str] = {}
+        self.uSPSBoxGroupID_replacements: dict[str, str] = {}
+        self.uSPSBoxID_replacements: dict[str, str] = {}
+        self.zipCode_replacements: dict[str, str] = {}
 
     def anonymize_TS_value(self, element: Element):
         """Anonymize TS elements."""
@@ -134,3 +174,165 @@ class Anonymizer:
         self.II_replacements[extension] = replacement
 
         return _match_formatting(extension, replacement)
+
+    def anonymize_streetAddressLine_value(self, element: Element):
+        """Anonymize streetAddressLine elements.
+
+        https://parserator.datamade.us/api-docs/#accordion-api-usaddress
+        """
+        value = element.text
+
+        if value is None:
+            return value
+
+        parsed_address = usaddress.parse(value)
+
+        replacement = []
+
+        for component, component_type in parsed_address:
+            match component_type:
+                case "AddressNumber":
+                    if _is_in_replacements(component, self.addressNumber_replacements):
+                        replacement.append(
+                            _match_formatting(component, self.addressNumber_replacements[component])
+                        )
+                        continue
+                    replacement_AddressNumber = ""
+                    for i in str(component):
+                        replacement_AddressNumber += str(randint(0, 9)) if i.isdigit() else i
+                    self.addressNumber_replacements[component] = replacement_AddressNumber
+                    replacement.append(_match_formatting(component, replacement_AddressNumber))
+                case "AddressNumberPrefix":
+                    # a modifier before an address number, e.g. 'Mile', '#'
+                    replacement.append(component)
+                case "AddressNumberSuffix":
+                    if _is_in_replacements(component, self.addressNumberSuffix_replacements):
+                        replacement.append(
+                            _match_formatting(
+                                component, self.addressNumberSuffix_replacements[component]
+                            )
+                        )
+                        continue
+                    replacement_value = _replace_each_char_with_like(component)
+                    self.addressNumberSuffix_replacements[component] = replacement_value
+                    replacement.append(_match_formatting(component, replacement_value))
+                case "BuildingName":
+                    replacement.append(_match_formatting(component, "Building"))
+                case "CornerOf":
+                    replacement.append(component)
+                case "LandmarkName":
+                    replacement.append(_match_formatting(component, "Landmark"))
+                case "NotAddress":
+                    replacement.append(component)
+                case "OccupancyIdentifier":
+                    if _is_in_replacements(component, self.occupancyIdentifier_replacements):
+                        replacement.append(
+                            _match_formatting(
+                                component, self.occupancyIdentifier_replacements[component]
+                            )
+                        )
+                        continue
+                    replacement_value = _replace_each_char_with_like(component)
+                    self.occupancyIdentifier_replacements[component] = replacement_value
+                    replacement.append(_match_formatting(component, replacement_value))
+                case "OccupancyType":
+                    # a type of occupancy within a building, e.g. 'Suite', 'Apt', 'Floor'
+                    replacement.append(component)
+                case "PlaceName":
+                    # city
+                    if _is_in_replacements(component, self.placeName_replacements):
+                        replacement.append(
+                            _match_formatting(component, self.placeName_replacements[component])
+                        )
+                        continue
+                    replacement_value = choice(_read_yaml("city_names.yaml"))["value"]
+                    self.placeName_replacements[component] = replacement_value
+                    replacement.append(_match_formatting(component, replacement_value))
+                case "Recipient":
+                    # a non-address recipient, e.g. the name of a person/organization
+                    replacement.append(_match_formatting(component, "Recipient"))
+                case "StateName":
+                    if _is_in_replacements(component, self.stateName_replacements):
+                        replacement.append(
+                            _match_formatting(component, self.stateName_replacements[component])
+                        )
+                        continue
+                    replacement_value = choice(_read_yaml("state_names.yaml"))["value"]
+                    self.stateName_replacements[component] = replacement_value
+                    replacement.append(_match_formatting(component, replacement_value))
+                case "StreetName":
+                    if _is_in_replacements(component, self.streetName_replacements):
+                        replacement.append(
+                            _match_formatting(component, self.streetName_replacements[component])
+                        )
+                        continue
+                    replacement_value = choice(_read_yaml("street_names.yaml"))["value"]
+                    self.streetName_replacements[component] = replacement_value
+                    replacement.append(_match_formatting(component, replacement_value))
+                case "StreetNamePostDirectional":
+                    replacement.append(component)
+                case "StreetNamePostModifier":
+                    replacement.append(component)
+                case "StreetNamePostType":
+                    replacement.append(component)
+                case "StreetNamePreDirectional":
+                    replacement.append(component)
+                case "StreetNamePreModifier":
+                    replacement.append(component)
+                case "StreetNamePreType":
+                    replacement.append(component)
+                case "SubaddressIdentifier":
+                    # the name/identifier of a subaddress component
+                    replacement.append(_match_formatting(component, "SubaddressIdentifier"))
+                case "SubaddressType":
+                    replacement.append(component)
+                case "USPSBoxGroupID":
+                    if _is_in_replacements(component, self.uSPSBoxGroupID_replacements):
+                        replacement.append(
+                            _match_formatting(
+                                component, self.uSPSBoxGroupID_replacements[component]
+                            )
+                        )
+                        continue
+                    replacement_value = _replace_each_char_with_like(component)
+                    self.uSPSBoxGroupID_replacements[component] = replacement_value
+                    replacement.append(_match_formatting(component, replacement_value))
+                case "USPSBoxGroupType":
+                    replacement.append(component)
+                case "USPSBoxID":
+                    if _is_in_replacements(component, self.uSPSBoxID_replacements):
+                        replacement.append(
+                            _match_formatting(component, self.uSPSBoxID_replacements[component])
+                        )
+                        continue
+                    replacement_value = _replace_each_char_with_like(component)
+                    self.uSPSBoxID_replacements[component] = replacement_value
+                    replacement.append(_match_formatting(component, replacement_value))
+                case "USPSBoxType":
+                    replacement.append(component)
+                case "ZipCode":
+                    if _is_in_replacements(component, self.zipCode_replacements):
+                        replacement.append(
+                            _match_formatting(component, self.zipCode_replacements[component])
+                        )
+                        continue
+                    replacement_ZipCode = ""
+                    for i in str(component):
+                        replacement_ZipCode = str(randint(0, 9)) if i.isdigit() else i
+                    self.zipCode_replacements[component] = replacement_ZipCode
+                    replacement.append(_match_formatting(component, replacement_ZipCode))
+
+        return _match_formatting(value, " ".join(replacement))
+
+    def anonymize_city_value(self, element: Element):
+        """Anonymize city elements."""
+        value = element.text
+        if value is None:
+            return value
+        if _is_in_replacements(value, self.placeName_replacements):
+            return _match_formatting(value, self.placeName_replacements[value])
+        replacement = choice(_read_yaml("city_names.yaml"))["value"]
+        if _already_picked(replacement, self.placeName_replacements):
+            replacement = _replace_each_char_with_like(replacement)
+        self.placeName_replacements[value] = replacement
+        return _match_formatting(value, replacement)
