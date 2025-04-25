@@ -47,15 +47,15 @@ select = [
   "RUF",  # Ruff
   "S",    # Bandit
   "SIM",  # flake8-simplify
-  # "TRY",  # tryceratops
+  "TRY",  # tryceratops
   "UP", # pyupgrade
   "W",  # Pydocstyle warnings
 ]
-ignore = [
-  "D100", # Missing docstring in public module
-  "S311", # suspicious-non-cryptographic-random-usage
-  "S320", # suspicious-xmle-tree-usage - deprecated
-]
+# ignore = [
+#   "D100", # Missing docstring in public module
+#   "S311", # suspicious-non-cryptographic-random-usage
+#   "S320", # suspicious-xmle-tree-usage - deprecated
+# ]
 
 [tool.ruff.lint.pydocstyle]
 convention = "pep257"
@@ -64,6 +64,8 @@ convention = "pep257"
 "tests/**" = [
   "S101", # assert
 ]
-"conftest.py" = [
-  "D100", # Missing docstring in public module
+"src/eicr_anonymization/element_parser.py" = [
+  "C901",    # Function is too complex
+  "PLR0912", # Too many branches
+  "PLR0915", # Too many statements
 ]

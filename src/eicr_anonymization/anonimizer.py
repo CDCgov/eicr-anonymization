@@ -8,6 +8,10 @@ import yaml
 
 from eicr_anonymization.element_parser import Element
 
+ONE_THIRD = 0.33
+ONE_HALF = 0.5
+TWO_THIRDS = 0.67
+
 
 class ReplacementType(TypedDict):
     """Type definition for a replacement."""
@@ -67,7 +71,7 @@ def _match_formatting(old_value: str, new_value: str) -> str:
 
 
 def _normalize_value(value: str):
-    """Normalize the value by removing leading and trailing whitespace and converting to lowercase."""
+    """Normalize value by removing leading and trailing whitespace and converting to lowercase."""
     return value.lower().strip().replace(".", "")
 
 
@@ -79,6 +83,9 @@ class Anonymizer:
         SECONDS_IN_100_YEARS = int(100 * 60 * 60 * 24 * 365.25)
         # The main offset is a random number of seconds between 0 and 100 years
         self.time_offset = randint(0, SECONDS_IN_100_YEARS)
+
+        self.ASSUMED_ABBR_LEN = 3
+        self.NUM_X = 2
 
         self.data_pools = {
             "country": _read_yaml("country_names.yaml"),
@@ -155,7 +162,11 @@ class Anonymizer:
             return _match_formatting(extension, replacement)
         replacement = ""
         for i, char in enumerate(extension):
-            if len(extension) > 3 and i < 3 and (char.isdigit() or char.isalpha()):
+            if (
+                len(extension) > self.NUM_X
+                and i < self.NUM_X
+                and (char.isdigit() or char.isalpha())
+            ):
                 replacement += "X"
             elif char.isdigit():
                 replacement += str(randint(0, 9))
@@ -286,7 +297,7 @@ class Anonymizer:
         """Anonymize using the pool-based replacement strategy."""
         if value is None:
             return value
-        if value.isdigit() or len(value) <= 2:
+        if value.isdigit() or len(value) <= self.ASSUMED_ABBR_LEN:
             return _match_formatting(value, self.replace_with_like_chars(value, data_type))
         replacement = self._get_mapping(value, data_type)
         if replacement is None:
@@ -383,30 +394,31 @@ class Anonymizer:
         parts = []
         match form_choice:
             case 0:
-                if random() <= 0.33:
+                form_choice = random()
+                if form_choice <= ONE_THIRD:
                     parts.append(f" {choice(localitys)} {choice(organizationTypes)}")
-                elif random() <= 0.67:
+                elif form_choice <= TWO_THIRDS:
                     parts.append(f"{choice(organizationTypes)} of {choice(localitys)}")
                 else:
                     parts.append(choice(localitys))
 
-                if random() <= 0.5:
+                if random() <= ONE_HALF:
                     parts.append(f"{choice(scopes)} {choice(facilityTypes)}")
                 else:
                     parts.append(choice(facilityTypes))
 
-                if random() <= 0.5:
+                if random() <= ONE_HALF:
                     parts.append(f"{choice(conjuctions)} {choice(facilityTypes)}")
             case 1:
-                if random() <= 0.5:
+                if random() <= ONE_HALF:
                     parts.append(choice(organizationTypes))
 
-                if random() <= 0.5:
+                if random() <= ONE_HALF:
                     parts.append(choice(scopes))
 
                 parts.append(choice(facilityTypes))
 
-                if random() <= 0.5:
+                if random() <= ONE_HALF:
                     parts.append(f"{choice(conjuctions)} {choice(facilityTypes)}")
 
                 parts.append(f"of {choice(localitys)}")
@@ -434,31 +446,27 @@ class Anonymizer:
             replacement = value
             replacement = f"fax:{self.replace_with_like_chars(value[4:], 'TEL')}"
         elif value.startswith("http://"):
-            prefix = "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
-            if prefix != "":
-                prefix += "."
-            suffix = "".join(choice("0123456789") for _ in range(randint(0, 5)))
-            replacement = f"http://{prefix}example{suffix}.com"
-            if random() <= 0.5:
-                replacement += "/" + "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
-                replacement += choice(
-                    ["", ".pdf", ".html", ".xml", ".txt", ".jpg", ".png", ".gif", ".jpeg"]
-                )
+            replacement = self.random_web_address()
         elif value.startswith("https://"):
-            prefix = "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
-            if prefix != "":
-                prefix += "."
-            suffix = "".join(choice("0123456789") for _ in range(randint(0, 5)))
-            replacement = f"https://{prefix}example{suffix}.com"
-            if random() <= 0.5:
-                replacement += "/" + "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
-                replacement += choice(
-                    ["", ".pdf", ".html", ".xml", ".txt", ".jpg", ".png", ".gif", ".jpeg"]
-                )
+            replacement = self.random_web_address("https")
         else:
             replacement = "REMOVED"
 
         return _match_formatting(value, replacement)
+
+    def random_web_address(self, protocol: str = "http"):
+        """Generate a random web address."""
+        prefix = "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
+        if prefix != "":
+            prefix += "."
+        suffix = "".join(choice("0123456789") for _ in range(randint(0, 5)))
+        replacement = f"{protocol}://{prefix}example{suffix}.com"
+        if random() <= ONE_HALF:
+            replacement += "/" + "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
+            replacement += choice(
+                ["", ".pdf", ".html", ".xml", ".txt", ".jpg", ".png", ".gif", ".jpeg"]
+            )
+        return replacement
 
     def random_email(self):
         """Generate a random email address."""
@@ -467,10 +475,11 @@ class Anonymizer:
         name = "mailto:"
 
         name = "".join(choice(ascii_lowercase) for _ in range(randint(1, 5)))
-        if random() <= 0.33:
+        form_choice = random()
+        if form_choice <= ONE_THIRD:
             name += "".join(choice(["", "_", "."]))
             name += "".join(choice("0123456789") for _ in range(randint(1, 3)))
-        elif random() <= 0.67:
+        elif form_choice <= TWO_THIRDS:
             name += "".join(choice(["", "_", "."]))
             name += "".join(choice(ascii_lowercase) for _ in range(randint(1, 3)))
         return f"{name}@{domain}"
