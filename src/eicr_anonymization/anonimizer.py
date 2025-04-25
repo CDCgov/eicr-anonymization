@@ -283,6 +283,8 @@ class Anonymizer:
         """Anonymize using the pool-based replacement strategy."""
         if value is None:
             return value
+        if value.isdigit():
+            return _match_formatting(value, self.replace_with_like_chars(value, data_type))
         replacement = self._get_mapping(value, data_type)
         if replacement is None:
             # Get a new replacement value
