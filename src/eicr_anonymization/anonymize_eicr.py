@@ -3,9 +3,7 @@
 import glob
 import logging
 import os
-import sys
 from argparse import Namespace
-from random import randint
 
 from lxml import etree
 from lxml.etree import _Element
@@ -13,7 +11,6 @@ from tabulate import tabulate
 
 from eicr_anonymization.anonimizer import Anonymizer
 from eicr_anonymization.element_parser import Element, Parser
-from eicr_anonymization.tags.Tag import Tag
 
 logger = logging.getLogger(__name__)
 
