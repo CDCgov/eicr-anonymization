@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from random import choice, randint, shuffle
+from random import choice, randint, random, shuffle
 from string import ascii_lowercase, ascii_uppercase
 from typing import Literal, NotRequired, TypedDict
 
@@ -90,12 +90,11 @@ class Anonymizer:
             "given": _read_yaml("given_names.yaml"),
         }
 
-        self.available_options = {
-            data_type: pool.copy() for data_type, pool in self.data_pools.items()
-        }
+        self.available_options = {data_type: [] for data_type in self.data_pools}
 
         self.mappings: dict[str, dict[str, str]] = {
             "II": {},
+            "EN": {},
             "country": {},
             "state": {},
             "county": {},
@@ -106,6 +105,8 @@ class Anonymizer:
             "streetNameType": {},
             "unitID": {},
             "AddressNumberSuffix": {},
+            "given": {},
+            "family": {},
         }
 
     def anonymize_TS_value(self, element: Element):
@@ -283,7 +284,7 @@ class Anonymizer:
         """Anonymize using the pool-based replacement strategy."""
         if value is None:
             return value
-        if value.isdigit():
+        if value.isdigit() or len(value) == 1:
             return _match_formatting(value, self.replace_with_like_chars(value, data_type))
         replacement = self._get_mapping(value, data_type)
         if replacement is None:
@@ -325,3 +326,89 @@ class Anonymizer:
 
         # Pop the first item
         return options.pop(0)
+
+    def anonymize_EN_value(self, element: Element):
+        """Anonymize EN elements.
+
+        https://parserator.datamade.us/probablepeople/
+        """
+        return self.random_corpationName(element.text)
+
+    def random_corpationName(self, value: str | None):
+        """Generate a random corporation name.
+
+        1) Pick the form of the name:
+        - {locality} {facilityType}
+        """
+        if value is None:
+            return value
+        replacement = self._get_mapping(value, "EN")
+        if replacement is not None:
+            return _match_formatting(value, replacement)
+
+        facilityTypes = [
+            "Hospital",
+            "Clinic",
+            "Health Center",
+            "Medical Center",
+            "Urgent Care",
+            "Laboratory",
+            "Pharmacy",
+            "Research Institute",
+            "Health System",
+        ]
+        organizationTypes = ["University", "College", "School", "Academy", "Institute"]
+
+        localitys = [
+            item["value"]
+            for key in ["city", "county", "state", "country"]
+            for item in self.data_pools.get(key, [])
+        ]
+
+        scopes = [
+            "Neighborhood",
+            "Neighbourhood",
+            "Regional",
+        ]
+
+        conjuctions = ["and", "&", "+"]
+
+        # {locality} {facilityType} ({and} {facilityType})?
+        # {facilityType} {preposition} {locality}
+
+        form_choice = randint(0, 1)
+        replacement = "REMOVED"
+        parts = []
+        match form_choice:
+            case 0:
+                if random() <= 0.33:
+                    parts.append(f" {choice(localitys)} {choice(organizationTypes)}")
+                elif random() <= 0.67:
+                    parts.append(f"{choice(organizationTypes)} of {choice(localitys)}")
+                else:
+                    parts.append(choice(localitys))
+
+                if random() <= 0.5:
+                    parts.append(f"{choice(scopes)} {choice(facilityTypes)}")
+                else:
+                    parts.append(choice(facilityTypes))
+
+                if random() <= 0.5:
+                    parts.append(f"{choice(conjuctions)} {choice(facilityTypes)}")
+            case 1:
+                if random() <= 0.5:
+                    parts.append(choice(organizationTypes))
+
+                if random() <= 0.5:
+                    parts.append(choice(scopes))
+
+                parts.append(choice(facilityTypes))
+
+                if random() <= 0.5:
+                    parts.append(f"{choice(conjuctions)} {choice(facilityTypes)}")
+
+                parts.append(f"of {choice(localitys)}")
+
+        replacement = " ".join(parts)
+        self._set_mapping(value, "EN", replacement)
+        return _match_formatting(value, replacement)

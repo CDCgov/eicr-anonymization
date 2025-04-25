@@ -244,7 +244,7 @@ class Parser:
         for atribute in element.items():
             match atribute[0]:
                 case "value":
-                    self.add_sensitive_element(element, "PIVL_TS!")
+                    self.add_sensitive_element(element, "PIVL_TS")
         for child in element:
             match child.tag:
                 case "{urn:hl7-org:v3}phase":

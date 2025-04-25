@@ -66,7 +66,7 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
 
     for element in sensitive_elements:
         match element.cda_type:
-            case "TS":
+            case "TS" | "IVL_TS" | "PIVL_TS" | "IVXB_TS":
                 match = _find_element(root, element.path)
                 match.attrib["value"] = anonymizer.anonymize_TS_value(element)
                 debug_output.append((element, Element(match, "TS")))
@@ -96,6 +96,24 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                         match = _find_element(root, element.path)
                         match.text = "REMOVED"
                         debug_output.append((element, Element(match, "ADXP")))
+            case "ENXP":
+                match element.name:
+                    case "{urn:hl7-org:v3}given":
+                        match = _find_element(root, element.path)
+                        match.text = anonymizer.replace_from_pool(element.text, "given")
+                        debug_output.append((element, Element(match, "ENXP")))
+                    case "{urn:hl7-org:v3}family":
+                        match = _find_element(root, element.path)
+                        match.text = anonymizer.replace_from_pool(element.text, "family")
+                        debug_output.append((element, Element(match, "ENXP")))
+                    case _:
+                        match = _find_element(root, element.path)
+                        match.text = "REMOVED"
+                        debug_output.append((element, Element(match, "ENXP")))
+            case "EN" | "PN":
+                match = _find_element(root, element.path)
+                match.text = anonymizer.anonymize_EN_value(element)
+                debug_output.append((element, Element(match, "EN")))
             case "xhtml":
                 match = _find_element(root, element.path)
                 for child in match:
