@@ -48,8 +48,8 @@ select = [
   "S",    # Bandit
   "SIM",  # flake8-simplify
   "TRY",  # tryceratops
-  "UP", # pyupgrade
-  "W",  # Pydocstyle warnings
+  "UP",   # pyupgrade
+  "W",    # Pydocstyle warnings
 ]
 # ignore = [
 #   "D100", # Missing docstring in public module
@@ -64,6 +64,7 @@ convention = "pep257"
 "tests/**" = [
   "S101", # assert
 ]
+
 "src/eicr_anonymization/element_parser.py" = [
   "C901",    # Function is too complex
   "PLR0912", # Too many branches
