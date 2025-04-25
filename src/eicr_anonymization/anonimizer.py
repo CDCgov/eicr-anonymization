@@ -82,6 +82,7 @@ class Anonymizer:
 
         self.data_pools = {
             "country": _read_yaml("country_names.yaml"),
+            "state": _read_yaml("state_names.yaml"),
             "county": _read_yaml("county_names.yaml"),
             "city": _read_yaml("city_names.yaml"),
             "streetNameBase": _read_yaml("street_names.yaml"),
@@ -95,6 +96,7 @@ class Anonymizer:
         self.mappings: dict[str, dict[str, str]] = {
             "II": {},
             "EN": {},
+            "TEL": {},
             "country": {},
             "state": {},
             "county": {},
@@ -284,7 +286,7 @@ class Anonymizer:
         """Anonymize using the pool-based replacement strategy."""
         if value is None:
             return value
-        if value.isdigit() or len(value) == 1:
+        if value.isdigit() or len(value) <= 2:
             return _match_formatting(value, self.replace_with_like_chars(value, data_type))
         replacement = self._get_mapping(value, data_type)
         if replacement is None:
@@ -412,3 +414,63 @@ class Anonymizer:
         replacement = " ".join(parts)
         self._set_mapping(value, "EN", replacement)
         return _match_formatting(value, replacement)
+
+    def anonymize_TEL_value(self, element: Element):
+        """Anonymize TEL elements."""
+        value = element.attributes["value"]
+        if value is None:
+            return value
+
+        replacement = self._get_mapping(value, "TEL")
+        if replacement is not None:
+            return _match_formatting(value, replacement)
+
+        if value.startswith("mailto:"):
+            replacement = self.random_email()
+        elif value.startswith("tel:"):
+            replacement = value
+            replacement = f"tel:{self.replace_with_like_chars(value[4:], 'TEL')}"
+        elif value.startswith("fax:"):
+            replacement = value
+            replacement = f"fax:{self.replace_with_like_chars(value[4:], 'TEL')}"
+        elif value.startswith("http://"):
+            prefix = "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
+            if prefix != "":
+                prefix += "."
+            suffix = "".join(choice("0123456789") for _ in range(randint(0, 5)))
+            replacement = f"http://{prefix}example{suffix}.com"
+            if random() <= 0.5:
+                replacement += "/" + "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
+                replacement += choice(
+                    ["", ".pdf", ".html", ".xml", ".txt", ".jpg", ".png", ".gif", ".jpeg"]
+                )
+        elif value.startswith("https://"):
+            prefix = "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
+            if prefix != "":
+                prefix += "."
+            suffix = "".join(choice("0123456789") for _ in range(randint(0, 5)))
+            replacement = f"https://{prefix}example{suffix}.com"
+            if random() <= 0.5:
+                replacement += "/" + "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
+                replacement += choice(
+                    ["", ".pdf", ".html", ".xml", ".txt", ".jpg", ".png", ".gif", ".jpeg"]
+                )
+        else:
+            replacement = "REMOVED"
+
+        return _match_formatting(value, replacement)
+
+    def random_email(self):
+        """Generate a random email address."""
+        domain = "example.com"
+
+        name = "mailto:"
+
+        name = "".join(choice(ascii_lowercase) for _ in range(randint(1, 5)))
+        if random() <= 0.33:
+            name += "".join(choice(["", "_", "."]))
+            name += "".join(choice("0123456789") for _ in range(randint(1, 3)))
+        elif random() <= 0.67:
+            name += "".join(choice(["", "_", "."]))
+            name += "".join(choice(ascii_lowercase) for _ in range(randint(1, 3)))
+        return f"{name}@{domain}"

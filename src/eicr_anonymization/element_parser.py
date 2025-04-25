@@ -481,8 +481,8 @@ class Parser:
                 case (
                     "{urn:hl7-org:v3}family"
                     | "{urn:hl7-org:v3}given"
-                    | "{urn:hl7-org:v3}prefix"
-                    | "{urn:hl7-org:v3}suffix"
+                    # | "{urn:hl7-org:v3}prefix"
+                    # | "{urn:hl7-org:v3}suffix"
                 ):
                     self.parse_ENXP(child)
                 case "{urn:hl7-org:v3}validTime":

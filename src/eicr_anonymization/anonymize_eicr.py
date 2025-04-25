@@ -97,6 +97,10 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                         if element.text is not None:
                             match.text = anonymizer.replace_from_pool(element.text, "postalCode")
                             debug_output.append((element, Element(match, "ADXP")))
+                    case "{urn:hl7-org:v3}state":
+                        match = _find_element(root, element.path)
+                        match.text = anonymizer.replace_from_pool(element.text, "state")
+                        debug_output.append((element, Element(match, "ADXP")))
                     case _:
                         match = _find_element(root, element.path)
                         match.text = "REMOVED"
@@ -125,6 +129,12 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                     match.remove(child)
                 match.text = "REMOVED"
                 debug_output.append((element, Element(match, "xhtml")))
+            case "TEL":
+                match = _find_element(root, element.path)
+                value = element.attributes.get("value")
+                if value is not None and not value.startswith("#"):
+                    match.attrib["value"] = anonymizer.anonymize_TEL_value(element)
+                debug_output.append((element, Element(match, "TEL")))
             case _:
                 if element.attributes.get("value") is not None:
                     match = _find_element(root, element.path)
