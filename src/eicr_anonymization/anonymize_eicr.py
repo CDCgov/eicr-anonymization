@@ -92,6 +92,11 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                         match = _find_element(root, element.path)
                         match.text = anonymizer.replace_from_pool(element.text, "county")
                         debug_output.append((element, Element(match, "ADXP")))
+                    case "{urn:hl7-org:v3}postalCode":
+                        match = _find_element(root, element.path)
+                        if element.text is not None:
+                            match.text = anonymizer.replace_from_pool(element.text, "postalCode")
+                            debug_output.append((element, Element(match, "ADXP")))
                     case _:
                         match = _find_element(root, element.path)
                         match.text = "REMOVED"
