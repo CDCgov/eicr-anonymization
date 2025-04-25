@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from random import choice, randint
+from random import choice, randint, shuffle
 from string import ascii_lowercase, ascii_uppercase
 from typing import Literal, NotRequired, TypedDict
 
@@ -71,31 +71,6 @@ def _normalize_value(value: str):
     return value.lower().strip().replace(".", "")
 
 
-def _compare_normalized_values(old_value: str, new_value: str):
-    """Compare the normalized values of the old and new values."""
-    return _normalize_value(old_value) == _normalize_value(new_value)
-
-
-def _is_in_replacements(value: str, replacements: dict[str, str]):
-    """Check if a replacement is needed."""
-    return any(_compare_normalized_values(value, replacement) for replacement in replacements)
-
-
-def _replace_each_char_with_like(string: str):
-    """Replace each character in a string with a random character of the same type."""
-    new_string = ""
-    for char in str(string):
-        if char.isdigit():
-            new_string += str(randint(0, 9))
-        elif char.isalpha() and char.islower():
-            new_string += choice(ascii_lowercase)
-        elif char.isalpha() and char.isupper():
-            new_string += choice(ascii_uppercase)
-        else:
-            new_string += char
-    return new_string
-
-
 class Anonymizer:
     """Anonymizes the data."""
 
@@ -105,23 +80,38 @@ class Anonymizer:
         # The main offset is a random number of seconds between 0 and 100 years
         self.time_offset = randint(0, SECONDS_IN_100_YEARS)
 
-        self.TS_replacements: dict[str, str] = {}
-        self.II_replacements: dict[str, str] = {}
-        self.addressNumber_replacements: dict[str, str] = {}
-        self.addressNumberSuffix_replacements: dict[str, str] = {}
-        self.occupancyIdentifier_replacements: dict[str, str] = {}
-        self.placeName_replacements: dict[str, str] = {}
-        self.stateName_replacements: dict[str, str] = {}
-        self.streetName_replacements: dict[str, str] = {}
-        self.uSPSBoxGroupID_replacements: dict[str, str] = {}
-        self.uSPSBoxID_replacements: dict[str, str] = {}
-        self.zipCode_replacements: dict[str, str] = {}
+        self.data_pools = {
+            "country": _read_yaml("country_names.yaml"),
+            "county": _read_yaml("county_names.yaml"),
+            "city": _read_yaml("city_names.yaml"),
+            "streetNameBase": _read_yaml("street_names.yaml"),
+            "streetNameType": _read_yaml("street_types.yaml"),
+            "family": _read_yaml("family_names.yaml"),
+            "given": _read_yaml("given_names.yaml"),
+        }
+
+        self.available_options = {
+            data_type: pool.copy() for data_type, pool in self.data_pools.items()
+        }
+
+        self.mappings: dict[str, dict[str, str]] = {
+            "II": {},
+            "state": {},
+            "county": {},
+            "city": {},
+            "postalCode": {},
+            "houseNumber": {},
+            "streetNameBase": {},
+            "streetNameType": {},
+            "unitID": {},
+            "AddressNumberSuffix": {},
+        }
 
     def anonymize_TS_value(self, element: Element):
         """Anonymize TS elements."""
         value = element.attributes["value"]
-        if _is_in_replacements(value, self.TS_replacements):
-            return _match_formatting(value, self.TS_replacements[value])
+        if value is None:
+            return value
 
         known_formats = [
             "%Y",
@@ -148,16 +138,17 @@ class Anonymizer:
             date_time = datetime.now() - timedelta(seconds=self.time_offset)
             fmt = "%Y%m%d%H%M%S%z"
 
-        new_value = date_time.strftime(fmt)
-        self.TS_replacements[value] = new_value
-
-        return _match_formatting(value, new_value)
+        return _match_formatting(value, date_time.strftime(fmt))
 
     def anonymize_II_value(self, element: Element):
         """Anonymize II elements."""
         extension = element.attributes["extension"]
-        if _is_in_replacements(extension, self.II_replacements):
-            return _match_formatting(extension, self.II_replacements[extension])
+        if extension is None:
+            return extension
+
+        replacement = self._get_mapping(extension, "II")
+        if replacement is not None:
+            return _match_formatting(extension, replacement)
         replacement = ""
         for i, char in enumerate(extension):
             if len(extension) > 3 and i < 3 and (char.isdigit() or char.isalpha()):
@@ -171,7 +162,7 @@ class Anonymizer:
             else:
                 replacement += char
 
-        self.II_replacements[extension] = replacement
+        self._set_mapping(extension, "II", replacement)
 
         return _match_formatting(extension, replacement)
 
@@ -192,30 +183,25 @@ class Anonymizer:
         for component, component_type in parsed_address:
             match component_type:
                 case "AddressNumber":
-                    if _is_in_replacements(component, self.addressNumber_replacements):
+                    if self._get_mapping(component, "houseNumber"):
                         replacement.append(
-                            _match_formatting(component, self.addressNumber_replacements[component])
+                            _match_formatting(component, self.mappings["houseNumber"][component])
                         )
                         continue
                     replacement_AddressNumber = ""
                     for i in str(component):
                         replacement_AddressNumber += str(randint(0, 9)) if i.isdigit() else i
-                    self.addressNumber_replacements[component] = replacement_AddressNumber
+                    self._set_mapping(component, "houseNumber", replacement_AddressNumber)
                     replacement.append(_match_formatting(component, replacement_AddressNumber))
                 case "AddressNumberPrefix":
                     # a modifier before an address number, e.g. 'Mile', '#'
                     replacement.append(component)
                 case "AddressNumberSuffix":
-                    if _is_in_replacements(component, self.addressNumberSuffix_replacements):
-                        replacement.append(
-                            _match_formatting(
-                                component, self.addressNumberSuffix_replacements[component]
-                            )
-                        )
-                        continue
-                    replacement_value = _replace_each_char_with_like(component)
-                    self.addressNumberSuffix_replacements[component] = replacement_value
-                    replacement.append(_match_formatting(component, replacement_value))
+                    # a modifier after an address number, e.g 'B', '1/2'
+                    replacement_AddressNumberSuffix = self.replace_with_like_chars(
+                        component, "AddressNumberSuffix"
+                    )
+                    replacement.append(replacement_AddressNumberSuffix)
                 case "BuildingName":
                     replacement.append(_match_formatting(component, "Building"))
                 case "CornerOf":
@@ -225,50 +211,25 @@ class Anonymizer:
                 case "NotAddress":
                     replacement.append(component)
                 case "OccupancyIdentifier":
-                    if _is_in_replacements(component, self.occupancyIdentifier_replacements):
-                        replacement.append(
-                            _match_formatting(
-                                component, self.occupancyIdentifier_replacements[component]
-                            )
-                        )
-                        continue
-                    replacement_value = _replace_each_char_with_like(component)
-                    self.occupancyIdentifier_replacements[component] = replacement_value
-                    replacement.append(_match_formatting(component, replacement_value))
+                    # the identifier of an occupancy, often a number or letter
+                    replacement_unitID = self.replace_with_like_chars(component, "unitID")
+                    replacement.append(replacement_unitID)
                 case "OccupancyType":
                     # a type of occupancy within a building, e.g. 'Suite', 'Apt', 'Floor'
                     replacement.append(component)
                 case "PlaceName":
                     # city
-                    if _is_in_replacements(component, self.placeName_replacements):
-                        replacement.append(
-                            _match_formatting(component, self.placeName_replacements[component])
-                        )
-                        continue
-                    replacement_value = choice(_read_yaml("city_names.yaml"))["value"]
-                    self.placeName_replacements[component] = replacement_value
-                    replacement.append(_match_formatting(component, replacement_value))
+                    city_replacement = self.replace_from_pool(component, "city")
+                    replacement.append(city_replacement)
                 case "Recipient":
                     # a non-address recipient, e.g. the name of a person/organization
                     replacement.append(_match_formatting(component, "Recipient"))
                 case "StateName":
-                    if _is_in_replacements(component, self.stateName_replacements):
-                        replacement.append(
-                            _match_formatting(component, self.stateName_replacements[component])
-                        )
-                        continue
-                    replacement_value = choice(_read_yaml("state_names.yaml"))["value"]
-                    self.stateName_replacements[component] = replacement_value
-                    replacement.append(_match_formatting(component, replacement_value))
+                    state_replacement = self.replace_from_pool(component, "state")
+                    replacement.append(state_replacement)
                 case "StreetName":
-                    if _is_in_replacements(component, self.streetName_replacements):
-                        replacement.append(
-                            _match_formatting(component, self.streetName_replacements[component])
-                        )
-                        continue
-                    replacement_value = choice(_read_yaml("street_names.yaml"))["value"]
-                    self.streetName_replacements[component] = replacement_value
-                    replacement.append(_match_formatting(component, replacement_value))
+                    state_replacement = self.replace_from_pool(component, "streetNameBase")
+                    replacement.append(state_replacement)
                 case "StreetNamePostDirectional":
                     replacement.append(component)
                 case "StreetNamePostModifier":
@@ -287,52 +248,77 @@ class Anonymizer:
                 case "SubaddressType":
                     replacement.append(component)
                 case "USPSBoxGroupID":
-                    if _is_in_replacements(component, self.uSPSBoxGroupID_replacements):
-                        replacement.append(
-                            _match_formatting(
-                                component, self.uSPSBoxGroupID_replacements[component]
-                            )
-                        )
-                        continue
-                    replacement_value = _replace_each_char_with_like(component)
-                    self.uSPSBoxGroupID_replacements[component] = replacement_value
-                    replacement.append(_match_formatting(component, replacement_value))
+                    replacement_USPSBoxGroupID = self.replace_with_like_chars(
+                        component, "USPSBoxGroupID"
+                    )
+                    replacement.append(replacement_USPSBoxGroupID)
                 case "USPSBoxGroupType":
                     replacement.append(component)
                 case "USPSBoxID":
-                    if _is_in_replacements(component, self.uSPSBoxID_replacements):
-                        replacement.append(
-                            _match_formatting(component, self.uSPSBoxID_replacements[component])
-                        )
-                        continue
-                    replacement_value = _replace_each_char_with_like(component)
-                    self.uSPSBoxID_replacements[component] = replacement_value
-                    replacement.append(_match_formatting(component, replacement_value))
+                    replacement_USPSBoxID = self.replace_with_like_chars(component, "USPSBoxID")
+                    replacement.append(replacement_USPSBoxID)
                 case "USPSBoxType":
                     replacement.append(component)
-                case "ZipCode":
-                    if _is_in_replacements(component, self.zipCode_replacements):
-                        replacement.append(
-                            _match_formatting(component, self.zipCode_replacements[component])
-                        )
-                        continue
-                    replacement_ZipCode = ""
-                    for i in str(component):
-                        replacement_ZipCode = str(randint(0, 9)) if i.isdigit() else i
-                    self.zipCode_replacements[component] = replacement_ZipCode
-                    replacement.append(_match_formatting(component, replacement_ZipCode))
+                case "postalCode":
+                    replacement_postalCode = self.replace_with_like_chars(component, "postalCode")
+                    replacement.append(replacement_postalCode)
 
         return _match_formatting(value, " ".join(replacement))
 
-    def anonymize_city_value(self, element: Element):
-        """Anonymize city elements."""
-        value = element.text
+    def _get_mapping(self, value: str, data_type: str):
+        """Get the mapping for a value."""
+        normalized = _normalize_value(value)
+        if normalized in self.mappings[data_type]:
+            return self.mappings[data_type][normalized]
+        else:
+            return None
+
+    def _set_mapping(self, value: str, data_type: str, replacement: str):
+        """Set the mapping for a value."""
+        normalized = _normalize_value(value)
+        self.mappings[data_type][normalized] = replacement
+
+    def replace_from_pool(self, value: str | None, data_type: str):
+        """Anonymize using the pool-based replacement strategy."""
         if value is None:
             return value
-        if _is_in_replacements(value, self.placeName_replacements):
-            return _match_formatting(value, self.placeName_replacements[value])
-        replacement = choice(_read_yaml("city_names.yaml"))["value"]
-        if _already_picked(replacement, self.placeName_replacements):
-            replacement = _replace_each_char_with_like(replacement)
-        self.placeName_replacements[value] = replacement
+        replacement = self._get_mapping(value, data_type)
+        if replacement is None:
+            # Get a new replacement value
+            replacement = self.get_random_option(data_type)["value"]
+            # Store the mapping for future use
+            self._set_mapping(value, data_type, replacement)
+
         return _match_formatting(value, replacement)
+
+    def replace_with_like_chars(self, value: str, data_type: str):
+        """Replace each character in a string with a random character of the same type."""
+        replacement = self._get_mapping(value, data_type)
+        if replacement is None:
+            replacement = ""
+            for char in str(value):
+                if char.isdigit():
+                    replacement += str(randint(0, 9))
+                elif char.isalpha() and char.islower():
+                    replacement += choice(ascii_lowercase)
+                elif char.isalpha() and char.isupper():
+                    replacement += choice(ascii_uppercase)
+                else:
+                    replacement += char
+
+            self._set_mapping(value, data_type, replacement)
+
+        return _match_formatting(value, replacement)
+
+    def get_random_option(self, data_type):
+        """Get a random item from the specified data type's available options."""
+        options = self.available_options[data_type]
+        pool = self.data_pools[data_type]
+
+        # If options are depleted, refill from the pool and shuffle
+        if not options:
+            options.extend(pool.copy())
+            shuffle(options)
+
+        # Pop the first item
+        return options.pop(0)

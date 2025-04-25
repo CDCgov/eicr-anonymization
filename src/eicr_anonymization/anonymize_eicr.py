@@ -77,10 +77,10 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                 debug_output.append((element, Element(match, "II")))
             case "ADXP":
                 match element.name:
-                    # case "{urn:hl7-org:v3}city":
-                    #     match = _find_element(root, element.path)
-                    #     match.text = anonymizer.anonymize_city_value(element)
-                    #     debug_output.append((element, Element(match, "ADXP")))
+                    case "{urn:hl7-org:v3}city":
+                        match = _find_element(root, element.path)
+                        match.text = anonymizer.replace_from_pool(element.text, "city")
+                        debug_output.append((element, Element(match, "ADXP")))
                     case "{urn:hl7-org:v3}streetAddressLine":
                         match = _find_element(root, element.path)
                         match.text = anonymizer.anonymize_streetAddressLine_value(element)
@@ -104,7 +104,6 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                     match.text = "REMOVED"
                 debug_output.append((element, Element(match, element.cda_type)))
 
-
     print(
         tabulate(
             sorted(debug_output, key=lambda x: (x[0].name, x[0].cda_type, x[0].text)),
@@ -120,7 +119,6 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
     )
 
     tree.write(anonymized_file)
-
 
 
 def _find_element(root: _Element, path: str):
