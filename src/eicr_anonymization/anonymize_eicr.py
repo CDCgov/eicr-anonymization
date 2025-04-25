@@ -141,13 +141,14 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                     match.text = "REMOVED"
                 debug_output.append((element, Element(match, element.cda_type)))
 
-    print(
-        tabulate(
-            sorted(debug_output, key=lambda x: (x[0].name, x[0].cda_type, x[0].text)),
-            headers=("Orginal", "Replacement"),
-            tablefmt="fancy_outline",
+    if debug:
+        print(
+            tabulate(
+                sorted(debug_output, key=lambda x: (x[0].name, x[0].cda_type, x[0].text)),
+                headers=("Orginal", "Replacement"),
+                tablefmt="fancy_outline",
+            )
         )
-    )
 
     # Save the anonymized XML file
     anonymized_file = os.path.join(
