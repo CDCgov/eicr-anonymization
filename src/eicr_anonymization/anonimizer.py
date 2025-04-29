@@ -510,22 +510,26 @@ class Anonymizer:
         """Anonymize xhtml elements."""
         if additional_safe_words is None:
             additional_safe_words = set()
-        text_value = element.text
 
         self.safe_words = self.safe_words.union(
             {_normalize_value(word) for word in additional_safe_words}
         )
 
+        text_value = element.text
         if text_value is not None:
             normalized_text_value = _normalize_value(text_value)
-            if not (normalized_text_value in self.safe_words or normalized_text_value.isnumeric()):
+            if normalized_text_value != "" and not (
+                any(normalized_text_value in safe_word for safe_word in self.safe_words)
+                or normalized_text_value.isnumeric()
+            ):
                 element.text = _match_formatting(text_value, "REMOVED")
 
         tail_value = element.tail
         if tail_value is not None:
             normalized_tail_value = _normalize_value(tail_value)
             if normalized_tail_value != "" and not (
-                normalized_tail_value in self.safe_words or normalized_tail_value.isnumeric()
+                any(normalized_tail_value in safe_word for safe_word in self.safe_words)
+                or normalized_tail_value.isnumeric()
             ):
                 element.tail = _match_formatting(tail_value, "REMOVED")
 

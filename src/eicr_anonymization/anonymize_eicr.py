@@ -114,7 +114,7 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                 debug_output.append((element, Element(match, "EN")))
             case "xhtml":
                 match = _find_element(root, element.path)
-                anonymizer.anonymize_xhtml(match)
+                anonymizer.anonymize_xhtml(match, safe_words)
             case "TEL":
                 match = _find_element(root, element.path)
                 value = element.attributes.get("value")

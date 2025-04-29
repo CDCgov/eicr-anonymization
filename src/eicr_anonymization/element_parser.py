@@ -294,6 +294,10 @@ class Parser:
 
         https://build.fhir.org/ig/HL7/CDA-core-2.0/StructureDefinition-CD.html
         """
+        for atribute in element.items():
+            match atribute[0]:
+                case "displayName" | "codeSystemName":
+                    self.add_safe_text(atribute[1])
         for child in element:
             match child.tag:
                 case "{urn:hl7-org:v3}originalText":
@@ -1099,7 +1103,7 @@ class Parser:
                 case "{urn:hl7-org:v3}id":
                     self.parse_II(child)
                 case "{urn:hl7-org:v3}code":
-                    self.parse_CD(child)
+                    self.parse_CE(child)
                 case "{urn:hl7-org:v3}text":
                     self.parse_xhtml(child)
                 case "{urn:hl7-org:v3}confidentialityCode":
