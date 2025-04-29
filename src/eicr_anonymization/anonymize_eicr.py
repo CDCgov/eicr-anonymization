@@ -28,6 +28,7 @@ def _delete_old_anonymized_files(input_location: str) -> None:
     previous_output_files = glob.glob(os.path.join(input_location, "*.anonymized.xml"))
     for output_file in previous_output_files:
         os.remove(output_file)
+        print(f"Deleted previous anonymized file: {output_file}.anonymized.xml")
 
 
 def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = False) -> None:
@@ -175,10 +176,19 @@ def anonymize(args: Namespace) -> None:
         _delete_old_anonymized_files(args.input_location)
 
         xml_files = glob.glob(os.path.join(args.input_location, "*.xml"))
+        if not xml_files:
+            print(f"No XML files found in directory: {args.input_location}")
+            return
+        print(f"Found {len(xml_files)} XML files in directory: {args.input_location}")
         for xml_file in xml_files:
             anonymize_eicr_file(xml_file, anonymizer, debug=args.debug)
     elif os.path.isfile(args.input_location):
         # IF the previously anonymized file exists, delete it
         if os.path.isfile(f"{args.input_location}.anonymized.xml"):
             os.remove(f"{args.input_location}.anonymized.xml")
+            print(f"Deleted previous anonymized file: {args.input_location}.anonymized.xml")
+        print(f"Anonymizing file: {args.input_location}")
         anonymize_eicr_file(args.input_location, anonymizer, debug=args.debug)
+    else:
+        print(f"Input location is not a file or directory: {args.input_location}")
+        return
