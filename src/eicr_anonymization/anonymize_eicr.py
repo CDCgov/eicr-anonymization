@@ -38,16 +38,6 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
         debug: Flag to enable debug output
 
     """
-    # with open(xml_file) as f:
-    #     xml_content = f.read()
-    # object = xmltodict.parse(xml_content)
-
-    # with open("initial_output.json", "w") as f:
-    #     json.dump(object,f, indent=2)
-
-    # with open("initial_output.xml", "w") as f:
-    #     f.write(xmltodict.unparse(object, pretty=True))
-
     # Parse the XML file
     tree = etree.parse(xml_file, None)
     root = tree.getroot()
@@ -57,7 +47,7 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
 
     parser = Parser()
 
-    sensitive_elements = parser.find_sensitive_elements(first_element)
+    sensitive_elements, safe_words = parser.collect_sensitive_elements_and_safe_words(first_element)
 
     debug_output: list[tuple[Element, Element | str]] = []
 
@@ -92,7 +82,9 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                     case "{urn:hl7-org:v3}postalCode":
                         match = _find_element(root, element.path)
                         if element.text is not None:
-                            match.text = anonymizer.replace_from_pool(element.text, "postalCode")
+                            match.text = anonymizer.replace_with_like_chars(
+                                element.text, "postalCode"
+                            )
                             debug_output.append((element, Element(match, "ADXP")))
                     case "{urn:hl7-org:v3}state":
                         match = _find_element(root, element.path)
@@ -122,16 +114,17 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                 debug_output.append((element, Element(match, "EN")))
             case "xhtml":
                 match = _find_element(root, element.path)
-                for child in match:
-                    match.remove(child)
-                match.text = "REMOVED"
-                debug_output.append((element, Element(match, "xhtml")))
+                anonymizer.anonymize_xhtml(match, safe_words)
             case "TEL":
                 match = _find_element(root, element.path)
                 value = element.attributes.get("value")
                 if value is not None and not value.startswith("#"):
                     match.attrib["value"] = anonymizer.anonymize_TEL_value(element)
                 debug_output.append((element, Element(match, "TEL")))
+            case "ED":
+                match = _find_element(root, element.path)
+                match.text = anonymizer.anonymize_text(element.text, "state")
+                debug_output.append((element, Element(match, "ED")))
             case _:
                 if element.attributes.get("value") is not None:
                     match = _find_element(root, element.path)
@@ -141,14 +134,16 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                     match.text = "REMOVED"
                 debug_output.append((element, Element(match, element.cda_type)))
 
+    dubug_output = tabulate(
+        sorted(debug_output, key=lambda x: (x[0].name, x[0].cda_type, x[0].text)),
+        headers=("Orginal", "Replacement"),
+        tablefmt="fancy_outline",
+    )
+
     if debug:
-        print(
-            tabulate(
-                sorted(debug_output, key=lambda x: (x[0].name, x[0].cda_type, x[0].text)),
-                headers=("Orginal", "Replacement"),
-                tablefmt="fancy_outline",
-            )
-        )
+        # with open(f"debug_output.txt{time.time()}", "w") as debug_file:
+        #     debug_file.write(dubug_output)
+        print(dubug_output)
 
     # Save the anonymized XML file
     anonymized_file = os.path.join(
@@ -175,9 +170,13 @@ def _find_element(root: _Element, path: str):
 
 def anonymize(args: Namespace) -> None:
     """Run the EICR anonymization process."""
-    _delete_old_anonymized_files(args.input_location)
+    anonymizer = Anonymizer(seed=args.seed)
+    if os.path.isdir(args.input_location):
+        _delete_old_anonymized_files(args.input_location)
 
-    xml_files = glob.glob(os.path.join(args.input_location, "*.xml"))
-    anonymizer = Anonymizer()
-    for xml_file in xml_files:
-        anonymize_eicr_file(xml_file, anonymizer, debug=args.debug)
+        xml_files = glob.glob(os.path.join(args.input_location, "*.xml"))
+        for xml_file in xml_files:
+            anonymize_eicr_file(xml_file, anonymizer, debug=args.debug)
+    elif os.path.isfile(args.input_location):
+        os.remove(f"{args.input_location}.anonymized.xml")
+        anonymize_eicr_file(args.input_location, anonymizer, debug=args.debug)

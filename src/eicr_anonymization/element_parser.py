@@ -49,8 +49,9 @@ class Parser:
     def __init__(self):
         """Initialize the Parser with an empty list of sensitive elements."""
         self.sensitive_elements: list[Element] = []
+        self.safe_text: set[str] = set()
 
-    def find_sensitive_elements(self, element: _Element):
+    def collect_sensitive_elements_and_safe_words(self, element: _Element):
         """Find sensitive elements in the XML document.
 
         Args:
@@ -61,11 +62,15 @@ class Parser:
         else:
             raise ValueError(f"Unknown root element: {element.tag}")
 
-        return self.sensitive_elements
+        return self.sensitive_elements, self.safe_text
 
     def add_sensitive_element(self, element: _Element, cda_type: str):
         """Add a sensitive element to the list."""
         self.sensitive_elements.append(Element(element, cda_type))
+
+    def add_safe_text(self, text: str):
+        """Add a safe text element to the list."""
+        self.safe_text.add(text)
 
     def parse_ClinicalDocument(self, element: _Element):
         """Logical Model: ClinicalDocument (CDA Class).
@@ -112,6 +117,10 @@ class Parser:
 
         https://build.fhir.org/ig/HL7/CDA-core-2.0/StructureDefinition-CE.html
         """
+        for atribute in element.items():
+            match atribute[0]:
+                case "displayName" | "codeSystemName":
+                    self.add_safe_text(atribute[1])
         for child in element:
             match child.tag:
                 case "{urn:hl7-org:v3}orginalText":
@@ -285,6 +294,10 @@ class Parser:
 
         https://build.fhir.org/ig/HL7/CDA-core-2.0/StructureDefinition-CD.html
         """
+        for atribute in element.items():
+            match atribute[0]:
+                case "displayName" | "codeSystemName":
+                    self.add_safe_text(atribute[1])
         for child in element:
             match child.tag:
                 case "{urn:hl7-org:v3}originalText":
@@ -479,8 +492,7 @@ class Parser:
         for child in element:
             match child.tag:
                 case (
-                    "{urn:hl7-org:v3}family"
-                    | "{urn:hl7-org:v3}given"
+                    "{urn:hl7-org:v3}family" | "{urn:hl7-org:v3}given"
                     # | "{urn:hl7-org:v3}prefix"
                     # | "{urn:hl7-org:v3}suffix"
                 ):
@@ -1091,7 +1103,7 @@ class Parser:
                 case "{urn:hl7-org:v3}id":
                     self.parse_II(child)
                 case "{urn:hl7-org:v3}code":
-                    self.parse_CD(child)
+                    self.parse_CE(child)
                 case "{urn:hl7-org:v3}text":
                     self.parse_xhtml(child)
                 case "{urn:hl7-org:v3}confidentialityCode":

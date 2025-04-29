@@ -1,10 +1,18 @@
+"""Anonymizer class for EICR data.
+
+This module handles logic around replacing data with similar but fake data.
+"""
+
+import random
+import re
 from datetime import datetime, timedelta
-from random import choice, randint, random, shuffle
+from random import choice, randint, shuffle
 from string import ascii_lowercase, ascii_uppercase
 from typing import Literal, NotRequired, TypedDict
 
 import usaddress
 import yaml
+from lxml.etree import _Element
 
 from eicr_anonymization.element_parser import Element
 
@@ -72,14 +80,19 @@ def _match_formatting(old_value: str, new_value: str) -> str:
 
 def _normalize_value(value: str):
     """Normalize value by removing leading and trailing whitespace and converting to lowercase."""
-    return value.lower().strip().replace(".", "")
+    value = re.sub(r"\s+|[\.\-\(\)]", "", value)
+
+    return value.lower()
 
 
 class Anonymizer:
     """Anonymizes the data."""
 
-    def __init__(self):
+    def __init__(self, seed: int | None = None):
         """Initialize the Anonymizer class."""
+        if seed is not None:
+            # Set the seed for reproducibility
+            random.seed(seed)
         SECONDS_IN_100_YEARS = int(100 * 60 * 60 * 24 * 365.25)
         # The main offset is a random number of seconds between 0 and 100 years
         self.time_offset = randint(0, SECONDS_IN_100_YEARS)
@@ -117,6 +130,14 @@ class Anonymizer:
             "given": {},
             "family": {},
         }
+
+        self.safe_words = {
+            "",
+        }
+
+        self.safe_words.update(
+            {_normalize_value(word["value"]) for word in _read_yaml("safe_words.yaml")}
+        )
 
     def anonymize_TS_value(self, element: Element):
         """Anonymize TS elements."""
@@ -348,11 +369,7 @@ class Anonymizer:
         return self.random_corpationName(element.text)
 
     def random_corpationName(self, value: str | None):
-        """Generate a random corporation name.
-
-        1) Pick the form of the name:
-        - {locality} {facilityType}
-        """
+        """Generate a random corporation name."""
         if value is None:
             return value
         replacement = self._get_mapping(value, "EN")
@@ -386,15 +403,12 @@ class Anonymizer:
 
         conjuctions = ["and", "&", "+"]
 
-        # {locality} {facilityType} ({and} {facilityType})?
-        # {facilityType} {preposition} {locality}
-
         form_choice = randint(0, 1)
         replacement = "REMOVED"
         parts = []
         match form_choice:
             case 0:
-                form_choice = random()
+                form_choice = random.random()
                 if form_choice <= ONE_THIRD:
                     parts.append(f" {choice(localitys)} {choice(organizationTypes)}")
                 elif form_choice <= TWO_THIRDS:
@@ -402,23 +416,23 @@ class Anonymizer:
                 else:
                     parts.append(choice(localitys))
 
-                if random() <= ONE_HALF:
+                if random.random() <= ONE_HALF:
                     parts.append(f"{choice(scopes)} {choice(facilityTypes)}")
                 else:
                     parts.append(choice(facilityTypes))
 
-                if random() <= ONE_HALF:
+                if random.random() <= ONE_HALF:
                     parts.append(f"{choice(conjuctions)} {choice(facilityTypes)}")
             case 1:
-                if random() <= ONE_HALF:
+                if random.random() <= ONE_HALF:
                     parts.append(choice(organizationTypes))
 
-                if random() <= ONE_HALF:
+                if random.random() <= ONE_HALF:
                     parts.append(choice(scopes))
 
                 parts.append(choice(facilityTypes))
 
-                if random() <= ONE_HALF:
+                if random.random() <= ONE_HALF:
                     parts.append(f"{choice(conjuctions)} {choice(facilityTypes)}")
 
                 parts.append(f"of {choice(localitys)}")
@@ -461,7 +475,7 @@ class Anonymizer:
             prefix += "."
         suffix = "".join(choice("0123456789") for _ in range(randint(0, 5)))
         replacement = f"{protocol}://{prefix}example{suffix}.com"
-        if random() <= ONE_HALF:
+        if random.random() <= ONE_HALF:
             replacement += "/" + "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
             replacement += choice(
                 ["", ".pdf", ".html", ".xml", ".txt", ".jpg", ".png", ".gif", ".jpeg"]
@@ -474,8 +488,8 @@ class Anonymizer:
 
         name = "mailto:"
 
-        name = "".join(choice(ascii_lowercase) for _ in range(randint(1, 5)))
-        form_choice = random()
+        name += "".join(choice(ascii_lowercase) for _ in range(randint(1, 5)))
+        form_choice = random.random()
         if form_choice <= ONE_THIRD:
             name += "".join(choice(["", "_", "."]))
             name += "".join(choice("0123456789") for _ in range(randint(1, 3)))
@@ -483,3 +497,51 @@ class Anonymizer:
             name += "".join(choice(["", "_", "."]))
             name += "".join(choice(ascii_lowercase) for _ in range(randint(1, 3)))
         return f"{name}@{domain}"
+
+    def anonymize_text(self, value: str | None, data_type: str):
+        """Anonymize text elements."""
+        if (
+            value is None
+            or value == ""
+            or value.isdigit()
+            or _normalize_value(value) in self.safe_words
+        ):
+            return value
+
+        return "REMOVED"
+
+    def anonymize_xhtml(self, element: _Element, additional_safe_words: set[str] | None = None):
+        """Anonymize xhtml elements."""
+        if additional_safe_words is None:
+            additional_safe_words = set()
+
+        self.safe_words.update({_normalize_value(word) for word in additional_safe_words})
+
+        text_value = element.text
+        if text_value is not None:
+            normalized_text_value = _normalize_value(text_value)
+            if (
+                normalized_text_value != ""
+                and len(normalized_text_value) > self.ASSUMED_ABBR_LEN
+                and not (
+                    any(normalized_text_value in safe_word for safe_word in self.safe_words)
+                    or normalized_text_value.isnumeric()
+                )
+            ):
+                element.text = _match_formatting(text_value, "REMOVED")
+
+        tail_value = element.tail
+        if tail_value is not None:
+            normalized_tail_value = _normalize_value(tail_value)
+            if (
+                normalized_tail_value != ""
+                and len(normalized_tail_value) > self.ASSUMED_ABBR_LEN
+                and not (
+                    any(normalized_tail_value in safe_word for safe_word in self.safe_words)
+                    or normalized_tail_value.isnumeric()
+                )
+            ):
+                element.tail = _match_formatting(tail_value, "REMOVED")
+
+        for child in element:
+            self.anonymize_xhtml(child)
