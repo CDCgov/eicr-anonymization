@@ -80,7 +80,7 @@ def _match_formatting(old_value: str, new_value: str) -> str:
 
 def _normalize_value(value: str):
     """Normalize value by removing leading and trailing whitespace and converting to lowercase."""
-    value = re.sub(r"\s+|\.|\-", "", value)
+    value = re.sub(r"\s+|[\.\-\(\)]", "", value)
 
     return value.lower()
 
@@ -520,18 +520,26 @@ class Anonymizer:
         text_value = element.text
         if text_value is not None:
             normalized_text_value = _normalize_value(text_value)
-            if normalized_text_value != "" and not (
-                any(normalized_text_value in safe_word for safe_word in self.safe_words)
-                or normalized_text_value.isnumeric()
+            if (
+                normalized_text_value != ""
+                and len(normalized_text_value) > self.ASSUMED_ABBR_LEN
+                and not (
+                    any(normalized_text_value in safe_word for safe_word in self.safe_words)
+                    or normalized_text_value.isnumeric()
+                )
             ):
                 element.text = _match_formatting(text_value, "REMOVED")
 
         tail_value = element.tail
         if tail_value is not None:
             normalized_tail_value = _normalize_value(tail_value)
-            if normalized_tail_value != "" and not (
-                any(normalized_tail_value in safe_word for safe_word in self.safe_words)
-                or normalized_tail_value.isnumeric()
+            if (
+                normalized_tail_value != ""
+                and len(normalized_tail_value) > self.ASSUMED_ABBR_LEN
+                and not (
+                    any(normalized_tail_value in safe_word for safe_word in self.safe_words)
+                    or normalized_tail_value.isnumeric()
+                )
             ):
                 element.tail = _match_formatting(tail_value, "REMOVED")
 

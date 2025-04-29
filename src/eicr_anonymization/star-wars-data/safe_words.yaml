@@ -1,14 +1,27 @@
+- value: "Last Assessment & Plan:"
+- value: "Smoking Tobacco: Never"
+- value: "Standard Drinks/Week"
 - value: "Travel History: Date(s)"
 - value: (if no high date, status was
 - value: active
+- value: Administration Dates
+- value: Analysis Time
 - value: Asbestos
 - value: Assertion Date
+- value: Associated Diagnoses
+- value: Authorizing Provider
+- value: Birth Order
 - value: Birth Sex
+- value: Breech delivery (procedure)
 - value: Cabin Number
+- value: Care Team
 - value: Characteristics of Home Environment
+- value: City/State/Zip Code
 - value: Code Lab Test Order
 - value: Code Problem Observation
 - value: Code Result Observation
+- value: Comments
+- value: Component
 - value: Concern Status
 - value: Country of Nationality
 - value: Country of Residence
@@ -19,53 +32,73 @@
 - value: Current Industry
 - value: Current Job Title
 - value: Current Occupation
+- value: Date Recorded
 - value: Date(s)
 - value: Date(s) over which status holds
+- value: Date/Time
+- value: Department
+- value: Detected
+- value: Determination Date
+- value: Determination Method
+- value: documented as of this encounter
+- value: documented in this encounter
 - value: Dose
 - value: Duration
+- value: EDD Determination Date
 - value: Encounter Diagnosis Type
+- value: Estimated Date of Delivery
+- value: Estimated Gestational Age of Pregnancy
 - value: Exposure/Contact Information
 - value: Immunization Date
-- value: Immunization Date
 - value: Immunization Medication Activity
+- value: Information Date
+- value: Information Type
 - value: Initial Case Report Trigger
 - value: Initial Case Report Trigger Code
 - value: Initial Case Report Trigger code Result Observation
+- value: Lab Interpretation
+- value: Lab Requisition
 - value: Location
-- value: Location
+- value: Method of Delivery
+- value: Microbiology
+- value: mm[Hg]
+- value: Next Due
+- value: Not Detected
+- value: Not on file
+- value: Noted Date
 - value: Nurse
+- value: Observation Date
 - value: Occupational Exposure
 - value: Ordered Date
+- value: Packs/Day
+- value: Pathologist Signature
+- value: Performed At
+- value: Performing Organization
+- value: Phone Number
+- value: Postpartum Status
+- value: Pregnancy Outcome
 - value: Pregnancy Status
 - value: Problem Type
+- value: Pulse
 - value: RCTC OID
 - value: RCTC Version
+- value: Recorded Date
+- value: Ref Range
 - value: Reference Range
 - value: Reference Range Description
 - value: Reference Range Interpretation
+- value: Reference to selected delivery date
 - value: Results Panel
 - value: Route
-- value: Trigger Code codeSystem
-- value: Determination Method
-- value: Determination Date
-- value: Recorded Date
-- value: Estimated Date of Delivery
-- value: EDD Determination Date
-- value: Estimated Gestational Age of Pregnancy
-- value: Reference to selected delivery date
-- value: to reference entry
-- value: Pregnancy Outcome
-- value: Birth Order
-- value: Time
-- value: Method of Delivery
-- value: Breech delivery (procedure)
-- value: Term birth of newborn (finding)
-- value: Breech delivery (procedure)
-- value: Observation Date
-- value: Postpartum Status
-- value: Pulse
+- value: Routine
 - value: SpO2
-- value: mm[Hg]
-- value: Information Type
-- value: Information Date
+- value: STOOL SPECIMEN / Unknown
+- value: Term birth of newborn (finding)
+- value: Test Method
+- value: Time
+- value: to reference entry
 - value: TODO
+- value: Trigger Code codeSystem
+- value: Types
+- value: Value
+- value: Years Used
