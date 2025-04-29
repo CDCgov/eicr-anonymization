@@ -50,11 +50,11 @@ select = [
   "UP",   # pyupgrade
   "W",    # Pydocstyle warnings
 ]
-# ignore = [
+ignore = [
 #   "D100", # Missing docstring in public module
-#   "S311", # suspicious-non-cryptographic-random-usage
-#   "S320", # suspicious-xmle-tree-usage - deprecated
-# ]
+  "S311", # suspicious-non-cryptographic-random-usage
+  "S320", # suspicious-xmle-tree-usage - deprecated
+]
 
 [tool.ruff.lint.pydocstyle]
 convention = "pep257"

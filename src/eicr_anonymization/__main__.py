@@ -20,6 +20,7 @@ def _parse_arguments() -> Namespace:
         action="store_true",
         help="Print table showing original and replacement tags. Will show sensitive information.",
     )
+    parser.add_argument("-s", "--seed", type=int, default=None, help="Random seed for anonymization.")
     return parser.parse_args()
 
 
