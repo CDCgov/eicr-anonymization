@@ -26,6 +26,7 @@ def _parse_arguments() -> Namespace:
     parser.add_argument(
         "-s", "--seed", type=int, default=None, help="Set the random seed. For Debugging."
     )
+    parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1")
     return parser.parse_args()
 
 
