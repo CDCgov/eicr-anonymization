@@ -179,4 +179,4 @@ def anonymize(args: Namespace) -> None:
             anonymize_eicr_file(xml_file, anonymizer, debug=args.debug)
     elif os.path.isfile(args.input_location):
         os.remove(f"{args.input_location}.anonymized.xml")
-        anonymize_eicr_file(args.input_location, anonymizer, debug=args.debug)
+    anonymize_eicr_file(args.input_location, anonymizer, debug=args.debug)
