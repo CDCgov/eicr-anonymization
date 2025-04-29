@@ -33,6 +33,7 @@ def _parse_arguments() -> Namespace:
 def main() -> None:
     """Run the EICR anonymization tool."""
     args = _parse_arguments()
+    print("Starting EICR anonymization...")
     anonymize(args)
 
 
