@@ -178,5 +178,7 @@ def anonymize(args: Namespace) -> None:
         for xml_file in xml_files:
             anonymize_eicr_file(xml_file, anonymizer, debug=args.debug)
     elif os.path.isfile(args.input_location):
-        os.remove(f"{args.input_location}.anonymized.xml")
+        # IF the previously anonymized file exists, delete it
+        if os.path.isfile(f"{args.input_location}.anonymized.xml"):
+            os.remove(f"{args.input_location}.anonymized.xml")
         anonymize_eicr_file(args.input_location, anonymizer, debug=args.debug)
