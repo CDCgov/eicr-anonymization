@@ -1,0 +1,71 @@
+- value: "Travel History: Date(s)"
+- value: (if no high date, status was
+- value: active
+- value: Asbestos
+- value: Assertion Date
+- value: Birth Sex
+- value: Cabin Number
+- value: Characteristics of Home Environment
+- value: Code Lab Test Order
+- value: Code Problem Observation
+- value: Code Result Observation
+- value: Concern Status
+- value: Country of Nationality
+- value: Country of Residence
+- value: current at time of recording
+- value: Current Employer Address
+- value: Current Employer Name
+- value: Current Employer Telcom
+- value: Current Industry
+- value: Current Job Title
+- value: Current Occupation
+- value: Date(s)
+- value: Date(s) over which status holds
+- value: Dose
+- value: Duration
+- value: Encounter Diagnosis Type
+- value: Exposure/Contact Information
+- value: Immunization Date
+- value: Immunization Date
+- value: Immunization Medication Activity
+- value: Initial Case Report Trigger
+- value: Initial Case Report Trigger Code
+- value: Initial Case Report Trigger code Result Observation
+- value: Location
+- value: Location
+- value: Nurse
+- value: Occupational Exposure
+- value: Ordered Date
+- value: Pregnancy Status
+- value: Problem Type
+- value: RCTC OID
+- value: RCTC Version
+- value: Reference Range
+- value: Reference Range Description
+- value: Reference Range Interpretation
+- value: Results Panel
+- value: Route
+- value: Trigger Code codeSystem
+- value: Determination Method
+- value: Determination Date
+- value: Recorded Date
+- value: Estimated Date of Delivery
+- value: EDD Determination Date
+- value: Estimated Gestational Age of Pregnancy
+- value: Reference to selected delivery date
+- value: to reference entry
+- value: Pregnancy Outcome
+- value: Birth Order
+- value: Time
+- value: Method of Delivery
+- value: Breech delivery (procedure)
+- value: Term birth of newborn (finding)
+- value: Breech delivery (procedure)
+- value: Observation Date
+- value: Postpartum Status
+- value: Pulse
+- value: SpO2
+- value: mm[Hg]
+- value: Information Type
+- value: Information Date
+- value: TODO

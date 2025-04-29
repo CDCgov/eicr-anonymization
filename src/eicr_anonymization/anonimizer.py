@@ -135,6 +135,10 @@ class Anonymizer:
             "",
         }
 
+        self.safe_words.update(
+            {_normalize_value(word["value"]) for word in _read_yaml("safe_words.yaml")}
+        )
+
     def anonymize_TS_value(self, element: Element):
         """Anonymize TS elements."""
         value = element.attributes["value"]
@@ -484,7 +488,7 @@ class Anonymizer:
 
         name = "mailto:"
 
-        name = "".join(choice(ascii_lowercase) for _ in range(randint(1, 5)))
+        name += "".join(choice(ascii_lowercase) for _ in range(randint(1, 5)))
         form_choice = random.random()
         if form_choice <= ONE_THIRD:
             name += "".join(choice(["", "_", "."]))
@@ -511,9 +515,7 @@ class Anonymizer:
         if additional_safe_words is None:
             additional_safe_words = set()
 
-        self.safe_words = self.safe_words.union(
-            {_normalize_value(word) for word in additional_safe_words}
-        )
+        self.safe_words.update({_normalize_value(word) for word in additional_safe_words})
 
         text_value = element.text
         if text_value is not None:
