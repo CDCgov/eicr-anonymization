@@ -6,7 +6,7 @@ import os
 from argparse import Namespace
 
 from lxml import etree
-from lxml.etree import _Element
+from lxml.etree import _Element, _ElementTree
 from tabulate import tabulate
 
 from eicr_anonymization.anonimizer import Anonymizer
@@ -31,7 +31,7 @@ def _delete_old_anonymized_files(input_location: str) -> None:
         print(f"Deleted previous anonymized file: {output_file}.anonymized.xml")
 
 
-def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = False) -> etree.ElementTree:
+def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = False) -> _ElementTree:
     """
     Anonymize a single EICR XML file.
 
@@ -151,7 +151,7 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
     return tree
 
 
-def save_anonymized_file(tree: etree.ElementTree, xml_file: str) -> None:
+def save_anonymized_file(tree: _ElementTree, xml_file: str) -> None:
     """Writes anonymized XML tree to file with .anonymized appended to original file name.
 
     Args:
