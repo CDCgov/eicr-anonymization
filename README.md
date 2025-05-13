@@ -66,7 +66,7 @@ This will create a copy of each eicr file prepended with `.anonymized.xml` in th
 ```bash
 uv run pytest
 ```
-This will run all unit/snapshot tests using pytest. To update snapshot tests, run:
+To update snapshot tests, run:
 ```bash
 uv run pytest --snapshot-update
 ```
