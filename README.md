@@ -62,6 +62,15 @@ anonymize_eicr /path/to/eicrs
 ```
 This will create a copy of each eicr file prepended with `.anonymized.xml` in the same directory.
 
+#### Run unit/snapshot tests
+```bash
+uv run pytest
+```
+This will run all unit/snapshot tests using pytest. To update snapshot tests, run:
+```bash
+uv run pytest --snapshot-update
+```
+
 #### Help
 ```bash
 anonymize --help
