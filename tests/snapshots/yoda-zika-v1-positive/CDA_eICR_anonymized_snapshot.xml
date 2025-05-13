@@ -628,7 +628,7 @@
               <code code="76689-9" codeSystem="2.16.840.1.113883.6.1" displayName="Sex Assigned At Birth"/>
               <statusCode code="completed"/>
               <!-- effectiveTime if present should match birthTime -->
-              <effectiveTime value="20070129070220"/>
+              <effectiveTime value="20060928024313"/>
               <value xsi:type="CD" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" code="M" displayName="Male"/>
             </observation>
           </entry>
