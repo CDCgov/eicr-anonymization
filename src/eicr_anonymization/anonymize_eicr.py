@@ -31,6 +31,17 @@ def _delete_old_anonymized_files(input_location: str) -> None:
         print(f"Deleted previous anonymized file: {output_file}.anonymized.xml")
 
 
+def print_xml_tree(tree: _ElementTree) -> str:
+    """
+    Generate string representation of XML element
+
+    Args:
+        tree: XML Element tree to be formatted
+    """
+
+    return etree.tostring(tree, pretty_print=True, encoding="unicode")
+
+
 def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = False) -> _ElementTree:
     """
     Anonymize a single EICR XML file.
@@ -166,7 +177,10 @@ def save_anonymized_file(tree: _ElementTree, xml_file: str) -> None:
         f"{os.path.basename(xml_file)}.anonymized.xml",
     )
 
-    tree.write(anonymized_file)
+    xml_string = print_xml_tree(tree)
+
+    with open(anonymized_file, "w", encoding='utf-8') as f:
+        f.write(xml_string)
 
 
 def _find_element(root: _Element, path: str):
