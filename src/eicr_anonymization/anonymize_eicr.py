@@ -31,7 +31,7 @@ def _delete_old_anonymized_files(input_location: str) -> None:
         print(f"Deleted previous anonymized file: {output_file}.anonymized.xml")
 
 
-def print_xml_tree(tree: _ElementTree) -> str:
+def xml_tree_to_str(tree: _ElementTree) -> str:
     """
     Generate string representation of XML element
 
@@ -177,7 +177,7 @@ def save_anonymized_file(tree: _ElementTree, xml_file: str) -> None:
         f"{os.path.basename(xml_file)}.anonymized.xml",
     )
 
-    xml_string = print_xml_tree(tree)
+    xml_string = xml_tree_to_str(tree)
 
     with open(anonymized_file, "w", encoding='utf-8') as f:
         f.write(xml_string)
