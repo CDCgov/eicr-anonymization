@@ -85,7 +85,7 @@ This is used for runtime dependencies. Add the `--dev` flag if you're adding is 
 #### Help
 ```bash
 anonymize --help
-usage: anonymize_eicr [-h] [--debug] input_location
+usage: anonymize_eicr [-h] [--debug] input_location [-s] [-v]
 
 Anonymize eICR XML files.
 
@@ -95,6 +95,8 @@ positional arguments:
 options:
   -h, --help      show this help message and exit
   --debug, -d     Print table showing original and replacement tags. Will show sensitive information.
+  -s, --seed      Set random seed
+  -v, --version   Run specific version of anonymize_eicr
 ```
 
 ## Related documents
