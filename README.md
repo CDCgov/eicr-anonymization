@@ -38,13 +38,50 @@ The tool is designed around the following principles and requirements, in approx
 #### Required
 - [Python version >= 3.7](https://www.python.org/)
 - [Pip (should be installed alongside Python)](http://pip.pypa.io/en/stable/)
-- [uv (Python package manager)](https://docs.astral.sh/uv/)
 
-#### Reccomended
+#### Recommended
 If using the anonymization tool as a command-line tool outside of a Python virtual environment, it is recommended to use [Pipx](https://pipx.pypa.io/stable/) to avoid dependency conflicts.
 
 ### Installation
 1. Clone this repo.
+2. Install:
+   At the root of the directory
+   - With Pip:
+   ```bash
+   pip install .
+   ```
+   - With Pipx:
+   ```bash
+   pipx install .
+   ```
+
+### Use
+#### Basic Usage
+```bash
+anonymize_eicr /path/to/eicrs
+```
+This will create a copy of each eicr file prepended with `.anonymized.xml` in the same directory.
+
+#### Help
+```bash
+anonymize --help
+usage: anonymize_eicr [-h] [--debug] input_location
+
+Anonymize eICR XML files.
+
+positional arguments:
+  input_location  Directory containing eICR XML files.
+
+options:
+  -h, --help      show this help message and exit
+  --debug, -d     Print table showing original and replacement tags. Will show sensitive information.
+```
+
+### Development
+#### Required
+- [uv (Python package manager)](https://docs.astral.sh/uv/)
+
+#### Set Up
 2. This repo uses `uv` as the Python package manager. Install at the root of the directory
    - With Pip:
    ```bash
@@ -58,13 +95,6 @@ If using the anonymization tool as a command-line tool outside of a Python virtu
    ```bash
    uv sync
    ```
-
-### Use
-#### Basic Usage
-```bash
-uv run anonymize_eicr /path/to/eicrs <args>
-```
-This will create a copy of each eicr file prepended with `.anonymized.xml` in the same directory. See help section for list of possible arguments.
 
 #### Run unit/snapshot tests
 ```bash
@@ -81,18 +111,9 @@ uv add <dependency>
 ```
 This is used for runtime dependencies. Add the `--dev` flag if you're adding is a development-only dependency.
 
-
-#### Help
+#### Debugging
+You can add the following flags to `uv run anonymize_eicr /path/to/file` to help with debugging:
 ```bash
-anonymize --help
-usage: anonymize_eicr [-h] [--debug] input_location [-s] [-v]
-
-Anonymize eICR XML files.
-
-positional arguments:
-  input_location  Directory containing eICR XML files.
-
-options:
   -h, --help      show this help message and exit
   --debug, -d     Print table showing original and replacement tags. Will show sensitive information.
   -s, --seed      Set random seed
