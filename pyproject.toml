@@ -19,7 +19,12 @@ dependencies = [
 anonymize_eicr = "eicr_anonymization.__main__:main"
 
 [dependency-groups]
-dev = ["pytest>=8.3.5", "pytest-repeat>=0.9.3"]
+dev = [
+    "freezegun>=1.5.1",
+    "pytest>=8.3.5",
+    "pytest-repeat>=0.9.3",
+    "pytest-snapshot>=0.9.0",
+]
 
 [tool.uv]
 package = true

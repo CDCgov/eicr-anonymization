@@ -39,7 +39,7 @@ The tool is designed around the following principles and requirements, in approx
 - [Python version >= 3.7](https://www.python.org/)
 - [Pip (should be installed alongside Python)](http://pip.pypa.io/en/stable/)
 
-#### Reccomended
+#### Recommended
 If using the anonymization tool as a command-line tool outside of a Python virtual environment, it is recommended to use [Pipx](https://pipx.pypa.io/stable/) to avoid dependency conflicts.
 
 ### Installation
@@ -50,7 +50,7 @@ If using the anonymization tool as a command-line tool outside of a Python virtu
    ```bash
    pip install .
    ```
-    - With Pipx:
+   - With Pipx:
    ```bash
    pipx install .
    ```
@@ -75,6 +75,49 @@ positional arguments:
 options:
   -h, --help      show this help message and exit
   --debug, -d     Print table showing original and replacement tags. Will show sensitive information.
+```
+
+### Development
+#### Required
+- [uv (Python package manager)](https://docs.astral.sh/uv/)
+
+#### Set Up
+2. This repo uses `uv` as the Python package manager. Install at the root of the directory
+   - With Pip:
+   ```bash
+   pip install uv
+   ```
+    - With Pipx:
+   ```bash
+   pipx install uv
+   ```
+3. Install dependencies with `uv`:
+   ```bash
+   uv sync
+   ```
+
+#### Run unit/snapshot tests
+```bash
+uv run pytest
+```
+To update snapshot tests, run:
+```bash
+uv run pytest --snapshot-update
+```
+
+#### Add dependencies
+```bash
+uv add <dependency>
+```
+This is used for runtime dependencies. Add the `--dev` flag if you're adding is a development-only dependency.
+
+#### Debugging
+You can add the following flags to `uv run anonymize_eicr /path/to/file` to help with debugging:
+```bash
+  -h, --help      show this help message and exit
+  --debug, -d     Print table showing original and replacement tags. Will show sensitive information.
+  -s, --seed      Set random seed
+  -v, --version   Run specific version of anonymize_eicr
 ```
 
 ## Related documents
