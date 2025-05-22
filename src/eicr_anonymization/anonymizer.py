@@ -286,16 +286,20 @@ class Anonymizer:
                 case "SubaddressType":
                     replacement.append(component)
                 case "USPSBoxGroupID":
+                    # the identifier of a USPS box group, usually a number
                     replacement_USPSBoxGroupID = self.replace_with_like_chars(
                         component, "USPSBoxGroupID"
                     )
                     replacement.append(replacement_USPSBoxGroupID)
                 case "USPSBoxGroupType":
+                    # a name for a group of USPS boxes, e.g. ‘RR’
                     replacement.append(component)
                 case "USPSBoxID":
+                    # the identifier of a USPS box, usually a number
                     replacement_USPSBoxID = self.replace_with_like_chars(component, "USPSBoxID")
                     replacement.append(replacement_USPSBoxID)
                 case "USPSBoxType":
+                    # a USPS box, e.g. ‘P.O. Box’
                     replacement.append(component)
                 case "postalCode":
                     replacement_postalCode = self.replace_with_like_chars(component, "postalCode")
