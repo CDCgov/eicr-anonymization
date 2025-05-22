@@ -129,6 +129,8 @@ class Anonymizer:
             "AddressNumberSuffix": {},
             "given": {},
             "family": {},
+            "USPSBoxGroupID": {},
+            "USPSBoxID": {},
         }
 
         self.safe_words = {
