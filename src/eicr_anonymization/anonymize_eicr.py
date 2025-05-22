@@ -9,7 +9,7 @@ from lxml import etree
 from lxml.etree import _Element, _ElementTree
 from tabulate import tabulate
 
-from eicr_anonymization.anonimizer import Anonymizer
+from eicr_anonymization.anonymizer import Anonymizer
 from eicr_anonymization.element_parser import Element, Parser
 
 logger = logging.getLogger(__name__)
@@ -169,7 +169,7 @@ def save_anonymized_file(tree: _ElementTree, xml_file: str) -> None:
         tree: Anonymized XML tree
         xml_file: Path to the original XML file that has been anonymized
 
-    """    
+    """
 
     # Save the anonymized XML file
     anonymized_file = os.path.join(
