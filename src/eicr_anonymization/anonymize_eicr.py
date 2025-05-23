@@ -53,6 +53,8 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
 
     """
     # Parse the XML file
+    # This will raise an error if the file is empty.
+    # Perhaps later we can handle this more gracefully.
     tree = etree.parse(xml_file, None)
     root = tree.getroot()
 
