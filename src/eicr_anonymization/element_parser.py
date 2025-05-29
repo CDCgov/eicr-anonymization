@@ -104,35 +104,34 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                # case "{urn:hl7-org:v3}code" | "{urn:hl7-org:v3}confidentialityCode":
-                #     self.parse_CE(child)
-                # case "{urn:hl7-org:v3}effectiveTime":
-                #     self.parse_TS(child)
+                case "{urn:hl7-org:v3}code" | "{urn:hl7-org:v3}confidentialityCode":
+                    self.parse_CE(child)
+                case "{urn:hl7-org:v3}effectiveTime":
+                    self.parse_TS(child)
                 case "{urn:hl7-org:v3}recordTarget":
-                    # Relevant for patient information
                     self.parse_RecordTarget(child)
-                # case "{urn:hl7-org:v3}author":
-                #     self.parse_Author(child)
-                # case "{urn:hl7-org:v3}dataEnterer":
-                #     self.parse_DataEnterer(child)
-                # case "{urn:hl7-org:v3}informant":
-                #     self.parse_Informant(child)
-                # case "{urn:hl7-org:v3}custodian":
-                #     self.parse_Custodian(child)
-                # case "{urn:hl7-org:v3}informationRecipient":
-                #     self.parse_InformationRecipient(child)
-                # case "{urn:hl7-org:v3}authenticator":
-                #     self.parse_Authenticator(child)
-                # case "{urn:hl7-org:v3}participant":
-                #     self.parse_Participant1(child)
-                # case "{urn:hl7-org:v3}inFulfillmentOf":
-                #     self.parse_InFulfillmentOf(child)
-                # case "{urn:hl7-org:v3}documentationOf":
-                #     self.parse_DocumentationOf(child)
-                # case "{urn:hl7-org:v3}relatedDocument":
-                #     self.parse_RelatedDocument(child)
-                # case "{urn:hl7-org:v3}authorization":
-                #     self.parse_Authorization(child)
+                case "{urn:hl7-org:v3}author":
+                    self.parse_Author(child)
+                case "{urn:hl7-org:v3}dataEnterer":
+                    self.parse_DataEnterer(child)
+                case "{urn:hl7-org:v3}informant":
+                    self.parse_Informant(child)
+                case "{urn:hl7-org:v3}custodian":
+                    self.parse_Custodian(child)
+                case "{urn:hl7-org:v3}informationRecipient":
+                    self.parse_InformationRecipient(child)
+                case "{urn:hl7-org:v3}authenticator":
+                    self.parse_Authenticator(child)
+                case "{urn:hl7-org:v3}participant":
+                    self.parse_Participant1(child)
+                case "{urn:hl7-org:v3}inFulfillmentOf":
+                    self.parse_InFulfillmentOf(child)
+                case "{urn:hl7-org:v3}documentationOf":
+                    self.parse_DocumentationOf(child)
+                case "{urn:hl7-org:v3}relatedDocument":
+                    self.parse_RelatedDocument(child)
+                case "{urn:hl7-org:v3}authorization":
+                    self.parse_Authorization(child)
                 case "{urn:hl7-org:v3}componentOf":
                     self.parse_ComponentOf(child)
                 case "{urn:hl7-org:v3}component":
@@ -367,7 +366,6 @@ class Parser:
         for child in element:
             match child.tag:
                 case "{urn:hl7-org:v3}patientRole":
-                    # Relevant for patient information
                     self.parse_PatientRole(child)
 
     @track_path("PatientRole")
@@ -380,14 +378,13 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}id":
                     self.parse_II(child)
+                case "{urn:hl7-org:v3}identfiedBy":
+                    self.parse_IdentifiedBy(child)
                 case "{urn:hl7-org:v3}addr":
-                    # Relevant for patient address
                     self.parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
-                    # I assume patient contact inform will need to be anonymized
                     self.parse_TEL(child)
                 case "{urn:hl7-org:v3}patient":
-                    # Relevant for patient information
                     self.parse_Patient(child)
                 case "{urn:hl7-org:v3}providerOrganization":
                     self.parse_Organization(child)
@@ -502,7 +499,6 @@ class Parser:
                 case "{urn:hl7-org:v3}id":
                     self.parse_II(child)
                 case "{urn:hl7-org:v3}name":
-                    # Patient name
                     self.parse_PN(child)
                 case (
                     "{urn:hl7-org:v3}administrativeGenderCode"
@@ -512,10 +508,8 @@ class Parser:
                     | "{urn:hl7-org:v3}ethnicGroupCode"
                     | "{urn:hl7-org:v3}languageCommunication"
                 ):
-                    # Will need to pull out ethnicty and race
                     self.parse_CE(child)
                 case "{urn:hl7-org:v3}birthTime" | "{urn:hl7-org:v3}deceasedTime":
-                    # Patient dates
                     self.parse_TS(child)
                 case "{urn:hl7-org:v3}desc":
                     self.parse_ED(child)
@@ -585,8 +579,8 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}name":
                     self.parse_PN(child)
-                # case "{urn:hl7-org:v3}asPatientRelationship":
-                #     self.parse_CE(child)
+                case "{urn:hl7-org:v3}asPatientRelationship":
+                    self.parse_CE(child)
 
     @track_path("Birthplace")
     def parse_Birthplace(self, element: _Element):
@@ -810,8 +804,8 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                # case "{urn:hl7-org:v3}code":
-                #     self.parse_CE(child)
+                case "{urn:hl7-org:v3}code":
+                    self.parse_CE(child)
                 case "{urn:hl7-org:v3}addr":
                     self.parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
@@ -1081,27 +1075,27 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                # case "{urn:hl7-org:v3}id":
-                #     self.parse_II(child)
+                case "{urn:hl7-org:v3}id":
+                    self.parse_II(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self.parse_IVL_TS(child)
-                # case (
-                #     "{urn:hl7-org:v3}admissionReferralSourceCode"
-                #     | "{urn:hl7-org:v3}dischargeDispositionCode"
-                # ):
-                #     self.parse_CE(child)
-                # case "{urn:hl7-org:v3}responsibleParty":
-                #     for rp_child in child:
-                #         match rp_child.tag:
-                #             case "{urn:hl7-org:v3}assignedEntity":
-                #                 self.parse_AssignedEntity(rp_child)
-                # case "{urn:hl7-org:v3}encounterParticipant":
-                #     self.parse_EncounterParticipant(child)
-                # case "{urn:hl7-org:v3}location":
-                #     for ep_child in child:
-                #         match ep_child.tag:
-                #             case "{urn:hl7-org:v3}healthCareFacility":
-                #                 self.parse_HealthCareFacility(ep_child)
+                case (
+                    "{urn:hl7-org:v3}admissionReferralSourceCode"
+                    | "{urn:hl7-org:v3}dischargeDispositionCode"
+                ):
+                    self.parse_CE(child)
+                case "{urn:hl7-org:v3}responsibleParty":
+                    for rp_child in child:
+                        match rp_child.tag:
+                            case "{urn:hl7-org:v3}assignedEntity":
+                                self.parse_AssignedEntity(rp_child)
+                case "{urn:hl7-org:v3}encounterParticipant":
+                    self.parse_EncounterParticipant(child)
+                case "{urn:hl7-org:v3}location":
+                    for ep_child in child:
+                        match ep_child.tag:
+                            case "{urn:hl7-org:v3}healthCareFacility":
+                                self.parse_HealthCareFacility(ep_child)
 
     @track_path("EncounterParticipant")
     def parse_EncounterParticipant(self, element: _Element):
@@ -1185,18 +1179,18 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                # case "{urn:hl7-org:v3}id":
-                #     self.parse_II(child)
-                # case "{urn:hl7-org:v3}code":
-                #     self.parse_CE(child)
+                case "{urn:hl7-org:v3}id":
+                    self.parse_II(child)
+                case "{urn:hl7-org:v3}code":
+                    self.parse_CE(child)
                 case "{urn:hl7-org:v3}text":
                     self.parse_xhtml(child)
-                # case "{urn:hl7-org:v3}confidentialityCode":
-                #     self.parse_CE(child)
+                case "{urn:hl7-org:v3}confidentialityCode":
+                    self.parse_CE(child)
                 case "{urn:hl7-org:v3}subject":
                     self.parse_Subject(child)
-                # case "{urn:hl7-org:v3}author":
-                #     self.parse_Author(child)
+                case "{urn:hl7-org:v3}author":
+                    self.parse_Author(child)
                 case "{urn:hl7-org:v3}informant":
                     self.parse_Informant(child)
                 case "{urn:hl7-org:v3}entry":
@@ -1223,8 +1217,8 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                # case "{urn:hl7-org:v3}awarenessCode":
-                #     self.parse_CE(child)
+                case "{urn:hl7-org:v3}awarenessCode":
+                    self.parse_CE(child)
                 case "{urn:hl7-org:v3}relatedSubject":
                     self.parse_RelatedSubject(child)
 
@@ -1236,8 +1230,8 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                # case "{urn:hl7-org:v3}code":
-                #     self.parse_CE(child)
+                case "{urn:hl7-org:v3}code":
+                    self.parse_CE(child)
                 case "{urn:hl7-org:v3}addr":
                     self.parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
@@ -1255,10 +1249,10 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}name":
                     self.parse_PN(child)
-                # case "{urn:hl7-org:v3}desc":
-                #     self.parse_ED(child)
-                # case "{urn:hl7-org:v3}administrativeGenderCode":
-                #     self.parse_CE(child)
+                case "{urn:hl7-org:v3}desc":
+                    self.parse_ED(child)
+                case "{urn:hl7-org:v3}administrativeGenderCode":
+                    self.parse_CE(child)
                 case "{urn:hl7-org:v3}birthTime":
                     self.parse_TS(child)
                 case "{urn:hl7-org:v3}deceasedTime":
@@ -1297,16 +1291,16 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                # case "{urn:hl7-org:v3}id":
-                #     self.parse_II(child)
-                # case "{urn:hl7-org:v3}code":
-                #     self.parse_CD(child)
+                case "{urn:hl7-org:v3}id":
+                    self.parse_II(child)
+                case "{urn:hl7-org:v3}code":
+                    self.parse_CD(child)
                 case "{urn:hl7-org:v3}text":
                     self.parse_ED(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self.parse_IVL_TS(child)
-                # case "{urn:hl7-org:v3}priorityCode":
-                #     self.parse_CE(child)
+                case "{urn:hl7-org:v3}priorityCode":
+                    self.parse_CE(child)
                 case "{urn:hl7-org:v3}subject":
                     self.parse_Subject(child)
                 case "{urn:hl7-org:v3}specimen":
@@ -1345,10 +1339,10 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                # case "{urn:hl7-org:v3}id":
-                #     self.parse_II(child)
-                # case "{urn:hl7-org:v3}identifiedBy":
-                #     self.parse_IdentifiedBy(child)
+                case "{urn:hl7-org:v3}id":
+                    self.parse_II(child)
+                case "{urn:hl7-org:v3}identifiedBy":
+                    self.parse_IdentifiedBy(child)
                 case "{urn:hl7-org:v3}specimenPlayingEntity":
                     self.parse_PlayingEntity(child)
 
