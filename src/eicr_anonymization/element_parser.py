@@ -104,8 +104,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}code" | "{urn:hl7-org:v3}confidentialityCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self._parse_TS(child)
                 case "{urn:hl7-org:v3}recordTarget":
@@ -137,26 +135,6 @@ class Parser:
                 case "{urn:hl7-org:v3}component":
                     self._parse_Component(child)
 
-    @track_path("CE")
-    def _parse_CE(self, element: _Element):
-        """Logical Model: CE: CodedWithEquivalents (V3 Data Type).
-
-        https://build.fhir.org/ig/HL7/CDA-core-2.0/StructureDefinition-CE.html
-        """
-        for atribute in element.items():
-            match atribute[0]:
-                case "displayName" | "codeSystemName":
-                    self.add_safe_text(atribute[1])
-        for child in element:
-            match child.tag:
-                case "{urn:hl7-org:v3}originalText":
-                    self._parse_ED(child)
-                case "{urn:hl7-org:v3}translation":
-                    self._parse_CD(child)
-                case "{urn:hl7-org:v3}effectiveTime" | "{urn:hl7-org:v3}copyTime":
-                    self._parse_TS(child)
-                case "{urn:hl7-org:v3}RecordTarget":
-                    self._parse_RecordTarget(child)
 
     @track_path("ED")
     def _parse_ED(self, element: _Element):
@@ -260,8 +238,6 @@ class Parser:
         """Parse an EIVL_TS (Explicit Interval Timestamp) XML element."""
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}event":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}offset":
                     self._parse_IVL_PQ(child)
 
@@ -500,15 +476,6 @@ class Parser:
                     self._parse_II(child)
                 case "{urn:hl7-org:v3}name":
                     self._parse_PN(child)
-                case (
-                    "{urn:hl7-org:v3}administrativeGenderCode"
-                    | "{urn:hl7-org:v3}materialStatusCode"
-                    | "{urn:hl7-org:v3}religiousAffiliationCode"
-                    | "{urn:hl7-org:v3}raceCode"
-                    | "{urn:hl7-org:v3}ethnicGroupCode"
-                    | "{urn:hl7-org:v3}languageCommunication"
-                ):
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}birthTime" | "{urn:hl7-org:v3}deceasedTime":
                     self._parse_TS(child)
                 case "{urn:hl7-org:v3}desc":
@@ -558,8 +525,6 @@ class Parser:
                     self._parse_II(child)
                 case "{urn:hl7-org:v3}identifiedBy":
                     self._parse_IdentifiedBy(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}addr":
                     self._parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
@@ -579,8 +544,6 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}name":
                     self._parse_PN(child)
-                case "{urn:hl7-org:v3}asPatientRelationship":
-                    self._parse_CE(child)
 
     @track_path("Birthplace")
     def _parse_Birthplace(self, element: _Element):
@@ -642,8 +605,6 @@ class Parser:
                     self._parse_TEL(child)
                 case "{urn:hl7-org:v3}addr":
                     self._parse_AD(child)
-                case "{urn:hl7-org:v3}standardIndustryClassCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}asOrganizationPartOf":
                     self._parse_OrganizationPartOf(child)
 
@@ -674,8 +635,6 @@ class Parser:
                     self._parse_II(child)
                 case "{urn:hl7-org:v3}identifiedBy":
                     self._parse_IdentifiedBy(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self._parse_IVL_TS(child)
                 case "{urn:hl7-org:v3}wholeOrganization":
@@ -689,8 +648,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}functionCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}time":
                     self._parse_TS(child)
                 case "{urn:hl7-org:v3}assignedAuthor":
@@ -708,8 +665,6 @@ class Parser:
                     self._parse_II(child)
                 case "{urn:hl7-org:v3}identifiedBy":
                     self._parse_IdentifiedBy(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}addr":
                     self._parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
@@ -729,8 +684,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}asMaintainedEntity":
                     self._parse_MaintainedEntity(child)
 
@@ -772,8 +725,6 @@ class Parser:
                     self._parse_II(child)
                 case "{urn:hl7-org:v3}identifiedBy":
                     self._parse_IdentifiedBy(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}addr":
                     self._parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
@@ -804,8 +755,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}addr":
                     self._parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
@@ -909,8 +858,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}functionCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}time":
                     self._parse_IVL_TS(child)
                 case "{urn:hl7-org:v3}associatedEntity":
@@ -928,8 +875,6 @@ class Parser:
                     self._parse_II(child)
                 case "{urn:hl7-org:v3}identifiedBy":
                     self._parse_IdentifiedBy(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}addr":
                     self._parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
@@ -960,8 +905,6 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}id":
                     self._parse_II(child)
-                case "{urn:hl7-org:v3}code" | "{urn:hl7-org:v3}priorityCode":
-                    self._parse_CE(child)
 
     @track_path("DocumentationOf")
     def _parse_DocumentationOf(self, element: _Element):
@@ -984,8 +927,6 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}id":
                     self._parse_II(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self._parse_IVL_TS(child)
                 case "{urn:hl7-org:v3}performer":
@@ -999,8 +940,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}functionCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}time":
                     self._parse_IVL_TS(child)
                 case "{urn:hl7-org:v3}assignedEntity":
@@ -1027,8 +966,6 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}id":
                     self._parse_II(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}text":
                     self._parse_ED(child)
 
@@ -1053,8 +990,6 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}id":
                     self._parse_II(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
 
     @track_path("ComponentOf")
     def _parse_ComponentOf(self, element: _Element):
@@ -1079,11 +1014,6 @@ class Parser:
                     self._parse_II(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self._parse_IVL_TS(child)
-                case (
-                    "{urn:hl7-org:v3}admissionReferralSourceCode"
-                    | "{urn:hl7-org:v3}dischargeDispositionCode"
-                ):
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}responsibleParty":
                     for rp_child in child:
                         match rp_child.tag:
@@ -1122,8 +1052,6 @@ class Parser:
                     self._parse_II(child)
                 case "{urn:hl7-org:v3}identifiedBy":
                     self._parse_IdentifiedBy(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}location":
                     self._parse_Place(child)
                 case "{urn:hl7-org:v3}serviceProviderOrganization":
@@ -1152,8 +1080,6 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}text":
                     self._parse_ED(child)
-                case "{urn:hl7-org:v3}confidentialityCode":
-                    self._parse_CE(child)
 
     @track_path("StructuredBody")
     def _parse_StructuredBody(self, element: _Element):
@@ -1163,8 +1089,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}confidentialityCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}component":
                     for c_child in child:
                         match c_child.tag:
@@ -1181,12 +1105,8 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}id":
                     self._parse_II(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}text":
                     self._parse_xhtml(child)
-                case "{urn:hl7-org:v3}confidentialityCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}subject":
                     self._parse_Subject(child)
                 case "{urn:hl7-org:v3}author":
@@ -1217,8 +1137,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}awarenessCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}relatedSubject":
                     self._parse_RelatedSubject(child)
 
@@ -1230,8 +1148,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}addr":
                     self._parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
@@ -1251,8 +1167,6 @@ class Parser:
                     self._parse_PN(child)
                 case "{urn:hl7-org:v3}desc":
                     self._parse_ED(child)
-                case "{urn:hl7-org:v3}administrativeGenderCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}birthTime":
                     self._parse_TS(child)
                 case "{urn:hl7-org:v3}deceasedTime":
@@ -1299,8 +1213,6 @@ class Parser:
                     self._parse_ED(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self._parse_IVL_TS(child)
-                case "{urn:hl7-org:v3}priorityCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}subject":
                     self._parse_Subject(child)
                 case "{urn:hl7-org:v3}specimen":
@@ -1354,8 +1266,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}quantity":
                     self._parse_PQ(child)
                 case "{urn:hl7-org:v3}name":
@@ -1373,8 +1283,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}functionCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}time":
                     self._parse_IVL_TS(child)
                 case "{urn:hl7-org:v3}assignedEntity":
@@ -1388,8 +1296,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}functionCode" | "{urn:hl7-org:v3}awarenessCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}time":
                     self._parse_IVL_TS(child)
                 case "{urn:hl7-org:v3}participantRole":
@@ -1407,8 +1313,6 @@ class Parser:
                     self._parse_II(child)
                 case "{urn:hl7-org:v3}identifiedBy":
                     self._parse_IdentifiedBy(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}addr":
                     self._parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
@@ -1428,8 +1332,8 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
+                case "{urn:hl7-org:v3}id":
+                    self._parse_II(child)
 
     @track_path("Entity")
     def _parse_Entity(self, element: _Element):
@@ -1441,8 +1345,6 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}id":
                     self._parse_II(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}desc":
                     self._parse_ED(child)
 
@@ -1489,8 +1391,6 @@ class Parser:
                     self._parse_ED(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self._parse_IVL_TS(child)
-                case "{urn:hl7-org:v3}dischargeDispositionCode" | "{urn:hl7-org:v3}priorityCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}subject":
                     self._parse_Subject(child)
                 case "{urn:hl7-org:v3}specimen":
@@ -1537,8 +1437,6 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}id":
                     self._parse_II(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}text":
                     self._parse_ED(child)
 
@@ -1552,8 +1450,6 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}id":
                     self._parse_II(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}text":
                     self._parse_ED(child)
 
@@ -1567,8 +1463,6 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}id":
                     self._parse_II(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}text":
                     self._parse_ED(child)
 
@@ -1582,8 +1476,6 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}id":
                     self._parse_II(child)
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}text":
                     self._parse_ED(child)
 
@@ -1606,8 +1498,6 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}code":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}text":
                     self._parse_ED(child)
                 case "{urn:hl7-org:v3}value":
@@ -1616,8 +1506,6 @@ class Parser:
                             self._parse_ED(child)
                         case "CD":
                             self._parse_CD(child)
-                        case "CE":
-                            self._parse_CE(child)
                         case "II":
                             self._parse_II(child)
                         case "TEL":
@@ -1657,20 +1545,12 @@ class Parser:
                     self._parse_ED(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self._parse_IVL_TS(child)
-                case (
-                    "{urn:hl7-org:v3}priorityCode"
-                    | "{urn:hl7-org:v3}interpretationCode"
-                    | "{urn:hl7-org:v3}methodCode"
-                ):
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}value":
                     match child.get("{http://www.w3.org/2001/XMLSchema-instance}type"):
                         case "ED":
                             self._parse_ED(child)
                         case "CD":
                             self._parse_CD(child)
-                        case "CE":
-                            self._parse_CE(child)
                         case "II":
                             self._parse_II(child)
                         case "TEL":
@@ -1735,8 +1615,6 @@ class Parser:
                             self._parse_ED(child)
                         case "CD":
                             self._parse_CD(child)
-                        case "CE":
-                            self._parse_CE(child)
                         case "II":
                             self._parse_II(child)
                         case "TEL":
@@ -1759,8 +1637,6 @@ class Parser:
                             self._parse_EIVL_TS(child)
                         case "SXPR_TS":
                             self._parse_SXPR_TS(child)
-                case "{urn:hl7-org:v3}interpretationCode":
-                    self._parse_CE(child)
 
     @track_path("ObservationMedia")
     def _parse_ObservationMedia(self, element: _Element):
@@ -1807,8 +1683,6 @@ class Parser:
                     self._parse_CD(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self._parse_IVL_TS(child)
-                case "{urn:hl7-org:v3}priorityCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}subject":
                     self._parse_Subject(child)
                 case "{urn:hl7-org:v3}specimen":
@@ -1873,8 +1747,6 @@ class Parser:
                     self._parse_ED(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self._parse_IVL_TS(child)
-                case "{urn:hl7-org:v3}priorityCode" | "{urn:hl7-org:v3}methodCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}subject":
                     self._parse_Subject(child)
                 case "{urn:hl7-org:v3}specimen":
@@ -1949,12 +1821,6 @@ class Parser:
                             self._parse_PIVL_TS(child)
                         case "SXPR_TS":
                             self._parse_SXPR_TS(child)
-                case (
-                    "{urn:hl7-org:v3}priorityCode"
-                    | "{urn:hl7-org:v3}routeCode"
-                    | "{urn:hl7-org:v3}administrationUnitCode"
-                ):
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}doseQuantity":
                     self._parse_IVL_PQ(child)
                 case "{urn:hl7-org:v3}rateQuantity":
@@ -2046,8 +1912,6 @@ class Parser:
                             self._parse_PIVL_TS(child)
                         case "SXPR_TS":
                             self._parse_SXPR_TS(child)
-                case "{urn:hl7-org:v3}priorityCode":
-                    self._parse_CE(child)
                 case "{urn:hl7-org:v3}quantity":
                     self._parse_PQ(child)
                 case "{urn:hl7-org:v3}expectedUseTime":
