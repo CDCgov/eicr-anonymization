@@ -1,4 +1,23 @@
+"""Parse for stepping through XML elements of a CDA document to collect sensitive elements and safe text."""  # noqa: E501
+
 from lxml.etree import _Element
+
+
+def track_path(element_type: str):
+    """Track the current path in the XML document."""
+
+    def decorator_track_path(func):
+        def wrapper(self, element: _Element):
+            """Track the path."""
+            self.current_path.append(element_type)
+            try:
+                return func(self, element)
+            finally:
+                self.current_path.pop()
+
+        return wrapper
+
+    return decorator_track_path
 
 
 def has_text(element: _Element) -> bool:
@@ -16,7 +35,7 @@ def has_text(element: _Element) -> bool:
 class Element:
     """Class representing an XML element with its attributes and text content."""
 
-    def __init__(self, element: _Element, cda_type: str):
+    def __init__(self, element: _Element, cda_type: str, type_path: list[str] | None = None):
         """Initialize the Element with its attributes and text content."""
         self.name = element.tag
 
@@ -26,11 +45,16 @@ class Element:
         self.cda_type = cda_type
         self.text = element.text
         self.path = element.getroottree().getpath(element)
+        self.line = element.sourceline
+        self.type_path = "/".join(type_path) if type_path else None
 
     def __repr__(self) -> str:
         """Get a string representation of the tag."""
         root_tag = str(self.name).removeprefix("{urn:hl7-org:v3}")
-        repr = f"{self.cda_type}: <{root_tag}"
+        if self.type_path:
+            repr = f"{self.line}, {self.type_path}: <{root_tag}"
+        else:
+            repr = f"{self.line}, {self.cda_type}: <{root_tag}"
         for key, value in self.attributes.items():
             root_key = key.removeprefix("{http://www.w3.org/2001/XMLSchema-instance}")
             repr += f' {root_key}="{value}"'
@@ -50,6 +74,7 @@ class Parser:
         """Initialize the Parser with an empty list of sensitive elements."""
         self.sensitive_elements: list[Element] = []
         self.safe_text: set[str] = set()
+        self.current_path: list[str] = []
 
     def collect_sensitive_elements_and_safe_words(self, element: _Element):
         """Find sensitive elements in the XML document.
@@ -66,7 +91,7 @@ class Parser:
 
     def add_sensitive_element(self, element: _Element, cda_type: str):
         """Add a sensitive element to the list."""
-        self.sensitive_elements.append(Element(element, cda_type))
+        self.sensitive_elements.append(Element(element, cda_type, self.current_path))
 
     def add_safe_text(self, text: str):
         """Add a safe text element to the list."""
@@ -79,39 +104,41 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}code" | "{urn:hl7-org:v3}confidentialityCode":
-                    self.parse_CE(child)
-                case "{urn:hl7-org:v3}effectiveTime":
-                    self.parse_TS(child)
+                # case "{urn:hl7-org:v3}code" | "{urn:hl7-org:v3}confidentialityCode":
+                #     self.parse_CE(child)
+                # case "{urn:hl7-org:v3}effectiveTime":
+                #     self.parse_TS(child)
                 case "{urn:hl7-org:v3}recordTarget":
+                    # Relevant for patient information
                     self.parse_RecordTarget(child)
-                case "{urn:hl7-org:v3}author":
-                    self.parse_Author(child)
-                case "{urn:hl7-org:v3}dataEnterer":
-                    self.parse_DataEnterer(child)
-                case "{urn:hl7-org:v3}informant":
-                    self.parse_Informant(child)
-                case "{urn:hl7-org:v3}custodian":
-                    self.parse_Custodian(child)
-                case "{urn:hl7-org:v3}informationRecipient":
-                    self.parse_InformationRecipient(child)
-                case "{urn:hl7-org:v3}authenticator":
-                    self.parse_Authenticator(child)
-                case "{urn:hl7-org:v3}participant":
-                    self.parse_Participant1(child)
-                case "{urn:hl7-org:v3}inFulfillmentOf":
-                    self.parse_InFulfillmentOf(child)
-                case "{urn:hl7-org:v3}documentationOf":
-                    self.parse_DocumentationOf(child)
-                case "{urn:hl7-org:v3}relatedDocument":
-                    self.parse_RelatedDocument(child)
-                case "{urn:hl7-org:v3}authorization":
-                    self.parse_Authorization(child)
+                # case "{urn:hl7-org:v3}author":
+                #     self.parse_Author(child)
+                # case "{urn:hl7-org:v3}dataEnterer":
+                #     self.parse_DataEnterer(child)
+                # case "{urn:hl7-org:v3}informant":
+                #     self.parse_Informant(child)
+                # case "{urn:hl7-org:v3}custodian":
+                #     self.parse_Custodian(child)
+                # case "{urn:hl7-org:v3}informationRecipient":
+                #     self.parse_InformationRecipient(child)
+                # case "{urn:hl7-org:v3}authenticator":
+                #     self.parse_Authenticator(child)
+                # case "{urn:hl7-org:v3}participant":
+                #     self.parse_Participant1(child)
+                # case "{urn:hl7-org:v3}inFulfillmentOf":
+                #     self.parse_InFulfillmentOf(child)
+                # case "{urn:hl7-org:v3}documentationOf":
+                #     self.parse_DocumentationOf(child)
+                # case "{urn:hl7-org:v3}relatedDocument":
+                #     self.parse_RelatedDocument(child)
+                # case "{urn:hl7-org:v3}authorization":
+                #     self.parse_Authorization(child)
                 case "{urn:hl7-org:v3}componentOf":
                     self.parse_ComponentOf(child)
                 case "{urn:hl7-org:v3}component":
                     self.parse_Component(child)
 
+    @track_path("CE")
     def parse_CE(self, element: _Element):
         """Logical Model: CE: CodedWithEquivalents (V3 Data Type).
 
@@ -123,7 +150,7 @@ class Parser:
                     self.add_safe_text(atribute[1])
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}orginalText":
+                case "{urn:hl7-org:v3}originalText":
                     self.parse_ED(child)
                 case "{urn:hl7-org:v3}translation":
                     self.parse_CD(child)
@@ -132,6 +159,7 @@ class Parser:
                 case "{urn:hl7-org:v3}RecordTarget":
                     self.parse_RecordTarget(child)
 
+    @track_path("ED")
     def parse_ED(self, element: _Element):
         """Logical Model: ED: EncapsulatedData (V3 Data Type).
 
@@ -146,6 +174,7 @@ class Parser:
                 case "{urn:hl7-org:v3}thumbnail":
                     self.parse_ED(child)
 
+    @track_path("TEL")
     def parse_TEL(self, element: _Element):
         """Parse a TEL (Telecommunication) XML element."""
         for atribute in element.items():
@@ -170,6 +199,7 @@ class Parser:
                                 f"Unknown type: {child.get('{http://www.w3.org/2001/XMLSchema-instance}type')}"
                             )
 
+    @track_path("IVL_TS")
     def parse_IVL_TS(self, element: _Element):
         """Logical Model: IVL_TS: Interval (V3 Data Type).
 
@@ -188,6 +218,7 @@ class Parser:
                 case "{urn:hl7-org:v3}width":
                     self.parse_PQ(child)
 
+    @track_path("IVXB_TS")
     def parse_IVXB_TS(self, element: _Element):
         """Logical Model: IVXB_TS: Interval Boundary PointInTime (V3 Data Type).
 
@@ -198,6 +229,7 @@ class Parser:
                 case "value":
                     self.add_sensitive_element(element, "IVXB_TS")
 
+    @track_path("TS")
     def parse_TS(self, element: _Element):
         """Logical Model: TS: PointInTime (V3 Data Type).
 
@@ -208,6 +240,7 @@ class Parser:
                 case "value":
                     self.add_sensitive_element(element, "TS")
 
+    @track_path("PQ")
     def parse_PQ(self, element: _Element):
         """Parse a PQ (Quantity) XML element."""
         for child in element:
@@ -215,13 +248,15 @@ class Parser:
                 case "{urn:hl7-org:v3}translation":
                     self.parse_PQR(child)
 
+    @track_path("PQR")
     def parse_PQR(self, element: _Element):
         """Handle a PQR (Quantity Range) XML element."""
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}orginalText":
+                case "{urn:hl7-org:v3}originalText":
                     self.parse_ED(child)
 
+    @track_path("EIVL_TS")
     def parse_EIVL_TS(self, element: _Element):
         """Parse an EIVL_TS (Explicit Interval Timestamp) XML element."""
         for child in element:
@@ -231,6 +266,7 @@ class Parser:
                 case "{urn:hl7-org:v3}offset":
                     self.parse_IVL_PQ(child)
 
+    @track_path("IVL_PQ")
     def parse_IVL_PQ(self, element: _Element):
         """Parse an IVL_PQ (Interval Quantity) XML element."""
         for child in element:
@@ -240,6 +276,7 @@ class Parser:
                 case "{urn:hl7-org:v3}center" | "{urn:hl7-org:v3}width":
                     self.parse_PQ(child)
 
+    @track_path("IVXB_PQ")
     def parse_IVXB_PQ(self, element: _Element):
         """Parse an IVXB_PQ (Interval Bound Quantity) XML element."""
         for child in element:
@@ -247,6 +284,7 @@ class Parser:
                 case "{urn:hl7-org:v3}translation":
                     self.parse_PQR(child)
 
+    @track_path("PIVL_TS")
     def parse_PIVL_TS(self, element: _Element):
         """Parse a PIVL_TS (Periodic Interval Timestamp) XML element."""
         # PIVL_TS should not have a value attribute, however the 3.1 example eICR has it
@@ -261,6 +299,7 @@ class Parser:
                 case "{urn:hl7-org:v3}period":
                     self.parse_PQ(child)
 
+    @track_path("SXPR_TS")
     def parse_SXPR_TS(self, element: _Element):
         """Logical Model: SXPR_TS: Component part of GTS (V3 Data Type).
 
@@ -289,6 +328,7 @@ class Parser:
                                 f"Unknown type: {child.get('{http://www.w3.org/2001/XMLSchema-instance}type')}"
                             )
 
+    @track_path("CD")
     def parse_CD(self, element: _Element):
         """Logical Model: CD: ConceptDescriptor (V3 Data Type).
 
@@ -307,6 +347,7 @@ class Parser:
                 case "{urn:hl7-org:v3}translation":
                     self.parse_CD(child)
 
+    @track_path("CR")
     def parse_CR(self, element: _Element):
         """Logical Model: CR: ConceptRole (V3 Data Type).
 
@@ -314,21 +355,10 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}name":
-                    self.parse_CV(child)
                 case "{urn:hl7-org:v3}value":
                     self.parse_CD(child)
 
-    def parse_CV(self, element: _Element):
-        """Logical Model: CV: CodedValue (V3 Data Type).
-
-        https://build.fhir.org/ig/HL7/CDA-core-2.0/StructureDefinition-CV.html
-        """
-        for child in element:
-            match child.tag:
-                case "{urn:hl7-org:v3}originalText":
-                    self.parse_ED(child)
-
+    @track_path("RecordTarget")
     def parse_RecordTarget(self, element: _Element):
         """Logical Model: RecordTarget (CDA Class).
 
@@ -337,8 +367,10 @@ class Parser:
         for child in element:
             match child.tag:
                 case "{urn:hl7-org:v3}patientRole":
+                    # Relevant for patient information
                     self.parse_PatientRole(child)
 
+    @track_path("PatientRole")
     def parse_PatientRole(self, element: _Element):
         """Logical Model: PatientRole (CDA Class).
 
@@ -348,17 +380,19 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}id":
                     self.parse_II(child)
-                case "{urn:hl7-org:v3}identfiedBy":
-                    self.parse_IdentifiedBy(child)
                 case "{urn:hl7-org:v3}addr":
+                    # Relevant for patient address
                     self.parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
+                    # I assume patient contact inform will need to be anonymized
                     self.parse_TEL(child)
                 case "{urn:hl7-org:v3}patient":
+                    # Relevant for patient information
                     self.parse_Patient(child)
                 case "{urn:hl7-org:v3}providerOrganization":
                     self.parse_Organization(child)
 
+    @track_path("II")
     def parse_II(self, element: _Element):
         """Logical Model: II: InstanceIdentifier (V3 Data Type).
 
@@ -369,6 +403,7 @@ class Parser:
                 case "extension":
                     self.add_sensitive_element(element, "II")
 
+    @track_path("IdentifiedBy")
     def parse_IdentifiedBy(self, element: _Element):
         """Logical Model: IdentifiedBy (CDA Class) ( Abstract ).
 
@@ -379,6 +414,7 @@ class Parser:
                 case "{urn:hl7-org:v3}alterateIdentification":
                     self.parse_AlternateIdentification(child)
 
+    @track_path("AlternateIdentification")
     def parse_AlternateIdentification(self, element: _Element):
         """Logical Model: AlternateIdentification (CDA Class) ( Abstract ).
 
@@ -393,6 +429,7 @@ class Parser:
                 case "{urn:hl7-org:v3}effectiveTime":
                     self.parse_IVL_TS(child)
 
+    @track_path("AD")
     def parse_AD(self, element: _Element):
         """Logical Model: AD: PostalAddress (V3 Data Type).
 
@@ -445,6 +482,7 @@ class Parser:
                                 f"Unknown type: {child.get('{http://www.w3.org/2001/XMLSchema-instance}type')}"
                             )
 
+    @track_path("ADXP")
     def parse_ADXP(self, element: _Element):
         """Logical Model: ADXP: CharacterString (V3 Data Type) .
 
@@ -453,6 +491,7 @@ class Parser:
         if has_text(element):
             self.add_sensitive_element(element, "ADXP")
 
+    @track_path("Patient")
     def parse_Patient(self, element: _Element):
         """Logical Model: Patient (CDA Class).
 
@@ -463,6 +502,7 @@ class Parser:
                 case "{urn:hl7-org:v3}id":
                     self.parse_II(child)
                 case "{urn:hl7-org:v3}name":
+                    # Patient name
                     self.parse_PN(child)
                 case (
                     "{urn:hl7-org:v3}administrativeGenderCode"
@@ -472,8 +512,10 @@ class Parser:
                     | "{urn:hl7-org:v3}ethnicGroupCode"
                     | "{urn:hl7-org:v3}languageCommunication"
                 ):
+                    # Will need to pull out ethnicty and race
                     self.parse_CE(child)
                 case "{urn:hl7-org:v3}birthTime" | "{urn:hl7-org:v3}deceasedTime":
+                    # Patient dates
                     self.parse_TS(child)
                 case "{urn:hl7-org:v3}desc":
                     self.parse_ED(child)
@@ -482,6 +524,7 @@ class Parser:
                 case "{urn:hl7-org:v3}birthplace":
                     self.parse_Birthplace(child)
 
+    @track_path("PN")
     def parse_PN(self, element: _Element):
         """Logical Model: PN: PersonName (V3 Data Type).
 
@@ -500,6 +543,7 @@ class Parser:
                 case "{urn:hl7-org:v3}validTime":
                     self.parse_IVL_TS(child)
 
+    @track_path("ENXP")
     def parse_ENXP(self, element: _Element):
         """Logical Model: ENXP: Entity Name Part (V3 Data Type).
 
@@ -508,6 +552,7 @@ class Parser:
         if has_text(element):
             self.add_sensitive_element(element, "ENXP")
 
+    @track_path("Guardian")
     def parse_Guardian(self, element: _Element):
         """Logical Model: Guardian (CDA Class).
 
@@ -530,6 +575,7 @@ class Parser:
                 case "{urn:hl7-org:v3}guardianOrganization":
                     self.parse_Organization(child)
 
+    @track_path("Person")
     def parse_Person(self, element: _Element):
         """Logical Model: Person (CDA Class).
 
@@ -539,9 +585,10 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}name":
                     self.parse_PN(child)
-                case "{urn:hl7-org:v3}asPatientRelationship":
-                    self.parse_CE(child)
+                # case "{urn:hl7-org:v3}asPatientRelationship":
+                #     self.parse_CE(child)
 
+    @track_path("Birthplace")
     def parse_Birthplace(self, element: _Element):
         """Logical Model: Birthplace (CDA Class).
 
@@ -552,6 +599,7 @@ class Parser:
                 case "{urn:hl7-org:v3}place":
                     self.parse_Place(child)
 
+    @track_path("Place")
     def parse_Place(self, element: _Element):
         """Logical Model: Place (CDA Class).
 
@@ -564,6 +612,7 @@ class Parser:
                 case "{urn:hl7-org:v3}addr":
                     self.parse_AD(child)
 
+    @track_path("EN")
     def parse_EN(self, element: _Element):
         """Logical Model: EN: EntityName (V3 Data Type).
 
@@ -583,6 +632,7 @@ class Parser:
                 case "{urn:hl7-org:v3}validTime":
                     self.parse_IVL_TS(child)
 
+    @track_path("Organization")
     def parse_Organization(self, element: _Element):
         """Logical Model: Organization (CDA Class).
 
@@ -603,6 +653,7 @@ class Parser:
                 case "{urn:hl7-org:v3}asOrganizationPartOf":
                     self.parse_OrganizationPartOf(child)
 
+    @track_path("ON")
     def parse_ON(self, element: _Element):
         """Logical Model: ON: OrganizationName (V3 Data Type).
 
@@ -617,6 +668,7 @@ class Parser:
                 case "{urn:hl7-org:v3}validTime":
                     self.parse_IVL_TS(child)
 
+    @track_path("OrganizationPartOf")
     def parse_OrganizationPartOf(self, element: _Element):
         """Logical Model: OrganizationPartOf (CDA Class).
 
@@ -635,6 +687,7 @@ class Parser:
                 case "{urn:hl7-org:v3}wholeOrganization":
                     self.parse_Organization(child)
 
+    @track_path("Author")
     def parse_Author(self, element: _Element):
         """Logical Model: Author (CDA Class).
 
@@ -649,6 +702,7 @@ class Parser:
                 case "{urn:hl7-org:v3}assignedAuthor":
                     self.parse_AssignedAuthor(child)
 
+    @track_path("AssignedAuthor")
     def parse_AssignedAuthor(self, element: _Element):
         """Logical Model: AssignedAuthor (CDA Class).
 
@@ -673,6 +727,7 @@ class Parser:
                 case "{urn:hl7-org:v3}representedOrganization":
                     self.parse_Organization(child)
 
+    @track_path("AuthoringDevice")
     def parse_AuthoringDevice(self, element: _Element):
         """Logical Model: AuthoringDevice (CDA Class).
 
@@ -685,6 +740,7 @@ class Parser:
                 case "{urn:hl7-org:v3}asMaintainedEntity":
                     self.parse_MaintainedEntity(child)
 
+    @track_path("MaintainedEntity")
     def parse_MaintainedEntity(self, element: _Element):
         """Logical Model: MaintainedEntity (CDA Class).
 
@@ -697,6 +753,7 @@ class Parser:
                 case "{urn:hl7-org:v3}maintaingPerson":
                     self.parse_Person(child)
 
+    @track_path("DataEnterer")
     def parse_DataEnterer(self, element: _Element):
         """Logical Model: DataEnterer (CDA Class).
 
@@ -709,6 +766,7 @@ class Parser:
                 case "{urn:hl7-org:v3}assignedEntity":
                     self.parse_AssignedEntity(child)
 
+    @track_path("AssignedEntity")
     def parse_AssignedEntity(self, element: _Element):
         """Logical Model: AssignedEntity (CDA Class).
 
@@ -731,6 +789,7 @@ class Parser:
                 case "{urn:hl7-org:v3}representedOrganization":
                     self.parse_Organization(child)
 
+    @track_path("Informant")
     def parse_Informant(self, element: _Element):
         """Logical Model: Informant (CDA Class).
 
@@ -743,6 +802,7 @@ class Parser:
                 case "{urn:hl7-org:v3}relatedEntity":
                     self.parse_RelatedEntity(child)
 
+    @track_path("RelatedEntity")
     def parse_RelatedEntity(self, element: _Element):
         """Logical Model: RelatedEntity (CDA Class).
 
@@ -750,8 +810,8 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}code":
-                    self.parse_CE(child)
+                # case "{urn:hl7-org:v3}code":
+                #     self.parse_CE(child)
                 case "{urn:hl7-org:v3}addr":
                     self.parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
@@ -761,6 +821,7 @@ class Parser:
                 case "{urn:hl7-org:v3}relatedPerson":
                     self.parse_Person(child)
 
+    @track_path("Custodian")
     def parse_Custodian(self, element: _Element):
         """Logical Model: Custodian (CDA Class).
 
@@ -771,6 +832,7 @@ class Parser:
                 case "{urn:hl7-org:v3}assignedCustodian":
                     self.parse_AssignedCustodian(child)
 
+    @track_path("AssignedCustodian")
     def parse_AssignedCustodian(self, element: _Element):
         """Logical Model: AssignedCustodian (CDA Class).
 
@@ -781,6 +843,7 @@ class Parser:
                 case "{urn:hl7-org:v3}representedCustodianOrganization":
                     self.parse_CustodianOrganization(child)
 
+    @track_path("CustodianOrganization")
     def parse_CustodianOrganization(self, element: _Element):
         """Logical Model: CustodianOrganization (CDA Class).
 
@@ -797,6 +860,7 @@ class Parser:
                 case "{urn:hl7-org:v3}addr":
                     self.parse_AD(child)
 
+    @track_path("InformationRecipient")
     def parse_InformationRecipient(self, element: _Element):
         """Logical Model: InformationRecipient (CDA Class).
 
@@ -807,6 +871,7 @@ class Parser:
                 case "{urn:hl7-org:v3}intendedRecipient":
                     self.parse_IntendedRecipient(child)
 
+    @track_path("IntendedRecipient")
     def parse_IntendedRecipient(self, element: _Element):
         """Logical Model: IntendedRecipient (CDA Class).
 
@@ -827,6 +892,7 @@ class Parser:
                 case "{urn:hl7-org:v3}receivedOrganization":
                     self.parse_Organization(child)
 
+    @track_path("Authenticator")
     def parse_Authenticator(self, element: _Element):
         """Logical Model: Authenticator (CDA Class).
 
@@ -841,6 +907,7 @@ class Parser:
                 case "{urn:hl7-org:v3}assignedEntity":
                     self.parse_AssignedEntity(child)
 
+    @track_path("Participant1")
     def parse_Participant1(self, element: _Element):
         """Logical Model: Participant1 (CDA Class).
 
@@ -855,6 +922,7 @@ class Parser:
                 case "{urn:hl7-org:v3}associatedEntity":
                     self.parse_AssociatedEntity(child)
 
+    @track_path("AssociatedEntity")
     def parse_AssociatedEntity(self, element: _Element):
         """Logical Model: AssociatedEntity (CDA Class).
 
@@ -877,6 +945,7 @@ class Parser:
                 case "{urn:hl7-org:v3}scopingOrganization":
                     self.parse_Organization(child)
 
+    @track_path("InFulfillmentOf")
     def parse_InFulfillmentOf(self, element: _Element):
         """Logical Model: InFulfillmentOf (CDA Class).
 
@@ -887,6 +956,7 @@ class Parser:
                 case "{urn:hl7-org:v3}order":
                     self.parse_Order(child)
 
+    @track_path("Order")
     def parse_Order(self, element: _Element):
         """Logical Model: Order (CDA Class).
 
@@ -899,6 +969,7 @@ class Parser:
                 case "{urn:hl7-org:v3}code" | "{urn:hl7-org:v3}priorityCode":
                     self.parse_CE(child)
 
+    @track_path("DocumentationOf")
     def parse_DocumentationOf(self, element: _Element):
         """Logical Model: DocumentationOf (CDA Class).
 
@@ -909,6 +980,7 @@ class Parser:
                 case "{urn:hl7-org:v3}serviceEvent":
                     self.parse_ServiceEvent(child)
 
+    @track_path("ServiceEvent")
     def parse_ServiceEvent(self, element: _Element):
         """Logical Model: ServiceEvent (CDA Class).
 
@@ -925,6 +997,7 @@ class Parser:
                 case "{urn:hl7-org:v3}performer":
                     self.parse_Performer1(child)
 
+    @track_path("Performer1")
     def parse_Performer1(self, element: _Element):
         """Logical Model: Performer1 (CDA Class).
 
@@ -939,6 +1012,7 @@ class Parser:
                 case "{urn:hl7-org:v3}assignedEntity":
                     self.parse_AssignedEntity(child)
 
+    @track_path("RelatedDocument")
     def parse_RelatedDocument(self, element: _Element):
         """Logical Model: RelatedDocument (CDA Class).
 
@@ -949,6 +1023,7 @@ class Parser:
                 case "{urn:hl7-org:v3}parentDocument":
                     self.parse_ParentDocument(child)
 
+    @track_path("ParentDocument")
     def parse_ParentDocument(self, element: _Element):
         """Logical Model: ParentDocument (CDA Class).
 
@@ -963,6 +1038,7 @@ class Parser:
                 case "{urn:hl7-org:v3}text":
                     self.parse_ED(child)
 
+    @track_path("Authorization")
     def parse_Authorization(self, element: _Element):
         """Logical Model: Authorization (CDA Class).
 
@@ -973,6 +1049,7 @@ class Parser:
                 case "{urn:hl7-org:v3}consent":
                     self.parse_Consent(child)
 
+    @track_path("Consent")
     def parse_Consent(self, element: _Element):
         """Logical Model: Consent (CDA Class).
 
@@ -985,6 +1062,7 @@ class Parser:
                 case "{urn:hl7-org:v3}code":
                     self.parse_CE(child)
 
+    @track_path("ComponentOf")
     def parse_ComponentOf(self, element: _Element):
         """Logical Model: ComponentOf (CDA Class).
 
@@ -995,6 +1073,7 @@ class Parser:
                 case "{urn:hl7-org:v3}encompassingEncounter":
                     self.parse_EncompassingEncounter(child)
 
+    @track_path("EncompassingEncounter")
     def parse_EncompassingEncounter(self, element: _Element):
         """Logical Model: EncompassingEncounter (CDA Class).
 
@@ -1002,28 +1081,29 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}id":
-                    self.parse_II(child)
+                # case "{urn:hl7-org:v3}id":
+                #     self.parse_II(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self.parse_IVL_TS(child)
-                case (
-                    "{urn:hl7-org:v3}admissionReferralSourceCode"
-                    | "{urn:hl7-org:v3}dischargeDispositionCode"
-                ):
-                    self.parse_CE(child)
-                case "{urn:hl7-org:v3}responsibleParty":
-                    for rp_child in child:
-                        match rp_child.tag:
-                            case "{urn:hl7-org:v3}assignedEntity":
-                                self.parse_AssignedEntity(rp_child)
-                case "{urn:hl7-org:v3}encounterParticipant":
-                    self.parse_EncounterParticipant(child)
-                case "{urn:hl7-org:v3}location":
-                    for ep_child in child:
-                        match ep_child.tag:
-                            case "{urn:hl7-org:v3}healthCareFacility":
-                                self.parse_HealthCareFacility(ep_child)
+                # case (
+                #     "{urn:hl7-org:v3}admissionReferralSourceCode"
+                #     | "{urn:hl7-org:v3}dischargeDispositionCode"
+                # ):
+                #     self.parse_CE(child)
+                # case "{urn:hl7-org:v3}responsibleParty":
+                #     for rp_child in child:
+                #         match rp_child.tag:
+                #             case "{urn:hl7-org:v3}assignedEntity":
+                #                 self.parse_AssignedEntity(rp_child)
+                # case "{urn:hl7-org:v3}encounterParticipant":
+                #     self.parse_EncounterParticipant(child)
+                # case "{urn:hl7-org:v3}location":
+                #     for ep_child in child:
+                #         match ep_child.tag:
+                #             case "{urn:hl7-org:v3}healthCareFacility":
+                #                 self.parse_HealthCareFacility(ep_child)
 
+    @track_path("EncounterParticipant")
     def parse_EncounterParticipant(self, element: _Element):
         """Logical Model: EncounterParticipant (CDA Class).
 
@@ -1036,6 +1116,7 @@ class Parser:
                 case "{urn:hl7-org:v3}associatedEntity":
                     self.parse_AssociatedEntity(child)
 
+    @track_path("HealthCareFacility")
     def parse_HealthCareFacility(self, element: _Element):
         """Logical Model: HealthCareFacility (CDA Class).
 
@@ -1054,6 +1135,7 @@ class Parser:
                 case "{urn:hl7-org:v3}serviceProviderOrganization":
                     self.parse_Organization(child)
 
+    @track_path("Component")
     def parse_Component(self, element: _Element):
         """Logical Model: Component (CDA Class).
 
@@ -1066,6 +1148,7 @@ class Parser:
                 case "{urn:hl7-org:v3}structuredBody":
                     self.parse_StructuredBody(child)
 
+    @track_path("NonXMLBody")
     def parse_NonXMLBody(self, element: _Element):
         """Logical Model: NonXMLBody (CDA Class).
 
@@ -1078,6 +1161,7 @@ class Parser:
                 case "{urn:hl7-org:v3}confidentialityCode":
                     self.parse_CE(child)
 
+    @track_path("StructuredBody")
     def parse_StructuredBody(self, element: _Element):
         """Logical Model: StructuredBody (CDA Class).
 
@@ -1093,6 +1177,7 @@ class Parser:
                             case "{urn:hl7-org:v3}section":
                                 self.parse_Section(c_child)
 
+    @track_path("Section")
     def parse_Section(self, element: _Element):
         """Logical Model: Section (CDA Class).
 
@@ -1100,18 +1185,18 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}id":
-                    self.parse_II(child)
-                case "{urn:hl7-org:v3}code":
-                    self.parse_CE(child)
+                # case "{urn:hl7-org:v3}id":
+                #     self.parse_II(child)
+                # case "{urn:hl7-org:v3}code":
+                #     self.parse_CE(child)
                 case "{urn:hl7-org:v3}text":
                     self.parse_xhtml(child)
-                case "{urn:hl7-org:v3}confidentialityCode":
-                    self.parse_CE(child)
+                # case "{urn:hl7-org:v3}confidentialityCode":
+                #     self.parse_CE(child)
                 case "{urn:hl7-org:v3}subject":
                     self.parse_Subject(child)
-                case "{urn:hl7-org:v3}author":
-                    self.parse_Author(child)
+                # case "{urn:hl7-org:v3}author":
+                #     self.parse_Author(child)
                 case "{urn:hl7-org:v3}informant":
                     self.parse_Informant(child)
                 case "{urn:hl7-org:v3}entry":
@@ -1122,6 +1207,7 @@ class Parser:
                             case "{urn:hl7-org:v3}section":
                                 self.parse_Section(c_child)
 
+    @track_path("xhtml")
     def parse_xhtml(self, element: _Element):
         """XHTML Content.
 
@@ -1129,6 +1215,7 @@ class Parser:
         """
         self.add_sensitive_element(element, "xhtml")
 
+    @track_path("Subject")
     def parse_Subject(self, element: _Element):
         """Logical Model: Subject (CDA Class).
 
@@ -1136,11 +1223,12 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}awarenessCode":
-                    self.parse_CE(child)
+                # case "{urn:hl7-org:v3}awarenessCode":
+                #     self.parse_CE(child)
                 case "{urn:hl7-org:v3}relatedSubject":
                     self.parse_RelatedSubject(child)
 
+    @track_path("RelatedSubject")
     def parse_RelatedSubject(self, element: _Element):
         """Logical Model: RelatedSubject (CDA Class).
 
@@ -1148,8 +1236,8 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}code":
-                    self.parse_CE(child)
+                # case "{urn:hl7-org:v3}code":
+                #     self.parse_CE(child)
                 case "{urn:hl7-org:v3}addr":
                     self.parse_AD(child)
                 case "{urn:hl7-org:v3}telecom":
@@ -1157,6 +1245,7 @@ class Parser:
                 case "{urn:hl7-org:v3}subject":
                     self.parse_SubjectPerson(child)
 
+    @track_path("SubjectPerson")
     def parse_SubjectPerson(self, element: _Element):
         """Logical Model: SubjectPerson (CDA Class).
 
@@ -1166,15 +1255,16 @@ class Parser:
             match child.tag:
                 case "{urn:hl7-org:v3}name":
                     self.parse_PN(child)
-                case "{urn:hl7-org:v3}desc":
-                    self.parse_ED(child)
-                case "{urn:hl7-org:v3}administrativeGenderCode":
-                    self.parse_CE(child)
+                # case "{urn:hl7-org:v3}desc":
+                #     self.parse_ED(child)
+                # case "{urn:hl7-org:v3}administrativeGenderCode":
+                #     self.parse_CE(child)
                 case "{urn:hl7-org:v3}birthTime":
                     self.parse_TS(child)
                 case "{urn:hl7-org:v3}deceasedTime":
                     self.parse_TS(child)
 
+    @track_path("Entry")
     def parse_Entry(self, element: _Element):
         """Logical Model: Entry (CDA Class).
 
@@ -1199,6 +1289,7 @@ class Parser:
                 case "{urn:hl7-org:v3}supply":
                     self.parse_Supply(child)
 
+    @track_path("Act")
     def parse_Act(self, element: _Element):
         """Logical Model: Act (CDA Class).
 
@@ -1206,16 +1297,16 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}id":
-                    self.parse_II(child)
-                case "{urn:hl7-org:v3}code":
-                    self.parse_CD(child)
+                # case "{urn:hl7-org:v3}id":
+                #     self.parse_II(child)
+                # case "{urn:hl7-org:v3}code":
+                #     self.parse_CD(child)
                 case "{urn:hl7-org:v3}text":
                     self.parse_ED(child)
                 case "{urn:hl7-org:v3}effectiveTime":
                     self.parse_IVL_TS(child)
-                case "{urn:hl7-org:v3}priorityCode":
-                    self.parse_CE(child)
+                # case "{urn:hl7-org:v3}priorityCode":
+                #     self.parse_CE(child)
                 case "{urn:hl7-org:v3}subject":
                     self.parse_Subject(child)
                 case "{urn:hl7-org:v3}specimen":
@@ -1235,6 +1326,7 @@ class Parser:
                 case "{urn:hl7-org:v3}precondition":
                     self.parse_Precondition(child)
 
+    @track_path("Specimen")
     def parse_Specimen(self, element: _Element):
         """Logical Model: Specimen (CDA Class).
 
@@ -1245,6 +1337,7 @@ class Parser:
                 case "{urn:hl7-org:v3}specimenRole":
                     self.parse_SpecimenRole(child)
 
+    @track_path("SpecimenRole")
     def parse_SpecimenRole(self, element: _Element):
         """Logical Model: SpecimenRole (CDA Class).
 
@@ -1252,17 +1345,18 @@ class Parser:
         """
         for child in element:
             match child.tag:
-                case "{urn:hl7-org:v3}id":
-                    self.parse_II(child)
-                case "{urn:hl7-org:v3}identifiedBy":
-                    self.parse_IdentifiedBy(child)
+                # case "{urn:hl7-org:v3}id":
+                #     self.parse_II(child)
+                # case "{urn:hl7-org:v3}identifiedBy":
+                #     self.parse_IdentifiedBy(child)
                 case "{urn:hl7-org:v3}specimenPlayingEntity":
-                    self.parse_SpecimenPlayingEntity(child)
+                    self.parse_PlayingEntity(child)
 
-    def parse_SpecimenPlayingEntity(self, element: _Element):
+    @track_path("PlayingEntity")
+    def parse_PlayingEntity(self, element: _Element):
         """Logical Model: SpecimenPlayingEntity (CDA Class).
 
-        https://build.fhir.org/ig/HL7/CDA-core-2.0/StructureDefinition-SpecimenPlayingEntity.html
+        https://build.fhir.org/ig/HL7/CDA-core-2.0/StructureDefinition-PlayingEntity.html
         """
         for child in element:
             match child.tag:
@@ -1277,6 +1371,7 @@ class Parser:
                 case "{urn:hl7-org:v3}desc":
                     self.parse_ED(child)
 
+    @track_path("Performer2")
     def parse_Performer2(self, element: _Element):
         """Logical Model: Performer2 (CDA Class).
 
@@ -1291,6 +1386,7 @@ class Parser:
                 case "{urn:hl7-org:v3}assignedEntity":
                     self.parse_AssignedEntity(child)
 
+    @track_path("Participant2")
     def parse_Participant2(self, element: _Element):
         """Logical Model: Participant2 (CDA Class).
 
@@ -1305,6 +1401,7 @@ class Parser:
                 case "{urn:hl7-org:v3}participantRole":
                     self.parse_ParticipantRole(child)
 
+    @track_path("ParticipantRole")
     def parse_ParticipantRole(self, element: _Element):
         """Logical Model: ParticipantRole (CDA Class).
 
@@ -1329,6 +1426,7 @@ class Parser:
                 case "{urn:hl7-org:v3}scopingEntity":
                     self.parse_Entity(child)
 
+    @track_path("Device")
     def parse_Device(self, element: _Element):
         """Logical Model: Device (CDA Class).
 
@@ -1339,22 +1437,7 @@ class Parser:
                 case "{urn:hl7-org:v3}code":
                     self.parse_CE(child)
 
-    def parse_PlayingEntity(self, element: _Element):
-        """Logical Model: PlayingEntity (CDA Class).
-
-        https://build.fhir.org/ig/HL7/CDA-core-2.0/StructureDefinition-PlayingEntity.html
-        """
-        for child in element:
-            match child.tag:
-                case "{urn:hl7-org:v3}code":
-                    self.parse_CE(child)
-                case "{urn:hl7-org:v3}quantity":
-                    self.parse_PQ(child)
-                case "{urn:hl7-org:v3}name":
-                    self.parse_PN(child)
-                case "{urn:hl7-org:v3}birthTime":
-                    self.parse_TS(child)
-
+    @track_path("Entity")
     def parse_Entity(self, element: _Element):
         """Logical Model: Entity (CDA Class).
 
@@ -1369,6 +1452,7 @@ class Parser:
                 case "{urn:hl7-org:v3}desc":
                     self.parse_ED(child)
 
+    @track_path("EntryRelationship")
     def parse_EntryRelationship(self, element: _Element):
         """Logical Model: EntryRelationship (CDA Class).
 
@@ -1395,6 +1479,7 @@ class Parser:
                 case "{urn:hl7-org:v3}supply":
                     self.parse_Supply(child)
 
+    @track_path("Encounter")
     def parse_Encounter(self, element: _Element):
         """Logical Model: Encounter (CDA Class).
 
@@ -1431,6 +1516,7 @@ class Parser:
                 case "{urn:hl7-org:v3}precondition":
                     self.parse_Precondition(child)
 
+    @track_path("Reference")
     def parse_Reference(self, element: _Element):
         """Logical Model: Reference (CDA Class).
 
@@ -1447,6 +1533,7 @@ class Parser:
                 case "{urn:hl7-org:v3}externalDocument":
                     self.parse_ExternalDocument(child)
 
+    @track_path("ExternalAct")
     def parse_ExternalAct(self, element: _Element):
         """Logical Model: ExternalAct (CDA Class).
 
@@ -1461,6 +1548,7 @@ class Parser:
                 case "{urn:hl7-org:v3}text":
                     self.parse_ED(child)
 
+    @track_path("ExternalObservation")
     def parse_ExternalObservation(self, element: _Element):
         """Logical Model: ExternalObservation (CDA Class).
 
@@ -1475,6 +1563,7 @@ class Parser:
                 case "{urn:hl7-org:v3}text":
                     self.parse_ED(child)
 
+    @track_path("ExternalProcedure")
     def parse_ExternalProcedure(self, element: _Element):
         """Logical Model: ExternalProcedure (CDA Class).
 
@@ -1489,6 +1578,7 @@ class Parser:
                 case "{urn:hl7-org:v3}text":
                     self.parse_ED(child)
 
+    @track_path("ExternalDocument")
     def parse_ExternalDocument(self, element: _Element):
         """Logical Model: ExternalDocument (CDA Class).
 
@@ -1503,6 +1593,7 @@ class Parser:
                 case "{urn:hl7-org:v3}text":
                     self.parse_ED(child)
 
+    @track_path("Precondition")
     def parse_Precondition(self, element: _Element):
         """Logical Model: Precondition (CDA Class).
 
@@ -1513,6 +1604,7 @@ class Parser:
                 case "{urn:hl7-org:v3}criterion":
                     self.parse_Criterion(child)
 
+    @track_path("Criterion")
     def parse_Criterion(self, element: _Element):
         """Logical Model: Criterion (CDA Class).
 
@@ -1530,8 +1622,6 @@ class Parser:
                             self.parse_ED(child)
                         case "CD":
                             self.parse_CD(child)
-                        case "CV":
-                            self.parse_CV(child)
                         case "CE":
                             self.parse_CE(child)
                         case "II":
@@ -1557,6 +1647,7 @@ class Parser:
                         case "SXPR_TS":
                             self.parse_SXPR_TS(child)
 
+    @track_path("Observation")
     def parse_Observation(self, element: _Element):
         """Logical Model: Observation (CDA Class).
 
@@ -1584,8 +1675,6 @@ class Parser:
                             self.parse_ED(child)
                         case "CD":
                             self.parse_CD(child)
-                        case "CV":
-                            self.parse_CV(child)
                         case "CE":
                             self.parse_CE(child)
                         case "II":
@@ -1634,6 +1723,7 @@ class Parser:
                             case "{urn:hl7-org:v3}observationRange":
                                 self.parse_ObservationRange(rr_child)
 
+    @track_path("ObservationRange")
     def parse_ObservationRange(self, element: _Element):
         """Logical Model: ObservationRange (CDA Class).
 
@@ -1651,8 +1741,6 @@ class Parser:
                             self.parse_ED(child)
                         case "CD":
                             self.parse_CD(child)
-                        case "CV":
-                            self.parse_CV(child)
                         case "CE":
                             self.parse_CE(child)
                         case "II":
@@ -1680,6 +1768,7 @@ class Parser:
                 case "{urn:hl7-org:v3}interpretationCode":
                     self.parse_CE(child)
 
+    @track_path("ObservationMedia")
     def parse_ObservationMedia(self, element: _Element):
         """Logical Model: ObservationMedia (CDA Class).
 
@@ -1710,6 +1799,7 @@ class Parser:
                 case "{urn:hl7-org:v3}precondition":
                     self.parse_Precondition(child)
 
+    @track_path("Organizer")
     def parse_Organizer(self, element: _Element):
         """Logical Model: Organizer (CDA Class).
 
@@ -1744,6 +1834,7 @@ class Parser:
                 case "{urn:hl7-org:v3}component":
                     self.parse_OrganizerComponent(child)
 
+    @track_path("OrganizerComponent")
     def parse_OrganizerComponent(self, element: _Element):
         """Logical Model: OrganizerComponent (CDA Class).
 
@@ -1768,6 +1859,7 @@ class Parser:
                 case "{urn:hl7-org:v3}supply":
                     self.parse_Supply(child)
 
+    @track_path("Procedure")
     def parse_Procedure(self, element: _Element):
         """Logical Model: Procedure (CDA Class).
 
@@ -1808,6 +1900,7 @@ class Parser:
                 case "{urn:hl7-org:v3}precondition":
                     self.parse_Precondition(child)
 
+    @track_path("RegionOfInterest")
     def parse_RegionOfInterest(self, element: _Element):
         """Logical Model: RegionOfInterest (CDA Class).
 
@@ -1836,6 +1929,7 @@ class Parser:
                 case "{urn:hl7-org:v3}precondition":
                     self.parse_Precondition(child)
 
+    @track_path("SubstanceAdministration")
     def parse_SubstanceAdministration(self, element: _Element):
         """Logical Model: SubstanceAdministration (CDA Class).
 
@@ -1897,6 +1991,7 @@ class Parser:
                 case "{urn:hl7-org:v3}precondition":
                     self.parse_Precondition(child)
 
+    @track_path("SXCM_TS")
     def parse_SXCM_TS(self, element: _Element):
         """Logical Model: SXCM_TS: GeneralTimingSpecification (V3 Data Type) ( Abstract ).
 
@@ -1907,6 +2002,7 @@ class Parser:
                 case "value":
                     self.parse_TS(element)
 
+    @track_path("RTO_PQ_PQ")
     def parse_RTO_PQ_PQ(self, element: _Element):
         """Logical Model: RTO_PQ_PQ: Ratio (V3 Data Type) .
 
@@ -1917,6 +2013,7 @@ class Parser:
                 case "{urn:hl7-org:v3}numerator" | "{urn:hl7-org:v3}denominator":
                     self.parse_PQ(child)
 
+    @track_path("ManufacturedProduct")
     def parse_ManufacturedProduct(self, element: _Element):
         """Logical Model: ManufacturedProduct (CDA Class).
 
@@ -1929,6 +2026,7 @@ class Parser:
                 case "{urn:hl7-org:v3}identifiedBy":
                     self.parse_IdentifiedBy(child)
 
+    @track_path("Supply")
     def parse_Supply(self, element: _Element):
         """Logical Model: Supply (CDA Class).
 
