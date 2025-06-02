@@ -51,7 +51,7 @@ select = [
   "RUF",  # Ruff
   "S",    # Bandit
   "SIM",  # flake8-simplify
-  "TRY",  # tryceratops
+  # "TRY",  # tryceratops
   "UP",   # pyupgrade
   "W",    # Pydocstyle warnings
 ]

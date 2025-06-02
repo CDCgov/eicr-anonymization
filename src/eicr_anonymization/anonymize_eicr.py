@@ -3,6 +3,7 @@
 import glob
 import logging
 import os
+import time
 from argparse import Namespace
 
 from lxml import etree
@@ -148,29 +149,41 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                     match.text = "REMOVED"
                 debug_output.append((element, Element(match, element.cda_type)))
 
-    dubug_output = tabulate(
-        sorted(debug_output, key=lambda x: (x[0].name, x[0].cda_type, x[0].text)),
+    print(f"Anonymized {len(sensitive_elements)} sensitive elements in file: {xml_file}")
+    dubug_output_table = tabulate(
+        # sorted(debug_output, key=lambda x: (x[0].name, x[0].cda_type, x[0].text)),
+        debug_output,
         headers=("Orginal", "Replacement"),
         tablefmt="fancy_outline",
     )
 
+    unique_paths = set()
     if debug:
-        # with open(f"debug_output.txt{time.time()}", "w") as debug_file:
-        #     debug_file.write(dubug_output)
-        print(dubug_output)
+        with open(f"./debug_output{time.time()}.txt", "w", encoding="utf-8") as debug_file:
+            debug_file.write("<paths>\n")
+            for debug_element, replacement_element in debug_output:
+                if debug_element.debug_path not in unique_paths:
+                    unique_paths.add(debug_element.debug_path)
+                    debug_file.write(
+                        "<path>\n"
+                        f"<original>{debug_element}</original>\n"
+                        f"<replacement>{replacement_element}</replacement>\n"
+                        "</path>\n"
+                    )
+            debug_file.write("</paths>\n")
+        print(dubug_output_table)
 
     return tree
 
 
 def save_anonymized_file(tree: _ElementTree, xml_file: str) -> None:
-    """Writes anonymized XML tree to file with .anonymized appended to original file name.
+    """Write an anonymized XML tree to file with .anonymized appended to original file name.
 
     Args:
         tree: Anonymized XML tree
         xml_file: Path to the original XML file that has been anonymized
 
-    """    
-
+    """
     # Save the anonymized XML file
     anonymized_file = os.path.join(
         os.path.dirname(xml_file),
@@ -179,7 +192,7 @@ def save_anonymized_file(tree: _ElementTree, xml_file: str) -> None:
 
     xml_string = xml_tree_to_str(tree)
 
-    with open(anonymized_file, "w", encoding='utf-8') as f:
+    with open(anonymized_file, "w", encoding="utf-8") as f:
         f.write(xml_string)
 
 

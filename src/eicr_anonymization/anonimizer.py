@@ -129,6 +129,7 @@ class Anonymizer:
             "AddressNumberSuffix": {},
             "given": {},
             "family": {},
+            "USPSBoxID": {}
         }
 
         self.safe_words = {
@@ -221,7 +222,9 @@ class Anonymizer:
                 case "AddressNumber":
                     if self._get_mapping(component, "houseNumber"):
                         replacement.append(
-                            _match_formatting(component, self.mappings["houseNumber"][component])
+                            _match_formatting(
+                                component, self.mappings["houseNumber"][component.lower()]
+                            )
                         )
                         continue
                     replacement_AddressNumber = ""

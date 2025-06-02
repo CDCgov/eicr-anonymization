@@ -15,7 +15,7 @@ def _parse_arguments() -> Namespace:
     parser = ArgumentParser(description="Anonymize eICR XML files.")
     parser.add_argument(
         "input_location",
-        help="This can be either a directory or an xml file. If it is a directory the Anonmymiztion tool will attempt to anonyimize all XML files in the directory.",
+        help="This can be either a directory or an xml file. If it is a directory the Anonmymiztion tool will attempt to anonyimize all XML files in the directory.",  # noqa: E501
     )
     parser.add_argument(
         "--debug",
@@ -26,7 +26,13 @@ def _parse_arguments() -> Namespace:
     parser.add_argument(
         "-s", "--seed", type=int, default=None, help="Set the random seed. For Debugging."
     )
-    parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1")
+    parser.add_argument(
+        "-l",
+        "--light",
+        action="store_true",
+        help="Use a lighter version of anonymization. Only the following patient fields with be anonymized: name, dates, race, ethnicity, emergency contacts, and clinical notes.",  # noqa: E501
+    )
+    parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.3.0")
     return parser.parse_args()
 
 

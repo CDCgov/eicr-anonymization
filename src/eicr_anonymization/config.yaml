@@ -1,0 +1,1444 @@
+child_type_map:
+  ClinicalDocument:
+    effectiveTime: TS
+    recordTarget: RecordTarget
+    author: Author
+    dataEnterer: DataEnterer
+    informant: Informant
+    custodian: Custodian
+    informationRecipient: InformationRecipient
+    authenticator: Authenticator
+    participant: Participant1
+    inFullfillmentOf: InFulfillmentOf
+    documentationOf: DocumentationOf
+    relatedDocument: RelatedDocument
+    authorization: Authorization
+    componentOf: ComponentOf
+    component: Component
+  ED:
+    reference: TEL
+    thumbnail: ED
+  TEL:
+    useablePeriod:
+      types:
+        - IVL_TS
+        - IVXB_TS
+        - PIVL_TS
+        - SXPR_TS
+      default_type: SXPR_TS
+  IVL_TS:
+    low: IVXB_TS
+    high: IVXB_TS
+    center: TS
+    width: PQ
+  IVXB_TS:
+  TS:
+  PQ:
+    translation: PQR
+  PQR:
+    originalText: ED
+  EIVL_TS:
+    offset: IVL_PQ
+  IVL_PQ:
+    low: IVXB_PQ
+    high: IVXB_PQ
+    center: PQ
+    width: PQ
+  PIVL_TS:
+    phase: IVL_PQ
+    period: PQ
+  SXPR_TS:
+    comp:
+      types:
+        - SXPR_TS
+        - IVL_TS
+        - IVXB_TS
+        - PIVL_TS
+      default_type: SXPR_TS
+  CD:
+    originalText: ED
+    qualifier: CR
+    translation: CD
+  CR:
+    value: CD
+  RecordTarget:
+    patientRole: PatientRole
+  PatientRole:
+    id: II
+    identfiedBy: IdentfiedBy
+    addr: AD
+    telecom: TEL
+    patient: Patient
+    providerOrganization: Organization
+  II:
+  IdentfiedBy:
+    alternateIdentification: AlternateIdentification
+  AlternateIdentification:
+    id: II
+    code: CD
+    effectiveTime: IVL_TS
+  AD:
+    country: ADXP
+    state: ADXP
+    county: ADXP
+    city: ADXP
+    postalCode: ADXP
+    streetAddressLine: ADXP
+    houseNumber: ADXP
+    direction: ADXP
+    streetName: ADXP
+    streetNameBase: ADXP
+    streetNameType: ADXP
+    additionalLocator: ADXP
+    unitID: ADXP
+    unitType: ADXP
+    careOf: ADXP
+    censusTract: ADXP
+    deliveryAddressLine: ADXP
+    deliveryInstallationType: ADXP
+    deliveryInstallationArea: ADXP
+    deliveryInstallationQualifier: ADXP
+    deliveryMode: ADXP
+    deliveryModeIdentifier: ADXP
+    buildingNumberSuffix: ADXP
+    postBox: ADXP
+    precinct: ADXP
+    useablePeriod:
+      types:
+        - IVL_TS
+        - IVXB_TS
+        - PIVL_TS
+        - SXPR_TS
+      default_type: SXPR_TS
+  ADXP:
+  Patient:
+    id: II
+    name: PN
+    birthTime: TS
+    deceasedTime: TS
+    desc: ED
+    guardian: Guardian
+    birthplace: Birthplace
+  PN:
+    family: ENXP
+    given: ENXP
+    validtime: IVL_TS
+  ENXP:
+  Guardian:
+    id: II
+    identfiedBy: IdentfiedBy
+    addr: AD
+    telecom: TEL
+    guardianPerson: Person
+    guardianOrganization: Organization
+  Person:
+    name: EN
+  Birthplace:
+    place: Place
+  Place:
+    name: EN
+    addr: AD
+  EN:
+    family: ENXP
+    given: ENXP
+    validTime: IVL_TS
+  Organization:
+    id: II
+    name: ON
+    telecom: TEL
+    addr: AD
+    asOrganizationPartOf: OrganizationPartOf
+  ON:
+    validTime: IVL_TS
+  OrganizationPartOf:
+    id: II
+    identifiedBy: IdentfiedBy
+    effectiveTime: IVL_TS
+    wholeOrganization: Organization
+  Author:
+    time: IVL_TS
+    assignedAuthor: AssignedAuthor
+  AssignedAuthor:
+    id: II
+    identifiedBy: IdentfiedBy
+    addr: AD
+    telecom: TEL
+    assignedPerson: Person
+    assignedAuthoringDevice: AuthoringDevice
+    representedOrganization: Organization
+  AuthoringDevice:
+    asMaintainedEntity: MaintainedEntity
+  MaintainedEntity:
+    effectiveTime: IVL_TS
+    maintainingPerson: Person
+  DataEnterer:
+    time: IVL_TS
+    assignedEntity: AssignedEntity
+  AssignedEntity:
+    id: II
+    identifiedBy: IdentfiedBy
+    addr: AD
+    telecom: TEL
+    assignedPerson: Person
+    representedOrganization: Organization
+  Informant:
+    assignedEntity: AssignedEntity
+    relatedEntity: RelatedEntity
+  RelatedEntity:
+    addr: AD
+    telecom: TEL
+    effectiveTime: IVL_TS
+    relatedPerson: Person
+  Custodian:
+    assignedCustodian: AssignedCustodian
+  AssignedCustodian:
+    representedCustodianOrganization: CustodianOrganization
+  CustodianOrganization:
+    id: II
+    name: EN
+    telecom: TEL
+    addr: AD
+  InformationRecipient:
+    intendedRecipient: IntendedRecipient
+  IntendedRecipient:
+    id: II
+    identifiedBy: IdentfiedBy
+    addr: AD
+    telecom: TEL
+    informationRecipient: Organization
+    receivedOrganization: Organization
+  Authenticator:
+    time: IVL_TS
+    signaturetext: ED
+    assignedEntity: AssignedEntity
+  Participant1:
+    time: IVL_TS
+    associatedEntity: AssociatedEntity
+  AssociatedEntity:
+    id: II
+    identifiedBy: IdentfiedBy
+    addr: AD
+    telecom: TEL
+    associatedPerson: Person
+    scopingOrganization: Organization
+  InFulfillmentOf:
+    order: Order
+  Order:
+    id: II
+  DocumentationOf:
+    serviceEvent: ServiceEvent
+  ServiceEvent:
+    id: II
+    effectiveTime: IVL_TS
+    performer: Performer1
+  Performer1:
+    time: IVL_TS
+    assignedEntity: AssignedEntity
+  RelatedDocument:
+    parentDocument: ParentDocument
+  ParentDocument:
+    id: II
+    text: ED
+  Authorization:
+    consent: Consent
+  Consent:
+    id: II
+  ComponentOf:
+    encompassingEncounter: EncompassingEncounter
+  EncompassingEncounter:
+    id: II
+    effectiveTime: IVL_TS
+    responsibleParty:
+      assignedEntity: AssignedEntity
+    encounterParticipant: EncounterParticipant
+    location:
+      healthCareFacility: HealthCareFacility
+  EncounterParticipant:
+    time: IVL_TS
+    associatedEntity: AssociatedEntity
+  HealthCareFacility:
+    id: II
+    identifiedBy: IdentfiedBy
+    location: Place
+    serviceProviderOrganization: Organization
+  Component:
+    nonXMLBody: NonXMLBody
+    structuredBody: StructuredBody
+  NonXMLBody:
+    text: ED
+  StructuredBody:
+    component:
+      section: Section
+  Section:
+    id: II
+    text: xhtml
+    subject: Subject
+    author: Author
+    informant: Informant
+    entry: Entry
+    component:
+      section: Section
+  xhtml:
+  Subject:
+    relatedSubject: RelatedSubject
+  RelatedSubject:
+    addr: AD
+    telecom: TEL
+    subject: SubjectPerson
+  SubjectPerson:
+    name: EN
+    desc: ED
+    birthTime: TS
+    deceasedTime: TS
+  Entry:
+    act: Act
+    encounter: Encounter
+    observation: Observation
+    organizer: Organizer
+    procedure: Procedure
+    regionOfInterest: RegionOfInterest
+    substanceAdministration: SubstanceAdministration
+    supply: Supply
+  Act:
+    id: II
+    code: CD
+    text: ED
+    effectiveTime: IVL_TS
+    subject: Subject
+    specimen: Specimen
+    performer: Performer2
+    author: Author
+    informant: Informant
+    participant: Participant2
+    entryRelationship: EntryRelationship
+    reference: Reference
+    precondition: Precondition
+  Specimen:
+    specimenRole: SpecimenRole
+  SpecimenRole:
+    id: II
+    identifiedBy: IdentfiedBy
+    specimenPlayingEntity: PlayingEntity
+  PlayingEntity:
+    quantity: PQ
+    name: PN
+    birthTime: TS
+    desc: ED
+  Performer2:
+    time: IVL_TS
+    assignedEntity: AssignedEntity
+  Participant2:
+    time: IVL_TS
+    participantRole: ParticipantRole
+  ParticipantRole:
+    id: II
+    identifiedBy: IdentfiedBy
+    addr: AD
+    telecom: TEL
+    playingDevice: Device
+    playingEntity: PlayingEntity
+    scopingEntity: Entity
+  Device:
+    id: II
+  Entity:
+    id: II
+    desc: ED
+  EntryRelationship:
+    act: Act
+    encounter: Encounter
+    observation: Observation
+    observationMedia: ObservationMedia
+    organizer: Organizer
+    procedure: Procedure
+    regionOfInterest: RegionOfInterest
+    substanceAdministration: SubstanceAdministration
+    supply: Supply
+  Encounter:
+    id: II
+    code: CD
+    text: ED
+    effectiveTime: IVL_TS
+    subject: Subject
+    specimen: Specimen
+    performer: Performer2
+    author: Author
+    informant: Informant
+    participant: Participant2
+    entryRelationship: EntryRelationship
+    reference: Reference
+    precondition: Precondition
+  Reference:
+    externalAct: ExternalAct
+    externalObservation: ExternalObservation
+    externalProcedure: ExternalProcedure
+    externalDocument: ExternalDocument
+  ExternalAct:
+    id: II
+    text: ED
+  ExternalObservation:
+    id: II
+    text: ED
+  ExternalProcedure:
+    id: II
+    text: ED
+  ExternalDocument:
+    id: II
+    text: ED
+  Precondition:
+    criterion: Criterion
+  Criterion:
+    text: ED
+    value:
+      types:
+        - ED
+        - CD
+        - II
+        - TEL
+        - AD
+        - EN
+        - PQ
+        - TS
+        - IVL_PQ
+        - IVL_TS
+        - PIVL_TS
+        - EIVL_TS
+        - SXPR_TS
+  Observation:
+    id: II
+    code: CD
+    targetSiteCode: CD
+    text: ED
+    effectiveTime: IVL_TS
+    value:
+      types:
+        - ED
+        - CD
+        - II
+        - TEL
+        - AD
+        - EN
+        - PQ
+        - TS
+        - IVL_PQ
+        - IVL_TS
+        - PIVL_TS
+        - EIVL_TS
+        - SXPR_TS
+    subject: Subject
+    specimen: Specimen
+    performer: Performer2
+    author: Author
+    informant: Informant
+    participant: Participant2
+    entryRelationship: EntryRelationship
+    reference: Reference
+    precondition: Precondition
+    referenceRange:
+      observationRange: ObservationRange
+  ObservationRange:
+    code: CD
+    text: ED
+    value:
+      types:
+        - ED
+        - CD
+        - II
+        - TEL
+        - AD
+        - EN
+        - PQ
+        - TS
+        - IVL_PQ
+        - IVL_TS
+        - PIVL_TS
+        - EIVL_TS
+        - SXPR_TS
+  ObservationMedia:
+    id: II
+    value: ED
+    subject: Subject
+    specimen: Specimen
+    performer: Performer2
+    author: Author
+    informant: Informant
+    participant: Participant2
+    entryRelationship: EntryRelationship
+    reference: Reference
+    precondition: Precondition
+  Organizer:
+    id: II
+    code: CD
+    text: ED
+    effectiveTime: IVL_TS
+    subject: Subject
+    specimen: Specimen
+    performer: Performer2
+    author: Author
+    informant: Informant
+    participant: Participant2
+    reference: Reference
+    precondition: Precondition
+    component: OrganizerComponent
+  OrganizerComponent:
+    act: Act
+    observation: Observation
+    observationMedia: ObservationMedia
+    organizer: Organizer
+    procedure: Procedure
+    regionOfInterest: RegionOfInterest
+    substanceAdministration: SubstanceAdministration
+    supply: Supply
+  Procedure:
+    id: II
+    code: CD
+    approachSiteCode: CD
+    targetSiteCode: CD
+    text: ED
+    effectiveTime: IVL_TS
+    subject: Subject
+    specimen: Specimen
+    performer: Performer2
+    author: Author
+    informant: Informant
+    participant: Participant2
+    entryRelationship: EntryRelationship
+    reference: Reference
+    precondition: Precondition
+  RegionOfInterest:
+    id: II
+    subject: Subject
+    specimen: Specimen
+    performer: Performer2
+    author: Author
+    informant: Informant
+    participant: Participant2
+    entryRelationship: EntryRelationship
+    reference: Reference
+    precondition: Precondition
+  SubstanceAdministration:
+    id: II
+    code: CD
+    approachSiteCode: CD
+    text: ED
+    effectiveTime:
+      types:
+        - SXCM_TS
+        - IVL_TS
+        - EIVL_TS
+        - PIVL_TS
+        - SXPR_TS
+      default_type: SXCM_TS
+    doseQuantity: IVL_PQ
+    rateQuantity: IVL_PQ
+    maxDoseQuantity: RTO_PQ_PQ
+    consumable:
+      manufacturedProduct: ManufacturedProduct
+    subject: Subject
+    specimen: Specimen
+    performer: Performer2
+    author: Author
+    informant: Informant
+    participant: Participant2
+    entryRelationship: EntryRelationship
+    reference: Reference
+    precondition: Precondition
+  SXCM_TS:
+  RTO_PQ_PQ:
+    numerator: PQ
+    denominator: PQ
+  ManufacturedProduct:
+    id: II
+    identifiedBy: IdentfiedBy
+  Supply:
+    id: II
+    code: CD
+    text: ED
+    effectiveTime:
+      types:
+        - SXCM_TS
+        - IVL_TS
+        - EIVL_TS
+        - PIVL_TS
+        - SXPR_TS
+      default_type: SXCM_TS
+    quantity: PQ
+    expectedUseTime: IVL_TS
+    product:
+      manufacturedProduct: ManufacturedProduct
+    subject: Subject
+    specimen: Specimen
+    performer: Performer2
+    author: Author
+    informant: Informant
+    participant: Participant2
+    entryRelationship: EntryRelationship
+    reference: Reference
+    precondition: Precondition
+sensitive_data:
+  by_type:
+    ClinicalDocument:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - effectiveTime
+        - recordTarget
+        - author
+        - dataEnterer
+        - informant
+        - custodian
+        - informationRecipient
+        - authenticator
+        - participant
+        - inFullfillmentOf
+        - documentationOf
+        - relatedDocument
+        - authorization
+        - componentOf
+        - component
+    ED:
+      text_content_sensitive: true
+      sensitive_attributes:
+      sensitive_children:
+        - reference
+        - thumbnail
+    TEL:
+      text_content_sensitive: false
+      sensitive_attributes:
+        - value
+      sensitive_children:
+        - useablePeriod
+    IVL_TS:
+      text_content_sensitive: false
+      sensitive_attributes:
+        - value
+      sensitive_children:
+        - low
+        - high
+        - center
+        - width
+    IVXB_TS:
+      text_content_sensitive: false
+      sensitive_attributes:
+        - value
+      sensitive_children:
+    TS:
+      text_content_sensitive: false
+      sensitive_attributes:
+        - value
+      sensitive_children:
+    PQ:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - translation
+    PQR:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - originalText
+    EIVL_TS:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - offset
+    IVL_PQ:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - low
+        - high
+        - center
+        - width
+    IVXB_PQ:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - translation
+    PIVL_TS:
+      text_content_sensitive: false
+      sensitive_attributes:
+        - value
+      sensitive_children:
+        - period
+        - phase
+    SXPR_TS:
+      text_content_sensitive: false
+      sensitive_attributes:
+        - value
+      sensitive_children:
+        - comp
+    CD:
+      text_content_sensitive: false
+      sensitive_attributes:
+        - displayName
+        - codeSystemName
+      sensitive_children:
+        - originalText
+        - qualifier
+        - translation
+    CR:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - value
+    RecordTarget:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - patientRole
+    PatientRole:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - identfiedBy
+        - addr
+        - telecom
+        - patient
+        - providerOrganization
+    II:
+      text_content_sensitive: false
+      sensitive_attributes:
+        - extension
+      sensitive_children:
+    IdentfiedBy:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - alternateIdentification
+    AlternateIdentification:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - code
+        - effectiveTime
+    AD:
+      text_content_sensitive: true
+      sensitive_attributes:
+      sensitive_children:
+        - country
+        - state
+        - county
+        - city
+        - postalCode
+        - streetAddressLine
+        - houseNumber
+        - direction
+        - streetName
+        - streetNameBase
+        - streetNameType
+        - additionalLocator
+        - unitID
+        - unitType
+        - careOf
+        - censusTract
+        - deliveryAddressLine
+        - deliveryInstallationType
+        - deliveryInstallationArea
+        - deliveryInstallationQualifier
+        - deliveryMode
+        - deliveryModeIdentifier
+        - buildingNumberSuffix
+        - postBox
+        - precinct
+        - useablePeriod
+    ADXP:
+      text_content_sensitive: true
+      sensitive_attributes:
+      sensitive_children:
+    Patient:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - name
+        - birthTime
+        - deceasedTime
+        - desc
+        - guardian
+        - birthplace
+    PN:
+      text_content_sensitive: true
+      sensitive_attributes:
+      sensitive_children:
+        - family
+        - given
+        - validtime
+    ENXP:
+      text_content_sensitive: true
+      sensitive_attributes:
+      sensitive_children:
+    Guardian:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - identfiedBy
+        - addr
+        - telecom
+        - guardianPerson
+        - guardianOrganization
+    Person:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - name
+    Birthplace:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - place
+    Place:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - name
+        - addr
+    EN:
+      text_content_sensitive: true
+      sensitive_attributes:
+      sensitive_children:
+        - family
+        - given
+    Organization:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - name
+        - telecom
+        - addr
+        - asOrganizationPartOf
+    ON:
+      text_content_sensitive: true
+      sensitive_attributes:
+      sensitive_children:
+        - validTime
+    OrganizationPartOf:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - identifiedBy
+        - effectiveTime
+        - wholeOrganization
+    Author:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - time
+        - assignedAuthor
+    AssignedAuthor:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - identifiedBy
+        - addr
+        - telecom
+        - assignedPerson
+        - assignedAuthoringDevice
+        - representedOrganization
+    AuthoringDevice:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - asMaintainedEntity
+    MaintainedEntity:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - effectiveTime
+        - maintainingPerson
+    DataEnterer:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - time
+        - assignedEntity
+    AssignedEntity:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - identifiedBy
+        - addr
+        - telecom
+        - assignedPerson
+        - representedOrganization
+    Informant:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - assignedEntity
+        - relatedEntity
+    RelatedEntity:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - addr
+        - telecom
+        - effectiveTime
+        - relatedPerson
+    Custodian:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - assignedCustodian
+    AssignedCustodian:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - representedCustodianOrganization
+    CustodianOrganization:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - name
+        - telecom
+        - addr
+    InformationRecipient:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - intendedRecipient
+    IntendedRecipient:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - identifiedBy
+        - addr
+        - telecom
+        - informationRecipient
+        - receivedOrganization
+    Authenticator:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - time
+        - signaturetext
+        - assignedEntity
+    Participant1:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - time
+        - associatedEntity
+    AssociatedEntity:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - identifiedBy
+        - addr
+        - telecom
+        - associatedPerson
+        - scopingOrganization
+    InFulfillmentOf:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - order
+    Order:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+    DocumentationOf:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - serviceEvent
+    ServiceEvent:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - effectiveTime
+        - performer
+    Performer1:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - time
+        - assignedEntity
+    RelatedDocument:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - parentDocument
+    ParentDocument:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - text
+    Authorization:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - consent
+    Consent:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+    ComponentOf:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - encompassingEncounter
+    EncompassingEncounter:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - effectiveTime
+        - name: responsibleParty
+          sensitive_children:
+            - assignedEntity
+        - encounterParticipant
+        - name: location
+          sensitive_children:
+            - healthCareFacility
+    EncounterParticipant:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - time
+        - associatedEntity
+    HealthCareFacility:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - identifiedBy
+        - location
+        - serviceProviderOrganization
+    Component:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - nonXMLBody
+        - structuredBody
+    NonXMLBody:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - text
+    StructuredBody:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - component:
+            sensitive_children:
+              - section
+    Section:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - title
+        - text
+        - subject
+        - author
+        - informant
+        - entry
+        - component:
+          sensitive_children:
+            - section
+    xhtml:
+      text_content_sensitive: true
+      sensitive_attributes:
+      sensitive_children:
+    Subject:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - relatedSubject
+    RelatedSubject:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - addr
+        - telecom
+        - relatedPerson
+    SubjectPerson:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - name
+        - desc
+        - birthTime
+        - deceasedTime
+    Entry:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - act:
+        - encounter
+        - observation
+        - organizer
+        - procedure
+        - regionOfInterest
+        - substanceAdministration
+        - supply
+    Act:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - code
+        - text
+        - effectiveTime
+        - subject
+        - specimen
+        - performer
+        - author
+        - informant
+        - participant
+        - entryRelationship
+        - reference
+        - precondition
+    Specimen:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - specimenRole
+    SpecimenRole:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - identifiedBy
+        - specimenPlayingEntity
+    PlayingEntity:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - quantity
+        - name
+        - birthTime
+        - desc
+    Performer2:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - time
+        - assignedEntity
+    Participant2:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - time
+        - participantRole
+    ParticipantRole:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - identifiedBy
+        - addr
+        - telecom
+        - playingDevice
+        - playingEntity
+        - scopingEntity
+    Device:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+    Entity:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - desc
+    EntryRelationship:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - act
+        - encounter
+        - observation
+        - observationMedia
+        - organizer
+        - procedure
+        - regionOfInterest
+        - substanceAdministration
+        - supply
+    Encounter:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - code
+        - text
+        - effectiveTime
+        - subject
+        - specimen
+        - performer
+        - author
+        - informant
+        - participant
+        - entryRelationship
+        - reference
+        - precondition
+    Reference:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - externalAct
+        - externalObservation
+        - externalProcedure
+        - externalDocument
+    ExternalAct:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - text
+    ExternalObservation:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - text
+    ExternalProcedure:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - text
+    ExternalDocument:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - text
+    Precondition:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - criterion
+    Criterion:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - text
+        - name: value
+          sensitive_types:
+            - ED
+            - CD
+            - II
+            - TEL
+            - AD
+            - EN
+            - PQ
+            - TS
+            - IVL_PQ
+            - IVL_TS
+            - PIVL_TS
+            - EIVL_TS
+            - SXPR_TS
+    Observation:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - code
+        - targetSiteCode
+        - text
+        - effectiveTime
+        - name: value
+          sensitive_types:
+            - ED
+            - CD
+            - II
+            - TEL
+            - AD
+            - EN
+            - PQ
+            - TS
+            - IVL_PQ
+            - IVL_TS
+            - PIVL_TS
+            - EIVL_TS
+            - SXPR_TS
+        - subject
+        - specimen
+        - performer
+        - author
+        - informant
+        - participant
+        - entryRelationship
+        - reference
+        - precondition
+        - name: referenceRange
+          sensitive_children:
+            - observationRange
+    ObservationRange:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - code
+        - text
+        - name: value
+          sensitive_types:
+            - ED
+            - CD
+            - II
+            - TEL
+            - AD
+            - EN
+            - PQ
+            - TS
+            - IVL_PQ
+            - IVL_TS
+            - PIVL_TS
+            - EIVL_TS
+            - SXPR_TS
+    ObservationMedia:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - value
+        - subject
+        - specimen
+        - performer
+        - author
+        - informant
+        - participant
+        - entryRelationship
+        - reference
+        - precondition
+    Organizer:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - code
+        - text
+        - effectiveTime
+        - subject
+        - specimen
+        - performer
+        - author
+        - informant
+        - participant
+        - entryRelationship
+        - reference
+        - precondition
+        - component
+    OrganizerComponent:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - act
+        - observation
+        - observationMedia
+        - organizer
+        - procedure
+        - regionOfInterest
+        - substanceAdministration
+        - supply
+    Procedure:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - code
+        - approachSiteCode
+        - targetSiteCode
+        - text
+        - effectiveTime
+        - subject
+        - specimen
+        - performer
+        - author
+        - informant
+        - participant
+        - entryRelationship
+        - reference
+        - precondition
+    RegionOfInterest:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - subject
+        - specimen
+        - performer
+        - author
+        - informant
+        - participant
+        - entryRelationship
+        - reference
+        - precondition
+    SubstanceAdministration:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - code
+        - approachSiteCode
+        - text
+        - effectiveTime
+        - doseQuantity
+        - rateQuantity
+        - maxDoseQuantity
+        - name: consumable
+          sensitive_children:
+            - manufacturedProduct
+        - subject
+        - specimen
+        - performer
+        - author
+        - informant
+        - participant
+        - entryRelationship
+        - reference
+        - precondition
+    SXCM_TS:
+      text_content_sensitive: false
+      sensitive_attributes:
+        - value
+      sensitive_children:
+    RTO_PQ_PQ:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - numerator
+        - denominator
+    ManufacturedProduct:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - identifiedBy
+    Supply:
+      text_content_sensitive: false
+      sensitive_attributes:
+      sensitive_children:
+        - id
+        - code
+        - text
+        - effectiveTime
+        - quantity
+        - expectedUseTime
+        - name: product
+          sensitive_children:
+            - manufacturedProduct
+        - subject
+        - specimen
+        - performer
+        - author
+        - informant
+        - participant
+        - entryRelationship
+        - reference
+        - precondition
