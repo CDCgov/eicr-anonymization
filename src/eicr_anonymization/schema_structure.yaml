@@ -1,0 +1,4455 @@
+OrganizerComponent:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    contextConductionInd: boolean
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    sequenceNumber:
+      types:
+        - INT
+      default_type: null
+    priorityNumber:
+      types:
+        - INT
+      default_type: null
+    seperatableInd:
+      types:
+        - BL
+      default_type: null
+    act:
+      types:
+        - Act
+      default_type: null
+    encounter:
+      types:
+        - Encounter
+      default_type: null
+    observation:
+      types:
+        - Observation
+      default_type: null
+    observationMedia:
+      types:
+        - ObservationMedia
+      default_type: null
+    organizer:
+      types:
+        - Organizer
+      default_type: null
+    procedure:
+      types:
+        - Procedure
+      default_type: null
+    regionOfInterest:
+      types:
+        - RegionOfInterest
+      default_type: null
+    substanceAdministration:
+      types:
+        - SubstanceAdministration
+      default_type: null
+    supply:
+      types:
+        - Supply
+      default_type: null
+Informant:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    contextControlCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    assignedEntity:
+      types:
+        - AssignedEntity
+      default_type: null
+    relatedEntity:
+      types:
+        - RelatedEntity
+      default_type: null
+INT_POS:
+  attributes:
+    nullFlavor: code
+    value: integer
+  elements: {}
+OrganizationPartOf:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    identifiedBy:
+      types:
+        - IdentifiedBy
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    statusCode:
+      types:
+        - CS
+      default_type: null
+    effectiveTime:
+      types:
+        - IVL_TS
+      default_type: null
+    wholeOrganization:
+      types:
+        - Organization
+      default_type: null
+PlayingEntity:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    determinerCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    quantity:
+      types:
+        - PQ
+      default_type: null
+    name:
+      types:
+        - PN
+      default_type: null
+    birthTime:
+      types:
+        - TS
+      default_type: null
+    desc:
+      types:
+        - ED
+      default_type: null
+PQ:
+  attributes:
+    nullFlavor: code
+    unit: code
+    value: decimal
+  elements:
+    translation:
+      types:
+        - PQR
+      default_type: null
+PreconditionBase:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    precondition:
+      types:
+        - Precondition2
+      default_type: null
+AssociatedEntity:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    identifiedBy:
+      types:
+        - IdentifiedBy
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    addr:
+      types:
+        - AD
+      default_type: null
+    telecom:
+      types:
+        - TEL
+      default_type: null
+    associatedPerson:
+      types:
+        - Person
+      default_type: null
+    scopingOrganization:
+      types:
+        - Organization
+      default_type: null
+CS:
+  attributes:
+    nullFlavor: code
+    code: code
+    codeSystem: string
+    codeSystemName: string
+    codeSystemVersion: string
+    displayName: string
+    valueSet: string
+    valueSetVersion: string
+  elements:
+    originalText:
+      types:
+        - ED
+      default_type: null
+    qualifier:
+      types:
+        - CR
+      default_type: null
+    translation:
+      types:
+        - CD
+      default_type: null
+NonXMLBody:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    confidentialityCode:
+      types:
+        - CE
+      default_type: null
+    languageCode:
+      types:
+        - CS
+      default_type: null
+BL:
+  attributes:
+    nullFlavor: code
+    value: boolean
+  elements: {}
+InFulfillmentOf:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    order:
+      types:
+        - Order
+      default_type: null
+ParticipantRole:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    identifiedBy:
+      types:
+        - IdentifiedBy
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    addr:
+      types:
+        - AD
+      default_type: null
+    telecom:
+      types:
+        - TEL
+      default_type: null
+    playingDevice:
+      types:
+        - Device
+      default_type: null
+    playingEntity:
+      types:
+        - PlayingEntity
+      default_type: null
+    scopingEntity:
+      types:
+        - Entity
+      default_type: null
+Organizer:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    category:
+      types:
+        - CD
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    statusCode:
+      types:
+        - CS
+      default_type: null
+    effectiveTime:
+      types:
+        - IVL_TS
+      default_type: null
+    subject:
+      types:
+        - Subject
+      default_type: null
+    specimen:
+      types:
+        - Specimen
+      default_type: null
+    performer:
+      types:
+        - Performer2
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+    informant:
+      types:
+        - Informant
+      default_type: null
+    participant:
+      types:
+        - Participant2
+      default_type: null
+    reference:
+      types:
+        - Reference
+      default_type: null
+    precondition:
+      types:
+        - Precondition
+      default_type: null
+    precondition2:
+      types:
+        - Precondition2
+      default_type: null
+    component:
+      types:
+        - OrganizerComponent
+      default_type: null
+EIVL_TS:
+  attributes:
+    nullFlavor: code
+    value: dateTime
+    operator: code
+  elements:
+    event:
+      types:
+        - CE
+      default_type: null
+    offset:
+      types:
+        - IVL_PQ
+      default_type: null
+Encounter:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    statusCode:
+      types:
+        - CS
+      default_type: null
+    effectiveTime:
+      types:
+        - IVL_TS
+      default_type: null
+    dischargeDispositionCode:
+      types:
+        - CE
+      default_type: null
+    priorityCode:
+      types:
+        - CE
+      default_type: null
+    subject:
+      types:
+        - Subject
+      default_type: null
+    specimen:
+      types:
+        - Specimen
+      default_type: null
+    performer:
+      types:
+        - Performer2
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+    informant:
+      types:
+        - Informant
+      default_type: null
+    participant:
+      types:
+        - Participant2
+      default_type: null
+    entryRelationship:
+      types:
+        - EntryRelationship
+      default_type: null
+    reference:
+      types:
+        - Reference
+      default_type: null
+    precondition:
+      types:
+        - Precondition
+      default_type: null
+    precondition2:
+      types:
+        - Precondition2
+      default_type: null
+    inFulfillmentOf1:
+      types:
+        - InFulfillmentOf1
+      default_type: null
+IVL_TS:
+  attributes:
+    nullFlavor: code
+    value: dateTime
+    operator: code
+  elements:
+    low:
+      types:
+        - IVXB_TS
+      default_type: null
+    center:
+      types:
+        - TS
+      default_type: null
+    width:
+      types:
+        - PQ
+      default_type: null
+    high:
+      types:
+        - IVXB_TS
+      default_type: null
+RelatedEntity:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    addr:
+      types:
+        - AD
+      default_type: null
+    telecom:
+      types:
+        - TEL
+      default_type: null
+    effectiveTime:
+      types:
+        - IVL_TS
+      default_type: null
+    relatedPerson:
+      types:
+        - Person
+      default_type: null
+Participant1:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    contextControlCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    functionCode:
+      types:
+        - CE
+      default_type: null
+    time:
+      types:
+        - IVL_TS
+      default_type: null
+    associatedEntity:
+      types:
+        - AssociatedEntity
+      default_type: null
+IntendedRecipient:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    identifiedBy:
+      types:
+        - IdentifiedBy
+      default_type: null
+    addr:
+      types:
+        - AD
+      default_type: null
+    telecom:
+      types:
+        - TEL
+      default_type: null
+    informationRecipient:
+      types:
+        - Person
+      default_type: null
+    receivedOrganization:
+      types:
+        - Organization
+      default_type: null
+PatientRole:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    identifiedBy:
+      types:
+        - IdentifiedBy
+      default_type: null
+    addr:
+      types:
+        - AD
+      default_type: null
+    telecom:
+      types:
+        - TEL
+      default_type: null
+    patient:
+      types:
+        - Patient
+      default_type: null
+    providerOrganization:
+      types:
+        - Organization
+      default_type: null
+SC:
+  attributes:
+    nullFlavor: code
+    representation: code
+    mediaType: code
+    language: code
+    code: code
+    codeSystem: string
+    codeSystemName: string
+    codeSystemVersion: string
+    displayName: string
+  elements:
+    xmlText:
+      types:
+        - string
+      default_type: null
+CR:
+  attributes:
+    nullFlavor: code
+    inverted: boolean
+  elements:
+    name:
+      types:
+        - CV
+      default_type: null
+    value:
+      types:
+        - CD
+      default_type: null
+Section:
+  attributes:
+    nullFlavor: code
+    ID: id
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    title:
+      types:
+        - ST
+      default_type: null
+    text:
+      types:
+        - xhtml
+      default_type: null
+    confidentialityCode:
+      types:
+        - CE
+      default_type: null
+    languageCode:
+      types:
+        - CS
+      default_type: null
+    subject:
+      types:
+        - Subject
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+    informant:
+      types:
+        - Informant
+      default_type: null
+    entry:
+      types:
+        - Entry
+      default_type: null
+    component:
+      types:
+        - InfrastructureRoot
+      default_type: null
+      attributes:
+        nullFlavor: code
+        typeCode: code
+        contextConductionInd: boolean
+      elements:
+        realmCode:
+          types:
+            - CS
+          default_type: null
+        typeId:
+          types:
+            - II
+          default_type: null
+        templateId:
+          types:
+            - II
+          default_type: null
+        section:
+          types:
+            - Section
+          default_type: null
+Place:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    determinerCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    name:
+      types:
+        - EN
+      default_type: null
+    addr:
+      types:
+        - AD
+      default_type: null
+II:
+  attributes:
+    nullFlavor: code
+    assigningAuthorityName: string
+    displayable: boolean
+    root: string
+    extension: string
+  elements: {}
+Performer1:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    functionCode:
+      types:
+        - CE
+      default_type: null
+    time:
+      types:
+        - IVL_TS
+      default_type: null
+    assignedEntity:
+      types:
+        - AssignedEntity
+      default_type: null
+Author:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    contextControlCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    functionCode:
+      types:
+        - CE
+      default_type: null
+    time:
+      types:
+        - TS
+      default_type: null
+    assignedAuthor:
+      types:
+        - AssignedAuthor
+      default_type: null
+Act:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+    negationInd: boolean
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    statusCode:
+      types:
+        - CS
+      default_type: null
+    effectiveTime:
+      types:
+        - IVL_TS
+      default_type: null
+    priorityCode:
+      types:
+        - CE
+      default_type: null
+    languageCode:
+      types:
+        - CS
+      default_type: null
+    subject:
+      types:
+        - Subject
+      default_type: null
+    specimen:
+      types:
+        - Specimen
+      default_type: null
+    performer:
+      types:
+        - Performer2
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+    informant:
+      types:
+        - Informant
+      default_type: null
+    participant:
+      types:
+        - Participant2
+      default_type: null
+    entryRelationship:
+      types:
+        - EntryRelationship
+      default_type: null
+    reference:
+      types:
+        - Reference
+      default_type: null
+    precondition:
+      types:
+        - Precondition
+      default_type: null
+    precondition2:
+      types:
+        - Precondition2
+      default_type: null
+    inFulfillmentOf1:
+      types:
+        - InFulfillmentOf1
+      default_type: null
+HealthCareFacility:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    identifiedBy:
+      types:
+        - IdentifiedBy
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    location:
+      types:
+        - Place
+      default_type: null
+    serviceProviderOrganization:
+      types:
+        - Organization
+      default_type: null
+Custodian:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    assignedCustodian:
+      types:
+        - AssignedCustodian
+      default_type: null
+PN:
+  attributes:
+    nullFlavor: code
+    use: code
+  elements:
+    delimiter:
+      types:
+        - ENXP
+      default_type: null
+    family:
+      types:
+        - ENXP
+      default_type: null
+    given:
+      types:
+        - ENXP
+      default_type: null
+    prefix:
+      types:
+        - ENXP
+      default_type: null
+    suffix:
+      types:
+        - ENXP
+      default_type: null
+    xmlText:
+      types:
+        - string
+      default_type: null
+    validTime:
+      types:
+        - IVL_TS
+      default_type: null
+Birthplace:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    place:
+      types:
+        - Place
+      default_type: null
+Organization:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    determinerCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    name:
+      types:
+        - "ON"
+      default_type: null
+    telecom:
+      types:
+        - TEL
+      default_type: null
+    addr:
+      types:
+        - AD
+      default_type: null
+    standardIndustryClassCode:
+      types:
+        - CE
+      default_type: null
+    asOrganizationPartOf:
+      types:
+        - OrganizationPartOf
+      default_type: null
+MO:
+  attributes:
+    nullFlavor: code
+    currency: code
+    value: decimal
+  elements: {}
+LanguageCommunication:
+  attributes:
+    nullFlavor: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    languageCode:
+      types:
+        - CS
+      default_type: null
+    modeCode:
+      types:
+        - CE
+      default_type: null
+    proficiencyLevelCode:
+      types:
+        - CE
+      default_type: null
+    preferenceInd:
+      types:
+        - BL
+      default_type: null
+AssignedAuthor:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    identifiedBy:
+      types:
+        - IdentifiedBy
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    addr:
+      types:
+        - AD
+      default_type: null
+    telecom:
+      types:
+        - TEL
+      default_type: null
+    assignedPerson:
+      types:
+        - Person
+      default_type: null
+    assignedAuthoringDevice:
+      types:
+        - AuthoringDevice
+      default_type: null
+    representedOrganization:
+      types:
+        - Organization
+      default_type: null
+ADXP:
+  attributes:
+    nullFlavor: code
+    representation: code
+    mediaType: code
+    language: code
+    partType: code
+  elements:
+    xmlText:
+      types:
+        - string
+      default_type: null
+ObservationMedia:
+  attributes:
+    nullFlavor: code
+    ID: id
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    languageCode:
+      types:
+        - CS
+      default_type: null
+    value:
+      types:
+        - ED
+      default_type: null
+    subject:
+      types:
+        - Subject
+      default_type: null
+    specimen:
+      types:
+        - Specimen
+      default_type: null
+    performer:
+      types:
+        - Performer2
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+    informant:
+      types:
+        - Informant
+      default_type: null
+    participant:
+      types:
+        - Participant2
+      default_type: null
+    entryRelationship:
+      types:
+        - EntryRelationship
+      default_type: null
+    reference:
+      types:
+        - Reference
+      default_type: null
+    precondition:
+      types:
+        - Precondition
+      default_type: null
+    precondition2:
+      types:
+        - Precondition2
+      default_type: null
+ComponentOf:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    encompassingEncounter:
+      types:
+        - EncompassingEncounter
+      default_type: null
+SpecimenRole:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    identifiedBy:
+      types:
+        - IdentifiedBy
+      default_type: null
+    specimenPlayingEntity:
+      types:
+        - PlayingEntity
+      default_type: null
+RelatedDocument:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    parentDocument:
+      types:
+        - ParentDocument
+      default_type: null
+IVXB_PQ:
+  attributes:
+    nullFlavor: code
+    unit: code
+    value: decimal
+    inclusive: boolean
+  elements:
+    translation:
+      types:
+        - PQR
+      default_type: null
+Order:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    priorityCode:
+      types:
+        - CE
+      default_type: null
+LegalAuthenticator:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    contextControlCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    time:
+      types:
+        - TS
+      default_type: null
+    signatureCode:
+      types:
+        - CS
+      default_type: null
+    signatureText:
+      types:
+        - ED
+      default_type: null
+    assignedEntity:
+      types:
+        - AssignedEntity
+      default_type: null
+LabeledDrug:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    determinerCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    name:
+      types:
+        - EN
+      default_type: null
+"ON":
+  attributes:
+    nullFlavor: code
+    use: code
+  elements:
+    delimiter:
+      types:
+        - ENXP
+      default_type: null
+    family:
+      types:
+        - ENXP
+      default_type: null
+    given:
+      types:
+        - ENXP
+      default_type: null
+    prefix:
+      types:
+        - ENXP
+      default_type: null
+    suffix:
+      types:
+        - ENXP
+      default_type: null
+    xmlText:
+      types:
+        - string
+      default_type: null
+    validTime:
+      types:
+        - IVL_TS
+      default_type: null
+ParentDocument:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    setId:
+      types:
+        - II
+      default_type: null
+    versionNumber:
+      types:
+        - INT
+      default_type: null
+RecordTarget:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    contextControlCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    patientRole:
+      types:
+        - PatientRole
+      default_type: null
+TN:
+  attributes:
+    nullFlavor: code
+    use: code
+  elements:
+    delimiter:
+      types:
+        - ENXP
+      default_type: null
+    family:
+      types:
+        - ENXP
+      default_type: null
+    given:
+      types:
+        - ENXP
+      default_type: null
+    prefix:
+      types:
+        - ENXP
+      default_type: null
+    suffix:
+      types:
+        - ENXP
+      default_type: null
+    xmlText:
+      types:
+        - string
+      default_type: null
+    validTime:
+      types:
+        - IVL_TS
+      default_type: null
+SubjectPerson:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    determinerCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    name:
+      types:
+        - PN
+      default_type: null
+    desc:
+      types:
+        - ED
+      default_type: null
+    administrativeGenderCode:
+      types:
+        - CE
+      default_type: null
+    birthTime:
+      types:
+        - TS
+      default_type: null
+    deceasedInd:
+      types:
+        - BL
+      default_type: null
+    deceasedTime:
+      types:
+        - TS
+      default_type: null
+    multipleBirthInd:
+      types:
+        - BL
+      default_type: null
+    multipleBirthOrderNumber:
+      types:
+        - INT_POS
+      default_type: null
+StructuredBody:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    confidentialityCode:
+      types:
+        - CE
+      default_type: null
+    languageCode:
+      types:
+        - CS
+      default_type: null
+    component:
+      types:
+        - InfrastructureRoot
+      default_type: null
+      attributes:
+        nullFlavor: code
+        typeCode: code
+        contextConductionInd: boolean
+      elements:
+        realmCode:
+          types:
+            - CS
+          default_type: null
+        typeId:
+          types:
+            - II
+          default_type: null
+        templateId:
+          types:
+            - II
+          default_type: null
+        section:
+          types:
+            - Section
+          default_type: null
+PQR:
+  attributes:
+    nullFlavor: code
+    code: code
+    codeSystem: string
+    codeSystemName: string
+    codeSystemVersion: string
+    displayName: string
+    valueSet: string
+    valueSetVersion: string
+    value: decimal
+  elements:
+    originalText:
+      types:
+        - ED
+      default_type: null
+    qualifier:
+      types:
+        - CR
+      default_type: null
+    translation:
+      types:
+        - CD
+      default_type: null
+RegionOfInterest:
+  attributes:
+    nullFlavor: code
+    ID: id
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CS
+      default_type: null
+    value:
+      types:
+        - INT
+      default_type: null
+    subject:
+      types:
+        - Subject
+      default_type: null
+    specimen:
+      types:
+        - Specimen
+      default_type: null
+    performer:
+      types:
+        - Performer2
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+    informant:
+      types:
+        - Informant
+      default_type: null
+    participant:
+      types:
+        - Participant2
+      default_type: null
+    entryRelationship:
+      types:
+        - EntryRelationship
+      default_type: null
+    reference:
+      types:
+        - Reference
+      default_type: null
+    precondition:
+      types:
+        - Precondition
+      default_type: null
+    precondition2:
+      types:
+        - Precondition2
+      default_type: null
+Patient:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    determinerCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    name:
+      types:
+        - PN
+      default_type: null
+    desc:
+      types:
+        - ED
+      default_type: null
+    administrativeGenderCode:
+      types:
+        - CE
+      default_type: null
+    birthTime:
+      types:
+        - TS
+      default_type: null
+    deceasedInd:
+      types:
+        - BL
+      default_type: null
+    deceasedTime:
+      types:
+        - TS
+      default_type: null
+    multipleBirthInd:
+      types:
+        - BL
+      default_type: null
+    multipleBirthOrderNumber:
+      types:
+        - INT_POS
+      default_type: null
+    maritalStatusCode:
+      types:
+        - CE
+      default_type: null
+    religiousAffiliationCode:
+      types:
+        - CE
+      default_type: null
+    raceCode:
+      types:
+        - CE
+      default_type: null
+    ethnicGroupCode:
+      types:
+        - CE
+      default_type: null
+    guardian:
+      types:
+        - Guardian
+      default_type: null
+    birthplace:
+      types:
+        - Birthplace
+      default_type: null
+    languageCommunication:
+      types:
+        - LanguageCommunication
+      default_type: null
+RTO_PQ_PQ:
+  attributes:
+    nullFlavor: code
+  elements:
+    numerator:
+      types:
+        - PQ
+      default_type: null
+    denominator:
+      types:
+        - PQ
+      default_type: null
+AlternateIdentification:
+  attributes:
+    classCode: code
+  elements:
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    statusCode:
+      types:
+        - CS
+      default_type: null
+    effectiveTime:
+      types:
+        - IVL_TS
+      default_type: null
+ClinicalDocument:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    category:
+      types:
+        - CD
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    title:
+      types:
+        - ST
+      default_type: null
+    statusCode:
+      types:
+        - CS
+      default_type: null
+    effectiveTime:
+      types:
+        - TS
+      default_type: null
+    confidentialityCode:
+      types:
+        - CE
+      default_type: null
+    languageCode:
+      types:
+        - CS
+      default_type: null
+    setId:
+      types:
+        - II
+      default_type: null
+    versionNumber:
+      types:
+        - INT
+      default_type: null
+    copyTime:
+      types:
+        - TS
+      default_type: null
+    recordTarget:
+      types:
+        - RecordTarget
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+    dataEnterer:
+      types:
+        - DataEnterer
+      default_type: null
+    informant:
+      types:
+        - Informant
+      default_type: null
+    custodian:
+      types:
+        - Custodian
+      default_type: null
+    informationRecipient:
+      types:
+        - InformationRecipient
+      default_type: null
+    legalAuthenticator:
+      types:
+        - LegalAuthenticator
+      default_type: null
+    authenticator:
+      types:
+        - Authenticator
+      default_type: null
+    participant:
+      types:
+        - Participant1
+      default_type: null
+    inFulfillmentOf:
+      types:
+        - InFulfillmentOf
+      default_type: null
+    documentationOf:
+      types:
+        - DocumentationOf
+      default_type: null
+    relatedDocument:
+      types:
+        - RelatedDocument
+      default_type: null
+    authorization:
+      types:
+        - Authorization
+      default_type: null
+    componentOf:
+      types:
+        - ComponentOf
+      default_type: null
+    component:
+      types:
+        - Component
+      default_type: null
+Specimen:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    specimenRole:
+      types:
+        - SpecimenRole
+      default_type: null
+INT:
+  attributes:
+    nullFlavor: code
+    value: integer
+  elements: {}
+SXCM_TS:
+  attributes:
+    nullFlavor: code
+    value: dateTime
+    operator: code
+  elements: {}
+Entry:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    contextConductionInd: boolean
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    act:
+      types:
+        - Act
+      default_type: null
+    encounter:
+      types:
+        - Encounter
+      default_type: null
+    observation:
+      types:
+        - Observation
+      default_type: null
+    observationMedia:
+      types:
+        - ObservationMedia
+      default_type: null
+    organizer:
+      types:
+        - Organizer
+      default_type: null
+    procedure:
+      types:
+        - Procedure
+      default_type: null
+    regionOfInterest:
+      types:
+        - RegionOfInterest
+      default_type: null
+    substanceAdministration:
+      types:
+        - SubstanceAdministration
+      default_type: null
+    supply:
+      types:
+        - Supply
+      default_type: null
+DocumentationOf:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    serviceEvent:
+      types:
+        - ServiceEvent
+      default_type: null
+SubstanceAdministration:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+    negationInd: boolean
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    statusCode:
+      types:
+        - CS
+      default_type: null
+    effectiveTime:
+      types:
+        - SXCM_TS
+        - IVL_TS
+        - EIVL_TS
+        - PIVL_TS
+        - SXPR_TS
+      default_type: SXCM_TS
+    priorityCode:
+      types:
+        - CE
+      default_type: null
+    repeatNumber:
+      types:
+        - IVL_INT
+      default_type: null
+    routeCode:
+      types:
+        - CE
+      default_type: null
+    approachSiteCode:
+      types:
+        - CD
+      default_type: null
+    doseQuantity:
+      types:
+        - IVL_PQ
+      default_type: null
+    rateQuantity:
+      types:
+        - IVL_PQ
+      default_type: null
+    maxDoseQuantity:
+      types:
+        - RTO_PQ_PQ
+      default_type: null
+    administrationUnitCode:
+      types:
+        - CE
+      default_type: null
+    consumable:
+      types:
+        - InfrastructureRoot
+      default_type: null
+      attributes:
+        nullFlavor: code
+        typeCode: code
+      elements:
+        realmCode:
+          types:
+            - CS
+          default_type: null
+        typeId:
+          types:
+            - II
+          default_type: null
+        templateId:
+          types:
+            - II
+          default_type: null
+        manufacturedProduct:
+          types:
+            - ManufacturedProduct
+          default_type: null
+    subject:
+      types:
+        - Subject
+      default_type: null
+    specimen:
+      types:
+        - Specimen
+      default_type: null
+    performer:
+      types:
+        - Performer2
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+    informant:
+      types:
+        - Informant
+      default_type: null
+    participant:
+      types:
+        - Participant2
+      default_type: null
+    entryRelationship:
+      types:
+        - EntryRelationship
+      default_type: null
+    reference:
+      types:
+        - Reference
+      default_type: null
+    precondition:
+      types:
+        - Precondition
+      default_type: null
+    inFulfillmentOf1:
+      types:
+        - InFulfillmentOf1
+      default_type: null
+InfrastructureRoot:
+  attributes:
+    nullFlavor: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+SXPR_TS:
+  attributes:
+    nullFlavor: code
+    value: dateTime
+    operator: code
+  elements:
+    comp:
+      types:
+        - SXCM_TS
+        - IVL_TS
+        - EIVL_TS
+        - PIVL_TS
+        - SXPR_TS
+      default_type: null
+Criterion:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    value:
+      types:
+        - BL
+        - ED
+        - ST
+        - CD
+        - CV
+        - CE
+        - SC
+        - II
+        - TEL
+        - AD
+        - EN
+        - INT
+        - REAL
+        - PQ
+        - MO
+        - TS
+        - IVL_PQ
+        - IVL_TS
+        - PIVL_TS
+        - EIVL_TS
+        - SXPR_TS
+      default_type: null
+ObservationRange:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    value:
+      types:
+        - BL
+        - ED
+        - ST
+        - CD
+        - CV
+        - CE
+        - CO
+        - SC
+        - II
+        - TEL
+        - AD
+        - EN
+        - INT
+        - REAL
+        - PQ
+        - MO
+        - TS
+        - IVL_PQ
+        - IVL_TS
+        - PIVL_TS
+        - EIVL_TS
+        - SXPR_TS
+      default_type: null
+    interpretationCode:
+      types:
+        - CE
+      default_type: null
+    precondition1:
+      types:
+        - InfrastructureRoot
+      default_type: null
+ManufacturedProduct:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    identifiedBy:
+      types:
+        - IdentifiedBy
+      default_type: null
+    manufacturedLabeledDrug:
+      types:
+        - LabeledDrug
+      default_type: null
+    manufacturedMaterial:
+      types:
+        - Material
+      default_type: null
+    manufacturerOrganization:
+      types:
+        - Organization
+      default_type: null
+Entity:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    determinerCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    desc:
+      types:
+        - ED
+      default_type: null
+IVXB_TS:
+  attributes:
+    nullFlavor: code
+    value: dateTime
+    inclusive: boolean
+  elements: {}
+Precondition2:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    negationInd: boolean
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    conjunctionCode:
+      types:
+        - CS
+      default_type: null
+    allTrue:
+      types:
+        - PreconditionBase
+      default_type: null
+    allFalse:
+      types:
+        - PreconditionBase
+      default_type: null
+    atLeastOneTrue:
+      types:
+        - PreconditionBase
+      default_type: null
+    atLeastOneFalse:
+      types:
+        - PreconditionBase
+      default_type: null
+    onlyOneTrue:
+      types:
+        - PreconditionBase
+      default_type: null
+    onlyOneFalse:
+      types:
+        - PreconditionBase
+      default_type: null
+    criterion:
+      types:
+        - Criterion
+      default_type: null
+EncompassingEncounter:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    effectiveTime:
+      types:
+        - IVL_TS
+      default_type: null
+    admissionReferralSourceCode:
+      types:
+        - CE
+      default_type: null
+    dischargeDispositionCode:
+      types:
+        - CE
+      default_type: null
+    responsibleParty:
+      types:
+        - InfrastructureRoot
+      default_type: null
+      attributes:
+        nullFlavor: code
+        typeCode: code
+      elements:
+        realmCode:
+          types:
+            - CS
+          default_type: null
+        typeId:
+          types:
+            - II
+          default_type: null
+        templateId:
+          types:
+            - II
+          default_type: null
+        assignedEntity:
+          types:
+            - AssignedEntity
+          default_type: null
+    encounterParticipant:
+      types:
+        - EncounterParticipant
+      default_type: null
+    location:
+      types:
+        - InfrastructureRoot
+      default_type: null
+      attributes:
+        nullFlavor: code
+        typeCode: code
+      elements:
+        realmCode:
+          types:
+            - CS
+          default_type: null
+        typeId:
+          types:
+            - II
+          default_type: null
+        templateId:
+          types:
+            - II
+          default_type: null
+        healthCareFacility:
+          types:
+            - HealthCareFacility
+          default_type: null
+InFulfillmentOf1:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    inversionInd: boolean
+    negationInd: boolean
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    actReference:
+      types:
+        - InfrastructureRoot
+      default_type: null
+      attributes:
+        nullFlavor: code
+        classCode: code
+        moodCode: code
+        determinerCode: code
+      elements:
+        realmCode:
+          types:
+            - CS
+          default_type: null
+        typeId:
+          types:
+            - II
+          default_type: null
+        templateId:
+          types:
+            - II
+          default_type: null
+        id:
+          types:
+            - II
+          default_type: null
+Supply:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    statusCode:
+      types:
+        - CS
+      default_type: null
+    effectiveTime:
+      types:
+        - SXCM_TS
+        - IVL_TS
+        - EIVL_TS
+        - PIVL_TS
+        - SXPR_TS
+      default_type: SXCM_TS
+    priorityCode:
+      types:
+        - CE
+      default_type: null
+    repeatNumber:
+      types:
+        - IVL_INT
+      default_type: null
+    independentInd:
+      types:
+        - BL
+      default_type: null
+    quantity:
+      types:
+        - PQ
+      default_type: null
+    expectedUseTime:
+      types:
+        - IVL_TS
+      default_type: null
+    product:
+      types:
+        - InfrastructureRoot
+      default_type: null
+      attributes:
+        nullFlavor: code
+        typeCode: code
+      elements:
+        realmCode:
+          types:
+            - CS
+          default_type: null
+        typeId:
+          types:
+            - II
+          default_type: null
+        templateId:
+          types:
+            - II
+          default_type: null
+        manufacturedProduct:
+          types:
+            - ManufacturedProduct
+          default_type: null
+    subject:
+      types:
+        - Subject
+      default_type: null
+    specimen:
+      types:
+        - Specimen
+      default_type: null
+    performer:
+      types:
+        - Performer2
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+    informant:
+      types:
+        - Informant
+      default_type: null
+    participant:
+      types:
+        - Participant2
+      default_type: null
+    entryRelationship:
+      types:
+        - EntryRelationship
+      default_type: null
+    reference:
+      types:
+        - Reference
+      default_type: null
+    precondition:
+      types:
+        - Precondition
+      default_type: null
+    inFulfillmentOf1:
+      types:
+        - InFulfillmentOf1
+      default_type: null
+EN:
+  attributes:
+    nullFlavor: code
+    use: code
+  elements:
+    delimiter:
+      types:
+        - ENXP
+      default_type: null
+    family:
+      types:
+        - ENXP
+      default_type: null
+    given:
+      types:
+        - ENXP
+      default_type: null
+    prefix:
+      types:
+        - ENXP
+      default_type: null
+    suffix:
+      types:
+        - ENXP
+      default_type: null
+    xmlText:
+      types:
+        - string
+      default_type: null
+    validTime:
+      types:
+        - IVL_TS
+      default_type: null
+IVXB_INT:
+  attributes:
+    nullFlavor: code
+    value: integer
+    inclusive: boolean
+  elements: {}
+CV:
+  attributes:
+    nullFlavor: code
+    code: code
+    codeSystem: string
+    codeSystemName: string
+    codeSystemVersion: string
+    displayName: string
+    valueSet: string
+    valueSetVersion: string
+  elements:
+    originalText:
+      types:
+        - ED
+      default_type: null
+    qualifier:
+      types:
+        - CR
+      default_type: null
+    translation:
+      types:
+        - CD
+      default_type: null
+ExternalAct:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+CO:
+  attributes:
+    nullFlavor: code
+    code: code
+    codeSystem: string
+    codeSystemName: string
+    codeSystemVersion: string
+    displayName: string
+    valueSet: string
+    valueSetVersion: string
+  elements:
+    originalText:
+      types:
+        - ED
+      default_type: null
+    qualifier:
+      types:
+        - CR
+      default_type: null
+    translation:
+      types:
+        - CD
+      default_type: null
+AssignedCustodian:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    representedCustodianOrganization:
+      types:
+        - CustodianOrganization
+      default_type: null
+InformationRecipient:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    intendedRecipient:
+      types:
+        - IntendedRecipient
+      default_type: null
+Subject:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    contextControlCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    awarenessCode:
+      types:
+        - CE
+      default_type: null
+    relatedSubject:
+      types:
+        - RelatedSubject
+      default_type: null
+Material:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    determinerCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    name:
+      types:
+        - EN
+      default_type: null
+    lotNumberText:
+      types:
+        - ST
+      default_type: null
+Guardian:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    identifiedBy:
+      types:
+        - IdentifiedBy
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    addr:
+      types:
+        - AD
+      default_type: null
+    telecom:
+      types:
+        - TEL
+      default_type: null
+    guardianPerson:
+      types:
+        - Person
+      default_type: null
+    guardianOrganization:
+      types:
+        - Organization
+      default_type: null
+EncounterParticipant:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    time:
+      types:
+        - IVL_TS
+      default_type: null
+    assignedEntity:
+      types:
+        - AssignedEntity
+      default_type: null
+DataEnterer:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    contextControlCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    time:
+      types:
+        - TS
+      default_type: null
+    assignedEntity:
+      types:
+        - AssignedEntity
+      default_type: null
+ANY:
+  attributes:
+    nullFlavor: code
+  elements: {}
+Authorization:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    consent:
+      types:
+        - Consent
+      default_type: null
+Precondition:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    criterion:
+      types:
+        - Criterion
+      default_type: null
+Reference:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    seperatableInd:
+      types:
+        - BL
+      default_type: null
+    externalAct:
+      types:
+        - ExternalAct
+      default_type: null
+    externalObservation:
+      types:
+        - ExternalObservation
+      default_type: null
+    externalProcedure:
+      types:
+        - ExternalProcedure
+      default_type: null
+    externalDocument:
+      types:
+        - ExternalDocument
+      default_type: null
+ServiceEvent:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    effectiveTime:
+      types:
+        - IVL_TS
+      default_type: null
+    performer:
+      types:
+        - Performer1
+      default_type: null
+Component:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    contextConductionInd: boolean
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    nonXMLBody:
+      types:
+        - NonXMLBody
+      default_type: null
+    structuredBody:
+      types:
+        - StructuredBody
+      default_type: null
+IdentifiedBy:
+  attributes:
+    typeCode: code
+  elements:
+    alternateIdentification:
+      types:
+        - AlternateIdentification
+      default_type: null
+ExternalObservation:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+ENXP:
+  attributes:
+    nullFlavor: code
+    representation: code
+    mediaType: code
+    language: code
+    partType: code
+    qualifier: code
+  elements:
+    xmlText:
+      types:
+        - string
+      default_type: null
+Performer2:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    functionCode:
+      types:
+        - CE
+      default_type: null
+    time:
+      types:
+        - IVL_TS
+      default_type: null
+    modeCode:
+      types:
+        - CE
+      default_type: null
+    assignedEntity:
+      types:
+        - AssignedEntity
+      default_type: null
+CD:
+  attributes:
+    nullFlavor: code
+    code: code
+    codeSystem: string
+    codeSystemName: string
+    codeSystemVersion: string
+    displayName: string
+    valueSet: string
+    valueSetVersion: string
+  elements:
+    originalText:
+      types:
+        - ED
+      default_type: null
+    qualifier:
+      types:
+        - CR
+      default_type: null
+    translation:
+      types:
+        - CD
+      default_type: null
+REAL:
+  attributes:
+    nullFlavor: code
+    value: decimal
+  elements: {}
+TEL:
+  attributes:
+    nullFlavor: code
+    value: url
+    use: code
+  elements:
+    useablePeriod:
+      types:
+        - IVL_TS
+        - EIVL_TS
+        - PIVL_TS
+        - SXPR_TS
+      default_type: SXPR_TS
+AD:
+  attributes:
+    nullFlavor: code
+    isNotOrdered: boolean
+    use: code
+  elements:
+    delimiter:
+      types:
+        - ADXP
+      default_type: null
+    country:
+      types:
+        - ADXP
+      default_type: null
+    state:
+      types:
+        - ADXP
+      default_type: null
+    county:
+      types:
+        - ADXP
+      default_type: null
+    city:
+      types:
+        - ADXP
+      default_type: null
+    postalCode:
+      types:
+        - ADXP
+      default_type: null
+    streetAddressLine:
+      types:
+        - ADXP
+      default_type: null
+    houseNumber:
+      types:
+        - ADXP
+      default_type: null
+    houseNumberNumeric:
+      types:
+        - ADXP
+      default_type: null
+    direction:
+      types:
+        - ADXP
+      default_type: null
+    streetName:
+      types:
+        - ADXP
+      default_type: null
+    streetNameBase:
+      types:
+        - ADXP
+      default_type: null
+    streetNameType:
+      types:
+        - ADXP
+      default_type: null
+    additionalLocator:
+      types:
+        - ADXP
+      default_type: null
+    unitID:
+      types:
+        - ADXP
+      default_type: null
+    unitType:
+      types:
+        - ADXP
+      default_type: null
+    careOf:
+      types:
+        - ADXP
+      default_type: null
+    censusTract:
+      types:
+        - ADXP
+      default_type: null
+    deliveryAddressLine:
+      types:
+        - ADXP
+      default_type: null
+    deliveryInstallationType:
+      types:
+        - ADXP
+      default_type: null
+    deliveryInstallationArea:
+      types:
+        - ADXP
+      default_type: null
+    deliveryInstallationQualifier:
+      types:
+        - ADXP
+      default_type: null
+    deliveryMode:
+      types:
+        - ADXP
+      default_type: null
+    deliveryModeIdentifier:
+      types:
+        - ADXP
+      default_type: null
+    buildingNumberSuffix:
+      types:
+        - ADXP
+      default_type: null
+    postBox:
+      types:
+        - ADXP
+      default_type: null
+    precinct:
+      types:
+        - ADXP
+      default_type: null
+    xmlText:
+      types:
+        - string
+      default_type: null
+    useablePeriod:
+      types:
+        - IVL_TS
+        - EIVL_TS
+        - PIVL_TS
+        - SXPR_TS
+      default_type: SXPR_TS
+IVL_PQ:
+  attributes:
+    nullFlavor: code
+    unit: code
+    value: decimal
+    operator: code
+  elements:
+    translation:
+      types:
+        - PQR
+      default_type: null
+    low:
+      types:
+        - IVXB_PQ
+      default_type: null
+    center:
+      types:
+        - PQ
+      default_type: null
+    width:
+      types:
+        - PQ
+      default_type: null
+    high:
+      types:
+        - IVXB_PQ
+      default_type: null
+Participant2:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    contextControlCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    functionCode:
+      types:
+        - CE
+      default_type: null
+    time:
+      types:
+        - IVL_TS
+      default_type: null
+    awarenessCode:
+      types:
+        - CE
+      default_type: null
+    participantRole:
+      types:
+        - ParticipantRole
+      default_type: null
+ExternalProcedure:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+Person:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    determinerCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    name:
+      types:
+        - PN
+      default_type: null
+    desc:
+      types:
+        - ED
+      default_type: null
+    asPatientRelationship:
+      types:
+        - InfrastructureRoot
+      default_type: null
+RelatedSubject:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    addr:
+      types:
+        - AD
+      default_type: null
+    telecom:
+      types:
+        - TEL
+      default_type: null
+    subject:
+      types:
+        - SubjectPerson
+      default_type: null
+MaintainedEntity:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    effectiveTime:
+      types:
+        - IVL_TS
+      default_type: null
+    maintainingPerson:
+      types:
+        - Person
+      default_type: null
+PIVL_TS:
+  attributes:
+    nullFlavor: code
+    value: dateTime
+    operator: code
+    alignment: code
+    institutionSpecified: boolean
+  elements:
+    phase:
+      types:
+        - IVL_TS
+      default_type: null
+    period:
+      types:
+        - PQ
+      default_type: null
+ExternalDocument:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    setId:
+      types:
+        - II
+      default_type: null
+    versionNumber:
+      types:
+        - INT
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+Device:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    determinerCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    manufacturerModelName:
+      types:
+        - SC
+      default_type: null
+    softwareName:
+      types:
+        - SC
+      default_type: null
+Consent:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    statusCode:
+      types:
+        - CS
+      default_type: null
+ED:
+  attributes:
+    nullFlavor: code
+    compression: code
+    integrityCheck: base64Binary
+    integrityCheckAlgorithm: code
+    language: code
+    mediaType: code
+    representation: code
+  elements:
+    xmlText:
+      types:
+        - string
+      default_type: null
+    reference:
+      types:
+        - TEL
+      default_type: null
+    thumbnail:
+      types:
+        - ED
+      default_type: null
+IVL_INT:
+  attributes:
+    nullFlavor: code
+    value: integer
+    operator: code
+  elements:
+    low:
+      types:
+        - IVXB_INT
+      default_type: null
+    center:
+      types:
+        - INT
+      default_type: null
+    width:
+      types:
+        - INT
+      default_type: null
+    high:
+      types:
+        - IVXB_INT
+      default_type: null
+AuthoringDevice:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    determinerCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    manufacturerModelName:
+      types:
+        - SC
+      default_type: null
+    softwareName:
+      types:
+        - SC
+      default_type: null
+    asMaintainedEntity:
+      types:
+        - MaintainedEntity
+      default_type: null
+ST:
+  attributes:
+    nullFlavor: code
+    representation: code
+    mediaType: code
+    language: code
+  elements:
+    xmlText:
+      types:
+        - string
+      default_type: null
+TS:
+  attributes:
+    nullFlavor: code
+    value: dateTime
+  elements: {}
+CE:
+  attributes:
+    nullFlavor: code
+    code: code
+    codeSystem: string
+    codeSystemName: string
+    codeSystemVersion: string
+    displayName: string
+    valueSet: string
+    valueSetVersion: string
+  elements:
+    originalText:
+      types:
+        - ED
+      default_type: null
+    qualifier:
+      types:
+        - CR
+      default_type: null
+    translation:
+      types:
+        - CD
+      default_type: null
+QTY:
+  attributes:
+    nullFlavor: code
+  elements: {}
+Observation:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+    negationInd: boolean
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    category:
+      types:
+        - CD
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    derivationExpr:
+      types:
+        - ST
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    statusCode:
+      types:
+        - CS
+      default_type: null
+    effectiveTime:
+      types:
+        - IVL_TS
+      default_type: null
+    priorityCode:
+      types:
+        - CE
+      default_type: null
+    repeatNumber:
+      types:
+        - IVL_INT
+      default_type: null
+    languageCode:
+      types:
+        - CS
+      default_type: null
+    value:
+      types:
+        - ANY
+        - BL
+        - ED
+        - ST
+        - CD
+        - CV
+        - CE
+        - CO
+        - SC
+        - II
+        - TEL
+        - AD
+        - EN
+        - INT
+        - REAL
+        - PQ
+        - MO
+        - TS
+        - IVL_PQ
+        - IVL_TS
+        - PIVL_TS
+        - EIVL_TS
+        - SXPR_TS
+        - RTO_PQ_PQ
+      default_type: null
+    interpretationCode:
+      types:
+        - CE
+      default_type: null
+    methodCode:
+      types:
+        - CE
+      default_type: null
+    targetSiteCode:
+      types:
+        - CD
+      default_type: null
+    subject:
+      types:
+        - Subject
+      default_type: null
+    specimen:
+      types:
+        - Specimen
+      default_type: null
+    performer:
+      types:
+        - Performer2
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+    informant:
+      types:
+        - Informant
+      default_type: null
+    participant:
+      types:
+        - Participant2
+      default_type: null
+    entryRelationship:
+      types:
+        - EntryRelationship
+      default_type: null
+    reference:
+      types:
+        - Reference
+      default_type: null
+    precondition:
+      types:
+        - Precondition
+      default_type: null
+    precondition2:
+      types:
+        - Precondition2
+      default_type: null
+    referenceRange:
+      types:
+        - InfrastructureRoot
+      default_type: null
+      attributes:
+        nullFlavor: code
+        typeCode: code
+      elements:
+        realmCode:
+          types:
+            - CS
+          default_type: null
+        typeId:
+          types:
+            - II
+          default_type: null
+        templateId:
+          types:
+            - II
+          default_type: null
+        observationRange:
+          types:
+            - ObservationRange
+          default_type: null
+    inFulfillmentOf1:
+      types:
+        - InFulfillmentOf1
+      default_type: null
+AssignedEntity:
+  attributes:
+    nullFlavor: code
+    classCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    identifiedBy:
+      types:
+        - IdentifiedBy
+      default_type: null
+    code:
+      types:
+        - CE
+      default_type: null
+    addr:
+      types:
+        - AD
+      default_type: null
+    telecom:
+      types:
+        - TEL
+      default_type: null
+    assignedPerson:
+      types:
+        - Person
+      default_type: null
+    representedOrganization:
+      types:
+        - Organization
+      default_type: null
+    patient:
+      types:
+        - Base
+      default_type: null
+Procedure:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    moodCode: code
+    negationInd: boolean
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    category:
+      types:
+        - CD
+      default_type: null
+    code:
+      types:
+        - CD
+      default_type: null
+    text:
+      types:
+        - ED
+      default_type: null
+    statusCode:
+      types:
+        - CS
+      default_type: null
+    effectiveTime:
+      types:
+        - IVL_TS
+      default_type: null
+    priorityCode:
+      types:
+        - CE
+      default_type: null
+    languageCode:
+      types:
+        - CS
+      default_type: null
+    methodCode:
+      types:
+        - CE
+      default_type: null
+    approachSiteCode:
+      types:
+        - CD
+      default_type: null
+    targetSiteCode:
+      types:
+        - CD
+      default_type: null
+    subject:
+      types:
+        - Subject
+      default_type: null
+    specimen:
+      types:
+        - Specimen
+      default_type: null
+    performer:
+      types:
+        - Performer2
+      default_type: null
+    author:
+      types:
+        - Author
+      default_type: null
+    informant:
+      types:
+        - Informant
+      default_type: null
+    participant:
+      types:
+        - Participant2
+      default_type: null
+    entryRelationship:
+      types:
+        - EntryRelationship
+      default_type: null
+    reference:
+      types:
+        - Reference
+      default_type: null
+    precondition:
+      types:
+        - Precondition
+      default_type: null
+    precondition2:
+      types:
+        - Precondition2
+      default_type: null
+    inFulfillmentOf1:
+      types:
+        - InFulfillmentOf1
+      default_type: null
+Authenticator:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    time:
+      types:
+        - TS
+      default_type: null
+    signatureCode:
+      types:
+        - CS
+      default_type: null
+    signatureText:
+      types:
+        - ED
+      default_type: null
+    assignedEntity:
+      types:
+        - AssignedEntity
+      default_type: null
+EntryRelationship:
+  attributes:
+    nullFlavor: code
+    typeCode: code
+    inversionInd: boolean
+    contextConductionInd: boolean
+    negationInd: boolean
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    sequenceNumber:
+      types:
+        - INT
+      default_type: null
+    seperatableInd:
+      types:
+        - BL
+      default_type: null
+    act:
+      types:
+        - Act
+      default_type: null
+    encounter:
+      types:
+        - Encounter
+      default_type: null
+    observation:
+      types:
+        - Observation
+      default_type: null
+    observationMedia:
+      types:
+        - ObservationMedia
+      default_type: null
+    organizer:
+      types:
+        - Organizer
+      default_type: null
+    procedure:
+      types:
+        - Procedure
+      default_type: null
+    regionOfInterest:
+      types:
+        - RegionOfInterest
+      default_type: null
+    substanceAdministration:
+      types:
+        - SubstanceAdministration
+      default_type: null
+    supply:
+      types:
+        - Supply
+      default_type: null
+CustodianOrganization:
+  attributes:
+    nullFlavor: code
+    classCode: code
+    determinerCode: code
+  elements:
+    realmCode:
+      types:
+        - CS
+      default_type: null
+    typeId:
+      types:
+        - II
+      default_type: null
+    templateId:
+      types:
+        - II
+      default_type: null
+    id:
+      types:
+        - II
+      default_type: null
+    name:
+      types:
+        - "ON"
+      default_type: null
+    telecom:
+      types:
+        - TEL
+      default_type: null
+    addr:
+      types:
+        - AD
+      default_type: null

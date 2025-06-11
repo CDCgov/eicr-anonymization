@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "eicr_anonymization",
             "console": "integratedTerminal",
-            "args": "./data/3.1_Sample -d",
+            "args": "./data/biggest/most_tags  -d",
             "justMyCode": false
         }
     ]

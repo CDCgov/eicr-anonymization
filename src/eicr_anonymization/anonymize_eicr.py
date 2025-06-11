@@ -39,7 +39,6 @@ def xml_tree_to_str(tree: _ElementTree) -> str:
     Args:
         tree: XML Element tree to be formatted
     """
-
     return etree.tostring(tree, pretty_print=True, encoding="unicode")
 
 
@@ -123,10 +122,10 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                         match = _find_element(root, element.path)
                         match.text = "REMOVED"
                         debug_output.append((element, Element(match, "ENXP")))
-            case "EN" | "PN":
+            case "EN" | "PN" | "ON":
                 match = _find_element(root, element.path)
                 match.text = anonymizer.anonymize_EN_value(element)
-                debug_output.append((element, Element(match, "EN")))
+                debug_output.append((element, Element(match, element.cda_type)))
             case "xhtml":
                 match = _find_element(root, element.path)
                 anonymizer.anonymize_xhtml(match, safe_words)
@@ -147,7 +146,6 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                 if element.text is not None:
                     match = _find_element(root, element.path)
                     match.text = "REMOVED"
-                debug_output.append((element, Element(match, element.cda_type)))
 
     print(f"Anonymized {len(sensitive_elements)} sensitive elements in file: {xml_file}")
     dubug_output_table = tabulate(
