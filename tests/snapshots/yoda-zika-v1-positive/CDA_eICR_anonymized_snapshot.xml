@@ -22,9 +22,9 @@
     <!-- Patient demographic information -->
     <patientRole>
       <!-- Patient ID-->
-      <id extension="XXC-86834654" root="2.16.840.1.113883.19.5"/>
+      <id extension="XXR-40683373" root="2.16.840.1.113883.19.5"/>
       <!--SSN-->
-      <id extension="XX7-43-9872" root="2.16.840.1.113883.4.1"/>
+      <id extension="XX8-94-0429" root="2.16.840.1.113883.4.1"/>
       <addr use="H WP">
         <streetAddressLine>Recipient Recipient Recipient Recipient</streetAddressLine>
         <city>Kala’uun</city>
@@ -34,7 +34,7 @@
         <country>Trade Federation</country>
       </addr>
       <telecom use="MC WP" value="tel:+9-091-579-8050"/>
-      <telecom use="WP" value="mailto:k_y@example.com"/>
+      <telecom use="WP" value="mailto:urapjk@example.com"/>
       <patient>
         <name use="L">
           <prefix>Master</prefix>
@@ -69,9 +69,9 @@
   <author>
     <time value="19461202180514+0000"/>
     <assignedAuthor>
-      <id extension="XX84639123" root="2.16.840.1.113883.4.6"/>
+      <id extension="XX88040161" root="2.16.840.1.113883.4.6"/>
       <addr use="H">
-        <streetAddressLine>954 Garden Street</streetAddressLine>
+        <streetAddressLine>421 Garden Street</streetAddressLine>
         <city>Lessu</city>
         <state>Wild Space</state>
         <postalCode>RY-438</postalCode>
@@ -80,7 +80,7 @@
       </addr>
       <telecom use="WP" value="tel:+1-776-939-3137"/>
       <telecom use="WP" value="fax:+2-580-701-7496"/>
-      <telecom use="WP" value="mailto:i_c@example.com"/>
+      <telecom use="WP" value="mailto:revuh@example.com"/>
       <assignedPerson>
         <name>
           <prefix>Dr</prefix>
@@ -91,11 +91,11 @@
       </assignedPerson>
       <representedOrganization>
         <!-- NPI -->
-        <id extension="XX13278138" root="2.16.840.1.113883.4.6"/>
-        <name> Niima Outpost College Neighbourhood Pharmacy</name>
+        <id extension="XX60155348" root="2.16.840.1.113883.4.6"/>
+        <name>School of Separatist Alliance Clinic &amp; Health Center</name>
         <telecom use="WP" value="tel:+0-920-551-0520"/>
         <addr use="WP">
-          <streetAddressLine>773 Bright Tree Mustafar Mining Plaza, Suite 8038</streetAddressLine>
+          <streetAddressLine>177 Bright Tree Mustafar Mining Plaza, Suite 8038</streetAddressLine>
           <city>Lessu</city>
           <state>Wild Space</state>
           <postalCode>RY-438</postalCode>
@@ -112,11 +112,11 @@
     <assignedCustodian>
       <representedCustodianOrganization>
         <!-- Custodian ID (NPI) -->
-        <id extension="XX13278138" root="2.16.840.1.113883.4.6"/>
-        <name> Niima Outpost College Neighbourhood Pharmacy</name>
+        <id extension="XX60155348" root="2.16.840.1.113883.4.6"/>
+        <name>School of Separatist Alliance Clinic &amp; Health Center</name>
         <telecom use="WP" value="tel:+0-920-551-0520"/>
         <addr use="WP">
-          <streetAddressLine>773 Bright Tree Mustafar Mining Plaza, Suite 8038</streetAddressLine>
+          <streetAddressLine>177 Bright Tree Mustafar Mining Plaza, Suite 8038</streetAddressLine>
           <city>Lessu</city>
           <state>Wild Space</state>
           <postalCode>RY-438</postalCode>
