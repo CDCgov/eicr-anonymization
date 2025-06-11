@@ -109,8 +109,8 @@ CS:
   attributes:
     nullFlavor: SAFE
     code: SAFE
-    ValueSet: SAFE
-    ValueSetVersion: SAFE
+    valueSet: SAFE
+    valueSetVersion: SAFE
   elements: {}
 NonXMLBody:
   text_content: null
@@ -718,8 +718,8 @@ PQR:
     codeSystemName: SAFE
     codeSystemVersion: SAFE
     displayName: SAFE
-    ValueSet: SAFE
-    ValueSetVersion: SAFE
+    valueSet: SAFE
+    valueSetVersion: SAFE
     value: null
   elements:
     originalText: null
@@ -1137,8 +1137,8 @@ CV:
     codeSystemName: SAFE
     codeSystemVersion: SAFE
     displayName: SAFE
-    ValueSet: SAFE
-    ValueSetVersion: SAFE
+    valueSet: SAFE
+    valueSetVersion: SAFE
   elements:
     originalText: null
 ExternalAct:
@@ -1164,8 +1164,8 @@ CO:
     codeSystemName: SAFE
     codeSystemVersion: SAFE
     displayName: SAFE
-    ValueSet: SAFE
-    ValueSetVersion: SAFE
+    valueSet: SAFE
+    valueSetVersion: SAFE
   elements:
     originalText: null
 AssignedCustodian:
@@ -1357,7 +1357,7 @@ Performer2:
     realmCode: SAFE
     typeId: SAFE
     templateId: SAFE
-    FunctionCode: null
+    functionCode: null
     time: null
     modeCode: null
     assignedEntity: null
@@ -1370,8 +1370,8 @@ CD:
     codeSystemName: SAFE
     codeSystemVersion: SAFE
     displayName: SAFE
-    ValueSet: SAFE
-    ValueSetVersion: SAFE
+    valueSet: SAFE
+    valueSetVersion: SAFE
   elements:
     originalText: null
     qualifier: null
@@ -1450,7 +1450,7 @@ Participant2:
     realmCode: SAFE
     typeId: SAFE
     templateId: SAFE
-    FunctionCode: null
+    functionCode: null
     time: null
     awarenessCode: null
     participantRole: null
@@ -1623,8 +1623,8 @@ CE:
     codeSystemName: SAFE
     codeSystemVersion: SAFE
     displayName: SAFE
-    ValueSet: SAFE
-    ValueSetVersion: SAFE
+    valueSet: SAFE
+    valueSetVersion: SAFE
   elements:
     originalText: null
     translation: null
