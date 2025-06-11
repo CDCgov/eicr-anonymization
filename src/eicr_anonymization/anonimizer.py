@@ -30,13 +30,12 @@ def deterministic(func):
     def wrapper(self, *args, **kwargs):
         if hasattr(self, "is_deterministic") and self.is_deterministic:
             signature = inspect.signature(func)
-            bound_args = signature.bind(*args, **kwargs)
+            bound_args = signature.bind(self, *args, **kwargs)
             bound_args.apply_defaults()
-            params_dict = dict(bound_args.arguments)
+            params_dict = dict(sorted((k, v) for k, v in bound_args.arguments.items() if k != 'self'))
             seed = hash_params_to_seed(params_dict)
             random.seed(seed)
         return func(self, *args, **kwargs)
-
     return wrapper
 
 

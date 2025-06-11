@@ -1,5 +1,7 @@
 import random
 
+from lxml import etree
+
 from eicr_anonymization.anonimizer import deterministic
 
 
@@ -12,7 +14,7 @@ class TestAnonymizer:
             self.base_seed = seed
 
     @deterministic
-    def random_method(self, param1, param2="default", param3=None):
+    def random_method(self, param1, param2="default"):
         """Return a random integer between 1 and 1000."""
         return random.randint(1, 1000)
 
@@ -58,3 +60,32 @@ class TestDeterministicRandomDecorator:
         assert result1 != result2, "Different param2 should produce different results"
         assert result1 != result3, "Different param1 should produce different results"
         assert result2 != result3, "All different parameters should produce different results"
+
+    def test_default_parameters_consistency(self):
+        """Test that default parameters are handled consistently."""
+        # Arrange
+        obj = TestAnonymizer(seed=123)
+
+        # Act
+        result1 = obj.random_method("test")  # Using default param2
+        result2 = obj.random_method("test", "default")  # Explicit default param2
+
+        # Assert
+        assert result1 == result2, "Default and explicit default parameters should be equivalent"
+
+    def test_element_parameter(self):
+        """Test that using an element as a parameter produces consistent results."""
+        # Arrange
+        obj = TestAnonymizer(seed=123)
+        xml = '<a attrA="test"><b attrI="test" attrJ="test2"/></a>'
+        root = etree.fromstring(xml)
+        etree.tostring(root)
+
+        element = root.find(".//{test}b")
+
+        # Act
+        result1 = obj.random_method(element)
+        result2 = obj.random_method(element)
+
+        # Assert
+        assert result1 == result2, "Same element parameter should produce same results"
