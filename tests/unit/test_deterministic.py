@@ -8,10 +8,8 @@ from eicr_anonymization.anonimizer import deterministic
 class TestAnonymizer:
     """Test class for testing the decorator with a mock Anonymizer."""
 
-    def __init__(self, seed=None):
-        self.is_deterministic = seed is not None
-        if seed is not None:
-            self.base_seed = seed
+    def __init__(self, deterministic_functions=False):
+        self.is_deterministic = deterministic_functions
 
     @deterministic
     def random_method(self, param1, param2="default"):
@@ -25,7 +23,7 @@ class TestDeterministicRandomDecorator:
     def test_decorator_with_deterministic_true(self):
         """Test that decorator makes methods deterministic when is_deterministic=True."""
         # Arrange
-        obj = TestAnonymizer(seed=123)
+        obj = TestAnonymizer(deterministic_functions=True)
 
         # Act
         result1 = obj.random_method("test", "value")
@@ -49,7 +47,7 @@ class TestDeterministicRandomDecorator:
     def test_different_parameters_produce_different_results(self):
         """Test that different parameters produce different deterministic results."""
         # Arrange
-        obj = TestAnonymizer(seed=123)
+        obj = TestAnonymizer(deterministic_functions=True)
 
         # Act
         result1 = obj.random_method("param1", "value1")
@@ -64,7 +62,7 @@ class TestDeterministicRandomDecorator:
     def test_default_parameters_consistency(self):
         """Test that default parameters are handled consistently."""
         # Arrange
-        obj = TestAnonymizer(seed=123)
+        obj = TestAnonymizer(deterministic_functions=True)
 
         # Act
         result1 = obj.random_method("test")  # Using default param2
@@ -76,7 +74,7 @@ class TestDeterministicRandomDecorator:
     def test_element_parameter(self):
         """Test that using an element as a parameter produces consistent results."""
         # Arrange
-        obj = TestAnonymizer(seed=123)
+        obj = TestAnonymizer(deterministic_functions=True)
         xml = '<a attrA="test"><b attrI="test" attrJ="test2"/></a>'
         root = etree.fromstring(xml)
         etree.tostring(root)

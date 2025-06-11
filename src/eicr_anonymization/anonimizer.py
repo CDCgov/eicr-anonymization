@@ -32,10 +32,13 @@ def deterministic(func):
             signature = inspect.signature(func)
             bound_args = signature.bind(self, *args, **kwargs)
             bound_args.apply_defaults()
-            params_dict = dict(sorted((k, v) for k, v in bound_args.arguments.items() if k != 'self'))
+            params_dict = dict(
+                sorted((k, v) for k, v in bound_args.arguments.items() if k != "self")
+            )
             seed = hash_params_to_seed(params_dict)
             random.seed(seed)
         return func(self, *args, **kwargs)
+
     return wrapper
 
 
@@ -137,13 +140,25 @@ def hash_params_to_seed(params):
 class Anonymizer:
     """Anonymizes the data."""
 
-    def __init__(self, seed: int | None = None):
-        """Initialize the Anonymizer class."""
-        self.is_deterministic = False
-        if seed is not None:
-            # Set the seed for reproducibility
-            random.seed(seed)
-            self.is_deterministic = True
+    def __init__(
+        self,
+        reproducible: bool | int = False,
+        deterministic_functions: bool = False,
+    ):
+        """Initialize the Anonymizer class.
+
+        Args:
+            reproducible (bool | int): If True, the random seed will be set to a fixed value for
+            reproducibility. If an integer is provided, it will be used as the seed.
+            deterministic_functions (bool): If True the same parameters passed into any public
+            function will return the same output.
+        """
+        if isinstance(reproducible, bool):
+            random.seed(740)  # Lovingly selected with the help of random.org
+        elif isinstance(reproducible, int):
+            random.seed(reproducible)
+
+        self.is_deterministic = deterministic_functions
 
         SECONDS_IN_100_YEARS = int(100 * 60 * 60 * 24 * 365.25)
         # The main offset is a random number of seconds between 0 and 100 years
