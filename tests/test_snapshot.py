@@ -3,8 +3,8 @@ from pathlib import Path
 import pytest
 from freezegun import freeze_time
 
-from eicr_anonymization.anonimizer import Anonymizer
 from eicr_anonymization.anonymize_eicr import anonymize_eicr_file, xml_tree_to_str
+from eicr_anonymization.anonymizer import Anonymizer
 
 
 @freeze_time("2025-01-10 09:30:30")

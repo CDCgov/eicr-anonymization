@@ -5,7 +5,7 @@ import pytest
 from freezegun import freeze_time
 from lxml import etree
 
-from eicr_anonymization.anonimizer import Anonymizer
+from eicr_anonymization.anonymizer import Anonymizer
 from eicr_anonymization.element_parser import Element
 
 

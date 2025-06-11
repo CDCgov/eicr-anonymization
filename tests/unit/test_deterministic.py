@@ -2,7 +2,7 @@ import random
 
 from lxml import etree
 
-from eicr_anonymization.anonimizer import deterministic
+from eicr_anonymization.anonymizer import deterministic
 
 
 class TestAnonymizer:

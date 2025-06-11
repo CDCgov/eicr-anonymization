@@ -10,7 +10,7 @@ from lxml import etree
 from lxml.etree import _Element, _ElementTree
 from tabulate import tabulate
 
-from eicr_anonymization.anonimizer import Anonymizer
+from eicr_anonymization.anonymizer import Anonymizer
 from eicr_anonymization.element_parser import Element, Parser
 
 logger = logging.getLogger(__name__)
