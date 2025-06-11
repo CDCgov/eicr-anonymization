@@ -135,6 +135,8 @@ class Parser:
                 if "elements" in child_structure:
                     for subelement in child:
                         subelement_tag = str(subelement.tag).split("}")[-1]
+                        if subelement_tag not in child_structure["elements"]:
+                            continue
                         subelement_structure = child_structure["elements"][subelement_tag]
                         subelement_type = subelement_structure["types"][0]
                         if children_safety[child_tag]["elements"][subelement_tag] == "SAFE":
