@@ -19,9 +19,9 @@
     <!-- Patient demographic information -->
     <patientRole>
       <!-- Patient ID-->
-      <id extension="XXK-69521797" root="2.16.840.1.113883.19.5"/>
+      <id extension="XXF-21010487" root="2.16.840.1.113883.19.5"/>
       <!--SSN-->
-      <id extension="XX3-09-2219" root="2.16.840.1.113883.4.1"/>
+      <id extension="XX2-51-5909" root="2.16.840.1.113883.4.1"/>
       <addr use="H WP">
         <streetAddressLine>Recipient Recipient Recipient Recipient</streetAddressLine>
         <city>Kala’uun</city>
@@ -31,7 +31,7 @@
         <country>Trade Federation</country>
       </addr>
       <telecom use="MC WP" value="tel:+9-091-579-8050"/>
-      <telecom use="WP" value="mailto:u_3@example.com"/>
+      <telecom use="WP" value="mailto:swn.51@example.com"/>
       <patient>
         <name use="L">
           <prefix>Master</prefix>
@@ -67,7 +67,7 @@
     <assignedAuthor>
       <id root="2.16.840.1.114222.4.1.217446"/>
       <addr>
-        <streetAddressLine>6001 Sea Avenue, Suite 038</streetAddressLine>
+        <streetAddressLine>6008 Sea Avenue, Suite 038</streetAddressLine>
         <city>Lessu</city>
         <state>LU</state>
         <postalCode>37705</postalCode>
@@ -86,10 +86,10 @@
     <assignedCustodian>
       <representedCustodianOrganization>
         <id root="2.16.840.1.114222.4.1.217446"/>
-        <name>Academy of Mapuzo Neighbourhood Medical Center.</name>
+        <name>Pharmacy of Core Worlds.</name>
         <telecom use="WP" value="tel:+4(563)724-9618"/>
         <addr>
-          <streetAddressLine>6001 Sea Avenue, Suite 038</streetAddressLine>
+          <streetAddressLine>6008 Sea Avenue, Suite 038</streetAddressLine>
           <city>Lessu</city>
           <state>LU</state>
           <postalCode>37705</postalCode>
@@ -107,9 +107,9 @@
   <informationRecipient typeCode="PRCP">
     <intendedRecipient>
       <!-- Provider ID (NPI) -->
-      <id extension="XX18282809" root="2.16.840.1.113883.4.6"/>
+      <id extension="XX26766920" root="2.16.840.1.113883.4.6"/>
       <addr use="H">
-        <streetAddressLine>490 City Street</streetAddressLine>
+        <streetAddressLine>445 City Street</streetAddressLine>
         <city>Cloud City</city>
         <state>Wild Space</state>
         <postalCode>RY-438</postalCode>
@@ -118,7 +118,7 @@
       </addr>
       <telecom use="WP" value="tel:+1-776-939-3137"/>
       <telecom use="WP" value="fax:+2-580-701-7496"/>
-      <telecom use="WP" value="mailto:sz_571@example.com"/>
+      <telecom use="WP" value="mailto:nlby_2@example.com"/>
       <!-- assignedPerson in the eICR (the provider) -->
       <informationRecipient>
         <name>
@@ -132,11 +132,11 @@
       <!-- representedOrganization in the eICR -->
       <receivedOrganization>
         <!-- NPI for the facility -->
-        <id extension="XX55324243" root="2.16.840.1.113883.4.6"/>
+        <id extension="XX92347846" root="2.16.840.1.113883.4.6"/>
         <!-- Provider Facility/Office Name-->
-        <name>Eadu Neighbourhood Medical Center</name>
+        <name>Academy of Skako Minor Laboratory &amp; Laboratory</name>
         <addr use="WP">
-          <streetAddressLine>162 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
+          <streetAddressLine>431 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
           <city>Cloud City</city>
           <state>Wild Space</state>
           <postalCode>RY-438</postalCode>
@@ -153,7 +153,7 @@
   <componentOf>
     <encompassingEncounter>
       <!-- eICR encounter ID - this is the id of the original encounter-->
-      <id extension="XX42183" root="2.16.840.1.113883.19"/>
+      <id extension="XX62773" root="2.16.840.1.113883.19"/>
       <code code="PHC2237" codeSystem="2.16.840.1.114222.4.5.274" codeSystemName="PHIN VS (CDC Local Coding System)" displayName="External Encounter"/>
       <!-- eICR encompassingEncounter time - this is the time of the original encounter from the
       eICR -->
@@ -165,9 +165,9 @@
       <responsibleParty>
         <assignedEntity>
           <!-- Provider ID (NPI) -->
-          <id extension="XX18282809" root="2.16.840.1.113883.4.6"/>
+          <id extension="XX26766920" root="2.16.840.1.113883.4.6"/>
           <addr use="H">
-            <streetAddressLine>490 City Street</streetAddressLine>
+            <streetAddressLine>445 City Street</streetAddressLine>
             <city>Cloud City</city>
             <state>Wild Space</state>
             <postalCode>RY-438</postalCode>
@@ -176,7 +176,7 @@
           </addr>
           <telecom use="WP" value="tel:+1-776-939-3137"/>
           <telecom use="WP" value="fax:+2-580-701-7496"/>
-          <telecom use="WP" value="mailto:kfu@example.com"/>
+          <telecom use="WP" value="mailto:wag2@example.com"/>
           <assignedPerson>
             <name>
               <prefix>Dr</prefix>
@@ -187,11 +187,11 @@
           </assignedPerson>
           <representedOrganization>
             <!-- Represented Organization-->
-            <id extension="XX55324243" root="2.16.840.1.113883.4.6"/>
+            <id extension="XX92347846" root="2.16.840.1.113883.4.6"/>
             <!-- Provider Facility/Office Name-->
-            <name>Eadu Neighbourhood Medical Center</name>
+            <name>Academy of Skako Minor Laboratory &amp; Laboratory</name>
             <addr use="WP">
-              <streetAddressLine>162 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
+              <streetAddressLine>431 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
               <city>Cloud City</city>
               <state>Wild Space</state>
               <postalCode>RY-438</postalCode>
@@ -206,13 +206,13 @@
       <location>
         <healthCareFacility>
           <!-- Facility ID (NPI) -->
-          <id extension="XX18282809" root="2.16.840.1.113883.4.6"/>
+          <id extension="XX26766920" root="2.16.840.1.113883.4.6"/>
           <!-- Facility location within larger healthcare organization e.g Kaiser Vacaville within
           Kaiser North-->
           <code code="OF" codeSystem="2.16.840.1.113883.5.111" codeSystemName="HL7RoleCode" displayName="Outpatient Facility"/>
           <location>
             <addr use="WP">
-              <streetAddressLine>162 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
+              <streetAddressLine>431 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
               <city>Cloud City</city>
               <state>Wild Space</state>
               <postalCode>RY-438</postalCode>
@@ -222,11 +222,11 @@
           </location>
           <serviceProviderOrganization>
             <!-- Provider Facility/Office Name-->
-            <name>Eadu Neighbourhood Medical Center</name>
+            <name>Academy of Skako Minor Laboratory &amp; Laboratory</name>
             <telecom use="WP" value="tel:+0-920-551-0520"/>
             <telecom use="WP" value="fax:+9-614-237-2841"/>
             <addr use="WP">
-              <streetAddressLine>162 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
+              <streetAddressLine>431 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
               <city>Cloud City</city>
               <state>Wild Space</state>
               <postalCode>RY-438</postalCode>
@@ -380,7 +380,7 @@
                       <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.10.20.15.2.4.2" extension="2017-04-01"/>
                         <participantRole>
-                          <id extension="XX001800" root="2.16.840.1.113883.4.6"/>
+                          <id extension="XX889922" root="2.16.840.1.113883.4.6"/>
                           <code code="RR8" displayName="Responsible Agency" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                           <addr>
                             <city>Tarko-Se</city>
@@ -391,7 +391,7 @@
                           </addr>
                           <telecom use="WP" value="tel:+8-232-751-2008"/>
                           <playingEntity>
-                            <name>School Neighbourhood Urgent Care of Mandalore</name>
+                            <name>College of Corellia Neighbourhood Medical Center + Clinic</name>
                           </playingEntity>
                         </participantRole>
                       </participant>
@@ -399,7 +399,7 @@
                       <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.10.20.15.2.4.3" extension="2017-04-01"/>
                         <participantRole>
-                          <id extension="XX001800" root="2.16.840.1.113883.4.6"/>
+                          <id extension="XX889922" root="2.16.840.1.113883.4.6"/>
                           <code code="RR12" displayName="Rules Authoring Agency" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                           <addr>
                             <city>Tarko-Se</city>
@@ -410,7 +410,7 @@
                           </addr>
                           <telecom use="WP" value="tel:+8-232-751-2008"/>
                           <playingEntity>
-                            <name>School Neighbourhood Urgent Care of Mandalore</name>
+                            <name>College of Corellia Neighbourhood Medical Center + Clinic</name>
                           </playingEntity>
                         </participantRole>
                       </participant>
@@ -418,7 +418,7 @@
                       <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.10.20.15.2.4.1" extension="2017-04-01"/>
                         <participantRole>
-                          <id extension="XX203346" root="2.16.840.1.113883.4.6"/>
+                          <id extension="XX572687" root="2.16.840.1.113883.4.6"/>
                           <code code="RR7" displayName="Routing Entity" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                           <addr>
                             <city>Tarko-Se</city>
@@ -429,7 +429,7 @@
                           </addr>
                           <telecom use="WP" value="tel:+8-232-751-2008"/>
                           <playingEntity>
-                            <name>School Neighbourhood Urgent Care of Mandalore</name>
+                            <name>College of Corellia Neighbourhood Medical Center + Clinic</name>
                           </playingEntity>
                         </participantRole>
                       </participant>
@@ -504,7 +504,7 @@
                           surveillance and follow-up required.</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://example.com/znv.jpg"/>
+                        <reference value="https://qhof.example9969.com"/>
                       </text>
                     </externalDocument>
                   </reference>
@@ -527,7 +527,7 @@
                           virus</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://c.example23975.com"/>
+                        <reference value="https://gxkwr.example.com/.png"/>
                       </text>
                     </externalDocument>
                   </reference>
@@ -550,7 +550,7 @@
                           prevention</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://rvkq.example8453.com"/>
+                        <reference value="https://example136.com/qwv.jpeg"/>
                       </text>
                     </externalDocument>
                   </reference>
@@ -573,7 +573,7 @@
                           the Coruscant Department of Health</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://g.example35.com"/>
+                        <reference value="https://hfw.example.com/zcog.jpg"/>
                       </text>
                     </externalDocument>
                   </reference>
