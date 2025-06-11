@@ -95,8 +95,11 @@ class Parser:
         children_safety: dict[str, str | dict[str, str]] = self.config[element_type]["elements"]
         children_types = self.structure[element_type]["elements"]
 
-        if self.config[element_type]["text_content"] == "SAFE" and has_text(element):
-            self.add_safe_text(element.text)  # type: ignore
+        if has_text(element):
+            if self.config[element_type]["text_content"] == "SAFE":
+                self.add_safe_text(element.text)  # type: ignore
+            else:
+                self.add_sensitive_element(element, element_type)
 
         self.process_attributes(element, element_type)
 
