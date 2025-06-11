@@ -512,10 +512,10 @@ ADXP:
   text_content: null
   attributes:
     nullFlavor: SAFE
-    representation: null
-    mediaType: null
-    language: null
-    partType: null
+    representation: SAFE
+    mediaType: SAFE
+    language: SAFE
+    partType: SAFE
   elements:
     xmlText: null
 ObservationMedia:
@@ -647,8 +647,8 @@ ParentDocument:
     id: null
     code: null
     text: null
-    setId: null
-    versionNumber: null
+    setId: SAFE
+    versionNumber: SAFE
 RecordTarget:
   text_content: null
   attributes:
@@ -809,8 +809,8 @@ ClinicalDocument:
     effectiveTime: null
     confidentialityCode: SAFE
     languageCode: SAFE
-    setId: null
-    versionNumber: null
+    setId: SAFE
+    versionNumber: SAFE
     copyTime: null
     recordTarget: null
     author: null
@@ -1341,10 +1341,10 @@ ENXP:
   text_content: null
   attributes:
     nullFlavor: SAFE
-    representation: null
-    mediaType: null
-    language: null
-    partType: null
+    representation: SAFE
+    mediaType: SAFE
+    language: SAFE
+    partType: SAFE
     qualifier: null
   elements:
     xmlText: null
@@ -1397,9 +1397,7 @@ AD:
     isNotOrdered: null
     use: null
   elements:
-    item: null
     delimiter: null
-    xmlText: null
     country: null
     state: null
     county: null
@@ -1531,8 +1529,8 @@ ExternalDocument:
     id: null
     code: null
     text: null
-    setId: null
-    versionNumber: null
+    setId: SAFE
+    versionNumber: SAFE
     Author: null
 Device:
   text_content: null
@@ -1567,9 +1565,9 @@ ED:
     compression: null
     integrityCheck: null
     integrityCheckAlgorithm: null
-    language: null
-    mediaType: null
-    representation: null
+    language: SAFE
+    mediaType: SAFE
+    representation: SAFE
   elements:
     xmlText: null
     reference: null
@@ -1603,9 +1601,9 @@ ST:
   text_content: null
   attributes:
     nullFlavor: SAFE
-    representation: null
-    mediaType: null
-    language: null
+    representation: SAFE
+    mediaType: SAFE
+    language: SAFE
   elements:
     xmlText: null
 TS:
