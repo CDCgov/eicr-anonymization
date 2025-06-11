@@ -158,6 +158,8 @@ class Anonymizer:
         elif isinstance(reproducible, int):
             random.seed(reproducible)
 
+        self.is_deterministic = deterministic_functions
+
         SECONDS_IN_100_YEARS = int(100 * 60 * 60 * 24 * 365.25)
         # The main offset is a random number of seconds between 0 and 100 years
         self.time_offset = randint(0, SECONDS_IN_100_YEARS)
