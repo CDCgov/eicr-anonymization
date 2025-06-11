@@ -172,7 +172,7 @@ Organizer:
     Category: SAFE
     code: SAFE
     Text: null
-    statusCode: null
+    statusCode: SAFE
     effectiveTime: null
     subject: null
     specimen: null
@@ -393,7 +393,7 @@ Act:
     id: null
     code: null
     text: null
-    statusCode: null
+    statusCode: SAFE
     effectiveTime: null
     priorityCode: null
     languageCode: SAFE
@@ -436,10 +436,9 @@ PN:
   text_content: null
   attributes:
     nullFlavor: SAFE
-    use: null
+    use: SAFE
   elements:
-    item: null
-    delimiter: null
+    delimiter: SAFE
     family: null
     given: null
     prefix: null
@@ -626,10 +625,9 @@ LabeledDrug:
   text_content: null
   attributes:
     nullFlavor: SAFE
-    use: null
+    use: SAFE
   elements:
-    item: null
-    delimiter: null
+    delimiter: SAFE
     prefix: null
     suffix: null
     xmlText: null
@@ -664,9 +662,8 @@ TN:
   text_content: null
   attributes:
     nullFlavor: SAFE
-    use: null
+    use: SAFE
   elements:
-    item: null
     xmlText: null
     validTime: null
 SubjectPerson:
@@ -766,7 +763,7 @@ Patient:
     deceasedTime: null
     multipleBirthInd: null
     multipleBirthOrderNumber: null
-    maritalStatusCode: null
+    maritalStatusCode: SAFE
     religiousAffiliationCode: null
     raceCode: null
     RaceCode: null
@@ -789,7 +786,7 @@ AlternateIdentification:
   elements:
     id: null
     code: null
-    statusCode: null
+    statusCode: SAFE
     effectiveTime: null
 ClinicalDocument:
   text_content: null
@@ -804,8 +801,8 @@ ClinicalDocument:
     id: SAFE
     Category: SAFE
     code: null
-    title: null
-    StatusCode: null
+    title: SAFE
+    statusCode: SAFE
     effectiveTime: null
     confidentialityCode: SAFE
     languageCode: SAFE
@@ -893,7 +890,7 @@ SubstanceAdministration:
     id: null
     code: null
     text: null
-    statusCode: null
+    statusCode: SAFE
     effectiveTime: null
     priorityCode: null
     repeatNumber: null
@@ -1081,7 +1078,7 @@ Supply:
     id: null
     code: null
     text: null
-    statusCode: null
+    statusCode: SAFE
     effectiveTime: null
     priorityCode: null
     repeatNumber: null
@@ -1111,10 +1108,9 @@ EN:
   text_content: null
   attributes:
     nullFlavor: SAFE
-    use: null
+    use: SAFE
   elements:
-    item: null
-    delimiter: null
+    delimiter: SAFE
     family: null
     given: null
     prefix: null
@@ -1387,17 +1383,17 @@ TEL:
   attributes:
     nullFlavor: SAFE
     value: null
-    use: null
+    use: SAFE
   elements:
     useablePeriod: null
 AD:
   text_content: null
   attributes:
     nullFlavor: SAFE
-    isNotOrdered: null
-    use: null
+    isNotOrdered: SAFE
+    use: SAFE
   elements:
-    delimiter: null
+    delimiter: SAFE
     country: null
     state: null
     county: null
@@ -1429,11 +1425,11 @@ IVL_PQ:
   text_content: null
   attributes:
     nullFlavor: SAFE
-    unit: null
-    value: null
+    unit: SAFE
+    value: SAFE
     operator: SAFE
   elements:
-    translation: null
+    translation: SAFE
     low: null
     center: null
     width: null
@@ -1443,7 +1439,7 @@ Participant2:
   attributes:
     nullFlavor: SAFE
     typeCode: SAFE
-    contextControlCode: null
+    contextControlCode: SAFE
   elements:
     realmCode: SAFE
     typeId: SAFE
@@ -1557,7 +1553,7 @@ Consent:
     templateId: SAFE
     id: null
     code: null
-    statusCode: null
+    statusCode: SAFE
 ED:
   text_content: null
   attributes:
