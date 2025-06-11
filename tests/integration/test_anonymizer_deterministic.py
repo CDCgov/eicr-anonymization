@@ -34,8 +34,16 @@ def test_determinism():
     # Arrange
     anonymizer_1 = Anonymizer(deterministic_functions=True)
     anonymizer_2 = Anonymizer(deterministic_functions=True)
+    anonymizer_3 = Anonymizer(deterministic_functions=True)
 
     id_element_1 = Element(
+        etree.Element(
+            "{urn:hl7-org:v3}id", attrib={"root": "test.id.123", "extension": "1234567890"}
+        ),
+        "II",
+    )
+
+    id_element_1_2 = Element(
         etree.Element(
             "{urn:hl7-org:v3}id", attrib={"root": "test.id.123", "extension": "1234567890"}
         ),
@@ -56,12 +64,14 @@ def test_determinism():
     id_result_2_2 = anonymizer_2.anonymize_II_value(id_element_2)
     id_result_1_2 = anonymizer_2.anonymize_II_value(id_element_1)
 
+    id_result_1_3 = anonymizer_3.anonymize_II_value(id_element_1_2)
+
     # Assert
-    assert id_result_1_1 == id_result_1_2, (
-        "Anonymizer 1 and 2 should produce the same result for the same input"
+    assert id_result_1_1 == id_result_1_2 == id_result_1_3, (
+        "Anonymizers should produce the same result for the same input"
     )
     assert id_result_2_1 == id_result_2_2, (
-        "Anonymizer 1 and 2 should produce the same result for the same input"
+        "Anonymizers should produce the same result for the same input"
     )
 
     assert id_result_1_1 != id_result_2_1, (
