@@ -3,6 +3,10 @@
 This module handles logic around replacing data with similar but fake data.
 """
 
+import functools
+import hashlib
+import inspect
+import pickle
 import random
 import re
 from datetime import datetime, timedelta
@@ -19,6 +23,21 @@ from eicr_anonymization.element_parser import Element
 ONE_THIRD = 0.33
 ONE_HALF = 0.5
 TWO_THIRDS = 0.67
+
+
+def deterministic(func):
+    @functools.wraps(func)
+    def wrapper(self, *args, **kwargs):
+        if hasattr(self, "is_deterministic") and self.is_deterministic:
+            signature = inspect.signature(func)
+            bound_args = signature.bind(*args, **kwargs)
+            bound_args.apply_defaults()
+            params_dict = dict(bound_args.arguments)
+            seed = hash_params_to_seed(params_dict)
+            random.seed(seed)
+        return func(self, *args, **kwargs)
+
+    return wrapper
 
 
 class ReplacementType(TypedDict):
@@ -85,14 +104,48 @@ def _normalize_value(value: str):
     return value.lower()
 
 
+def hash_params_to_seed(params):
+    """
+    Convert function parameters to a deterministic integer seed.
+
+    Args:
+        params (dict): Dictionary of parameter names and values
+
+    Returns:
+        int: Deterministic seed value
+    """
+    try:
+        # Use pickle to serialize the parameters (handles most Python objects)
+        serialized = pickle.dumps(params, protocol=pickle.HIGHEST_PROTOCOL)
+
+        # Create SHA-256 hash
+        hash_obj = hashlib.sha256(serialized)
+        hash_hex = hash_obj.hexdigest()
+
+        # Convert to integer seed (Python's random module expects int)
+        # Take first 8 hex chars to avoid extremely large numbers
+        seed = int(hash_hex[:8], 16)
+
+        return seed
+    except (pickle.PicklingError, TypeError) as e:
+        # Fallback: convert to string and hash
+        params_str = str(sorted(params.items()))
+        hash_obj = hashlib.sha256(params_str.encode("utf-8"))
+        seed = int(hash_obj.hexdigest()[:8], 16)
+        return seed
+
+
 class Anonymizer:
     """Anonymizes the data."""
 
     def __init__(self, seed: int | None = None):
         """Initialize the Anonymizer class."""
+        self.is_deterministic = False
         if seed is not None:
             # Set the seed for reproducibility
             random.seed(seed)
+            self.is_deterministic = True
+
         SECONDS_IN_100_YEARS = int(100 * 60 * 60 * 24 * 365.25)
         # The main offset is a random number of seconds between 0 and 100 years
         self.time_offset = randint(0, SECONDS_IN_100_YEARS)
@@ -129,7 +182,7 @@ class Anonymizer:
             "AddressNumberSuffix": {},
             "given": {},
             "family": {},
-            "USPSBoxID": {}
+            "USPSBoxID": {},
         }
 
         self.safe_words = {
@@ -142,6 +195,7 @@ class Anonymizer:
 
     def anonymize_TS_value(self, element: Element):
         """Anonymize TS elements."""
+
         value = element.attributes["value"]
         if value is None:
             return value
