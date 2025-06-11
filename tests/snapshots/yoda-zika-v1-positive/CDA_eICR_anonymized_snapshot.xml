@@ -13,7 +13,7 @@
   <!-- Document Code -->
   <code code="55751-2" codeSystem="2.16.840.1.113883.6.1" displayName="Public Health Case Report"/>
   <title>Initial Public Health Case Report</title>
-  <effectiveTime value="20061112181545+0000"/>
+  <effectiveTime value="19461202173534+0000"/>
   <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="Normal"/>
   <languageCode code="en-US"/>
   <setId extension="71b065e4-6339-45cd-88fa-a6ab3fe4946d" root="2.16.840.1.113883.19.5.99999.19"/>
@@ -22,30 +22,30 @@
     <!-- Patient demographic information -->
     <patientRole>
       <!-- Patient ID-->
-      <id extension="XXS-14177763" root="2.16.840.1.113883.19.5"/>
+      <id extension="XXY-04321133" root="2.16.840.1.113883.19.5"/>
       <!--SSN-->
-      <id extension="XX1-70-6690" root="2.16.840.1.113883.4.1"/>
+      <id extension="XX4-28-5328" root="2.16.840.1.113883.4.1"/>
       <addr use="H WP">
         <streetAddressLine>Recipient Recipient Recipient Recipient</streetAddressLine>
-        <city>Mos Espa</city>
-        <state>The Colonies</state>
-        <postalCode>DX-586</postalCode>
-        <county>Trandosha</county>
-        <country>Galactic Republic</country>
+        <city>Taris</city>
+        <state>Wild Space</state>
+        <postalCode>PW-068</postalCode>
+        <county>Florrum</county>
+        <country>Galactic Empire</country>
       </addr>
-      <telecom use="MC WP" value="tel:+7-710-465-6341"/>
-      <telecom use="WP" value="mailto:xqg@example.com"/>
+      <telecom use="MC WP" value="tel:+0-074-212-1564"/>
+      <telecom use="WP" value="mailto:wylgwvl@example.com"/>
       <patient>
         <name use="L">
           <prefix>Master</prefix>
           <!-- yoda doesn't have a canonical given name but the person that came up with yoda's name
           use this as his first name -->
-          <given>Kestrel</given>
-          <family>Sevander</family>
+          <given>Aryssha</given>
+          <family>Rwoh</family>
         </name>
         <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male"/>
         <!-- yoda is 900 years old -->
-        <birthTime value="11060918"/>
+        <birthTime value="10461007"/>
         <!-- If sdtc:deceasedInd is true then sdtc:deceasedTime must be present -->
         <sdtc:deceasedInd value="false"/>
         <!-- yoda's race is unknown -->
@@ -67,40 +67,40 @@
   <!-- Author/authenticator may be software or may be a provider such as "infection control
   professional"-->
   <author>
-    <time value="20061112184525+0000"/>
+    <time value="19461202180514+0000"/>
     <assignedAuthor>
-      <id extension="XX14398754" root="2.16.840.1.113883.4.6"/>
+      <id extension="XX13664089" root="2.16.840.1.113883.4.6"/>
       <addr use="H">
-        <streetAddressLine>283 Commerce Street</streetAddressLine>
-        <city>Canto Bight</city>
-        <state>The Colonies</state>
-        <postalCode>FT-137</postalCode>
-        <county>Trandosha</county>
-        <country>Galactic Republic</country>
+        <streetAddressLine>743 Monument Street</streetAddressLine>
+        <city>Otoh Gunga</city>
+        <state>Wild Space</state>
+        <postalCode>TK-134</postalCode>
+        <county>Florrum</county>
+        <country>Galactic Empire</country>
       </addr>
-      <telecom use="WP" value="tel:+0-285-873-3577"/>
-      <telecom use="WP" value="fax:+3-658-943-0185"/>
-      <telecom use="WP" value="mailto:qy@example.com"/>
+      <telecom use="WP" value="tel:+3-454-560-2768"/>
+      <telecom use="WP" value="fax:+4-673-528-3853"/>
+      <telecom use="WP" value="mailto:wl_n@example.com"/>
       <assignedPerson>
         <name>
           <prefix>Dr</prefix>
-          <given>Breha</given>
-          <family>Enneb</family>
+          <given>Perrin</given>
+          <family>Rallik</family>
           <suffix>MD</suffix>
         </name>
       </assignedPerson>
       <representedOrganization>
         <!-- NPI -->
-        <id extension="XX34448527" root="2.16.840.1.113883.4.6"/>
-        <name>Expansion Region Pharmacy &amp; Pharmacy</name>
-        <telecom use="WP" value="tel:+3-907-656-8280"/>
+        <id extension="XX88622794" root="2.16.840.1.113883.4.6"/>
+        <name> Niima Outpost College Neighborhood Pharmacy</name>
+        <telecom use="WP" value="tel:+7-388-799-3629"/>
         <addr use="WP">
-          <streetAddressLine>814 Lake Jawa Market Plaza, Suite 1412</streetAddressLine>
-          <city>Canto Bight</city>
-          <state>The Colonies</state>
-          <postalCode>FT-137</postalCode>
-          <county>Trandosha</county>
-          <country>Galactic Republic</country>
+          <streetAddressLine>325 Cloud North Plaza, Suite 1496</streetAddressLine>
+          <city>Otoh Gunga</city>
+          <state>Wild Space</state>
+          <postalCode>TK-134</postalCode>
+          <county>Florrum</county>
+          <country>Galactic Empire</country>
         </addr>
       </representedOrganization>
     </assignedAuthor>
@@ -112,16 +112,16 @@
     <assignedCustodian>
       <representedCustodianOrganization>
         <!-- Custodian ID (NPI) -->
-        <id extension="XX34448527" root="2.16.840.1.113883.4.6"/>
-        <name>Expansion Region Pharmacy &amp; Pharmacy</name>
-        <telecom use="WP" value="tel:+3-907-656-8280"/>
+        <id extension="XX88622794" root="2.16.840.1.113883.4.6"/>
+        <name> Niima Outpost College Neighborhood Pharmacy</name>
+        <telecom use="WP" value="tel:+7-388-799-3629"/>
         <addr use="WP">
-          <streetAddressLine>814 Lake Jawa Market Plaza, Suite 1412</streetAddressLine>
-          <city>Canto Bight</city>
-          <state>The Colonies</state>
-          <postalCode>FT-137</postalCode>
-          <county>Trandosha</county>
-          <country>Galactic Republic</country>
+          <streetAddressLine>325 Cloud North Plaza, Suite 1496</streetAddressLine>
+          <city>Otoh Gunga</city>
+          <state>Wild Space</state>
+          <postalCode>TK-134</postalCode>
+          <county>Florrum</county>
+          <country>Galactic Empire</country>
         </addr>
       </representedCustodianOrganization>
     </assignedCustodian>
@@ -267,7 +267,7 @@
               </code>
               <statusCode code="active"/>
               <!-- Date on which the lab test should take place -->
-              <effectiveTime value="20061025"/>
+              <effectiveTime value="19461114"/>
             </observation>
           </entry>
         </section>
@@ -382,7 +382,7 @@
               <effectiveTime>
                 <!-- The low value represents when the problem was first recorded in the patient's
                 chart -->
-                <low value="20061023"/>
+                <low value="19461112"/>
               </effectiveTime>
               <entryRelationship typeCode="SUBJ">
                 <observation classCode="OBS" moodCode="EVN">
@@ -398,7 +398,7 @@
                   <statusCode code="completed"/>
                   <effectiveTime>
                     <!-- The low value reflects the date of onset -->
-                    <low value="20061023"/>
+                    <low value="19461112"/>
                   </effectiveTime>
                   <value xsi:type="CD" code="386661006" codeSystem="2.16.840.1.113883.6.96" displayName="Fever (finding)"/>
                 </observation>
@@ -419,7 +419,7 @@
               <effectiveTime>
                 <!-- The low value represents when the problem was first recorded in the patient's
                 chart -->
-                <low value="20061023"/>
+                <low value="19461112"/>
               </effectiveTime>
               <entryRelationship typeCode="SUBJ">
                 <observation classCode="OBS" moodCode="EVN">
@@ -433,7 +433,7 @@
                   </code>
                   <statusCode code="completed"/>
                   <effectiveTime>
-                    <low value="20061023"/>
+                    <low value="19461112"/>
                   </effectiveTime>
                   <value xsi:type="CD" code="386661006" codeSystem="2.16.840.1.113883.6.96" displayName="Fever (finding)"/>
                 </observation>
@@ -530,8 +530,8 @@
               <code code="80825-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Zika virus envelope (E) gene [Presence] in Serum by Probe and target amplification method"/>
               <statusCode code="completed"/>
               <effectiveTime>
-                <low value="20061112"/>
-                <high value="20061112"/>
+                <low value="19461202"/>
+                <high value="19461202"/>
               </effectiveTime>
               <component>
                 <!-- This observation is a trigger code final result observation only the code is a
@@ -547,7 +547,7 @@
                   <id root="bf9c0a26-4524-4395-b3ce-100450b9c9ad"/>
                   <code code="80825-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Zika virus envelope (E) gene [Presence] in Serum by Probe and target amplification method" sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="19/05/2016"/>
                   <statusCode code="completed"/>
-                  <effectiveTime value="20061025"/>
+                  <effectiveTime value="19461114"/>
                   <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="10828004" displayName="Positive"/>
                   <interpretationCode code="A" displayName="Abnormal" codeSystem="2.16.840.1.113883.5.83" codeSystemName="ObservationInterpretation"/>
                 </observation>
@@ -628,7 +628,7 @@
               <code code="76689-9" codeSystem="2.16.840.1.113883.6.1" displayName="Sex Assigned At Birth"/>
               <statusCode code="completed"/>
               <!-- effectiveTime if present should match birthTime -->
-              <effectiveTime value="20060928024313"/>
+              <effectiveTime value="19461018020302"/>
               <value xsi:type="CD" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" code="M" displayName="Male"/>
             </observation>
           </entry>
@@ -646,7 +646,7 @@
               </code>
               <statusCode code="completed"/>
               <effectiveTime>
-                <low value="12560917"/>
+                <low value="11961007"/>
               </effectiveTime>
               <value xsi:type="ST">Jedi High Council Member, Jedi Temple, Temple District, Galactic
                 City, Coruscant</value>
@@ -661,8 +661,8 @@
               <code code="420008001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Travel"/>
               <statusCode code="completed"/>
               <effectiveTime>
-                <low value="20061002"/>
-                <high value="20061023"/>
+                <low value="19461022"/>
+                <high value="19461112"/>
               </effectiveTime>
               <participant typeCode="LOC">
                 <participantRole classCode="TERR">
@@ -723,7 +723,7 @@
                 <translation code="74728-7" displayName="Vital signs, weight, height, head circumference, oximetry, BMI, and BSA panel " codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
               </code>
               <statusCode code="completed"/>
-              <effectiveTime value="19960205124848-0500"/>
+              <effectiveTime value="19360225120837-0500"/>
               <!-- Each vital sign should be its own component. Note that systolic and diastolic BP must be separate components-->
               <component>
                 <observation classCode="OBS" moodCode="EVN">
@@ -736,7 +736,7 @@
                     <reference value="#SystolicBP_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19960205124848-0500"/>
+                  <effectiveTime value="19360225120837-0500"/>
                   <!-- Example of Value with UCUM unit. Note that mixed metric and imperial units used in this example-->
                   <value xsi:type="PQ" value="120" unit="mm[Hg]"/>
                   <!-- Additional information of interpretation and/or reference range may be included but are optional-->
@@ -752,7 +752,7 @@
                     <reference value="#DiastolicBP_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19960205124848-0500"/>
+                  <effectiveTime value="19360225120837-0500"/>
                   <value xsi:type="PQ" value="80" unit="mm[Hg]"/>
                 </observation>
               </component>
@@ -766,7 +766,7 @@
                     <reference value="#Pulse_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19960205124848-0500"/>
+                  <effectiveTime value="19360225120837-0500"/>
                   <value xsi:type="PQ" value="80" unit="/min"/>
                 </observation>
               </component>
@@ -780,7 +780,7 @@
                     <reference value="#Temp_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19960205124848-0500"/>
+                  <effectiveTime value="19360225120837-0500"/>
                   <!-- Note the UCUM conformant way to specify degrees Farenheit-->
                   <value xsi:type="PQ" value="99.0" unit="[degF]"/>
                 </observation>
@@ -795,7 +795,7 @@
                     <reference value="#RespRate_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19960205124848-0500"/>
+                  <effectiveTime value="19360225120837-0500"/>
                   <value xsi:type="PQ" value="18" unit="/min"/>
                 </observation>
               </component>
@@ -809,7 +809,7 @@
                     <reference value="#Height_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19960205124848-0500"/>
+                  <effectiveTime value="19360225120837-0500"/>
                   <!-- Note the UCUM conformant way to specify inches-->
                   <value xsi:type="PQ" value="43" unit="[in_us]"/>
                 </observation>
@@ -824,7 +824,7 @@
                     <reference value="#Weight_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19960205124848-0500"/>
+                  <effectiveTime value="19360225120837-0500"/>
                   <!-- Note the UCUM conformant way to specify pounds-->
                   <value xsi:type="PQ" value="39.9" unit="[lb_av]"/>
                 </observation>
@@ -839,7 +839,7 @@
                     <reference value="#BMI_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19960205124848-0500"/>
+                  <effectiveTime value="19360225120837-0500"/>
                   <value xsi:type="PQ" value="17.58" unit="kg/m2"/>
                 </observation>
               </component>
@@ -853,7 +853,7 @@
                     <reference value="#SPO2_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19960205124848-0500"/>
+                  <effectiveTime value="19360225120837-0500"/>
                   <value xsi:type="PQ" value="98" unit="%"/>
                 </observation>
               </component>
