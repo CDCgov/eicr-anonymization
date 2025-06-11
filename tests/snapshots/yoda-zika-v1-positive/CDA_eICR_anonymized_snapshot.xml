@@ -37,7 +37,7 @@
       <telecom use="WP" value="mailto:urapjk@example.com"/>
       <patient>
         <name use="L">
-          <prefix>Master</prefix>
+          <prefix>REMOVED</prefix>
           <!-- yoda doesn't have a canonical given name but the person that came up with yoda's name
           use this as his first name -->
           <given>Kier</given>
@@ -83,16 +83,16 @@
       <telecom use="WP" value="mailto:revuh@example.com"/>
       <assignedPerson>
         <name>
-          <prefix>Dr</prefix>
+          <prefix>REMOVED</prefix>
           <given>Hohass</given>
           <family>Solo</family>
-          <suffix>MD</suffix>
+          <suffix>REMOVED</suffix>
         </name>
       </assignedPerson>
       <representedOrganization>
         <!-- NPI -->
         <id extension="XX60155348" root="2.16.840.1.113883.4.6"/>
-        <name>School of Separatist Alliance Clinic &amp; Health Center</name>
+        <name>Institute of Cloud City Neighbourhood Health Center</name>
         <telecom use="WP" value="tel:+0-920-551-0520"/>
         <addr use="WP">
           <streetAddressLine>177 Bright Tree Mustafar Mining Plaza, Suite 8038</streetAddressLine>
@@ -113,7 +113,7 @@
       <representedCustodianOrganization>
         <!-- Custodian ID (NPI) -->
         <id extension="XX60155348" root="2.16.840.1.113883.4.6"/>
-        <name>School of Separatist Alliance Clinic &amp; Health Center</name>
+        <name>Institute of Cloud City Neighbourhood Health Center</name>
         <telecom use="WP" value="tel:+0-920-551-0520"/>
         <addr use="WP">
           <streetAddressLine>177 Bright Tree Mustafar Mining Plaza, Suite 8038</streetAddressLine>
@@ -224,7 +224,7 @@
           <!-- [C-CDA R2.0] Plan of Treatment Section (V2) -->
           <templateId root="2.16.840.1.113883.10.20.22.2.22.1" extension="2014-06-09"/>
           <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of Treatment"/>
-          <title>Plan of Treatment</title>
+          <title>REMOVED</title>
           <text>
             <table>
               <thead>
@@ -239,8 +239,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Zika virus envelope (E) gene [Presence] in Serum by Probe and target
-                    amplification method</td>
+                  <td>REMOVED</td>
                   <td>80825-3</td>
                   <td>LOINC</td>
                   <td>2.16.840.1.114222.4.11.7508</td>
@@ -285,7 +284,7 @@
           <!-- [C-CDA R2.1] Encounters Section (entries required) (V3) -->
           <templateId root="2.16.840.1.113883.10.20.22.2.22.1" extension="2015-08-01"/>
           <code code="46240-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of encounters"/>
-          <title>Encounters</title>
+          <title>REMOVED</title>
           <text>REMOVED</text>
         </section>
       </component>
@@ -295,7 +294,7 @@
         <section>
           <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.4"/>
           <code code="10164-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HISTORY OF PRESENT ILLNESS"/>
-          <title>History of Present Illness</title>
+          <title>REMOVED</title>
           <text>REMOVED</text>
         </section>
       </component>
@@ -308,7 +307,7 @@
           <!-- [C-CDA R2.0] Medications Administered Section (V2) -->
           <templateId root="2.16.840.1.113883.10.20.22.2.38" extension="2014-06-09"/>
           <code code="29549-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Medications Administered"/>
-          <title>Medications Administered</title>
+          <title>REMOVED</title>
           <text>REMOVED</text>
         </section>
       </component>
@@ -325,7 +324,7 @@
           <!-- [C-CDA R2.1] Problem Section (entries required) (V3) -->
           <templateId root="2.16.840.1.113883.10.20.22.2.5.1" extension="2015-08-01"/>
           <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem List"/>
-          <title>Problems</title>
+          <title>REMOVED</title>
           <text>
             <table>
               <thead>
@@ -448,7 +447,7 @@
         <section>
           <templateId root="2.16.840.1.113883.10.20.22.2.12"/>
           <code code="29299-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Reason for visit"/>
-          <title>Reason for Visit</title>
+          <title>REMOVED</title>
           <text>REMOVED</text>
         </section>
       </component>
@@ -465,7 +464,7 @@
           <!-- [C-CDA R2.1] Results Section (entries required) (V3) -->
           <templateId root="2.16.840.1.113883.10.20.22.2.3.1" extension="2015-08-01"/>
           <code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Relevant diagnostic tests and/or laboratory data"/>
-          <title>Results</title>
+          <title>REMOVED</title>
           <text>
             <table>
               <thead>
@@ -476,8 +475,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Zika virus envelope (E) gene [Presence] in Serum by Probe and target
-                    amplification method</td>
+                  <td>REMOVED</td>
                   <td>REMOVED</td>
                 </tr>
                 <tr>
@@ -500,14 +498,13 @@
                           </thead>
                           <tbody>
                             <tr>
-                              <td>Zika virus envelope (E) gene [Presence] in Serum by Probe and
-                                target amplification method</td>
+                              <td>REMOVED</td>
                               <td>80825-3</td>
                               <td>LOINC</td>
                               <td>2.16.840.1.114222.4.11.7508</td>
                               <td>REMOVED</td>
                               <td>Positive</td>
-                              <td>High</td>
+                              <td>REMOVED</td>
                               <td>REMOVED</td>
                               <td>Abnormal</td>
                             </tr>
@@ -565,7 +562,7 @@
           <!-- [C-CDA 2.1] Social History Section (V3) -->
           <templateId root="2.16.840.1.113883.10.20.22.2.17" extension="2015-08-01"/>
           <code code="29762-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Social History"/>
-          <title>Social History</title>
+          <title>REMOVED</title>
           <text>
             <table>
               <thead>
@@ -577,7 +574,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Sex Assigned At Birth</td>
+                  <td>REMOVED</td>
                   <td>Male</td>
                   <td>1125</td>
                 </tr>
@@ -593,7 +590,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Employment detail</td>
+                  <td>REMOVED</td>
                   <td>REMOVED</td>
                   <td>1275</td>
                 </tr>
@@ -648,8 +645,7 @@
               <effectiveTime>
                 <low value="11961007"/>
               </effectiveTime>
-              <value xsi:type="ST">Jedi High Council Member, Jedi Temple, Temple District, Galactic
-                City, Coruscant</value>
+              <value xsi:type="ST">REMOVED</value>
             </observation>
           </entry>
           <!-- travel history -->
@@ -680,18 +676,18 @@
           <!-- [C-CDA R2.1] Vital Signs Section (entries required) (V3) -->
           <templateId root="2.16.840.1.113883.10.20.22.2.4.1" extension="2015-08-01"/>
           <code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Vital Signs"/>
-          <title>Vital Signs (Last Filed)</title>
+          <title>REMOVED</title>
           <text>
             <table>
               <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Blood Pressure</th>
+                  <th>REMOVED</th>
                   <th>Pulse</th>
-                  <th>Temperature</th>
-                  <th>Respiratory Rate</th>
-                  <th>Height</th>
-                  <th>Weight</th>
+                  <th>REMOVED</th>
+                  <th>REMOVED</th>
+                  <th>REMOVED</th>
+                  <th>REMOVED</th>
                   <th>BMI</th>
                   <th>SpO2</th>
                 </tr>

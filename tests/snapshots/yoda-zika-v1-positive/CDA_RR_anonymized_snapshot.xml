@@ -34,7 +34,7 @@
       <telecom use="WP" value="mailto:swn.51@example.com"/>
       <patient>
         <name use="L">
-          <prefix>Master</prefix>
+          <prefix>REMOVED</prefix>
           <!-- yoda doesn't have a canonical given name but the person that came up with yoda's name
           use this as his first name -->
           <given>Kier</given>
@@ -86,7 +86,7 @@
     <assignedCustodian>
       <representedCustodianOrganization>
         <id root="2.16.840.1.114222.4.1.217446"/>
-        <name>Pharmacy of Core Worlds.</name>
+        <name>Academy of Mygeeto Neighbourhood Pharmacy.</name>
         <telecom use="WP" value="tel:+4(563)724-9618"/>
         <addr>
           <streetAddressLine>6008 Sea Avenue, Suite 038</streetAddressLine>
@@ -122,10 +122,10 @@
       <!-- assignedPerson in the eICR (the provider) -->
       <informationRecipient>
         <name>
-          <prefix>Dr</prefix>
+          <prefix>REMOVED</prefix>
           <given>Hohass</given>
           <family>Solo</family>
-          <suffix>MD</suffix>
+          <suffix>REMOVED</suffix>
         </name>
       </informationRecipient>
 
@@ -134,7 +134,7 @@
         <!-- NPI for the facility -->
         <id extension="XX92347846" root="2.16.840.1.113883.4.6"/>
         <!-- Provider Facility/Office Name-->
-        <name>Academy of Skako Minor Laboratory &amp; Laboratory</name>
+        <name> Jabiim University Medical Center &amp; Medical Center</name>
         <addr use="WP">
           <streetAddressLine>431 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
           <city>Cloud City</city>
@@ -179,17 +179,17 @@
           <telecom use="WP" value="mailto:wag2@example.com"/>
           <assignedPerson>
             <name>
-              <prefix>Dr</prefix>
+              <prefix>REMOVED</prefix>
               <given>Hohass</given>
               <family>Solo</family>
-              <suffix>MD</suffix>
+              <suffix>REMOVED</suffix>
             </name>
           </assignedPerson>
           <representedOrganization>
             <!-- Represented Organization-->
             <id extension="XX92347846" root="2.16.840.1.113883.4.6"/>
             <!-- Provider Facility/Office Name-->
-            <name>Academy of Skako Minor Laboratory &amp; Laboratory</name>
+            <name> Jabiim University Medical Center &amp; Medical Center</name>
             <addr use="WP">
               <streetAddressLine>431 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
               <city>Cloud City</city>
@@ -222,7 +222,7 @@
           </location>
           <serviceProviderOrganization>
             <!-- Provider Facility/Office Name-->
-            <name>Academy of Skako Minor Laboratory &amp; Laboratory</name>
+            <name> Jabiim University Medical Center &amp; Medical Center</name>
             <telecom use="WP" value="tel:+0-920-551-0520"/>
             <telecom use="WP" value="fax:+9-614-237-2841"/>
             <addr use="WP">
@@ -456,7 +456,7 @@
                               <templateId root="2.16.840.1.113883.10.20.15.2.3.26" extension="2017-04-01"/>
                               <id root="8709a342-56ad-425a-b7b1-76a16c2dd2d5"/>
                               <code code="RR2" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions" displayName="Determination of reportability reason"/>
-                              <value xsi:type="ST">Reason for determination of reportability</value>
+                              <value xsi:type="ST">REMOVED</value>
                             </observation>
                           </entryRelationship>
                           <!-- Determination of Reportability Rule -->
@@ -466,7 +466,7 @@
                               <templateId root="2.16.840.1.113883.10.20.15.2.3.27" extension="2017-04-01"/>
                               <id root="f2dfdffb-bccb-4ee4-9b6c-0ae82b15ada6"/>
                               <code code="RR3" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions" displayName="Determination of reportability rule"/>
-                              <value xsi:type="ST">Rule used in reportability determination</value>
+                              <value xsi:type="ST">REMOVED</value>
                             </observation>
                           </entryRelationship>
                         </observation>
@@ -500,8 +500,7 @@
                       <!-- [RR R1 STU1] External Reference -->
                       <templateId root="2.16.840.1.113883.10.20.15.2.3.17" extension="2017-04-01"/>
                       <code nullFlavor="OTH">
-                        <originalText>Travel-associated Zika virus case detected. Enhanced
-                          surveillance and follow-up required.</originalText>
+                        <originalText>REMOVED</originalText>
                       </code>
                       <text mediaType="text/html">
                         <reference value="https://qhof.example9969.com"/>
@@ -523,8 +522,7 @@
                       <!-- [RR R1 STU1] External Reference -->
                       <templateId root="2.16.840.1.113883.10.20.15.2.3.17" extension="2017-04-01"/>
                       <code nullFlavor="OTH">
-                        <originalText>Additional specimen collection and testing guidance for Zika
-                          virus</originalText>
+                        <originalText>REMOVED</originalText>
                       </code>
                       <text mediaType="text/html">
                         <reference value="https://gxkwr.example.com/.png"/>
@@ -546,8 +544,7 @@
                       <!-- [RR R1 STU1] External Reference -->
                       <templateId root="2.16.840.1.113883.10.20.15.2.3.17" extension="2017-04-01"/>
                       <code nullFlavor="OTH">
-                        <originalText>Clinical guidance for Zika virus disease treatment and
-                          prevention</originalText>
+                        <originalText>REMOVED</originalText>
                       </code>
                       <text mediaType="text/html">
                         <reference value="https://example136.com/qwv.jpeg"/>
@@ -569,8 +566,7 @@
                       <!-- [RR R1 STU1] External Reference -->
                       <templateId root="2.16.840.1.113883.10.20.15.2.3.17" extension="2017-04-01"/>
                       <code nullFlavor="OTH">
-                        <originalText>For additional questions about Zika virus reporting, contact
-                          the Coruscant Department of Health</originalText>
+                        <originalText>REMOVED</originalText>
                       </code>
                       <text mediaType="text/html">
                         <reference value="https://hfw.example.com/zcog.jpg"/>
