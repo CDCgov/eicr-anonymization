@@ -23,8 +23,6 @@ class Element:
         self,
         element: _Element,
         cda_type: str,
-        type_path: list[str] | None = None,
-        tag_path: list[str] | None = None,
     ):
         """Initialize the Element with its attributes and text content."""
         self.name = element.tag
@@ -37,21 +35,10 @@ class Element:
         self.path = element.getroottree().getpath(element)
         self.line = element.sourceline
 
-        if tag_path and type_path:
-            debug_path = []
-            for type, tag in zip(type_path or [], tag_path or [], strict=True):
-                debug_path.append(f"{type}:{tag}")
-            self.debug_path = "/".join(debug_path)
-        else:
-            self.debug_path = None
-
     def __repr__(self) -> str:
         """Get a string representation of the tag."""
         root_tag = str(self.name).removeprefix("{urn:hl7-org:v3}")
-        if self.debug_path:
-            repr = f"{self.line}|{self.debug_path}|<{root_tag}"
-        else:
-            repr = f"{self.line}|{self.cda_type}| <{root_tag}"
+        repr = f"{self.line}|{self.cda_type}| <{root_tag}"
         for key, value in self.attributes.items():
             root_key = key.removeprefix("{http://www.w3.org/2001/XMLSchema-instance}")
             repr += f' {root_key}="{value}"'
