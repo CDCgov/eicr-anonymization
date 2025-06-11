@@ -17,7 +17,7 @@ def test_snapshot(xml_file, snapshot):
         xml_file (str): Path to XML file to be anonymized
 
     """
-    anonymizer = Anonymizer(seed=1)
+    anonymizer = Anonymizer(reproducible=1)
     dir = xml_file.parent
 
     # Output anonmyized XML tree

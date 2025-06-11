@@ -10,7 +10,7 @@ def test_anonymize_eicr_file_empty_file():
 
     If the file is empty it should raise an etree.XMLSyntaxError.
     """
-    anonymizer = Anonymizer(seed=1)
+    anonymizer = Anonymizer(reproducible=1)
     xml_file = "tests/unit/test_data/empty.xml"
     with pytest.raises(etree.XMLSyntaxError):
         anonymize_eicr_file(xml_file, anonymizer, debug=True)

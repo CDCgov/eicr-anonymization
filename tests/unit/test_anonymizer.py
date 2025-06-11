@@ -9,7 +9,7 @@ def test_anonymize_streetAddressLine_value():
 
     This is not much of a unit test, but will at least flag if anything changes.
     """
-    anonymizer = Anonymizer(seed=1)
+    anonymizer = Anonymizer(reproducible=1)
 
 
     element = etree.Element("streetAddressLine")
@@ -24,7 +24,7 @@ def test_anonymize_streetAddressLine_USPSBoxID_value():
 
     This is not much of a unit test, but will at least flag if anything changes.
     """
-    anonymizer = Anonymizer(seed=1)
+    anonymizer = Anonymizer(reproducible=1)
 
     element = etree.Element("streetAddressLine")
     element.text = "PO Box 123"
