@@ -22,26 +22,26 @@
     <!-- Patient demographic information -->
     <patientRole>
       <!-- Patient ID-->
-      <id extension="XXY-04321133" root="2.16.840.1.113883.19.5"/>
+      <id extension="XXC-86834654" root="2.16.840.1.113883.19.5"/>
       <!--SSN-->
-      <id extension="XX4-28-5328" root="2.16.840.1.113883.4.1"/>
+      <id extension="XX7-43-9872" root="2.16.840.1.113883.4.1"/>
       <addr use="H WP">
         <streetAddressLine>Recipient Recipient Recipient Recipient</streetAddressLine>
-        <city>Taris</city>
+        <city>Kala’uun</city>
         <state>Wild Space</state>
-        <postalCode>PW-068</postalCode>
-        <county>Florrum</county>
-        <country>Galactic Empire</country>
+        <postalCode>ZK-961</postalCode>
+        <county>Kijimi</county>
+        <country>Trade Federation</country>
       </addr>
-      <telecom use="MC WP" value="tel:+0-074-212-1564"/>
-      <telecom use="WP" value="mailto:wylgwvl@example.com"/>
+      <telecom use="MC WP" value="tel:+9-091-579-8050"/>
+      <telecom use="WP" value="mailto:k_y@example.com"/>
       <patient>
         <name use="L">
           <prefix>Master</prefix>
           <!-- yoda doesn't have a canonical given name but the person that came up with yoda's name
           use this as his first name -->
-          <given>Aryssha</given>
-          <family>Rwoh</family>
+          <given>Kier</given>
+          <family>Sward</family>
         </name>
         <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male"/>
         <!-- yoda is 900 years old -->
@@ -69,38 +69,38 @@
   <author>
     <time value="19461202180514+0000"/>
     <assignedAuthor>
-      <id extension="XX13664089" root="2.16.840.1.113883.4.6"/>
+      <id extension="XX84639123" root="2.16.840.1.113883.4.6"/>
       <addr use="H">
-        <streetAddressLine>743 Monument Street</streetAddressLine>
-        <city>Otoh Gunga</city>
+        <streetAddressLine>954 Garden Street</streetAddressLine>
+        <city>Lessu</city>
         <state>Wild Space</state>
-        <postalCode>TK-134</postalCode>
-        <county>Florrum</county>
-        <country>Galactic Empire</country>
+        <postalCode>RY-438</postalCode>
+        <county>Kijimi</county>
+        <country>Trade Federation</country>
       </addr>
-      <telecom use="WP" value="tel:+3-454-560-2768"/>
-      <telecom use="WP" value="fax:+4-673-528-3853"/>
-      <telecom use="WP" value="mailto:wl_n@example.com"/>
+      <telecom use="WP" value="tel:+1-776-939-3137"/>
+      <telecom use="WP" value="fax:+2-580-701-7496"/>
+      <telecom use="WP" value="mailto:i_c@example.com"/>
       <assignedPerson>
         <name>
           <prefix>Dr</prefix>
-          <given>Perrin</given>
-          <family>Rallik</family>
+          <given>Hohass</given>
+          <family>Solo</family>
           <suffix>MD</suffix>
         </name>
       </assignedPerson>
       <representedOrganization>
         <!-- NPI -->
-        <id extension="XX88622794" root="2.16.840.1.113883.4.6"/>
-        <name> Niima Outpost College Neighborhood Pharmacy</name>
-        <telecom use="WP" value="tel:+7-388-799-3629"/>
+        <id extension="XX13278138" root="2.16.840.1.113883.4.6"/>
+        <name> Niima Outpost College Neighbourhood Pharmacy</name>
+        <telecom use="WP" value="tel:+0-920-551-0520"/>
         <addr use="WP">
-          <streetAddressLine>325 Cloud North Plaza, Suite 1496</streetAddressLine>
-          <city>Otoh Gunga</city>
+          <streetAddressLine>773 Bright Tree Mustafar Mining Plaza, Suite 8038</streetAddressLine>
+          <city>Lessu</city>
           <state>Wild Space</state>
-          <postalCode>TK-134</postalCode>
-          <county>Florrum</county>
-          <country>Galactic Empire</country>
+          <postalCode>RY-438</postalCode>
+          <county>Kijimi</county>
+          <country>Trade Federation</country>
         </addr>
       </representedOrganization>
     </assignedAuthor>
@@ -112,16 +112,16 @@
     <assignedCustodian>
       <representedCustodianOrganization>
         <!-- Custodian ID (NPI) -->
-        <id extension="XX88622794" root="2.16.840.1.113883.4.6"/>
-        <name> Niima Outpost College Neighborhood Pharmacy</name>
-        <telecom use="WP" value="tel:+7-388-799-3629"/>
+        <id extension="XX13278138" root="2.16.840.1.113883.4.6"/>
+        <name> Niima Outpost College Neighbourhood Pharmacy</name>
+        <telecom use="WP" value="tel:+0-920-551-0520"/>
         <addr use="WP">
-          <streetAddressLine>325 Cloud North Plaza, Suite 1496</streetAddressLine>
-          <city>Otoh Gunga</city>
+          <streetAddressLine>773 Bright Tree Mustafar Mining Plaza, Suite 8038</streetAddressLine>
+          <city>Lessu</city>
           <state>Wild Space</state>
-          <postalCode>TK-134</postalCode>
-          <county>Florrum</county>
-          <country>Galactic Empire</country>
+          <postalCode>RY-438</postalCode>
+          <county>Kijimi</county>
+          <country>Trade Federation</country>
         </addr>
       </representedCustodianOrganization>
     </assignedCustodian>
