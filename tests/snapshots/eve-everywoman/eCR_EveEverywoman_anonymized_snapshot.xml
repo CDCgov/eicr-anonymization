@@ -26,9 +26,9 @@
         <!-- Patient demographic information -->
         <patientRole>
             <!-- Fake root for sample -->
-            <id extension="XX0432" root="2.16.840.1.113883.19.5"/>
+            <id extension="XX1913" root="2.16.840.1.113883.19.5"/>
             <!--SSN-->
-            <id extension="XX1-13-3428" root="2.16.840.1.113883.4.1"/>
+            <id extension="XX0-85-1632" root="2.16.840.1.113883.4.1"/>
             <!-- For greatest utility to public health, a patient's address 
         should be a home address if available (PostalAddressUse = 'H' or 'HP'); 
         would also request a second address, preferably a work address, (PostalAddressUse='WP') if
@@ -38,16 +38,16 @@
         Characteristics of Home Environment template in the 
         Social History Section to indicate that the patient is homeless. -->
             <addr use="H">
-                <streetAddressLine>5328 Trade Street</streetAddressLine>
-                <city>Garel City</city>
-                <state>SR</state>
-                <postalCode>32747</postalCode>
+                <streetAddressLine>9302 Rebel Street</streetAddressLine>
+                <city>Canto Bight</city>
+                <state>XS</state>
+                <postalCode>80433</postalCode>
                 <!-- Although "county" is not explicitly specified in the 
           US Realm Address, it is not precluded from use and for 
           the purposes of this IG it SHOULD be included. 
           See the IG for more information. -->
-                <county>39931</county>
-                <country>FM</country>
+                <county>08365</county>
+                <country>YG</country>
                 <!-- usablePeriod is an optional element
                      If present and high is missing, this indicates a current addres
                      If present and high is present, this indicates this address is historical
@@ -58,21 +58,21 @@
                 </useablePeriod>
             </addr>
             <!-- Patient Telcom (phone, email, or fax) -->
-            <telecom use="HP" value="tel:+5-761-995-3007"/>
-            <telecom use="WP" value="tel:+4-212-156-4853"/>
+            <telecom use="HP" value="tel:+5-783-101-8329"/>
+            <telecom use="WP" value="tel:+9-160-590-1104"/>
             <!-- Patient Name -->
             <patient>
                 <!-- Patient "legal" (known as/conventional/the one you use) name -->
                 <name use="L">
-                    <given>Wlo</given>
-                    <given qualifier="IN">H</given>
-                    <family>Nemik</family>
+                    <given>Zrz</given>
+                    <given qualifier="IN">X</given>
+                    <family>Karlo</family>
                 </name>
                 <!-- Patient "artist/stage" (includes writer's pseudonym, stage name, etc) name -->
                 <name use="A">
-                    <given>Dedra</given>
-                    <given qualifier="IN">N</given>
-                    <family>Nemik</family>
+                    <given>Lando</given>
+                    <given qualifier="IN">S</given>
+                    <family>Karlo</family>
                 </name>
                 <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
                 <!-- Patient Birthdate -->
@@ -87,22 +87,22 @@
                 <guardian>
                     <!-- Parent/Guardian Address -->
                     <addr use="H">
-                        <streetAddressLine>6408 Trade Street</streetAddressLine>
-                        <city>Garel City</city>
-                        <state>SR</state>
-                        <postalCode>32747</postalCode>
-                        <country>FM</country>
+                        <streetAddressLine>1103 Rebel Street</streetAddressLine>
+                        <city>Canto Bight</city>
+                        <state>XS</state>
+                        <postalCode>80433</postalCode>
+                        <country>YG</country>
                     </addr>
                     <!-- Parent/Guardian phone -->
-                    <telecom use="HP" value="tel:+9-743-739-6655"/>
+                    <telecom use="HP" value="tel:+1-212-577-8588"/>
                     <!-- Parent/Guardian email -->
-                    <telecom value="mailto:yfjda@example.com"/>
+                    <telecom value="mailto:ugh_034@example.com"/>
                     <guardianPerson>
                         <!-- Parent/guardian name -->
                         <name use="L">
-                            <given>Karis</given>
-                            <given qualifier="IN">N</given>
-                            <family>Vta</family>
+                            <given>Cerasus</given>
+                            <given qualifier="IN">S</given>
+                            <family>Gsv</family>
                         </name>
                     </guardianPerson>
                 </guardian>
@@ -128,13 +128,13 @@
             <id root="2.16.840.1.113883.3.72.5.20"/>
             <!--authoring device address - may or may not be same as facility where care provided for case-->
             <addr>
-                <streetAddressLine>2074 Mustafar Mining Drive</streetAddressLine>
-                <city>Garel City</city>
-                <state>SR</state>
-                <postalCode>32747</postalCode>
-                <country>FM</country>
+                <streetAddressLine>5646 Temple Precinct Drive</streetAddressLine>
+                <city>Canto Bight</city>
+                <state>XS</state>
+                <postalCode>80433</postalCode>
+                <country>YG</country>
             </addr>
-            <telecom use="WP" value="tel:+7-(788)555-2112;jwi=4584"/>
+            <telecom use="WP" value="tel:+4-(459)172-9972;mns=8627"/>
             <assignedAuthoringDevice>
                 <manufacturerModelName displayName="Acme"/>
                 <softwareName displayName="Acme EHR"/>
@@ -145,15 +145,15 @@
     <custodian>
         <assignedCustodian>
             <representedCustodianOrganization>
-                <id extension="XX325363" root="2.16.840.1.113883.4.6"/>
-                <name>School of Er´kit Pharmacy and Research Institute</name>
-                <telecom use="WP" value="tel:+2(124)889-3174"/>
+                <id extension="XX896899" root="2.16.840.1.113883.4.6"/>
+                <name>Regional Research Institute and Research Institute of Er´kit</name>
+                <telecom use="WP" value="tel:+5(921)922-2423"/>
                 <addr>
-                    <streetAddressLine>1691 Pau City Lane</streetAddressLine>
-                    <city>Garel City</city>
-                    <state>SR</state>
-                    <postalCode>32747</postalCode>
-                    <country>FM</country>
+                    <streetAddressLine>4079 Old Quarter Lane</streetAddressLine>
+                    <city>Canto Bight</city>
+                    <state>XS</state>
+                    <postalCode>80433</postalCode>
+                    <country>YG</country>
                 </addr>
             </representedCustodianOrganization>
         </assignedCustodian>
@@ -163,7 +163,7 @@
     <relatedDocument typeCode="RPLC">
         <parentDocument>
             <!-- ClinicalDocument/id of the document to replace -->
-            <id root="2.16.840.1.113883.9.9.9.9.9" extension="xx585293-qp90-290r-d614-1e5guh21r431"/>
+            <id root="2.16.840.1.113883.9.9.9.9.9" extension="xx129499-hp57-367a-i447-1n9bdu43l896"/>
             <!-- setId of the document to replace -->
             <setId root="2.16.840.1.113883.3.117.1.1.5.2.1.1.1" extension="31"/>
             <!-- versionNumber of the document to replace -->
@@ -175,7 +175,7 @@
     <componentOf>
         <encompassingEncounter>
             <!-- Encounter iD-->
-            <id extension="XX22746" root="2.16.840.1.113883.19"/>
+            <id extension="XX69180" root="2.16.840.1.113883.19"/>
             <!-- Where a trigger occurs outside of an encounter use code="PHC2237" |
             codeSystem="2.16.840.1.114222.4.5.274" | codeSystemName="PHIN VS (CDC Local Coding
             System)" 
@@ -195,30 +195,30 @@
             <!-- Provider: Provider responsible for the patient's care when the case was triggered -->
             <responsibleParty>
                 <assignedEntity>
-                    <id extension="XX41014559513" root="2.16.840.1.113883.4.6"/>
+                    <id extension="XX53754734160" root="2.16.840.1.113883.4.6"/>
                     <!-- Provider Address: Address of the provider responsibe for the patient's care
                     when the case was triggered -->
                     <addr>
-                        <streetAddressLine>2074 Mustafar Mining Drive</streetAddressLine>
-                        <city>Garel City</city>
-                        <state>SR</state>
-                        <postalCode>32747</postalCode>
-                        <country>FM</country>
+                        <streetAddressLine>5646 Temple Precinct Drive</streetAddressLine>
+                        <city>Canto Bight</city>
+                        <state>XS</state>
+                        <postalCode>80433</postalCode>
+                        <country>YG</country>
                     </addr>
                     <!-- Provider Telecom: A telecom address (phone, email, fax, etc.) for the
                     provider responsibe for the patient's care when the case was triggered -->
                     <!-- Provider Phone -->
-                    <telecom use="WP" value="tel:+4(345)456-0276"/>
+                    <telecom use="WP" value="tel:+6(679)468-8121"/>
                     <!-- Provider Fax -->
-                    <telecom use="WP" value="fax:+8(467)352-8385"/>
+                    <telecom use="WP" value="fax:+4(998)596-3310"/>
                     <!-- Provider Email -->
-                    <telecom use="WP" value="mailto:gw_cn@example.com"/>
+                    <telecom use="WP" value="mailto:v_y@example.com"/>
                     <assignedPerson>
                         <!-- Provider Name: Name of the provider responsibe for the patient's care
                         when the case was triggered -->
                         <name>
-                            <given>Perrin</given>
-                            <family>Rook</family>
+                            <given>Kell</given>
+                            <family>Ackbar</family>
                             <suffix qualifier="AC">M.D.</suffix>
                         </name>
                     </assignedPerson>
@@ -229,16 +229,16 @@
                         <!-- Provider Facility/Office Name: The name of the office or facility of
                         the provider responsible for the patient's care when the case was triggered
                         (not necessarily where care was provided to the patient) -->
-                        <name>Neighbourhood Urgent Care and Health Center of Anoat</name>
+                        <name>Neighbourhood Health System of Er´kit</name>
                         <!-- Provider Facility/Office Address: The address of the office or facility
                         of the provider responsible for the patient's care when the case was
                         triggered (not necessarily where care was provided to the patient) -->
                         <addr>
-                            <streetAddressLine>2074 Mustafar Mining Drive</streetAddressLine>
-                            <city>Garel City</city>
-                            <state>SR</state>
-                            <postalCode>32747</postalCode>
-                            <country>FM</country>
+                            <streetAddressLine>5646 Temple Precinct Drive</streetAddressLine>
+                            <city>Canto Bight</city>
+                            <state>XS</state>
+                            <postalCode>80433</postalCode>
+                            <country>YG</country>
                         </addr>
                     </representedOrganization>
                 </assignedEntity>
@@ -250,7 +250,7 @@
                 <healthCareFacility>
                     <!-- Facility Id: Identification code for the facility in which care was
                     provided when the case was triggered (if available, the NPI SHALL be provided) -->
-                    <id extension="XX367388799" root="2.16.840.1.113883.4.6"/>
+                    <id extension="XX687357123" root="2.16.840.1.113883.4.6"/>
                     <!-- Facility Type: The type of facility in which care was provided when the
                     case was triggered -->
                     <code code="OF" codeSystem="2.16.840.1.113883.5.111" displayName="Outpatient facility"/>
@@ -259,11 +259,11 @@
                     organization e.g Kaiser Vacaville within Kaiser North) -->
                     <location>
                         <addr>
-                            <streetAddressLine>1691 Pau City Lane</streetAddressLine>
-                            <city>Garel City</city>
-                            <state>SR</state>
-                            <postalCode>32747</postalCode>
-                            <country>FM</country>
+                            <streetAddressLine>4079 Old Quarter Lane</streetAddressLine>
+                            <city>Canto Bight</city>
+                            <state>XS</state>
+                            <postalCode>80433</postalCode>
+                            <country>YG</country>
                         </addr>
                     </location>
                     <!-- Facility Contact: Contact information for the facility in which care was
@@ -271,22 +271,22 @@
                     <serviceProviderOrganization>
                         <!-- Facility Contact Name: The contact name for the facility in which care
                         was provided when the case was triggered -->
-                        <name>School of Er´kit Pharmacy and Research Institute</name>
+                        <name>Regional Research Institute and Research Institute of Er´kit</name>
                         <!-- Facility Contact Telecom: A contact telecom address (phone, email,
                         fax,etc.) for the facility in which care was provided when the case was
                         triggered -->
                         <!-- Facility Phone -->
-                        <telecom use="WP" value="tel:  3+(629)-325-1496"/>
+                        <telecom use="WP" value="tel:  9+(268)-913-7893"/>
                         <!-- Facility Fax -->
-                        <telecom use="WP" value="fax:  9+(225)-354-0218"/>
+                        <telecom use="WP" value="fax:  5+(133)-724-7348"/>
                         <!-- Facility Contact Address: The contact address of the facility in which
                         care was provided when the case was triggered -->
                         <addr>
-                            <streetAddressLine>1691 Pau City Lane</streetAddressLine>
-                            <city>Garel City</city>
-                            <state>SR</state>
-                            <postalCode>32747</postalCode>
-                            <country>FM</country>
+                            <streetAddressLine>4079 Old Quarter Lane</streetAddressLine>
+                            <city>Canto Bight</city>
+                            <state>XS</state>
+                            <postalCode>80433</postalCode>
+                            <country>YG</country>
                         </addr>
                     </serviceProviderOrganization>
                 </healthCareFacility>
@@ -1510,7 +1510,7 @@
                         <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
                             <!-- [C-CDA 2.1] Immunization Activity (V3) -->
                             <templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
-                            <id root="00000000-5CF3-EC63-0513-4A4838595787" extension="XX109-2_6-7_1.5.2.5.7.8.25923.59.3346.228.5_85923"/>
+                            <id root="00000000-5CF3-EC63-0513-4A4838595787" extension="XX538-6_0-6_7.6.8.1.1.2.27612.31.8734.237.5_21364"/>
                             <statusCode code="completed"/>
                             <effectiveTime value="19420814"/>
                             <routeCode nullFlavor="NI"/>
@@ -1532,7 +1532,7 @@
                         <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
                             <!-- [C-CDA 2.1] Immunization Activity (V3) -->
                             <templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
-                            <id root="00000000-5CF3-EC63-0513-4A4838595787" extension="XX138-7_1-4_3.0.6.5.6.2.31207.72.0081.167.8_29295"/>
+                            <id root="00000000-5CF3-EC63-0513-4A4838595787" extension="XX750-3_2-1_9.4.5.0.6.9.66636.34.7399.480.3_68567"/>
                             <statusCode code="completed"/>
                             <effectiveTime value="19420814"/>
                             <routeCode nullFlavor="NI"/>
@@ -1825,11 +1825,11 @@
                                 <templateId root="2.16.840.1.113883.10.20.15.2.4.4" extension="2021-01-01"/>
                                 <participantRole classCode="TERR">
                                     <addr>
-                                        <streetAddressLine>67 Dock Archive Road</streetAddressLine>
-                                        <city>Taris</city>
-                                        <state>UC</state>
-                                        <postalCode>0886</postalCode>
-                                        <country>FM</country>
+                                        <streetAddressLine>93 Mustafar Mining Old Road</streetAddressLine>
+                                        <city>Hanna City</city>
+                                        <state>SI</state>
+                                        <postalCode>4976</postalCode>
+                                        <country>YG</country>
                                     </addr>
                                 </participantRole>
                             </participant>
@@ -1878,8 +1878,8 @@
                                 <participantRole>
                                     <playingEntity classCode="PSN">
                                         <name use="L">
-                                            <given>Phel</given>
-                                            <family>Gerrera</family>
+                                            <given>Sana</given>
+                                            <family>Kant</family>
                                         </name>
                                     </playingEntity>
                                 </participantRole>
@@ -1949,8 +1949,8 @@
                                 <participantRole classCode="TERR">
                                     <!-- Address specific to city -->
                                     <addr>
-                                        <country>VV</country>
-                                        <city>Galactic City</city>
+                                        <country>II</country>
+                                        <city>Kala’uun</city>
                                     </addr>
                                 </participantRole>
                             </participant>
@@ -2029,9 +2029,9 @@
                             <participant typeCode="LOC">
                                 <participantRole classCode="TERR">
                                     <addr>
-                                        <country>JS</country>
-                                        <city>Theed</city>
-                                        <state>NP</state>
+                                        <country>NF</country>
+                                        <city>Niima Outpost</city>
+                                        <state>EN</state>
                                     </addr>
                                 </participantRole>
                             </participant>
@@ -2053,9 +2053,9 @@
                             <participant typeCode="LOC">
                                 <participantRole classCode="TERR">
                                     <addr>
-                                        <country>CP</country>
-                                        <city>Nabat</city>
-                                        <state>OWV</state>
+                                        <country>QT</country>
+                                        <city>Garel City</city>
+                                        <state>VHW</state>
                                     </addr>
                                 </participantRole>
                             </participant>
@@ -2077,11 +2077,11 @@
                             <participant typeCode="LOC">
                                 <participantRole classCode="TERR">
                                     <addr>
-                                        <streetAddressLine>1742 N Coruscant Industrial Jedi Archive Rd</streetAddressLine>
-                                        <city>Keren</city>
-                                        <state>UC</state>
-                                        <postalCode>0886</postalCode>
-                                        <country>FM</country>
+                                        <streetAddressLine>4843 N Imperial Center Coruscant Industrial Rd</streetAddressLine>
+                                        <city>Cloud City</city>
+                                        <state>SI</state>
+                                        <postalCode>4976</postalCode>
+                                        <country>YG</country>
                                     </addr>
                                 </participantRole>
                             </participant>
@@ -2192,18 +2192,18 @@
                             </value>
                             <participant typeCode="IND">
                                 <participantRole classCode="ROL">
-                                    <id root="58822180-ab0d-42e4-90c6-35336bf55654" extension="XX567"/>
+                                    <id root="58822180-ab0d-42e4-90c6-35336bf55654" extension="XX099"/>
                                     <!-- eICR Data element: Employer address -->
                                     <addr>
-                                        <streetAddressLine>Main St</streetAddressLine>
-                                        <city>Jedha City</city>
-                                        <state>Core Worlds</state>
+                                        <streetAddressLine>Imperial St</streetAddressLine>
+                                        <city>Keldabe</city>
+                                        <state>Expansion Region</state>
                                     </addr>
                                     <!-- eICR Data element: Employer phone -->
                                     <telecom use="WP" value="REMOVED"/>
                                     <playingEntity>
                                         <!-- eICR Data element: Employer name -->
-                                        <name>Bracca Neighbourhood Hospital</name>
+                                        <name>College of Hanna City Neighbourhood Clinic</name>
                                     </playingEntity>
                                 </participantRole>
                             </participant>
@@ -2837,21 +2837,21 @@
                                                 the same 
                              then they will have the same identifying and contact details -->
                                                 <participantRole>
-                                                    <id extension="XX589077" root="2.16.840.1.113883.4.6"/>
+                                                    <id extension="XX512372" root="2.16.840.1.113883.4.6"/>
                                                     <code code="RR8" displayName="Responsible Agency" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                                                     <addr use="WP">
-                                                        <streetAddressLine>4376 Bright Tree Tree
+                                                        <streetAddressLine>5309 Glacier Alderaan Memorial
  Drive</streetAddressLine>
                                                         <city/>
                                                         <state>Deep Core</state>
-                                                        <postalCode>32747</postalCode>
+                                                        <postalCode>80433</postalCode>
                                                     </addr>
-                                                    <telecom use="WP" value="tel:+1-968-665-3140"/>
-                                                    <telecom use="WP" value="fax:+7-792-484-7487"/>
-                                                    <telecom use="WP" value="mailto:thjfp@example.com"/>
-                                                    <telecom use="WP" value="https://lke.example8.com"/>
+                                                    <telecom use="WP" value="tel:+8-232-751-2008"/>
+                                                    <telecom use="WP" value="fax:+3-116-554-2541"/>
+                                                    <telecom use="WP" value="mailto:un@example.com"/>
+                                                    <telecom use="WP" value="https://example6.com"/>
                                                     <playingEntity>
-                                                        <name>Academy Regional Urgent Care and Hospital of Onderon</name>
+                                                        <name>Brendok Laboratory</name>
                                                         <desc>Responsible Agency Description</desc>
                                                     </playingEntity>
                                                 </participantRole>
@@ -2866,21 +2866,21 @@
                                                 the same 
                              then they will have the same identifying and contact details -->
                                                 <participantRole>
-                                                    <id extension="XX589077" root="2.16.840.1.113883.4.6"/>
+                                                    <id extension="XX512372" root="2.16.840.1.113883.4.6"/>
                                                     <code code="RR12" displayName="Rules Authoring Agency" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                                                     <addr use="WP">
-                                                        <streetAddressLine>4376 Bright Tree Tree
+                                                        <streetAddressLine>5309 Glacier Alderaan Memorial
  Drive</streetAddressLine>
-                                                        <city>Kaadara</city>
+                                                        <city>Lessu</city>
                                                         <state>Deep Core</state>
-                                                        <postalCode>32747</postalCode>
+                                                        <postalCode>80433</postalCode>
                                                     </addr>
-                                                    <telecom use="WP" value="tel:+1-968-665-3140"/>
-                                                    <telecom use="WP" value="fax:+7-792-484-7487"/>
-                                                    <telecom use="WP" value="mailto:xso_15@example.com"/>
-                                                    <telecom use="WP" value="https://zs.example16546.com/ao.png"/>
+                                                    <telecom use="WP" value="tel:+8-232-751-2008"/>
+                                                    <telecom use="WP" value="fax:+3-116-554-2541"/>
+                                                    <telecom use="WP" value="mailto:t@example.com"/>
+                                                    <telecom use="WP" value="https://kguhc.example333.com"/>
                                                     <playingEntity>
-                                                        <name>Academy Regional Urgent Care and Hospital of Onderon</name>
+                                                        <name>Brendok Laboratory</name>
                                                         <desc>Rules Authoring Agency Description</desc>
                                                     </playingEntity>
                                                 </participantRole>
@@ -2891,21 +2891,21 @@
                                                 <!-- [RR R1S1] Routing Agency -->
                                                 <templateId root="2.16.840.1.113883.10.20.15.2.4.1" extension="2017-04-01"/>
                                                 <participantRole>
-                                                    <id extension="XX299593" root="2.16.840.1.113883.4.6"/>
+                                                    <id extension="XX671614" root="2.16.840.1.113883.4.6"/>
                                                     <code code="RR7" displayName="Routing Entity" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                                                     <addr use="WP">
-                                                        <streetAddressLine>4376 Bright Tree Tree
+                                                        <streetAddressLine>5309 Glacier Alderaan Memorial
  Drive</streetAddressLine>
-                                                        <city>Kaadara</city>
+                                                        <city>Lessu</city>
                                                         <state>Deep Core</state>
-                                                        <postalCode>32747</postalCode>
+                                                        <postalCode>80433</postalCode>
                                                     </addr>
-                                                    <telecom use="WP" value="tel:+1-968-665-3140"/>
-                                                    <telecom use="WP" value="fax:+7-792-484-7487"/>
-                                                    <telecom use="WP" value="mailto:pra.eiu@example.com"/>
-                                                    <telecom use="WP" value="https://gu.example00932.com"/>
+                                                    <telecom use="WP" value="tel:+8-232-751-2008"/>
+                                                    <telecom use="WP" value="fax:+3-116-554-2541"/>
+                                                    <telecom use="WP" value="mailto:xhzerd@example.com"/>
+                                                    <telecom use="WP" value="https://hyyg.example34.com/anytn.jpg"/>
                                                     <playingEntity>
-                                                        <name> Shili University Neighborhood Research Institute + Urgent Care</name>
+                                                        <name>Lessu Neighborhood Clinic</name>
                                                         <desc>Routing Agency Description</desc>
                                                     </playingEntity>
                                                 </participantRole>

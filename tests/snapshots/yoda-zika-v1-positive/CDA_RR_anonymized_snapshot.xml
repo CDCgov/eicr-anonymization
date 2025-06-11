@@ -19,26 +19,26 @@
     <!-- Patient demographic information -->
     <patientRole>
       <!-- Patient ID-->
-      <id extension="XXY-04321133" root="2.16.840.1.113883.19.5"/>
+      <id extension="XXK-69521797" root="2.16.840.1.113883.19.5"/>
       <!--SSN-->
-      <id extension="XX4-28-5328" root="2.16.840.1.113883.4.1"/>
+      <id extension="XX3-09-2219" root="2.16.840.1.113883.4.1"/>
       <addr use="H WP">
         <streetAddressLine>Recipient Recipient Recipient Recipient</streetAddressLine>
-        <city>Taris</city>
+        <city>Kala’uun</city>
         <state>Wild Space</state>
-        <postalCode>PW-068</postalCode>
-        <county>Florrum</county>
-        <country>Galactic Empire</country>
+        <postalCode>ZK-961</postalCode>
+        <county>Kijimi</county>
+        <country>Trade Federation</country>
       </addr>
-      <telecom use="MC WP" value="tel:+0-074-212-1564"/>
-      <telecom use="WP" value="mailto:wylgwvl@example.com"/>
+      <telecom use="MC WP" value="tel:+9-091-579-8050"/>
+      <telecom use="WP" value="mailto:u_3@example.com"/>
       <patient>
         <name use="L">
           <prefix>Master</prefix>
           <!-- yoda doesn't have a canonical given name but the person that came up with yoda's name
           use this as his first name -->
-          <given>Aryssha</given>
-          <family>Rwoh</family>
+          <given>Kier</given>
+          <family>Sward</family>
         </name>
         <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male"/>
         <!-- yoda is 900 years old -->
@@ -67,13 +67,13 @@
     <assignedAuthor>
       <id root="2.16.840.1.114222.4.1.217446"/>
       <addr>
-        <streetAddressLine>1366 Station Avenue, Suite 641</streetAddressLine>
-        <city>Otoh Gunga</city>
-        <state>AC</state>
-        <postalCode>45595</postalCode>
-        <country>XC</country>
+        <streetAddressLine>6001 Sea Avenue, Suite 038</streetAddressLine>
+        <city>Lessu</city>
+        <state>LU</state>
+        <postalCode>37705</postalCode>
+        <country>YG</country>
       </addr>
-      <telecom use="WP" value="tel:+3(434)545-6027"/>
+      <telecom use="WP" value="tel:+4(563)724-9618"/>
       <assignedAuthoringDevice>
         <manufacturerModelName displayName="APHL"/>
         <softwareName displayName="AIMS"/>
@@ -86,14 +86,14 @@
     <assignedCustodian>
       <representedCustodianOrganization>
         <id root="2.16.840.1.114222.4.1.217446"/>
-        <name>Urgent Care of Mustafar.</name>
-        <telecom use="WP" value="tel:+3(434)545-6027"/>
+        <name>Academy of Mapuzo Neighbourhood Medical Center.</name>
+        <telecom use="WP" value="tel:+4(563)724-9618"/>
         <addr>
-          <streetAddressLine>1366 Station Avenue, Suite 641</streetAddressLine>
-          <city>Otoh Gunga</city>
-          <state>AC</state>
-          <postalCode>45595</postalCode>
-          <country>XC</country>
+          <streetAddressLine>6001 Sea Avenue, Suite 038</streetAddressLine>
+          <city>Lessu</city>
+          <state>LU</state>
+          <postalCode>37705</postalCode>
+          <country>YG</country>
         </addr>
       </representedCustodianOrganization>
     </assignedCustodian>
@@ -107,24 +107,24 @@
   <informationRecipient typeCode="PRCP">
     <intendedRecipient>
       <!-- Provider ID (NPI) -->
-      <id extension="XX73528385" root="2.16.840.1.113883.4.6"/>
+      <id extension="XX18282809" root="2.16.840.1.113883.4.6"/>
       <addr use="H">
-        <streetAddressLine>335 Bright Tree Street</streetAddressLine>
-        <city>Kaadara</city>
+        <streetAddressLine>490 City Street</streetAddressLine>
+        <city>Cloud City</city>
         <state>Wild Space</state>
-        <postalCode>PN-416</postalCode>
-        <county>Florrum</county>
-        <country>Galactic Empire</country>
+        <postalCode>RY-438</postalCode>
+        <county>Kijimi</county>
+        <country>Trade Federation</country>
       </addr>
-      <telecom use="WP" value="tel:+8-862-279-4241"/>
-      <telecom use="WP" value="fax:+2-236-738-8799"/>
-      <telecom use="WP" value="mailto:mek@example.com"/>
+      <telecom use="WP" value="tel:+1-776-939-3137"/>
+      <telecom use="WP" value="fax:+2-580-701-7496"/>
+      <telecom use="WP" value="mailto:sz_571@example.com"/>
       <!-- assignedPerson in the eICR (the provider) -->
       <informationRecipient>
         <name>
           <prefix>Dr</prefix>
-          <given>Perrin</given>
-          <family>Rallik</family>
+          <given>Hohass</given>
+          <family>Solo</family>
           <suffix>MD</suffix>
         </name>
       </informationRecipient>
@@ -132,16 +132,16 @@
       <!-- representedOrganization in the eICR -->
       <receivedOrganization>
         <!-- NPI for the facility -->
-        <id extension="XX14969225" root="2.16.840.1.113883.4.6"/>
+        <id extension="XX55324243" root="2.16.840.1.113883.4.6"/>
         <!-- Provider Facility/Office Name-->
-        <name>University of Bespin Health System and Health Center</name>
+        <name>Eadu Neighbourhood Medical Center</name>
         <addr use="WP">
-          <streetAddressLine>671 Commerce Main Plaza, Suite 5257</streetAddressLine>
-          <city>Kaadara</city>
+          <streetAddressLine>162 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
+          <city>Cloud City</city>
           <state>Wild Space</state>
-          <postalCode>PN-416</postalCode>
-          <county>Florrum</county>
-          <country>Galactic Empire</country>
+          <postalCode>RY-438</postalCode>
+          <county>Kijimi</county>
+          <country>Trade Federation</country>
         </addr>
       </receivedOrganization>
     </intendedRecipient>
@@ -153,7 +153,7 @@
   <componentOf>
     <encompassingEncounter>
       <!-- eICR encounter ID - this is the id of the original encounter-->
-      <id extension="XX82592" root="2.16.840.1.113883.19"/>
+      <id extension="XX42183" root="2.16.840.1.113883.19"/>
       <code code="PHC2237" codeSystem="2.16.840.1.114222.4.5.274" codeSystemName="PHIN VS (CDC Local Coding System)" displayName="External Encounter"/>
       <!-- eICR encompassingEncounter time - this is the time of the original encounter from the
       eICR -->
@@ -165,38 +165,38 @@
       <responsibleParty>
         <assignedEntity>
           <!-- Provider ID (NPI) -->
-          <id extension="XX73528385" root="2.16.840.1.113883.4.6"/>
+          <id extension="XX18282809" root="2.16.840.1.113883.4.6"/>
           <addr use="H">
-            <streetAddressLine>335 Bright Tree Street</streetAddressLine>
-            <city>Kaadara</city>
+            <streetAddressLine>490 City Street</streetAddressLine>
+            <city>Cloud City</city>
             <state>Wild Space</state>
-            <postalCode>PN-416</postalCode>
-            <county>Florrum</county>
-            <country>Galactic Empire</country>
+            <postalCode>RY-438</postalCode>
+            <county>Kijimi</county>
+            <country>Trade Federation</country>
           </addr>
-          <telecom use="WP" value="tel:+8-862-279-4241"/>
-          <telecom use="WP" value="fax:+2-236-738-8799"/>
-          <telecom use="WP" value="mailto:lw@example.com"/>
+          <telecom use="WP" value="tel:+1-776-939-3137"/>
+          <telecom use="WP" value="fax:+2-580-701-7496"/>
+          <telecom use="WP" value="mailto:kfu@example.com"/>
           <assignedPerson>
             <name>
               <prefix>Dr</prefix>
-              <given>Perrin</given>
-              <family>Rallik</family>
+              <given>Hohass</given>
+              <family>Solo</family>
               <suffix>MD</suffix>
             </name>
           </assignedPerson>
           <representedOrganization>
             <!-- Represented Organization-->
-            <id extension="XX14969225" root="2.16.840.1.113883.4.6"/>
+            <id extension="XX55324243" root="2.16.840.1.113883.4.6"/>
             <!-- Provider Facility/Office Name-->
-            <name>University of Bespin Health System and Health Center</name>
+            <name>Eadu Neighbourhood Medical Center</name>
             <addr use="WP">
-              <streetAddressLine>671 Commerce Main Plaza, Suite 5257</streetAddressLine>
-              <city>Kaadara</city>
+              <streetAddressLine>162 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
+              <city>Cloud City</city>
               <state>Wild Space</state>
-              <postalCode>PN-416</postalCode>
-              <county>Florrum</county>
-              <country>Galactic Empire</country>
+              <postalCode>RY-438</postalCode>
+              <county>Kijimi</county>
+              <country>Trade Federation</country>
             </addr>
           </representedOrganization>
         </assignedEntity>
@@ -206,32 +206,32 @@
       <location>
         <healthCareFacility>
           <!-- Facility ID (NPI) -->
-          <id extension="XX73528385" root="2.16.840.1.113883.4.6"/>
+          <id extension="XX18282809" root="2.16.840.1.113883.4.6"/>
           <!-- Facility location within larger healthcare organization e.g Kaiser Vacaville within
           Kaiser North-->
           <code code="OF" codeSystem="2.16.840.1.113883.5.111" codeSystemName="HL7RoleCode" displayName="Outpatient Facility"/>
           <location>
             <addr use="WP">
-              <streetAddressLine>671 Commerce Main Plaza, Suite 5257</streetAddressLine>
-              <city>Kaadara</city>
+              <streetAddressLine>162 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
+              <city>Cloud City</city>
               <state>Wild Space</state>
-              <postalCode>PN-416</postalCode>
-              <county>Florrum</county>
-              <country>Galactic Empire</country>
+              <postalCode>RY-438</postalCode>
+              <county>Kijimi</county>
+              <country>Trade Federation</country>
             </addr>
           </location>
           <serviceProviderOrganization>
             <!-- Provider Facility/Office Name-->
-            <name>University of Bespin Health System and Health Center</name>
-            <telecom use="WP" value="tel:+3-346-228-5859"/>
-            <telecom use="WP" value="fax:+2-313-871-4306"/>
+            <name>Eadu Neighbourhood Medical Center</name>
+            <telecom use="WP" value="tel:+0-920-551-0520"/>
+            <telecom use="WP" value="fax:+9-614-237-2841"/>
             <addr use="WP">
-              <streetAddressLine>671 Commerce Main Plaza, Suite 5257</streetAddressLine>
-              <city>Kaadara</city>
+              <streetAddressLine>162 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
+              <city>Cloud City</city>
               <state>Wild Space</state>
-              <postalCode>PN-416</postalCode>
-              <county>Florrum</county>
-              <country>Galactic Empire</country>
+              <postalCode>RY-438</postalCode>
+              <county>Kijimi</county>
+              <country>Trade Federation</country>
             </addr>
           </serviceProviderOrganization>
         </healthCareFacility>
@@ -380,18 +380,18 @@
                       <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.10.20.15.2.4.2" extension="2017-04-01"/>
                         <participantRole>
-                          <id extension="XX562312" root="2.16.840.1.113883.4.6"/>
+                          <id extension="XX001800" root="2.16.840.1.113883.4.6"/>
                           <code code="RR8" displayName="Responsible Agency" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                           <addr>
-                            <city>Niima Outpost</city>
+                            <city>Tarko-Se</city>
                             <state>Wild Space</state>
-                            <postalCode>BO-72</postalCode>
-                            <county>Florrum</county>
-                            <country>Galactic Empire</country>
+                            <postalCode>WK-07</postalCode>
+                            <county>Kijimi</county>
+                            <country>Trade Federation</country>
                           </addr>
-                          <telecom use="WP" value="tel:+0-081-167-8292"/>
+                          <telecom use="WP" value="tel:+8-232-751-2008"/>
                           <playingEntity>
-                            <name>University Health System of Fondor</name>
+                            <name>School Neighbourhood Urgent Care of Mandalore</name>
                           </playingEntity>
                         </participantRole>
                       </participant>
@@ -399,18 +399,18 @@
                       <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.10.20.15.2.4.3" extension="2017-04-01"/>
                         <participantRole>
-                          <id extension="XX562312" root="2.16.840.1.113883.4.6"/>
+                          <id extension="XX001800" root="2.16.840.1.113883.4.6"/>
                           <code code="RR12" displayName="Rules Authoring Agency" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                           <addr>
-                            <city>Niima Outpost</city>
+                            <city>Tarko-Se</city>
                             <state>Wild Space</state>
-                            <postalCode>BO-72</postalCode>
-                            <county>Florrum</county>
-                            <country>Galactic Empire</country>
+                            <postalCode>WK-07</postalCode>
+                            <county>Kijimi</county>
+                            <country>Trade Federation</country>
                           </addr>
-                          <telecom use="WP" value="tel:+0-081-167-8292"/>
+                          <telecom use="WP" value="tel:+8-232-751-2008"/>
                           <playingEntity>
-                            <name>University Health System of Fondor</name>
+                            <name>School Neighbourhood Urgent Care of Mandalore</name>
                           </playingEntity>
                         </participantRole>
                       </participant>
@@ -418,18 +418,18 @@
                       <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.10.20.15.2.4.1" extension="2017-04-01"/>
                         <participantRole>
-                          <id extension="XX967177" root="2.16.840.1.113883.4.6"/>
+                          <id extension="XX203346" root="2.16.840.1.113883.4.6"/>
                           <code code="RR7" displayName="Routing Entity" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                           <addr>
-                            <city>Niima Outpost</city>
+                            <city>Tarko-Se</city>
                             <state>Wild Space</state>
-                            <postalCode>BO-72</postalCode>
-                            <county>Florrum</county>
-                            <country>Galactic Empire</country>
+                            <postalCode>WK-07</postalCode>
+                            <county>Kijimi</county>
+                            <country>Trade Federation</country>
                           </addr>
-                          <telecom use="WP" value="tel:+0-081-167-8292"/>
+                          <telecom use="WP" value="tel:+8-232-751-2008"/>
                           <playingEntity>
-                            <name>University Health System of Fondor</name>
+                            <name>School Neighbourhood Urgent Care of Mandalore</name>
                           </playingEntity>
                         </participantRole>
                       </participant>
@@ -504,7 +504,7 @@
                           surveillance and follow-up required.</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://vcoie.example67.com"/>
+                        <reference value="https://example.com/znv.jpg"/>
                       </text>
                     </externalDocument>
                   </reference>
@@ -527,7 +527,7 @@
                           virus</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://w.example979.com"/>
+                        <reference value="https://c.example23975.com"/>
                       </text>
                     </externalDocument>
                   </reference>
@@ -550,7 +550,7 @@
                           prevention</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://c.example27608.com/qtuaw.gif"/>
+                        <reference value="https://rvkq.example8453.com"/>
                       </text>
                     </externalDocument>
                   </reference>
@@ -573,7 +573,7 @@
                           the Coruscant Department of Health</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://jgp.example196.com"/>
+                        <reference value="https://g.example35.com"/>
                       </text>
                     </externalDocument>
                   </reference>
