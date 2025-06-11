@@ -155,20 +155,7 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
         tablefmt="fancy_outline",
     )
 
-    unique_paths = set()
     if debug:
-        with open(f"./debug_output{time.time()}.txt", "w", encoding="utf-8") as debug_file:
-            debug_file.write("<paths>\n")
-            for debug_element, replacement_element in debug_output:
-                if debug_element.debug_path not in unique_paths:
-                    unique_paths.add(debug_element.debug_path)
-                    debug_file.write(
-                        "<path>\n"
-                        f"<original>{debug_element}</original>\n"
-                        f"<replacement>{replacement_element}</replacement>\n"
-                        "</path>\n"
-                    )
-            debug_file.write("</paths>\n")
         print(dubug_output_table)
 
     return tree
@@ -210,7 +197,7 @@ def _find_element(root: _Element, path: str):
 
 def anonymize(args: Namespace) -> None:
     """Run the EICR anonymization process."""
-    anonymizer = Anonymizer(seed=args.seed)
+    anonymizer = Anonymizer(reproducible=True, deterministic_functions=True)
     if os.path.isdir(args.input_location):
         _delete_old_anonymized_files(args.input_location)
 
