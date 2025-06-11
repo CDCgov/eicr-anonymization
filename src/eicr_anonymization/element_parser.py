@@ -16,7 +16,11 @@ def has_text(element: _Element) -> bool:
 class Element:
     """Class representing an XML element with its attributes and text content."""
 
-    def __init__(self, element: _Element, cda_type: str):
+    def __init__(
+        self,
+        element: _Element,
+        cda_type: str,
+    ):
         """Initialize the Element with its attributes and text content."""
         self.name = element.tag
 
@@ -26,11 +30,12 @@ class Element:
         self.cda_type = cda_type
         self.text = element.text
         self.path = element.getroottree().getpath(element)
+        self.line = element.sourceline
 
     def __repr__(self) -> str:
         """Get a string representation of the tag."""
         root_tag = str(self.name).removeprefix("{urn:hl7-org:v3}")
-        repr = f"{self.cda_type}: <{root_tag}"
+        repr = f"{self.line}|{self.cda_type}| <{root_tag}"
         for key, value in self.attributes.items():
             root_key = key.removeprefix("{http://www.w3.org/2001/XMLSchema-instance}")
             repr += f' {root_key}="{value}"'
@@ -38,7 +43,7 @@ class Element:
         if self.text:
             repr += f">{self.text.strip()}</{root_tag}>"
         else:
-            repr += " />"
+            repr += "/>"
 
         return repr
 
