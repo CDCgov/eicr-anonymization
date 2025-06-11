@@ -206,6 +206,7 @@ class Anonymizer:
             {_normalize_value(word["value"]) for word in _read_yaml("safe_words.yaml")}
         )
 
+    @deterministic
     def anonymize_TS_value(self, element: Element):
         """Anonymize TS elements."""
         value = element.attributes["value"]
@@ -239,6 +240,7 @@ class Anonymizer:
 
         return _match_formatting(value, date_time.strftime(fmt))
 
+    @deterministic
     def anonymize_II_value(self, element: Element):
         """Anonymize II elements."""
         extension = element.attributes["extension"]
@@ -269,6 +271,7 @@ class Anonymizer:
 
         return _match_formatting(extension, replacement)
 
+    @deterministic
     def anonymize_streetAddressLine_value(self, element: Element):
         """Anonymize streetAddressLine elements.
 
@@ -385,6 +388,7 @@ class Anonymizer:
         normalized = _normalize_value(value)
         self.mappings[data_type][normalized] = replacement
 
+    @deterministic
     def replace_from_pool(self, value: str | None, data_type: str):
         """Anonymize using the pool-based replacement strategy."""
         if value is None:
@@ -394,12 +398,13 @@ class Anonymizer:
         replacement = self._get_mapping(value, data_type)
         if replacement is None:
             # Get a new replacement value
-            replacement = self.get_random_option(data_type)["value"]
+            replacement = self._get_random_option(data_type)["value"]
             # Store the mapping for future use
             self._set_mapping(value, data_type, replacement)
 
         return _match_formatting(value, replacement)
 
+    @deterministic
     def replace_with_like_chars(self, value: str, data_type: str):
         """Replace each character in a string with a random character of the same type."""
         replacement = self._get_mapping(value, data_type)
@@ -419,7 +424,7 @@ class Anonymizer:
 
         return _match_formatting(value, replacement)
 
-    def get_random_option(self, data_type):
+    def _get_random_option(self, data_type):
         """Get a random item from the specified data type's available options."""
         options = self.available_options[data_type]
         pool = self.data_pools[data_type]
@@ -432,14 +437,15 @@ class Anonymizer:
         # Pop the first item
         return options.pop(0)
 
+    @deterministic
     def anonymize_EN_value(self, element: Element):
         """Anonymize EN elements.
 
         https://parserator.datamade.us/probablepeople/
         """
-        return self.random_corpationName(element.text)
+        return self._random_corpationName(element.text)
 
-    def random_corpationName(self, value: str | None):
+    def _random_corpationName(self, value: str | None):
         """Generate a random corporation name."""
         if value is None:
             return value
@@ -512,6 +518,7 @@ class Anonymizer:
         self._set_mapping(value, "EN", replacement)
         return _match_formatting(value, replacement)
 
+    @deterministic
     def anonymize_TEL_value(self, element: Element):
         """Anonymize TEL elements."""
         value = element.attributes["value"]
@@ -523,7 +530,7 @@ class Anonymizer:
             return _match_formatting(value, replacement)
 
         if value.startswith("mailto:"):
-            replacement = self.random_email()
+            replacement = self._random_email()
         elif value.startswith("tel:"):
             replacement = value
             replacement = f"tel:{self.replace_with_like_chars(value[4:], 'TEL')}"
@@ -531,15 +538,15 @@ class Anonymizer:
             replacement = value
             replacement = f"fax:{self.replace_with_like_chars(value[4:], 'TEL')}"
         elif value.startswith("http://"):
-            replacement = self.random_web_address()
+            replacement = self._random_web_address()
         elif value.startswith("https://"):
-            replacement = self.random_web_address("https")
+            replacement = self._random_web_address("https")
         else:
             replacement = "REMOVED"
 
         return _match_formatting(value, replacement)
 
-    def random_web_address(self, protocol: str = "http"):
+    def _random_web_address(self, protocol: str = "http"):
         """Generate a random web address."""
         prefix = "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
         if prefix != "":
@@ -553,7 +560,7 @@ class Anonymizer:
             )
         return replacement
 
-    def random_email(self):
+    def _random_email(self):
         """Generate a random email address."""
         domain = "example.com"
 
@@ -569,6 +576,7 @@ class Anonymizer:
             name += "".join(choice(ascii_lowercase) for _ in range(randint(1, 3)))
         return f"{name}@{domain}"
 
+    @deterministic
     def anonymize_text(self, value: str | None, data_type: str):
         """Anonymize text elements."""
         if (
@@ -581,6 +589,7 @@ class Anonymizer:
 
         return "REMOVED"
 
+    @deterministic
     def anonymize_xhtml(self, element: _Element, additional_safe_words: set[str] | None = None):
         """Anonymize xhtml elements."""
         if additional_safe_words is None:
