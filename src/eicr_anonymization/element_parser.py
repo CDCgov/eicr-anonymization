@@ -86,7 +86,7 @@ class Parser:
 
         return self.sensitive_elements, self.safe_text
 
-    def parse_element(self, element: _Element, element_type: str):
+    def parse_element(self, element: _Element, element_type: str, is_safe: bool = False):
         # xhtml is a special case where it is always sensitive
         if element_type == "xhtml":
             self.add_sensitive_element(element, element_type)
@@ -98,10 +98,10 @@ class Parser:
         if has_text(element):
             if self.config[element_type]["text_content"] == "SAFE":
                 self.add_safe_text(element.text)  # type: ignore
-            else:
+            elif not is_safe:
                 self.add_sensitive_element(element, element_type)
 
-        self.process_attributes(element, element_type)
+        self.process_attributes(element, element_type, is_safe)
 
         for child in element:
             child_tag = str(child.tag).split("}")[-1]
@@ -118,10 +118,10 @@ class Parser:
                     child_type = child_structure["default_type"]
 
             if children_safety[child_tag] == "SAFE":
-                continue
+                self.parse_element(child, child_type, True)
             else:
                 if "attributes" in child_structure:
-                    self.process_attributes(child, child_type)
+                    self.process_attributes(child, child_type, is_safe)
                 if "elements" in child_structure:
                     for subelement in child:
                         subelement_tag = str(subelement.tag).split("}")[-1]
@@ -130,15 +130,14 @@ class Parser:
                         subelement_structure = child_structure["elements"][subelement_tag]
                         subelement_type = subelement_structure["types"][0]
                         if children_safety[child_tag]["elements"][subelement_tag] == "SAFE":
-                            continue
+                            self.parse_element(child, child_type, True)
                         else:
                             self.parse_element(subelement, subelement_type)
 
-                    continue
 
-                self.parse_element(child, child_type)
+                self.parse_element(child, child_type, is_safe)
 
-    def process_attributes(self, element, element_type):
+    def process_attributes(self, element, element_type, is_safe: bool):
         for attribute in element.items():
             attribute_name = attribute[0].split("}")[-1]
             attribute_text = attribute[1]
@@ -148,7 +147,5 @@ class Parser:
             if self.config[element_type]["attributes"][attribute_name] == "SAFE":
                 if attribute_type in ["string", "code"]:
                     self.add_safe_text(attribute_text)
-                else:
-                    continue
-            else:
+            elif not is_safe:
                 self.add_sensitive_element(element, element_type)

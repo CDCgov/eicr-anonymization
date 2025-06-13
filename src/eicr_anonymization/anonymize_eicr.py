@@ -67,7 +67,7 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
 
     for element in sensitive_elements:
         match element.cda_type:
-            case "TS" | "IVL_TS" | "PIVL_TS" | "IVXB_TS":
+            case "TS" | "IVL_TS" | "PIVL_TS" | "IVXB_TS" | "SXCM_TS":
                 match = _find_element(root, element.path)
                 match.attrib["value"] = anonymizer.anonymize_TS_value(element)
                 debug_output.append((element, Element(match, "TS")))
@@ -142,10 +142,10 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
             case _:
                 if element.attributes.get("value") is not None:
                     match = _find_element(root, element.path)
-                    match.attrib["value"] = "REMOVED"
-                if element.text is not None:
+                    match.attrib["value"] = anonymizer.remove_unknown_text(match.attrib["value"])
+                if element.text is not None and element.text.strip() != "":
                     match = _find_element(root, element.path)
-                    match.text = "REMOVED"
+                    match.text = anonymizer.remove_unknown_text(match.text)
 
     print(f"Anonymized {len(sensitive_elements)} sensitive elements in file: {xml_file}")
     dubug_output_table = tabulate(

@@ -103,6 +103,7 @@
 - value: Rate
 - value: RCTC OID
 - value: RCTC Version
+- value: Reason for determination of reportability
 - value: Received Time
 - value: Recorded Date
 - value: Ref Range
@@ -113,6 +114,7 @@
 - value: Results Panel
 - value: Route
 - value: Routine
+- value: Rule used in reportability determination
 - value: Site
 - value: Specimen (Source)
 - value: SpO2

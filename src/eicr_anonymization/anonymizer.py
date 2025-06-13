@@ -627,3 +627,13 @@ class Anonymizer:
 
         for child in element:
             self.anonymize_xhtml(child)
+
+    def remove_unknown_text(self, text: str):
+        """Replace text of unknown data types with "REMOVED".
+
+        First check if text is a known value, if not, replace it with "REMOVED".
+        """
+        normalized_value = _normalize_value(text)
+        if normalized_value in self.safe_words or normalized_value.isnumeric():
+            return text
+        return "REMOVED"

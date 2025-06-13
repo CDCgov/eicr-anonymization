@@ -323,7 +323,7 @@ Section:
     templateId: SAFE
     id: null
     code: null
-    title: null
+    title: SAFE
     text: null
     confidentialityCode: SAFE
     languageCode: SAFE
@@ -441,8 +441,8 @@ PN:
     delimiter: SAFE
     family: null
     given: null
-    prefix: null
-    suffix: null
+    prefix: SAFE
+    suffix: SAFE
     xmlText: null
     validTime: null
 Birthplace:
@@ -628,8 +628,8 @@ LabeledDrug:
     use: SAFE
   elements:
     delimiter: SAFE
-    prefix: null
-    suffix: null
+    prefix: SAFE
+    suffix: SAFE
     xmlText: null
     validTime: null
 ParentDocument:
@@ -960,7 +960,7 @@ ObservationRange:
     templateId: SAFE
     code: null
     text: null
-    value: null
+    value: SAFE
     interpretationCode: null
     Precondition1: null
     conjunctionCode: null
@@ -1113,8 +1113,8 @@ EN:
     delimiter: SAFE
     family: null
     given: null
-    prefix: null
-    suffix: null
+    prefix: SAFE
+    suffix: SAFE
     xmlText: null
     validTime: null
 IVXB_INT:
@@ -1417,7 +1417,7 @@ AD:
     deliveryInstallationQualifier: null
     deliveryMode: null
     deliveryModeIdentifier: null
-    buildingNumberSuffix: null
+    buildingNumbersuffix: SAFE
     postBox: null
     precinct: null
     useablePeriod: null
