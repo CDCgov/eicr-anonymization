@@ -363,7 +363,7 @@ Performer1:
     realmCode: SAFE
     typeId: SAFE
     templateId: SAFE
-    functionCode: null
+    functionCode: SAFE
     time: null
     assignedEntity: null
 Author:
