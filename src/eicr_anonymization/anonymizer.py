@@ -142,7 +142,7 @@ class Anonymizer:
 
     def __init__(
         self,
-        reproducible: bool | int = False,
+        reproducible: bool | int | None = False,
         deterministic_functions: bool = False,
     ):
         """Initialize the Anonymizer class.
@@ -153,7 +153,7 @@ class Anonymizer:
             deterministic_functions (bool): If True the same parameters passed into any public
             function will return the same output.
         """
-        if isinstance(reproducible, bool):
+        if not reproducible:
             random.seed(740)  # Lovingly selected with the help of random.org
         elif isinstance(reproducible, int):
             random.seed(reproducible)

@@ -3,7 +3,6 @@
 import glob
 import logging
 import os
-import time
 from argparse import Namespace
 
 from lxml import etree
@@ -34,7 +33,7 @@ def _delete_old_anonymized_files(input_location: str) -> None:
 
 def xml_tree_to_str(tree: _ElementTree) -> str:
     """
-    Generate string representation of XML element
+    Generate string representation of XML element.
 
     Args:
         tree: XML Element tree to be formatted
@@ -197,7 +196,7 @@ def _find_element(root: _Element, path: str):
 
 def anonymize(args: Namespace) -> None:
     """Run the EICR anonymization process."""
-    anonymizer = Anonymizer(reproducible=True, deterministic_functions=True)
+    anonymizer = Anonymizer(reproducible=args.seed, deterministic_functions=args.deterministic_functions)
     if os.path.isdir(args.input_location):
         _delete_old_anonymized_files(args.input_location)
 
