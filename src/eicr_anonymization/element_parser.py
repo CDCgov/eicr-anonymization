@@ -59,7 +59,7 @@ class Parser:
         self.sensitive_elements: list[Element] = []
         self.safe_text: set[str] = set()
 
-        with open("src/eicr_anonymization/schema_structure.yaml") as structure_file:
+        with open("src/eicr_anonymization/cda_structure.yaml") as structure_file:
             self.structure = yaml.safe_load(structure_file)
 
         with open("src/eicr_anonymization/configs/default.yaml") as config_file:
