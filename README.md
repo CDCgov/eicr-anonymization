@@ -95,8 +95,6 @@ options:
    ```bash
    uv sync
    ```
-3. Download `StructureDefinitions` JSON files and upzip them into `tools/definitions`.
-4. Create the CDA structure YAML with `uv run tools/cda_structure_generator.py`. This should create `src/eicr_anonymization/cda_structure.yaml`
 
 #### Run unit/snapshot tests
 ```bash
