@@ -18,9 +18,11 @@ def _parse_arguments() -> Namespace:
         help="This can be either a directory or an xml file. If it is a directory the Anonymization tool will attempt to anonymize all XML files in the directory.",  # noqa: E501
     )
     parser.add_argument(
-        "-l",
-        "--light",
+        "-p",
+        "--patient_only",
         action="store_true",
+        dest="light",
+        default=False,
         help="Use a lighter version of anonymization. Only the following patient fields with be anonymized: name, dates, race, ethnicity, emergency contacts, and clinical notes.",  # noqa: E501
     )
 

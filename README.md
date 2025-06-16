@@ -62,6 +62,12 @@ anonymize_eicr /path/to/eicrs
 ```
 This will create a copy of each eicr file prepended with `.anonymized.xml` in the same directory.
 
+#### Patient Only Configuration
+```bash
+anonymize_eicr /path/to/eicrs -l
+```
+In some cases the default behavior of the anonymizer may be too aggressive. The patient only configuration will keep all data, apart from data directly related to the patient (name, date of birth, contact, guardian, etc), dates related to the patient encounter, and clinical notes.
+
 #### Help
 ```bash
 anonymize --help
