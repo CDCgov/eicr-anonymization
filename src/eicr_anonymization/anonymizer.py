@@ -153,12 +153,12 @@ class Anonymizer:
             deterministic_functions (bool): If True the same parameters passed into any public
             function will return the same output.
         """
-        if not reproducible:
+        self.is_deterministic = deterministic_functions
+        if reproducible is True or deterministic_functions is True:
             random.seed(740)  # Lovingly selected with the help of random.org
         elif isinstance(reproducible, int):
             random.seed(reproducible)
 
-        self.is_deterministic = deterministic_functions
 
         SECONDS_IN_100_YEARS = int(100 * 60 * 60 * 24 * 365.25)
         # The main offset is a random number of seconds between 0 and 100 years

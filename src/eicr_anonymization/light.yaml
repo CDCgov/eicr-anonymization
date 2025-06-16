@@ -14,7 +14,6 @@ EncounterParticipant:
     assignedEntity: SAFE
 PatientRole:
   elements:
-    addr: SAFE
     providerOrganization: SAFE
 AssociatedEntity:
   elements:
@@ -26,6 +25,7 @@ EncompassingEncounter:
     telecom: SAFE
     assignedPerson: SAFE
     location: SAFE
+    responsibleParty: SAFE
 SubstanceAdministration:
   elements:
     author: SAFE
