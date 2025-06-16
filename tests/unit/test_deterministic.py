@@ -1,3 +1,5 @@
+"""Unit tests for the deterministic decorator in the Anonymizer class."""
+
 import random
 
 from lxml import etree
@@ -9,6 +11,7 @@ class TestAnonymizer:
     """Test class for testing the decorator with a mock Anonymizer."""
 
     def __init__(self, deterministic_functions=False):
+        """Initialize the test class with an option for deterministic functions."""
         self.is_deterministic = deterministic_functions
 
     @deterministic
@@ -17,7 +20,7 @@ class TestAnonymizer:
         return random.randint(1, 1000)
 
 
-class TestDeterministicRandomDecorator:
+class TestDeterministicDecorator:
     """Test suite for the deterministic_random decorator."""
 
     def test_decorator_with_deterministic_true(self):
