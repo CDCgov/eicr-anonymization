@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "eicr_anonymization",
             "console": "integratedTerminal",
-            "args": "./data/biggest/most_tags --siso -l",
+            "args": "./data/biggest/3.1_Sample --siso",
             "justMyCode": false
         }
     ]
