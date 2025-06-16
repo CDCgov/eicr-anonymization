@@ -155,5 +155,5 @@ if __name__ == "__main__":
 
         data_types[name] = {"attributes": attributes, "elements": children}
 
-    with open("schema_structure_from_fhir.yaml", "w") as file:
+    with open("src/eicr_anonymization/cda_structure.yaml", "w") as file:
         yaml.dump(data_types, file, sort_keys=False)
