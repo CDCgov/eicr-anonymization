@@ -72,7 +72,6 @@ def hash_params_to_seed(params):
         seed = int(hash_obj.hexdigest()[:8], 16)
         return seed
 
-
 class ReplacementType(TypedDict):
     """Type definition for a replacement."""
 
@@ -158,7 +157,6 @@ class Anonymizer:
             random.seed(740)  # Lovingly selected with the help of random.org
         elif isinstance(reproducible, int):
             random.seed(reproducible)
-
 
         SECONDS_IN_100_YEARS = int(100 * 60 * 60 * 24 * 365.25)
         # The main offset is a random number of seconds between 0 and 100 years
