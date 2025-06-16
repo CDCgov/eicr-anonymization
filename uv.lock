@@ -44,7 +44,6 @@ dependencies = [
     { name = "tqdm" },
     { name = "types-lxml" },
     { name = "usaddress" },
-    { name = "xmlschema" },
 ]
 
 [package.dev-dependencies]
@@ -63,7 +62,6 @@ requires-dist = [
     { name = "tqdm", specifier = ">=4.67.1" },
     { name = "types-lxml", specifier = ">=2025.3.30" },
     { name = "usaddress", specifier = ">=0.5.13" },
-    { name = "xmlschema", specifier = ">=4.0.1" },
 ]
 
 [package.metadata.requires-dev]
@@ -72,15 +70,6 @@ dev = [
     { name = "pytest", specifier = ">=8.3.5" },
     { name = "pytest-repeat", specifier = ">=0.9.3" },
     { name = "pytest-snapshot", specifier = ">=0.9.0" },
-]
-
-[[package]]
-name = "elementpath"
-version = "5.0.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ea/3d/0be6a0e373ac54bd53ab6c3b0722de9752dbd62e19d3d4d0f3f70ecbb246/elementpath-5.0.1.tar.gz", hash = "sha256:d3e4807b7e38e190e382eefef93f35ce6f71adf63b33e3f01d0e11f22e5d5cc7", size = 363233 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/dd/09/fbd26adb51ccd29fa65798fe9bf6e8a73720e37e437ac2cf1d51133bd1f5/elementpath-5.0.1-py3-none-any.whl", hash = "sha256:334f796578d1d273e99838b6a731d265985ea9ab399e22b74ea1c3a3faa73c83", size = 245130 },
 ]
 
 [[package]]
@@ -323,16 +312,4 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/8a/17/bb3ffdb3489dd517b7aba18a5196264c121b42385e2020fdec82925e62ec/usaddress-0.5.13.tar.gz", hash = "sha256:5cebfb74c8e542c1ce4c0be9fe2843e62d03a31c029fafb5960590c556902876", size = 912472 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/1f/9a/19f51a4add58fdbaee22f04946dcce6b93873ededae026e578e665cb2a80/usaddress-0.5.13-py3-none-any.whl", hash = "sha256:416910b5e80fda80d9c3b59e1b054a37f82edaca884d8d7260be684a15894d47", size = 67703 },
-]
-
-[[package]]
-name = "xmlschema"
-version = "4.0.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "elementpath" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/cf/11/ac67a468665b72c77ae01e3cd3f3f478ffcc4c3bc4aa61675179e99a80be/xmlschema-4.0.1.tar.gz", hash = "sha256:9a8598daa2e2859c499f6f08242f7547804ae0c2d037971c44bcb9aae154ff22", size = 625283 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/6c/28/ce7a7b48f8020291c53e425ad1ad581ea8152b0df4a5e6d289c24ef82bbe/xmlschema-4.0.1-py3-none-any.whl", hash = "sha256:cf94d3380c5005fc027532ec4760b4bec414d6b4ead425285fa5bf8eb6c515c6", size = 452804 },
 ]
