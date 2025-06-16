@@ -66,7 +66,7 @@ class Parser:
             self.config = yaml.safe_load(config_file)
 
         if light:
-            with open("src/eicr_anonymization/config/light.yaml") as config_file:
+            with open("src/eicr_anonymization/configs/light.yaml") as config_file:
                 new_config = yaml.safe_load(config_file)
             for element in new_config:
                 for child in new_config[element]["elements"]:
