@@ -34,7 +34,13 @@ def _parse_arguments() -> Namespace:
         help="Print table showing original and replacement tags. Will show sensitive information.",
     )
     debug_group.add_argument(
-        "-s", "--seed", type=int, default=None, help="Set the random seed. For Debugging."
+        "-s",
+        "--seed",
+        type=int,
+        nargs="?",
+        const=1,
+        default=None,
+        help="Set the random seed. If no value is provided, the seed will be set to `1`.",
     )
     debug_group.add_argument(
         "--siso",
@@ -42,7 +48,7 @@ def _parse_arguments() -> Namespace:
         action="store_true",
         dest="deterministic_functions",
         default=False,
-        help="For the same value will always replace with the same new value regardless of run or seed.",
+        help="The same value will always be replaced with the same new value regardless of run or seed. This will set the seed to its default `1`, if a seed is not provided",  # noqa: E501
     )
 
     return parser.parse_args()

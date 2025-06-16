@@ -82,7 +82,7 @@ options:
 - [uv (Python package manager)](https://docs.astral.sh/uv/)
 
 #### Set Up
-2. This repo uses `uv` as the Python package manager. Install at the root of the directory
+1. This repo uses `uv` as the Python package manager. Install at the root of the directory
    - With Pip:
    ```bash
    pip install uv
@@ -91,10 +91,12 @@ options:
    ```bash
    pipx install uv
    ```
-3. Install dependencies with `uv`:
+2. Install dependencies with `uv`:
    ```bash
    uv sync
    ```
+3. Download `StructureDefinitions` JSON files and upzip them into `tools/definitions`.
+4. Create the CDA structure YAML with `uv run tools/cda_structure_generator.py`. This should create `src/eicr_anonymization/cda_structure.yaml`
 
 #### Run unit/snapshot tests
 ```bash
@@ -114,10 +116,9 @@ This is used for runtime dependencies. Add the `--dev` flag if you're adding is 
 #### Debugging
 You can add the following flags to `uv run anonymize_eicr /path/to/file` to help with debugging:
 ```bash
-  -h, --help      show this help message and exit
-  --debug, -d     Print table showing original and replacement tags. Will show sensitive information.
-  -s, --seed      Set random seed
-  -v, --version   Run specific version of anonymize_eicr
+  -d, --debug                Print table showing original and replacement tags. Will show sensitive information.
+  -s, --seed [SEED]          Set the random seed. If no value is provided, the seed will be set to `1`.
+  --siso, --same_in_same_out The same value will always be replaced with the same new value regardless of run or seed. This will set the seed to its default `1`, if a seed is not provided
 ```
 
 ## Related documents
