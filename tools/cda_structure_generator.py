@@ -1,9 +1,13 @@
-import json
-import os
-from pathlib import Path
-import re
+"""Extracts the structure for a CDA from the FHIR definitions into a YAML.
 
-from fhir.resources.structuredefinition import StructureDefinition
+This expects the FHIR definitions to be in JSON format in the directory `tools/fhir_definitions` and
+saves the output YAML into `src/eicr_anonymization`.
+"""
+
+import json
+import re
+from pathlib import Path
+
 import yaml
 
 
@@ -75,10 +79,9 @@ def sanitize_name(name: str):
     return name
 
 
-# Example usage
 if __name__ == "__main__":
     # Replace with your directory path
-    directory = "src/eicr_anonymization/fhir_definition"
+    directory = "tools/fhir_definition"
 
     all_json_data = read_all_jsons(directory)
     data_types = {}
