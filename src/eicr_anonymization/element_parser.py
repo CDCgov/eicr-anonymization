@@ -54,7 +54,7 @@ class Element:
 class Parser:
     """Class for finding sensitive elements in an XML document."""
 
-    def __init__(self, config: dict | None = None):
+    def __init__(self, light: bool = False):
         """Initialize the Parser with an empty list of sensitive elements."""
         self.sensitive_elements: list[Element] = []
         self.safe_text: set[str] = set()
@@ -64,6 +64,14 @@ class Parser:
 
         with open("src/eicr_anonymization/config.yaml") as config_file:
             self.config = yaml.safe_load(config_file)
+
+        if light:
+            with open("src/eicr_anonymization/light.yaml") as config_file:
+                new_config = yaml.safe_load(config_file)
+            for element in new_config:
+                for child in new_config[element]["elements"]:
+                    new_value = new_config[element]["elements"][child]
+                    self.config[element]["elements"][child] = new_value
 
     def add_safe_text(self, text: str):
         """Add a safe text element to the list."""
@@ -79,6 +87,8 @@ class Parser:
         Args:
             element: The XML element to parse.
         """
+        self.sensitive_elements = []
+        self.safe_text = set()
         if element.tag == "{urn:hl7-org:v3}ClinicalDocument":
             self.parse_element(element, "ClinicalDocument")
         else:
@@ -133,7 +143,6 @@ class Parser:
                             self.parse_element(child, child_type, True)
                         else:
                             self.parse_element(subelement, subelement_type)
-
 
                 self.parse_element(child, child_type, is_safe)
 

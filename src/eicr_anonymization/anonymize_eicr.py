@@ -41,7 +41,9 @@ def xml_tree_to_str(tree: _ElementTree) -> str:
     return etree.tostring(tree, pretty_print=True, encoding="unicode")
 
 
-def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = False) -> _ElementTree:
+def anonymize_eicr_file(
+    xml_file: str, anonymizer: Anonymizer, parser: Parser, debug: bool = False
+) -> _ElementTree:
     """
     Anonymize a single EICR XML file.
 
@@ -57,8 +59,6 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
 
     # Get the first element and pass it into th elementProcessor
     first_element = next(root.iter())
-
-    parser = Parser()
 
     sensitive_elements, safe_words = parser.collect_sensitive_elements_and_safe_words(first_element)
 
@@ -196,7 +196,10 @@ def _find_element(root: _Element, path: str):
 
 def anonymize(args: Namespace) -> None:
     """Run the EICR anonymization process."""
-    anonymizer = Anonymizer(reproducible=args.seed, deterministic_functions=args.deterministic_functions)
+    anonymizer = Anonymizer(
+        reproducible=args.seed, deterministic_functions=args.deterministic_functions
+    )
+    parser = Parser(light=args.light)
     if os.path.isdir(args.input_location):
         _delete_old_anonymized_files(args.input_location)
 
@@ -206,7 +209,7 @@ def anonymize(args: Namespace) -> None:
             return
         print(f"Found {len(xml_files)} XML files in directory: {args.input_location}")
         for xml_file in xml_files:
-            anonymized_file = anonymize_eicr_file(xml_file, anonymizer, debug=args.debug)
+            anonymized_file = anonymize_eicr_file(xml_file, anonymizer, parser, debug=args.debug)
             save_anonymized_file(anonymized_file, xml_file)
     elif os.path.isfile(args.input_location):
         # IF the previously anonymized file exists, delete it
@@ -214,7 +217,9 @@ def anonymize(args: Namespace) -> None:
             os.remove(f"{args.input_location}.anonymized.xml")
             print(f"Deleted previous anonymized file: {args.input_location}.anonymized.xml")
         print(f"Anonymizing file: {args.input_location}")
-        anonymized_file = anonymize_eicr_file(args.input_location, anonymizer, debug=args.debug)
+        anonymized_file = anonymize_eicr_file(
+            args.input_location, anonymizer, parser, debug=args.debug
+        )
         save_anonymized_file(anonymized_file, args.input_location)
     else:
         print(f"Input location is not a file or directory: {args.input_location}")

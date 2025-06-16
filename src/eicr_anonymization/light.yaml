@@ -1,0 +1,70 @@
+# 2021120907
+ClinicalDocument:
+  elements:
+    effectiveTime: SAFE
+    author: SAFE
+    custodian: SAFE
+    informationRecipient: SAFE
+ComponentOf:
+  elements:
+    responsibleParty: SAFE
+EncounterParticipant:
+  elements:
+    time: SAFE
+    assignedEntity: SAFE
+PatientRole:
+  elements:
+    addr: SAFE
+    providerOrganization: SAFE
+AssociatedEntity:
+  elements:
+    id: SAFE
+EncompassingEncounter:
+  elements:
+    id: SAFE
+    addr: SAFE
+    telecom: SAFE
+    assignedPerson: SAFE
+    location: SAFE
+SubstanceAdministration:
+  elements:
+    author: SAFE
+    performer: SAFE
+EntryRelationship:
+  elements:
+    id: SAFE
+    supply: SAFE
+    author: SAFE
+Act:
+  elements:
+    id: SAFE
+    reference: SAFE
+Performer2:
+  elements:
+    assignedEntity: SAFE
+Organizer:
+  elements:
+    informant: SAFE
+    participant: SAFE
+Procedure:
+  elements:
+    participant: SAFE
+Observation:
+  elements:
+    performer: SAFE
+Patient:
+  elements:
+    raceCode: null
+    ethnicGroupCode: null
+OrganizationPartOf:
+  elements:
+    id: SAFE
+    IdentifiedBy: SAFE
+    effectiveTime: SAFE
+    wholeOrganization: SAFE
+PQ:
+  elements:
+    value: SAFE
+PreconditionBase:
+  elements:
+    id: SAFE
