@@ -11,7 +11,7 @@
   <!-- Document Code -->
   <code code="88085-6" codeSystem="2.16.840.1.113883.6.1" displayName="Reportability response report Document Public health"/>
   <title>Reportability Response</title>
-  <effectiveTime value="19461203153334+0000"/>
+  <effectiveTime value="20061113161345+0000"/>
   <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="Normal"/>
   <languageCode code="en-US"/>
   <!-- recordTarget: The patient -->
@@ -42,7 +42,7 @@
         </name>
         <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male"/>
         <!-- yoda is 900 years old -->
-        <birthTime value="10461007"/>
+        <birthTime value="11060918"/>
         <!-- If sdtc:deceasedInd is true then sdtc:deceasedTime must be present -->
         <sdtc:deceasedInd value="false"/>
         <!-- yoda's race is unknown -->
@@ -63,7 +63,7 @@
 
   <!-- author for RRs is _always_ going to be AIMS -->
   <author>
-    <time value="19461203153334+0000"/>
+    <time value="20061113161345+0000"/>
     <assignedAuthor>
       <id root="2.16.840.1.114222.4.1.217446"/>
       <addr>
@@ -158,8 +158,8 @@
       <!-- eICR encompassingEncounter time - this is the time of the original encounter from the
       eICR -->
       <effectiveTime>
-        <low value="19461113023232+0000"/>
-        <high value="19461113023337+0000"/>
+        <low value="20061024031243+0000"/>
+        <high value="20061024031348+0000"/>
       </effectiveTime>
       <!-- provider in charge of care when case reported -->
       <responsibleParty>
@@ -287,7 +287,7 @@
               <code code="RR5" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions" displayName="Received eICR Information"/>
               <text xsi:type="ST">REMOVED</text>
               <statusCode code="completed"/>
-              <effectiveTime value="19461202213339+0000"/>
+              <effectiveTime value="20061112221350+0000"/>
               <reference typeCode="REFR">
                 <externalDocument classCode="DOCCLIN" moodCode="EVN">
                   <!-- [C-CDA R2.0 External Document Reference] -->

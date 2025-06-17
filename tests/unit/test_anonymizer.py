@@ -7,8 +7,10 @@ import pytest
 from freezegun import freeze_time
 from lxml import etree
 
-from eicr_anonymization.anonymizer import Anonymizer
+from eicr_anonymization.anonymizer import Anonymizer, DebugOptions
 from eicr_anonymization.element_parser import Element
+
+debugOptions = DebugOptions(reproducible=True)
 
 
 @pytest.fixture
@@ -33,7 +35,7 @@ class TestAnonymizeTSValue:
         """Test `anonymize_TS_value` for a value with the format `YYYYMMDDHHmmssz`."""
         # Arrange
         value = "20150919161829+0000"
-        obj = Anonymizer(reproducible=True)
+        obj = Anonymizer(debugOptions)
         _element = etree.Element(
             "{urn:hl7-org:v3}effectiveTime",
             attrib={
@@ -59,7 +61,7 @@ class TestAnonymizeTSValue:
         """Test `anonymize_TS_value` for a value with the format `YYYMMDD`."""
         # Arrange
         value = "20141023"
-        obj = Anonymizer(reproducible=True)
+        obj = Anonymizer(debugOptions)
         _element = etree.Element(
             "{urn:hl7-org:v3}effectiveTime",
             attrib={
@@ -88,7 +90,7 @@ def test_anonymize_streetAddressLine_value():
     - Same number of digits in house number
     - Same street type ending.
     """
-    anonymizer = Anonymizer(reproducible=True)
+    anonymizer = Anonymizer(debugOptions)
 
     element = etree.Element("streetAddressLine")
     house_number = "123"
@@ -122,7 +124,7 @@ def test_anonymize_streetAddressLine_USPSBoxID_value():
     - Only the number should be different.
     - The number should have the same number of digits.
     """
-    anonymizer = Anonymizer(reproducible=True)
+    anonymizer = Anonymizer(debugOptions)
 
     element = etree.Element("streetAddressLine")
     po_box_prefix = "PO Box"

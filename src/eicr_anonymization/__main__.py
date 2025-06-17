@@ -26,7 +26,7 @@ def _parse_arguments() -> Namespace:
 
     parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.3.0")
 
-    subparsers = parser.add_subparsers(description="There is currently only one subcommand.")
+    subparsers = parser.add_subparsers(description="There is currently only one subcommand.", dest="command")
     debug_parser = subparsers.add_parser(
         "debug",
         help="Debugging/testing mode. WARNING: may expose sensitive data.",

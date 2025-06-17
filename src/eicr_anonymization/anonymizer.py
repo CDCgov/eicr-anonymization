@@ -9,6 +9,7 @@ import inspect
 import pickle
 import random
 import re
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from random import choice, randint, shuffle
 from string import ascii_lowercase, ascii_uppercase
@@ -71,6 +72,7 @@ def hash_params_to_seed(params):
         hash_obj = hashlib.sha256(params_str.encode("utf-8"))
         seed = int(hash_obj.hexdigest()[:8], 16)
         return seed
+
 
 class ReplacementType(TypedDict):
     """Type definition for a replacement."""
@@ -136,27 +138,44 @@ def _normalize_value(value: str):
     return value.lower()
 
 
+@dataclass
+class DebugOptions:
+    """Dataclass for holding options for setting the random seed and making functions deterministic.
+
+    Should not be used in production or when real sensitive data is being used.
+
+    Args:
+        reproducible (bool | int): Used to set the random seed. If True the seed will be set to `1`.
+        If an integer is provided, the seed will be set to that value.
+        deterministic_functions (bool): If True, the same value will always be replaced with the
+        same new value. This will also set the seed to its default `1`, if a seed is not provided.
+    """
+
+    reproducible: bool | int | None = False
+    deterministic_functions: bool = False
+
+
 class Anonymizer:
     """Anonymizes the data."""
 
     def __init__(
         self,
-        reproducible: bool | int | None = False,
-        deterministic_functions: bool = False,
+        debugOptions: DebugOptions | None = None,
     ):
         """Initialize the Anonymizer class.
 
         Args:
-            reproducible (bool | int): If True, the random seed will be set to a fixed value for
-            reproducibility. If an integer is provided, it will be used as the seed.
-            deterministic_functions (bool): If True the same parameters passed into any public
-            function will return the same output.
+            debugOptions: Options for setting the random seed and making functions deterministic.
+            Should not be used in production or when real sensitive data is being used.
         """
-        self.is_deterministic = deterministic_functions
-        if reproducible is True or deterministic_functions is True:
-            random.seed(740)  # Lovingly selected with the help of random.org
-        elif isinstance(reproducible, int):
-            random.seed(reproducible)
+        if debugOptions is None:
+            self.is_deterministic = False
+        else:
+            self.is_deterministic = debugOptions.deterministic_functions
+            if debugOptions.reproducible is True or debugOptions.deterministic_functions is True:
+                random.seed(1)
+            elif isinstance(debugOptions.reproducible, int):
+                random.seed(debugOptions.reproducible)
 
         SECONDS_IN_100_YEARS = int(100 * 60 * 60 * 24 * 365.25)
         # The main offset is a random number of seconds between 0 and 100 years

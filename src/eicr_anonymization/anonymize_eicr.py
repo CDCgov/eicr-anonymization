@@ -9,7 +9,7 @@ from lxml import etree
 from lxml.etree import _Element, _ElementTree
 from tabulate import tabulate
 
-from eicr_anonymization.anonymizer import Anonymizer
+from eicr_anonymization.anonymizer import Anonymizer, DebugOptions
 from eicr_anonymization.element_parser import Element, Parser
 
 logger = logging.getLogger(__name__)
@@ -199,9 +199,10 @@ def _find_element(root: _Element, path: str):
 
 def anonymize(args: Namespace) -> None:
     """Run the EICR anonymization process."""
-    anonymizer = Anonymizer(
-        reproducible=args.seed, deterministic_functions=args.deterministic_functions
-    )
+    debugOptions = None
+    if args.command == "debug":
+        debugOptions = DebugOptions(args.seed, args.deterministic_functions)
+    anonymizer = Anonymizer(debugOptions)
     parser = Parser(light=args.light)
     if os.path.isdir(args.input_location):
         _delete_old_anonymized_files(args.input_location)

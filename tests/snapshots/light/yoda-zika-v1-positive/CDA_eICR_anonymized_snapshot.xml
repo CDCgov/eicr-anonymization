@@ -45,7 +45,7 @@
         </name>
         <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male"/>
         <!-- yoda is 900 years old -->
-        <birthTime value="10461007"/>
+        <birthTime value="11060918"/>
         <!-- If sdtc:deceasedInd is true then sdtc:deceasedTime must be present -->
         <sdtc:deceasedInd value="false"/>
         <!-- yoda's race is unknown -->
@@ -267,7 +267,7 @@
               </code>
               <statusCode code="active"/>
               <!-- Date on which the lab test should take place -->
-              <effectiveTime value="19461114"/>
+              <effectiveTime value="20061025"/>
             </observation>
           </entry>
         </section>
@@ -382,7 +382,7 @@
               <effectiveTime>
                 <!-- The low value represents when the problem was first recorded in the patient's
                 chart -->
-                <low value="19461112"/>
+                <low value="20061023"/>
               </effectiveTime>
               <entryRelationship typeCode="SUBJ">
                 <observation classCode="OBS" moodCode="EVN">
@@ -398,7 +398,7 @@
                   <statusCode code="completed"/>
                   <effectiveTime>
                     <!-- The low value reflects the date of onset -->
-                    <low value="19461112"/>
+                    <low value="20061023"/>
                   </effectiveTime>
                   <value xsi:type="CD" code="386661006" codeSystem="2.16.840.1.113883.6.96" displayName="Fever (finding)"/>
                 </observation>
@@ -419,7 +419,7 @@
               <effectiveTime>
                 <!-- The low value represents when the problem was first recorded in the patient's
                 chart -->
-                <low value="19461112"/>
+                <low value="20061023"/>
               </effectiveTime>
               <entryRelationship typeCode="SUBJ">
                 <observation classCode="OBS" moodCode="EVN">
@@ -433,7 +433,7 @@
                   </code>
                   <statusCode code="completed"/>
                   <effectiveTime>
-                    <low value="19461112"/>
+                    <low value="20061023"/>
                   </effectiveTime>
                   <value xsi:type="CD" code="386661006" codeSystem="2.16.840.1.113883.6.96" displayName="Fever (finding)"/>
                 </observation>
@@ -530,8 +530,8 @@
               <code code="80825-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Zika virus envelope (E) gene [Presence] in Serum by Probe and target amplification method"/>
               <statusCode code="completed"/>
               <effectiveTime>
-                <low value="19461202"/>
-                <high value="19461202"/>
+                <low value="20061112"/>
+                <high value="20061112"/>
               </effectiveTime>
               <component>
                 <!-- This observation is a trigger code final result observation only the code is a
@@ -547,7 +547,7 @@
                   <id root="bf9c0a26-4524-4395-b3ce-100450b9c9ad"/>
                   <code code="80825-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Zika virus envelope (E) gene [Presence] in Serum by Probe and target amplification method" sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="19/05/2016"/>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19461114"/>
+                  <effectiveTime value="20061025"/>
                   <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="10828004" displayName="Positive"/>
                   <interpretationCode code="A" displayName="Abnormal" codeSystem="2.16.840.1.113883.5.83" codeSystemName="ObservationInterpretation"/>
                 </observation>
@@ -628,7 +628,7 @@
               <code code="76689-9" codeSystem="2.16.840.1.113883.6.1" displayName="Sex Assigned At Birth"/>
               <statusCode code="completed"/>
               <!-- effectiveTime if present should match birthTime -->
-              <effectiveTime value="19461018020302"/>
+              <effectiveTime value="20060928024313"/>
               <value xsi:type="CD" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" code="M" displayName="Male"/>
             </observation>
           </entry>
@@ -646,7 +646,7 @@
               </code>
               <statusCode code="completed"/>
               <effectiveTime>
-                <low value="11961007"/>
+                <low value="12560917"/>
               </effectiveTime>
               <value xsi:type="ST">REMOVED</value>
             </observation>
@@ -660,8 +660,8 @@
               <code code="420008001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Travel"/>
               <statusCode code="completed"/>
               <effectiveTime>
-                <low value="19461022"/>
-                <high value="19461112"/>
+                <low value="20061002"/>
+                <high value="20061023"/>
               </effectiveTime>
               <participant typeCode="LOC">
                 <participantRole classCode="TERR">
@@ -722,7 +722,7 @@
                 <translation code="74728-7" displayName="Vital signs, weight, height, head circumference, oximetry, BMI, and BSA panel " codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
               </code>
               <statusCode code="completed"/>
-              <effectiveTime value="19360225120837-0500"/>
+              <effectiveTime value="19960205124848-0500"/>
               <!-- Each vital sign should be its own component. Note that systolic and diastolic BP must be separate components-->
               <component>
                 <observation classCode="OBS" moodCode="EVN">
@@ -735,7 +735,7 @@
                     <reference value="#SystolicBP_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19360225120837-0500"/>
+                  <effectiveTime value="19960205124848-0500"/>
                   <!-- Example of Value with UCUM unit. Note that mixed metric and imperial units used in this example-->
                   <value xsi:type="PQ" value="120" unit="mm[Hg]"/>
                   <!-- Additional information of interpretation and/or reference range may be included but are optional-->
@@ -751,7 +751,7 @@
                     <reference value="#DiastolicBP_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19360225120837-0500"/>
+                  <effectiveTime value="19960205124848-0500"/>
                   <value xsi:type="PQ" value="80" unit="mm[Hg]"/>
                 </observation>
               </component>
@@ -765,7 +765,7 @@
                     <reference value="#Pulse_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19360225120837-0500"/>
+                  <effectiveTime value="19960205124848-0500"/>
                   <value xsi:type="PQ" value="80" unit="/min"/>
                 </observation>
               </component>
@@ -779,7 +779,7 @@
                     <reference value="#Temp_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19360225120837-0500"/>
+                  <effectiveTime value="19960205124848-0500"/>
                   <!-- Note the UCUM conformant way to specify degrees Farenheit-->
                   <value xsi:type="PQ" value="99.0" unit="[degF]"/>
                 </observation>
@@ -794,7 +794,7 @@
                     <reference value="#RespRate_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19360225120837-0500"/>
+                  <effectiveTime value="19960205124848-0500"/>
                   <value xsi:type="PQ" value="18" unit="/min"/>
                 </observation>
               </component>
@@ -808,7 +808,7 @@
                     <reference value="#Height_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19360225120837-0500"/>
+                  <effectiveTime value="19960205124848-0500"/>
                   <!-- Note the UCUM conformant way to specify inches-->
                   <value xsi:type="PQ" value="43" unit="[in_us]"/>
                 </observation>
@@ -823,7 +823,7 @@
                     <reference value="#Weight_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19360225120837-0500"/>
+                  <effectiveTime value="19960205124848-0500"/>
                   <!-- Note the UCUM conformant way to specify pounds-->
                   <value xsi:type="PQ" value="39.9" unit="[lb_av]"/>
                 </observation>
@@ -838,7 +838,7 @@
                     <reference value="#BMI_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19360225120837-0500"/>
+                  <effectiveTime value="19960205124848-0500"/>
                   <value xsi:type="PQ" value="17.58" unit="kg/m2"/>
                 </observation>
               </component>
@@ -852,7 +852,7 @@
                     <reference value="#SPO2_2"/>
                   </text>
                   <statusCode code="completed"/>
-                  <effectiveTime value="19360225120837-0500"/>
+                  <effectiveTime value="19960205124848-0500"/>
                   <value xsi:type="PQ" value="98" unit="%"/>
                 </observation>
               </component>

@@ -42,7 +42,7 @@
         </name>
         <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male"/>
         <!-- yoda is 900 years old -->
-        <birthTime value="10461007"/>
+        <birthTime value="11060918"/>
         <!-- If sdtc:deceasedInd is true then sdtc:deceasedTime must be present -->
         <sdtc:deceasedInd value="false"/>
         <!-- yoda's race is unknown -->
@@ -158,8 +158,8 @@
       <!-- eICR encompassingEncounter time - this is the time of the original encounter from the
       eICR -->
       <effectiveTime>
-        <low value="19461113023232+0000"/>
-        <high value="19461113023337+0000"/>
+        <low value="20061024031243+0000"/>
+        <high value="20061024031348+0000"/>
       </effectiveTime>
       <!-- provider in charge of care when case reported -->
       <responsibleParty>
@@ -287,7 +287,7 @@
               <code code="RR5" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions" displayName="Received eICR Information"/>
               <text xsi:type="ST">REMOVED</text>
               <statusCode code="completed"/>
-              <effectiveTime value="19461202213339+0000"/>
+              <effectiveTime value="20061112221350+0000"/>
               <reference typeCode="REFR">
                 <externalDocument classCode="DOCCLIN" moodCode="EVN">
                   <!-- [C-CDA R2.0 External Document Reference] -->

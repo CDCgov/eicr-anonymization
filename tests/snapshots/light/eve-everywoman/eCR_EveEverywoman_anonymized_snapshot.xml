@@ -54,7 +54,7 @@
                      If present, low indicates the starting period for this address 
                      The following example indicates a current address-->
                 <useablePeriod xsi:type="IVL_TS">
-                    <low value="192204270117"/>
+                    <low value="198204070157"/>
                 </useablePeriod>
             </addr>
             <!-- Patient Telcom (phone, email, or fax) -->
@@ -76,7 +76,7 @@
                 </name>
                 <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
                 <!-- Patient Birthdate -->
-                <birthTime value="18960829"/>
+                <birthTime value="19560810"/>
                 <!-- If sdtc:deceasedInd is true then sdtc:deceasedTime must be present -->
                 <sdtc:deceasedInd value="false"/>
                 <!-- Patient Race -->
@@ -188,9 +188,9 @@
             (CDC Local Coding System)" displayName="External Historical Encounter">-->
             <effectiveTime>
                 <!-- Admission Date/Time (inpatient) OR Visit Date/Time (outpatient) -->
-                <low value="19420815011653-0500"/>
+                <low value="20020726015704-0500"/>
                 <!-- Discharge Date/Time (if missing, the encounter is still in progress)  -->
-                <high value="19420816035335-0500"/>
+                <high value="20020727043346-0500"/>
             </effectiveTime>
             <!-- Provider: Provider responsible for the patient's care when the case was triggered -->
             <responsibleParty>
@@ -344,7 +344,7 @@
                             <code code="80825-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Zika virus envelope (E) gene [Presence] in Serum by Probe and target amplification method" sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="2020-11-13"/>
                             <statusCode code="active"/>
                             <!-- Date on which the lab test should take place -->
-                            <effectiveTime value="19420815"/>
+                            <effectiveTime value="20020726"/>
                         </observation>
                     </entry>
                     <!-- Trigger Template: This is a request for a procedure: Extracorporeal
@@ -360,7 +360,7 @@
                             <id root="9a6d1bac-17d3-4195-89c4-1121bc809b5a"/>
                             <code code="233573008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Extracorporeal membrane oxygenation (procedure)" sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="2020-11-13"/>
                             <statusCode code="active"/>
-                            <effectiveTime value="19420815"/>
+                            <effectiveTime value="20020726"/>
                         </procedure>
                     </entry>
                     <!-- Trigger Template: This is a request for an act procedure: transmission
@@ -376,7 +376,7 @@
                             <id root="7658963e-54da-496f-bf18-dea1dddaa3b0"/>
                             <code code="409524006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Airborne precautions (procedure)" sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="2020-11-13"/>
                             <statusCode code="active"/>
-                            <effectiveTime value="19420815"/>
+                            <effectiveTime value="20020726"/>
                         </act>
                     </entry>
                     <!-- Trigger Template: Ventilator care and adjustment -->
@@ -391,7 +391,7 @@
                             <id root="b52bee94-c34b-4e2c-8c15-5ad9d6def204"/>
                             <code code="385857005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Ventilator care and adjustment (regime/therapy)" sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="2020-11-13"/>
                             <statusCode code="active"/>
-                            <effectiveTime value="19420815"/>
+                            <effectiveTime value="20020726"/>
                         </observation>
                     </entry>
                 </section>
@@ -549,7 +549,7 @@
                             <templateId root="2.16.840.1.113883.10.20.22.4.49" extension="2015-08-01"/>
                             <id root="2a620155-9d11-439e-92b3-5d9815ff4de8"/>
                             <code code="99213" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4" displayName="Office outpatient visit 15 minutes"/>
-                            <effectiveTime value="19420814"/>
+                            <effectiveTime value="20020725"/>
                             <entryRelationship typeCode="COMP">
                                 <act classCode="ACT" moodCode="EVN">
                                     <!-- [C-CDA R1.1] Encounter Diagnosis -->
@@ -572,7 +572,7 @@
                                             </code>
                                             <statusCode code="completed"/>
                                             <effectiveTime>
-                                                <low value="19420814"/>
+                                                <low value="20020725"/>
                                             </effectiveTime>
                                             <!-- Trigger code -->
                                             <value xsi:type="CD" code="27836007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Pertussis (disorder)" sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="2020-11-13"/>
@@ -599,7 +599,7 @@
                                             </code>
                                             <statusCode code="completed"/>
                                             <effectiveTime>
-                                                <low value="19420814"/>
+                                                <low value="20020725"/>
                                             </effectiveTime>
                                             <value xsi:type="CD" code="282291009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="A non-trigger code diagnosis (disorder)"/>
                                         </observation>
@@ -659,7 +659,7 @@
                             <templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
                             <id root="6c844c75-aa34-411c-b7bd-5e4a9f206e29"/>
                             <statusCode code="completed"/>
-                            <effectiveTime xsi:type="PIVL_TS" operator="A" value="19420815033741-0700"/>
+                            <effectiveTime xsi:type="PIVL_TS" operator="A" value="20020726041752-0700"/>
                             <routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="ORAL"/>
                             <doseQuantity value="1" unit="g"/>
                             <consumable>
@@ -683,7 +683,7 @@
                                     <code code="67540-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Response to medication"/>
                                     <statusCode code="completed"/>
                                     <effectiveTime>
-                                        <low value="19420808"/>
+                                        <low value="20020719"/>
                                     </effectiveTime>
                                     <value code="268910001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Patient's condition improved (finding)" xsi:type="CD"/>
                                 </observation>
@@ -782,7 +782,7 @@
                             <effectiveTime>
                                 <!-- The low value represents when the problem was first recorded in
                                 the patient's chart -->
-                                <low value="19420814"/>
+                                <low value="20020725"/>
                             </effectiveTime>
                             <entryRelationship typeCode="SUBJ">
                                 <observation classCode="OBS" moodCode="EVN">
@@ -799,7 +799,7 @@
                                     <statusCode code="completed"/>
                                     <effectiveTime>
                                         <!-- The low value reflects the date of onset -->
-                                        <low value="19420808"/>
+                                        <low value="20020719"/>
                                     </effectiveTime>
                                     <value code="35064005" codeSystem="2.16.840.1.113883.6.96" displayName="Dark stools (finding)" xsi:type="CD"/>
                                 </observation>
@@ -819,7 +819,7 @@
                                     <statusCode code="completed"/>
                                     <effectiveTime>
                                         <!-- The low value reflects the date of onset -->
-                                        <low value="19420811"/>
+                                        <low value="20020722"/>
                                     </effectiveTime>
                                     <value code="43025008" codeSystem="2.16.840.1.113883.6.96" displayName="Paroxysmal cough (finding)" xsi:type="CD"/>
                                 </observation>
@@ -840,7 +840,7 @@
                             <effectiveTime>
                                 <!-- The low value represents when the problem was first recorded in
                                 the patient's chart -->
-                                <low value="19420227"/>
+                                <low value="20020207"/>
                             </effectiveTime>
                             <entryRelationship typeCode="SUBJ">
                                 <observation classCode="OBS" moodCode="EVN">
@@ -857,7 +857,7 @@
                                     <statusCode code="completed"/>
                                     <effectiveTime>
                                         <!-- The low value reflects the date of onset -->
-                                        <low value="19420808"/>
+                                        <low value="20020719"/>
                                     </effectiveTime>
                                     <value code="35064005" codeSystem="2.16.840.1.113883.6.96" displayName="Dark stools (finding)" xsi:type="CD"/>
                                 </observation>
@@ -877,7 +877,7 @@
                                     <statusCode code="completed"/>
                                     <effectiveTime>
                                         <!-- The low value reflects the date of onset -->
-                                        <low value="19420811"/>
+                                        <low value="20020722"/>
                                     </effectiveTime>
                                     <value code="43025008" codeSystem="2.16.840.1.113883.6.96" displayName="Paroxysmal cough (finding)" xsi:type="CD"/>
                                 </observation>
@@ -1106,8 +1106,8 @@
                             <code displayName="CBC W Auto Differential panel in Blood" code="57021-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="2020-11-13"/>
                             <statusCode code="completed"/>
                             <effectiveTime>
-                                <low value="19420814"/>
-                                <high value="19420814"/>
+                                <low value="20020725"/>
+                                <high value="20020725"/>
                             </effectiveTime>
                             <component>
                                 <!-- This observation is a non-trigger code result observation -->
@@ -1119,7 +1119,7 @@
                                     <id root="7c0704bb-9c40-41b5-9c7d-26b2d59e234f"/>
                                     <code code="20570-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Hematocrit"/>
                                     <statusCode code="completed"/>
-                                    <effectiveTime value="19420814"/>
+                                    <effectiveTime value="20020725"/>
                                     <value unit="%" value="35.3" xsi:type="PQ"/>
                                     <interpretationCode code="L" codeSystem="2.16.840.1.113883.5.83" displayName="Low"/>
                                     <referenceRange>
@@ -1144,7 +1144,7 @@
                                     <id root="7c0704bb-9c40-41b5-9c7d-26b2d59e234g"/>
                                     <code code="731-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Lymphocytes [#/​volume] in Blood by Automated count"/>
                                     <statusCode code="completed"/>
-                                    <effectiveTime value="19420814"/>
+                                    <effectiveTime value="20020725"/>
                                     <value unit="10*3/uL" value="5.2" xsi:type="PQ"/>
                                     <interpretationCode code="H" codeSystem="2.16.840.1.113883.5.83" displayName="High"/>
                                     <referenceRange>
@@ -1173,7 +1173,7 @@
                                     <code code="17636008" displayName="Specimen collection (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                                     <!-- Specimen collection date/time -->
                                     <effectiveTime>
-                                        <low value="19411214"/>
+                                        <low value="20011124"/>
                                     </effectiveTime>
                                     <!-- Specimen source -->
                                     <targetSiteCode code="368208006" displayName="Left upper arm structure (body structure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
@@ -1206,8 +1206,8 @@
                             observation is completed -->
                             <statusCode code="completed"/>
                             <effectiveTime>
-                                <low value="19420814"/>
-                                <high value="19420814"/>
+                                <low value="20020725"/>
+                                <high value="20020725"/>
                             </effectiveTime>
                             <component>
                                 <!-- This observation is a trigger code final result observation - 
@@ -1231,7 +1231,7 @@
                                     <!-- statusCode is set to completed indicating that this is a
                                     final result -->
                                     <statusCode code="completed"/>
-                                    <effectiveTime value="19420814"/>
+                                    <effectiveTime value="20020725"/>
                                     <!-- It is not necessary that the result value (contained in
                                     value) is a coded value 
                     (though, in order for a result value to be a trigger, it must be coded), 
@@ -1280,8 +1280,8 @@
                             observation is active -->
                             <statusCode code="active"/>
                             <effectiveTime>
-                                <low value="19420814"/>
-                                <high value="19420814"/>
+                                <low value="20020725"/>
+                                <high value="20020725"/>
                             </effectiveTime>
                             <component>
                                 <!-- This observation is a trigger code preliminary result
@@ -1312,7 +1312,7 @@
                                     <!-- statusCode is set to active indicating that this is a
                                     preliminary result -->
                                     <statusCode code="active"/>
-                                    <effectiveTime value="19420814"/>
+                                    <effectiveTime value="20020725"/>
                                     <!-- This value is a trigger code from RCTC subset: 
                        "R4 Organism_Substance Triggers for Public Health Reporting (RCTC subset)" 
                        @sdtc:valueSet and @sdtc:valueSetVersion shall be present -->
@@ -1376,7 +1376,7 @@
                             <id root="d68b7e32-7810-4f5b-9cc2-acd54b0fd85d"/>
                             <code code="73761001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Colonoscopy"/>
                             <statusCode code="completed"/>
-                            <effectiveTime value="19420822"/>
+                            <effectiveTime value="20020802"/>
                         </procedure>
                     </entry>
                     <entry>
@@ -1387,7 +1387,7 @@
                             <id root="6dab0739-749d-4c62-8f5e-eea77a045ce8"/>
                             <code code="274025005" codeSystem="2.16.840.1.113883.6.96" displayName="Colonic polypectomy" codeSystemName="SNOMED CT"/>
                             <statusCode code="completed"/>
-                            <effectiveTime value="19420822"/>
+                            <effectiveTime value="20020802"/>
                             <value xsi:type="CD" nullFlavor="NA"/>
                             <targetSiteCode code="416949008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Abdomen and pelvis"/>
                         </observation>
@@ -1406,7 +1406,7 @@
                             <id root="609a7b3b-3bd1-4e83-b621-c4afe4a90cd7"/>
                             <code code="233573008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Extracorporeal membrane oxygenation (procedure)" sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="2020-11-13"/>
                             <statusCode code="completed"/>
-                            <effectiveTime value="19420822"/>
+                            <effectiveTime value="20020802"/>
                         </procedure>
                     </entry>
                     <!-- Trigger Template: Transmission based precautions: Airborn precautions
@@ -1423,7 +1423,7 @@
                             <id root="941aee94-1f69-4fa8-91c8-7eee00915728"/>
                             <code code="409524006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Airborn precautions (procedure)" sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="2020-11-13"/>
                             <statusCode code="completed"/>
-                            <effectiveTime value="19420822"/>
+                            <effectiveTime value="20020802"/>
                         </act>
                     </entry>
                     <!-- Trigger Template: Ventilator care and adjustment -->
@@ -1439,7 +1439,7 @@
                             <id root="e535eb92-829f-45bb-8602-a49f59bb4e2c"/>
                             <code code="385857005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Ventilator care and adjustment (regime/therapy)" sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="2020-11-13"/>
                             <statusCode code="completed"/>
-                            <effectiveTime value="19420822"/>
+                            <effectiveTime value="20020802"/>
                             <value xsi:type="CD" nullFlavor="NA"/>
                         </observation>
                     </entry>
@@ -1513,7 +1513,7 @@
                             <templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
                             <id root="00000000-5CF3-EC63-0513-4A4838595787" extension="XX956-8_6-4_0.8.3.1.9.4.33519.66.2571.961.5_36087"/>
                             <statusCode code="completed"/>
-                            <effectiveTime value="19420814"/>
+                            <effectiveTime value="20020725"/>
                             <routeCode nullFlavor="NI"/>
                             <doseQuantity nullFlavor="NI"/>
                             <consumable>
@@ -1535,7 +1535,7 @@
                             <templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
                             <id root="00000000-5CF3-EC63-0513-4A4838595787" extension="XX621-5_9-0_2.5.4.6.9.6.70210.05.3438.364.7_31569"/>
                             <statusCode code="completed"/>
-                            <effectiveTime value="19420814"/>
+                            <effectiveTime value="20020725"/>
                             <routeCode nullFlavor="NI"/>
                             <doseQuantity nullFlavor="NI"/>
                             <consumable>
@@ -1561,7 +1561,7 @@
                             <id root="3adc7f4d-ff0a-4b38-9252-bd65edbe3dff"/>
                             <code code="11370-4" displayName="Immunization status - Reported" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
                             <statusCode code="completed"/>
-                            <effectiveTime value="19420814"/>
+                            <effectiveTime value="20020725"/>
                             <value xsi:type="CD" code="Y" codeSystem="2.16.840.1.113883.12.136" displayName="Yes" codeSystemName="Yes/No Indicator (HL7 Table 0136)"/>
                         </observation>
                     </entry>
@@ -1773,7 +1773,7 @@
                             <code code="76689-9" codeSystem="2.16.840.1.113883.6.1" displayName="Sex Assigned At Birth"/>
                             <statusCode code="completed"/>
                             <!-- effectiveTime if present should match birthTime -->
-                            <effectiveTime value="18960829"/>
+                            <effectiveTime value="19560810"/>
                             <value xsi:type="CD" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" code="F" displayName="Female"/>
                         </observation>
                     </entry>
@@ -1787,7 +1787,7 @@
                             <code code="76691-5" displayName="Gender identity" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
                             <statusCode code="completed"/>
                             <effectiveTime>
-                                <low value="19411007"/>
+                                <low value="20010917"/>
                             </effectiveTime>
                             <value xsi:type="CD" code="407377005" displayName="Female-to-male transsexual (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                         </observation>
@@ -1800,7 +1800,7 @@
                             <id root="37f76c51-6411-4e1d-8a37-957fd49d2ced"/>
                             <code code="75274-1" codeSystem="2.16.840.1.113883.6.1" displayName="Characteristics of residence"/>
                             <statusCode code="completed"/>
-                            <effectiveTime value="19420816"/>
+                            <effectiveTime value="20020727"/>
                             <value xsi:type="CD" code="32911000" displayName="Homeless (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                         </observation>
                     </entry>
@@ -1815,8 +1815,8 @@
                             </code>
                             <statusCode code="completed"/>
                             <effectiveTime>
-                                <low value="194208181032"/>
-                                <high value="194208181402"/>
+                                <low value="200207291112"/>
+                                <high value="200207291442"/>
                             </effectiveTime>
                             <value xsi:type="CD" code="264379009" displayName="Sports stadium (environment)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
                                 <originalText>REMOVED</originalText>
@@ -1845,8 +1845,8 @@
                             <code code="PHC2266" displayName="Animal with confirmed or suspected case" codeSystem="2.16.840.1.114222.4.5.274" codeSystemName="PHIN VS (CDC Local Coding System)"/>
                             <statusCode code="completed"/>
                             <effectiveTime>
-                                <low value="19420816"/>
-                                <high value="19420820"/>
+                                <low value="20020727"/>
+                                <high value="20020731"/>
                             </effectiveTime>
                             <participant typeCode="IND">
                                 <!-- [eICR R2 STU3] Animal Participant -->
@@ -1869,8 +1869,8 @@
                             <code code="PHC2267" displayName="Contact with known case" codeSystem="2.16.840.1.114222.4.5.274" codeSystemName="PHIN VS (CDC Local Coding System)"/>
                             <statusCode code="completed"/>
                             <effectiveTime>
-                                <low value="19420816"/>
-                                <high value="19420820"/>
+                                <low value="20020727"/>
+                                <high value="20020731"/>
                             </effectiveTime>
                             <participant typeCode="IND">
                                 <!-- [eICR R2 STU3] Person Participant -->
@@ -1906,8 +1906,8 @@
                             <statusCode code="completed"/>
                             <!-- Duration (from 1999 to 2007) -->
                             <effectiveTime>
-                                <low value="1920"/>
-                                <high value="1928"/>
+                                <low value="1980"/>
+                                <high value="1988"/>
                             </effectiveTime>
                         </act>
                     </entry>
@@ -1923,7 +1923,7 @@
                             statement was made -->
                             <effectiveTime>
                                 <width value="3" unit="weeks"/>
-                                <high value="19420816"/>
+                                <high value="20020727"/>
                             </effectiveTime>
                             <participant typeCode="LOC">
                                 <participantRole classCode="TERR">
@@ -1943,8 +1943,8 @@
                             <statusCode code="completed"/>
                             <!-- Duration -->
                             <effectiveTime>
-                                <low value="19420130"/>
-                                <high value="19420204"/>
+                                <low value="20020110"/>
+                                <high value="20020115"/>
                             </effectiveTime>
                             <participant typeCode="LOC">
                                 <participantRole classCode="TERR">
@@ -1974,8 +1974,8 @@
                                     <code code="21812002" codeSystem="2.16.840.1.113883.6.1" displayName="Ocean liner, device (physical object)" codeSystemName="SNOMED CT"/>
                                     <statusCode code="completed"/>
                                     <effectiveTime>
-                                        <low value="19420130"/>
-                                        <high value="19420219"/>
+                                        <low value="20020110"/>
+                                        <high value="20020130"/>
                                     </effectiveTime>
                                     <component>
                                         <observation classCode="OBS" moodCode="EVN">
@@ -1987,8 +1987,8 @@
                                             </code>
                                             <statusCode code="completed"/>
                                             <effectiveTime>
-                                                <low value="19420130"/>
-                                                <high value="19420219"/>
+                                                <low value="20020110"/>
+                                                <high value="20020130"/>
                                             </effectiveTime>
                                             <value xsi:type="ST">REMOVED</value>
                                         </observation>
@@ -2003,8 +2003,8 @@
                                             </code>
                                             <statusCode code="completed"/>
                                             <effectiveTime>
-                                                <low value="19420130"/>
-                                                <high value="19420219"/>
+                                                <low value="20020110"/>
+                                                <high value="20020130"/>
                                             </effectiveTime>
                                             <value xsi:type="ST">REMOVED</value>
                                         </observation>
@@ -2024,8 +2024,8 @@
                             <statusCode code="completed"/>
                             <!-- Duration -->
                             <effectiveTime>
-                                <low value="19420210"/>
-                                <high value="19420219"/>
+                                <low value="20020121"/>
+                                <high value="20020130"/>
                             </effectiveTime>
                             <participant typeCode="LOC">
                                 <participantRole classCode="TERR">
@@ -2048,8 +2048,8 @@
                             <code code="420008001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Travel"/>
                             <statusCode code="completed"/>
                             <effectiveTime>
-                                <low value="19420419"/>
-                                <high value="19420421"/>
+                                <low value="20020330"/>
+                                <high value="20020401"/>
                             </effectiveTime>
                             <participant typeCode="LOC">
                                 <participantRole classCode="TERR">
@@ -2072,8 +2072,8 @@
                             <code code="420008001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Travel"/>
                             <statusCode code="completed"/>
                             <effectiveTime>
-                                <low value="19420729"/>
-                                <high value="19420806"/>
+                                <low value="20020709"/>
+                                <high value="20020717"/>
                             </effectiveTime>
                             <participant typeCode="LOC">
                                 <participantRole classCode="TERR">
@@ -2115,7 +2115,7 @@
                             <id root="c09ac074-605e-47bd-8b1c-735e7321fbc2"/>
                             <code code="69856-3" codeSystem="2.16.840.1.113883.6.1" displayName="Are you deaf, or do you have serious difficulty hearing [HHS.ACA Section 4302]" codeSystemName="LOINC"/>
                             <statusCode code="completed"/>
-                            <effectiveTime value="19420816"/>
+                            <effectiveTime value="20020727"/>
                             <value xsi:type="BL" value="true"/>
                         </observation>
                     </entry>
@@ -2127,7 +2127,7 @@
                             <!-- Tribe name -->
                             <code code="91" codeSystem="2.16.840.1.113883.5.140" displayName="Fort Mojave Indian Tribe of Arizona, California" codeSystemName="TribalEntityUS"/>
                             <statusCode code="completed"/>
-                            <effectiveTime value="19420816"/>
+                            <effectiveTime value="20020727"/>
                             <!-- Enrolled Tribe Member -->
                             <value xsi:type="BL" value="true"/>
                         </observation>
@@ -2148,7 +2148,7 @@
                             <code code="21843-8" displayName="Usual Occupation" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
                             <statusCode code="completed"/>
                             <effectiveTime>
-                                <low value="19180831"/>
+                                <low value="19780811"/>
                             </effectiveTime>
                             <!-- eICR Data element: Usual occupation -->
                             <value xsi:type="CD" code="3600" codeSystem="2.16.840.1.113883.6.240" codeSystemName="U.S. Census Occupation Code (2010)" displayName="Nursing, psychiatric, and home health aides">
@@ -2163,7 +2163,7 @@
                                     <code code="21844-6" displayName="Usual Industry" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
                                     <statusCode code="completed"/>
                                     <effectiveTime>
-                                        <low value="19180831"/>
+                                        <low value="19780811"/>
                                     </effectiveTime>
                                     <!-- eICR Data element: Usual industry -->
                                     <value xsi:type="CD" code="8270" codeSystem="2.16.840.1.114222.4.5.315" codeSystemName="Industry CDC Census 2010" displayName="Nursing care facilities">
@@ -2185,7 +2185,7 @@
                             <statusCode code="active"/>
                             <!-- effectiveTime/high omitted as this is the current occupation -->
                             <effectiveTime>
-                                <low value="19370128"/>
+                                <low value="19970108"/>
                             </effectiveTime>
                             <!-- eICR Data element: Current occupation -->
                             <value xsi:type="CD" code="3600" codeSystem="2.16.840.1.113883.6.240" codeSystemName="U.S. Census Occupation Code (2010)" displayName="Nursing, psychiatric, and home health aides">
@@ -2245,7 +2245,7 @@
                             <code code="74165-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Employment Status"/>
                             <statusCode code="completed"/>
                             <effectiveTime xsi:type="IVL_TS">
-                                <low value="19381024081946"/>
+                                <low value="19981004085957"/>
                             </effectiveTime>
                             <value xsi:type="CD" code="Employed" codeSystem="2.16.840.1.113883.5.1063" codeSystemName="HL7ObservationValue" displayName="Employed"/>
                         </observation>
@@ -2422,7 +2422,7 @@
                             patient 
                    was pregnant/possibly pregnant/not pregnant/unknown. -->
                             <effectiveTime>
-                                <low value="19390602"/>
+                                <low value="19990513"/>
                             </effectiveTime>
                             <!-- eICR Data element: Pregnancy status -->
                             <value xsi:type="CD" code="77386006" displayName="Pregnant" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
@@ -2437,7 +2437,7 @@
                             </performer>
                             <author>
                                 <!-- eICR Data element: Pregnancy Status Recorded Date -->
-                                <time value="193907090307"/>
+                                <time value="199906190347"/>
                                 <assignedAuthor>
                                     <id nullFlavor="NA"/>
                                 </assignedAuthor>
@@ -2457,9 +2457,9 @@
                                     <code code="11780-4" codeSystem="2.16.840.1.113883.6.1" displayName="Delivery date estimated from ovulation date" codeSystemName="LOINC"/>
                                     <statusCode code="completed"/>
                                     <!-- eICR Data element: EDD determination date -->
-                                    <effectiveTime value="193907090247"/>
+                                    <effectiveTime value="199906190327"/>
                                     <!-- eICR Data element: Estimated date of delivery (EDD) -->
-                                    <value xsi:type="TS" value="19390226"/>
+                                    <value xsi:type="TS" value="19990206"/>
                                 </observation>
                             </entryRelationship>
                             <!-- Estimated Gestational Age of Pregnancy -->
@@ -2472,7 +2472,7 @@
                                     <statusCode code="completed"/>
                                     <!-- eICR Data element: Estimated gestational age determination
                                     date -->
-                                    <effectiveTime value="193907090247"/>
+                                    <effectiveTime value="199906190327"/>
                                     <!-- eICR Data element: Estimated gestational age of pregnancy
                                     in days -->
                                     <value xsi:type="PQ" unit="d" value="143"/>
@@ -2508,7 +2508,7 @@
                                     <code code="63893-2" codeSystem="2.16.840.1.113883.6.1" displayName="Outcome of Pregnancy" codeSystemName="LOINC"/>
                                     <statusCode code="completed"/>
                                     <!-- eICR Data element: Pregnancy outcome date -->
-                                    <effectiveTime value="194110120122"/>
+                                    <effectiveTime value="200109220202"/>
                                     <!-- eICR Data element: Pregnancy outcome -->
                                     <value xsi:type="CD" code="237364002" codeSystem="2.16.840.1.113883.6.96" displayName="Stillbirth (finding)" codeSystemName="SNOMED CT"/>
                                 </observation>
@@ -2524,8 +2524,8 @@
                             <code code="8665-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Last menstrual period start date"/>
                             <statusCode code="completed"/>
                             <!-- eICR Data element: Last menstrual period (LMP) -->
-                            <effectiveTime value="194110120247"/>
-                            <value xsi:type="TS" value="19390508"/>
+                            <effectiveTime value="200109220327"/>
+                            <value xsi:type="TS" value="19990418"/>
                         </observation>
                     </entry>
                     <!-- Postpartum Status -->
@@ -2536,7 +2536,7 @@
                             <id root="9701b264-0f70-47f9-bfbf-aa4f9686cd3a"/>
                             <code code="249197004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Maternal condition during puerperium (observable entity)"/>
                             <statusCode code="completed"/>
-                            <effectiveTime value="194110120247"/>
+                            <effectiveTime value="200109220327"/>
                             <!-- eICR Data element: Postpartum status -->
                             <value xsi:type="CD" code="42814007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Mid postpartum state (finding)"/>
                         </observation>
@@ -2593,7 +2593,7 @@
                                 <translation code="74728-7" displayName="Vital signs, weight, height, head circumference, oximetry, BMI, and BSA panel " codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
                             </code>
                             <statusCode code="completed"/>
-                            <effectiveTime value="19360225120837-0500"/>
+                            <effectiveTime value="19960205124848-0500"/>
                             <!-- Each vital sign should be its own component. Note that systolic and
                             diastolic BP must be separate components-->
                             <component>
@@ -2608,7 +2608,7 @@
                                         <reference value="#SystolicBP_2"/>
                                     </text>
                                     <statusCode code="completed"/>
-                                    <effectiveTime value="19360225120837-0500"/>
+                                    <effectiveTime value="19960205124848-0500"/>
                                     <!-- Example of Value with UCUM unit. Note that mixed metric and
                                     imperial units used in this example-->
                                     <value xsi:type="PQ" value="120" unit="mm[Hg]"/>
@@ -2626,7 +2626,7 @@
                                         <reference value="#DiastolicBP_2"/>
                                     </text>
                                     <statusCode code="completed"/>
-                                    <effectiveTime value="19360225120837-0500"/>
+                                    <effectiveTime value="19960205124848-0500"/>
                                     <value xsi:type="PQ" value="80" unit="mm[Hg]"/>
                                 </observation>
                             </component>
@@ -2640,7 +2640,7 @@
                                         <reference value="#Pulse_2"/>
                                     </text>
                                     <statusCode code="completed"/>
-                                    <effectiveTime value="19360225120837-0500"/>
+                                    <effectiveTime value="19960205124848-0500"/>
                                     <value xsi:type="PQ" value="80" unit="/min"/>
                                 </observation>
                             </component>
@@ -2654,7 +2654,7 @@
                                         <reference value="#Temp_2"/>
                                     </text>
                                     <statusCode code="completed"/>
-                                    <effectiveTime value="19360225120837-0500"/>
+                                    <effectiveTime value="19960205124848-0500"/>
                                     <!-- Note the UCUM conformant way to specify degrees
                                     Farenheit-->
                                     <value xsi:type="PQ" value="99.0" unit="[degF]"/>
@@ -2670,7 +2670,7 @@
                                         <reference value="#RespRate_2"/>
                                     </text>
                                     <statusCode code="completed"/>
-                                    <effectiveTime value="19360225120837-0500"/>
+                                    <effectiveTime value="19960205124848-0500"/>
                                     <value xsi:type="PQ" value="18" unit="/min"/>
                                 </observation>
                             </component>
@@ -2684,7 +2684,7 @@
                                         <reference value="#Height_2"/>
                                     </text>
                                     <statusCode code="completed"/>
-                                    <effectiveTime value="19360225120837-0500"/>
+                                    <effectiveTime value="19960205124848-0500"/>
                                     <!-- Note the UCUM conformant way to specify inches-->
                                     <value xsi:type="PQ" value="67" unit="[in_us]"/>
                                 </observation>
@@ -2699,7 +2699,7 @@
                                         <reference value="#Weight_2"/>
                                     </text>
                                     <statusCode code="completed"/>
-                                    <effectiveTime value="19360225120837-0500"/>
+                                    <effectiveTime value="19960205124848-0500"/>
                                     <!-- Note the UCUM conformant way to specify pounds-->
                                     <value xsi:type="PQ" value="239.9" unit="[lb_av]"/>
                                 </observation>
@@ -2714,7 +2714,7 @@
                                         <reference value="#BMI_2"/>
                                     </text>
                                     <statusCode code="completed"/>
-                                    <effectiveTime value="19360225120837-0500"/>
+                                    <effectiveTime value="19960205124848-0500"/>
                                     <value xsi:type="PQ" value="37.58" unit="kg/m2"/>
                                 </observation>
                             </component>
@@ -2728,7 +2728,7 @@
                                         <reference value="#SPO2_2"/>
                                     </text>
                                     <statusCode code="completed"/>
-                                    <effectiveTime value="19360225120837-0500"/>
+                                    <effectiveTime value="19960205124848-0500"/>
                                     <value xsi:type="PQ" value="98" unit="%"/>
                                 </observation>
                             </component>
@@ -2771,7 +2771,7 @@
                             </code>
                             <statusCode code="completed"/>
                             <effectiveTime>
-                                <low value="19420808"/>
+                                <low value="20020719"/>
                             </effectiveTime>
                             <value xsi:type="PQ" value="2" unit="m"/>
                         </observation>
