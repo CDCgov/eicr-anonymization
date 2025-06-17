@@ -3,15 +3,10 @@
 This module handles logic around replacing data with similar but fake data.
 """
 
-import functools
-import hashlib
-import inspect
-import pickle
 import random
 import re
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from random import choice, randint, shuffle
 from string import ascii_lowercase, ascii_uppercase
 from typing import Literal, NotRequired, TypedDict
 
@@ -19,63 +14,12 @@ import usaddress
 import yaml
 from lxml.etree import _Element
 
+from eicr_anonymization.determinism import deterministic
 from eicr_anonymization.element_parser import Element
 
 ONE_THIRD = 0.33
 ONE_HALF = 0.5
 TWO_THIRDS = 0.67
-
-
-def deterministic(func):
-    @functools.wraps(func)
-    def wrapper(self, *args, **kwargs):
-        if hasattr(self, "is_deterministic") and self.is_deterministic:
-            signature = inspect.signature(func)
-            bound_args = signature.bind(self, *args, **kwargs)
-            bound_args.apply_defaults()
-            params_dict = dict(
-                sorted((k, v) for k, v in bound_args.arguments.items() if k != "self")
-            )
-            seed = hash_params_to_seed(params_dict, self.seed)
-            random.seed(seed)
-        return func(self, *args, **kwargs)
-
-    return wrapper
-
-
-def hash_params_to_seed(params, global_seed):
-    """
-    Convert function parameters to a deterministic integer seed.
-
-    Args:
-        params (dict): Dictionary of parameter names and values
-
-    Returns:
-        int: Deterministic seed value
-    """
-    try:
-        # Use pickle to serialize the parameters (handles most Python objects)
-        serialized = pickle.dumps(params, protocol=pickle.HIGHEST_PROTOCOL)
-
-        # Create SHA-256 hash
-        hash_obj = hashlib.sha256(serialized)
-        if global_seed:
-            hash_obj.update(str(global_seed).encode())
-        hash_hex = hash_obj.hexdigest()
-
-        # Convert to integer seed (Python's random module expects int)
-        # Take first 8 hex chars to avoid extremely large numbers
-        seed = int(hash_hex[:8], 16)
-
-        return seed
-    except (pickle.PicklingError, TypeError) as e:
-        # Fallback: convert to string and hash
-        params_str = str(sorted(params.items()))
-        hash_obj = hashlib.sha256(params_str.encode("utf-8"))
-        if global_seed:
-            hash_obj.update(str(global_seed).encode())
-        seed = int(hash_obj.hexdigest()[:8], 16)
-        return seed
 
 
 class ReplacementType(TypedDict):
@@ -185,7 +129,7 @@ class Anonymizer:
 
         SECONDS_IN_100_YEARS = int(100 * 60 * 60 * 24 * 365.25)
         # The main offset is a random number of seconds between 0 and 100 years
-        self.time_offset = randint(0, SECONDS_IN_100_YEARS)
+        self.time_offset = random.randint(0, SECONDS_IN_100_YEARS)
 
         self.ASSUMED_ABBR_LEN = 3
         self.NUM_X = 2
@@ -284,11 +228,11 @@ class Anonymizer:
             ):
                 replacement += "X"
             elif char.isdigit():
-                replacement += str(randint(0, 9))
+                replacement += str(random.randint(0, 9))
             elif char.isalpha() and char.islower():
-                replacement += choice(ascii_lowercase)
+                replacement += random.choice(ascii_lowercase)
             elif char.isalpha() and char.isupper():
-                replacement += choice(ascii_uppercase)
+                replacement += random.choice(ascii_uppercase)
             else:
                 replacement += char
 
@@ -321,7 +265,7 @@ class Anonymizer:
                         continue
                     replacement_AddressNumber = ""
                     for i in str(component):
-                        replacement_AddressNumber += str(randint(0, 9)) if i.isdigit() else i
+                        replacement_AddressNumber += str(random.randint(0, 9)) if i.isdigit() else i
                     self._set_mapping(component, "houseNumber", replacement_AddressNumber)
                     replacement.append(_match_formatting(component, replacement_AddressNumber))
                 case "AddressNumberPrefix":
@@ -437,11 +381,11 @@ class Anonymizer:
             replacement = ""
             for char in str(value):
                 if char.isdigit():
-                    replacement += str(randint(0, 9))
+                    replacement += str(random.randint(0, 9))
                 elif char.isalpha() and char.islower():
-                    replacement += choice(ascii_lowercase)
+                    replacement += random.choice(ascii_lowercase)
                 elif char.isalpha() and char.isupper():
-                    replacement += choice(ascii_uppercase)
+                    replacement += random.choice(ascii_uppercase)
                 else:
                     replacement += char
 
@@ -457,7 +401,7 @@ class Anonymizer:
         # If options are depleted, refill from the pool and shuffle
         if not options:
             options.extend(pool.copy())
-            shuffle(options)
+            random.shuffle(options)
 
         # Pop the first item
         return options.pop(0)
@@ -505,39 +449,41 @@ class Anonymizer:
 
         conjuctions = ["and", "&", "+"]
 
-        form_choice = randint(0, 1)
+        form_choice = random.randint(0, 1)
         replacement = "REMOVED"
         parts = []
         match form_choice:
             case 0:
                 form_choice = random.random()
                 if form_choice <= ONE_THIRD:
-                    parts.append(f" {choice(localitys)} {choice(organizationTypes)}")
+                    parts.append(f" {random.choice(localitys)} {random.choice(organizationTypes)}")
                 elif form_choice <= TWO_THIRDS:
-                    parts.append(f"{choice(organizationTypes)} of {choice(localitys)}")
+                    parts.append(
+                        f"{random.choice(organizationTypes)} of {random.choice(localitys)}"
+                    )
                 else:
-                    parts.append(choice(localitys))
+                    parts.append(random.choice(localitys))
 
                 if random.random() <= ONE_HALF:
-                    parts.append(f"{choice(scopes)} {choice(facilityTypes)}")
+                    parts.append(f"{random.choice(scopes)} {random.choice(facilityTypes)}")
                 else:
-                    parts.append(choice(facilityTypes))
+                    parts.append(random.choice(facilityTypes))
 
                 if random.random() <= ONE_HALF:
-                    parts.append(f"{choice(conjuctions)} {choice(facilityTypes)}")
+                    parts.append(f"{random.choice(conjuctions)} {random.choice(facilityTypes)}")
             case 1:
                 if random.random() <= ONE_HALF:
-                    parts.append(choice(organizationTypes))
+                    parts.append(random.choice(organizationTypes))
 
                 if random.random() <= ONE_HALF:
-                    parts.append(choice(scopes))
+                    parts.append(random.choice(scopes))
 
-                parts.append(choice(facilityTypes))
+                parts.append(random.choice(facilityTypes))
 
                 if random.random() <= ONE_HALF:
-                    parts.append(f"{choice(conjuctions)} {choice(facilityTypes)}")
+                    parts.append(f"{random.choice(conjuctions)} {random.choice(facilityTypes)}")
 
-                parts.append(f"of {choice(localitys)}")
+                parts.append(f"of {random.choice(localitys)}")
 
         replacement = " ".join(parts)
         self._set_mapping(value, "EN", replacement)
@@ -573,14 +519,16 @@ class Anonymizer:
 
     def _random_web_address(self, protocol: str = "http"):
         """Generate a random web address."""
-        prefix = "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
+        prefix = "".join(random.choice(ascii_lowercase) for _ in range(random.randint(0, 5)))
         if prefix != "":
             prefix += "."
-        suffix = "".join(choice("0123456789") for _ in range(randint(0, 5)))
+        suffix = "".join(random.choice("0123456789") for _ in range(random.randint(0, 5)))
         replacement = f"{protocol}://{prefix}example{suffix}.com"
         if random.random() <= ONE_HALF:
-            replacement += "/" + "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
-            replacement += choice(
+            replacement += "/" + "".join(
+                random.choice(ascii_lowercase) for _ in range(random.randint(0, 5))
+            )
+            replacement += random.choice(
                 ["", ".pdf", ".html", ".xml", ".txt", ".jpg", ".png", ".gif", ".jpeg"]
             )
         return replacement
@@ -591,14 +539,14 @@ class Anonymizer:
 
         name = "mailto:"
 
-        name += "".join(choice(ascii_lowercase) for _ in range(randint(1, 5)))
+        name += "".join(random.choice(ascii_lowercase) for _ in range(random.randint(1, 5)))
         form_choice = random.random()
         if form_choice <= ONE_THIRD:
-            name += "".join(choice(["", "_", "."]))
-            name += "".join(choice("0123456789") for _ in range(randint(1, 3)))
+            name += "".join(random.choice(["", "_", "."]))
+            name += "".join(random.choice("0123456789") for _ in range(random.randint(1, 3)))
         elif form_choice <= TWO_THIRDS:
-            name += "".join(choice(["", "_", "."]))
-            name += "".join(choice(ascii_lowercase) for _ in range(randint(1, 3)))
+            name += "".join(random.choice(["", "_", "."]))
+            name += "".join(random.choice(ascii_lowercase) for _ in range(random.randint(1, 3)))
         return f"{name}@{domain}"
 
     @deterministic
