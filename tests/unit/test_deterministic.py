@@ -10,9 +10,10 @@ from eicr_anonymization.anonymizer import deterministic
 class TestAnonymizer:
     """Test class for testing the decorator with a mock Anonymizer."""
 
-    def __init__(self, deterministic_functions=False):
+    def __init__(self, seed=1, deterministic_functions=False):
         """Initialize the test class with an option for deterministic functions."""
         self.is_deterministic = deterministic_functions
+        self.seed =seed
 
     @deterministic
     def random_method(self, param1, param2="default"):
@@ -90,3 +91,16 @@ class TestDeterministicDecorator:
 
         # Assert
         assert result1 == result2, "Same element parameter should produce same results"
+
+    def test_with_different_seeds(self):
+        """Test that different seeds will produce different results for the same parameters."""
+        # Arrange
+        obj_1 = TestAnonymizer(seed=1, deterministic_functions=True)
+        obj_2 = TestAnonymizer(seed=2, deterministic_functions=True)
+
+        # Act
+        result1 = obj_1.random_method("test", "value")
+        result2 = obj_2.random_method("test", "value")
+
+        # Assert
+        assert result1 != result2, "Same parameters should produce same results"

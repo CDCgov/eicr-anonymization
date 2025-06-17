@@ -26,9 +26,9 @@
         <!-- Patient demographic information -->
         <patientRole>
             <!-- Fake root for sample -->
-            <id extension="XX6079" root="2.16.840.1.113883.19.5"/>
+            <id extension="XX6592" root="2.16.840.1.113883.19.5"/>
             <!--SSN-->
-            <id extension="XX2-29-0684" root="2.16.840.1.113883.4.1"/>
+            <id extension="XX3-85-5764" root="2.16.840.1.113883.4.1"/>
             <!-- For greatest utility to public health, a patient's address 
         should be a home address if available (PostalAddressUse = 'H' or 'HP'); 
         would also request a second address, preferably a work address, (PostalAddressUse='WP') if
@@ -38,16 +38,16 @@
         Characteristics of Home Environment template in the 
         Social History Section to indicate that the patient is homeless. -->
             <addr use="H">
-                <streetAddressLine>7747 Rebel Street</streetAddressLine>
-                <city>Canto Bight</city>
-                <state>XS</state>
-                <postalCode>80433</postalCode>
+                <streetAddressLine>6337 Galactic Street</streetAddressLine>
+                <city>Freetown</city>
+                <state>GQ</state>
+                <postalCode>14029</postalCode>
                 <!-- Although "county" is not explicitly specified in the 
           US Realm Address, it is not precluded from use and for 
           the purposes of this IG it SHOULD be included. 
           See the IG for more information. -->
-                <county>08365</county>
-                <country>YG</country>
+                <county>12871</county>
+                <country>BL</country>
                 <!-- usablePeriod is an optional element
                      If present and high is missing, this indicates a current addres
                      If present and high is present, this indicates this address is historical
@@ -58,21 +58,21 @@
                 </useablePeriod>
             </addr>
             <!-- Patient Telcom (phone, email, or fax) -->
-            <telecom use="HP" value="tel:+5-783-101-8329"/>
-            <telecom use="WP" value="tel:+9-160-590-1104"/>
+            <telecom use="HP" value="tel:+1-534-864-4783"/>
+            <telecom use="WP" value="tel:+7-562-712-3199"/>
             <!-- Patient Name -->
             <patient>
                 <!-- Patient "legal" (known as/conventional/the one you use) name -->
                 <name use="L">
-                    <given>Zrz</given>
-                    <given qualifier="IN">X</given>
-                    <family>Karlo</family>
+                    <given>Wuk</given>
+                    <given qualifier="IN">T</given>
+                    <family>Partagaz</family>
                 </name>
                 <!-- Patient "artist/stage" (includes writer's pseudonym, stage name, etc) name -->
                 <name use="A">
-                    <given>Lando</given>
-                    <given qualifier="IN">S</given>
-                    <family>Karlo</family>
+                    <given>Breha</given>
+                    <given qualifier="IN">M</given>
+                    <family>Partagaz</family>
                 </name>
                 <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
                 <!-- Patient Birthdate -->
@@ -87,22 +87,22 @@
                 <guardian>
                     <!-- Parent/Guardian Address -->
                     <addr use="H">
-                        <streetAddressLine>3832 Rebel Street</streetAddressLine>
-                        <city>Canto Bight</city>
-                        <state>XS</state>
-                        <postalCode>80433</postalCode>
-                        <country>YG</country>
+                        <streetAddressLine>9604 Galactic Street</streetAddressLine>
+                        <city>Freetown</city>
+                        <state>GQ</state>
+                        <postalCode>14029</postalCode>
+                        <country>BL</country>
                     </addr>
                     <!-- Parent/Guardian phone -->
-                    <telecom use="HP" value="tel:+1-212-577-8588"/>
+                    <telecom use="HP" value="tel:+9-187-051-2124"/>
                     <!-- Parent/Guardian email -->
-                    <telecom value="mailto:d89@example.com"/>
+                    <telecom value="mailto:v@example.com"/>
                     <guardianPerson>
                         <!-- Parent/guardian name -->
                         <name use="L">
-                            <given>Cerasus</given>
-                            <given qualifier="IN">S</given>
-                            <family>Gsv</family>
+                            <given>Kleya</given>
+                            <given qualifier="IN">M</given>
+                            <family>Msz</family>
                         </name>
                     </guardianPerson>
                 </guardian>
@@ -163,7 +163,7 @@
     <relatedDocument typeCode="RPLC">
         <parentDocument>
             <!-- ClinicalDocument/id of the document to replace -->
-            <id root="2.16.840.1.113883.9.9.9.9.9" extension="xx342374-pn62-580d-n462-5s0far28z660"/>
+            <id root="2.16.840.1.113883.9.9.9.9.9" extension="xx255707-ls59-590d-z805-1s0sdg96d892"/>
             <!-- setId of the document to replace -->
             <setId root="2.16.840.1.113883.3.117.1.1.5.2.1.1.1" extension="31"/>
             <!-- versionNumber of the document to replace -->
@@ -1511,7 +1511,7 @@
                         <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
                             <!-- [C-CDA 2.1] Immunization Activity (V3) -->
                             <templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
-                            <id root="00000000-5CF3-EC63-0513-4A4838595787" extension="XX956-8_6-4_0.8.3.1.9.4.33519.66.2571.961.5_36087"/>
+                            <id root="00000000-5CF3-EC63-0513-4A4838595787" extension="XX558-6_5-4_8.2.3.8.8.8.06540.21.6155.411.2_13821"/>
                             <statusCode code="completed"/>
                             <effectiveTime value="20020725"/>
                             <routeCode nullFlavor="NI"/>
@@ -1533,7 +1533,7 @@
                         <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
                             <!-- [C-CDA 2.1] Immunization Activity (V3) -->
                             <templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
-                            <id root="00000000-5CF3-EC63-0513-4A4838595787" extension="XX621-5_9-0_2.5.4.6.9.6.70210.05.3438.364.7_31569"/>
+                            <id root="00000000-5CF3-EC63-0513-4A4838595787" extension="XX384-9_4-6_4.9.8.2.6.2.22310.20.9941.233.7_65652"/>
                             <statusCode code="completed"/>
                             <effectiveTime value="20020725"/>
                             <routeCode nullFlavor="NI"/>
@@ -1826,11 +1826,11 @@
                                 <templateId root="2.16.840.1.113883.10.20.15.2.4.4" extension="2021-01-01"/>
                                 <participantRole classCode="TERR">
                                     <addr>
-                                        <streetAddressLine>37 Temple Precinct Old Quarter Road</streetAddressLine>
-                                        <city>Hanna City</city>
-                                        <state>SI</state>
-                                        <postalCode>4976</postalCode>
-                                        <country>YG</country>
+                                        <streetAddressLine>66 Main Cloud Road</streetAddressLine>
+                                        <city>Bestine</city>
+                                        <state>NR</state>
+                                        <postalCode>5142</postalCode>
+                                        <country>BL</country>
                                     </addr>
                                 </participantRole>
                             </participant>
@@ -1879,8 +1879,8 @@
                                 <participantRole>
                                     <playingEntity classCode="PSN">
                                         <name use="L">
-                                            <given>Kell</given>
-                                            <family>Ackbar</family>
+                                            <given>Mace</given>
+                                            <family>Yularen</family>
                                         </name>
                                     </playingEntity>
                                 </participantRole>
@@ -1950,8 +1950,8 @@
                                 <participantRole classCode="TERR">
                                     <!-- Address specific to city -->
                                     <addr>
-                                        <country>II</country>
-                                        <city>Kala’uun</city>
+                                        <country>MJ</country>
+                                        <city>Tarko-Se</city>
                                     </addr>
                                 </participantRole>
                             </participant>
@@ -2030,9 +2030,9 @@
                             <participant typeCode="LOC">
                                 <participantRole classCode="TERR">
                                     <addr>
-                                        <country>NF</country>
-                                        <city>Niima Outpost</city>
-                                        <state>EN</state>
+                                        <country>EI</country>
+                                        <city>Sundari</city>
+                                        <state>OW</state>
                                     </addr>
                                 </participantRole>
                             </participant>
@@ -2054,9 +2054,9 @@
                             <participant typeCode="LOC">
                                 <participantRole classCode="TERR">
                                     <addr>
-                                        <country>QT</country>
-                                        <city>Garel City</city>
-                                        <state>VHW</state>
+                                        <country>OL</country>
+                                        <city>Rwookrrorro</city>
+                                        <state>XJX</state>
                                     </addr>
                                 </participantRole>
                             </participant>
@@ -2078,11 +2078,11 @@
                             <participant typeCode="LOC">
                                 <participantRole classCode="TERR">
                                     <addr>
-                                        <streetAddressLine>7978 N Mustafar Mining Old Rd</streetAddressLine>
+                                        <streetAddressLine>5414 N Old Quarter Beggar’s Canyon Rd</streetAddressLine>
                                         <city>Cloud City</city>
-                                        <state>SI</state>
-                                        <postalCode>4976</postalCode>
-                                        <country>YG</country>
+                                        <state>NR</state>
+                                        <postalCode>5142</postalCode>
+                                        <country>BL</country>
                                     </addr>
                                 </participantRole>
                             </participant>
@@ -2193,18 +2193,18 @@
                             </value>
                             <participant typeCode="IND">
                                 <participantRole classCode="ROL">
-                                    <id root="58822180-ab0d-42e4-90c6-35336bf55654" extension="XX365"/>
+                                    <id root="58822180-ab0d-42e4-90c6-35336bf55654" extension="XX082"/>
                                     <!-- eICR Data element: Employer address -->
                                     <addr>
-                                        <streetAddressLine>Imperial Center St</streetAddressLine>
-                                        <city>Keldabe</city>
-                                        <state>Expansion Region</state>
+                                        <streetAddressLine>Agricutural District St</streetAddressLine>
+                                        <city>Galactic City</city>
+                                        <state>Inner Rim</state>
                                     </addr>
                                     <!-- eICR Data element: Employer phone -->
                                     <telecom use="WP" value="REMOVED"/>
                                     <playingEntity>
                                         <!-- eICR Data element: Employer name -->
-                                        <name>Institute Clinic and Pharmacy of Abafar</name>
+                                        <name>Regional Clinic + Medical Center of Nal Hutta</name>
                                     </playingEntity>
                                 </participantRole>
                             </participant>

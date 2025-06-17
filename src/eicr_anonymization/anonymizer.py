@@ -36,14 +36,14 @@ def deterministic(func):
             params_dict = dict(
                 sorted((k, v) for k, v in bound_args.arguments.items() if k != "self")
             )
-            seed = hash_params_to_seed(params_dict)
+            seed = hash_params_to_seed(params_dict, self.seed)
             random.seed(seed)
         return func(self, *args, **kwargs)
 
     return wrapper
 
 
-def hash_params_to_seed(params):
+def hash_params_to_seed(params, global_seed):
     """
     Convert function parameters to a deterministic integer seed.
 
@@ -59,6 +59,8 @@ def hash_params_to_seed(params):
 
         # Create SHA-256 hash
         hash_obj = hashlib.sha256(serialized)
+        if global_seed:
+            hash_obj.update(str(global_seed).encode())
         hash_hex = hash_obj.hexdigest()
 
         # Convert to integer seed (Python's random module expects int)
@@ -70,6 +72,8 @@ def hash_params_to_seed(params):
         # Fallback: convert to string and hash
         params_str = str(sorted(params.items()))
         hash_obj = hashlib.sha256(params_str.encode("utf-8"))
+        if global_seed:
+            hash_obj.update(str(global_seed).encode())
         seed = int(hash_obj.hexdigest()[:8], 16)
         return seed
 
@@ -173,9 +177,11 @@ class Anonymizer:
         else:
             self.is_deterministic = debugOptions.deterministic_functions
             if debugOptions.reproducible is True or debugOptions.deterministic_functions is True:
-                random.seed(1)
+                self.seed = 1
+                random.seed(self.seed)
             elif isinstance(debugOptions.reproducible, int):
-                random.seed(debugOptions.reproducible)
+                self.seed = debugOptions.reproducible
+                random.seed(self.seed)
 
         SECONDS_IN_100_YEARS = int(100 * 60 * 60 * 24 * 365.25)
         # The main offset is a random number of seconds between 0 and 100 years

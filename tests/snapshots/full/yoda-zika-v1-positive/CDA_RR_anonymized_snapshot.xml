@@ -19,26 +19,26 @@
     <!-- Patient demographic information -->
     <patientRole>
       <!-- Patient ID-->
-      <id extension="XXF-21010487" root="2.16.840.1.113883.19.5"/>
+      <id extension="XXX-36873434" root="2.16.840.1.113883.19.5"/>
       <!--SSN-->
-      <id extension="XX2-51-5909" root="2.16.840.1.113883.4.1"/>
+      <id extension="XX4-93-0087" root="2.16.840.1.113883.4.1"/>
       <addr use="H WP">
         <streetAddressLine>Recipient Recipient Recipient Recipient</streetAddressLine>
-        <city>Kala’uun</city>
-        <state>Wild Space</state>
-        <postalCode>ZK-961</postalCode>
-        <county>Kijimi</county>
-        <country>Trade Federation</country>
+        <city>Canto Bight</city>
+        <state>Unknown Regions</state>
+        <postalCode>BD-953</postalCode>
+        <county>Mon Cala</county>
+        <country>Galactic Empire</country>
       </addr>
-      <telecom use="MC WP" value="tel:+9-091-579-8050"/>
-      <telecom use="WP" value="mailto:swn.51@example.com"/>
+      <telecom use="MC WP" value="tel:+5-089-457-2096"/>
+      <telecom use="WP" value="mailto:an_3@example.com"/>
       <patient>
         <name use="L">
           <prefix>Master</prefix>
           <!-- yoda doesn't have a canonical given name but the person that came up with yoda's name
           use this as his first name -->
-          <given>Kier</given>
-          <family>Sward</family>
+          <given>Anakin</given>
+          <family>Caleen</family>
         </name>
         <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male"/>
         <!-- yoda is 900 years old -->
@@ -67,13 +67,13 @@
     <assignedAuthor>
       <id root="2.16.840.1.114222.4.1.217446"/>
       <addr>
-        <streetAddressLine>6008 Sea Avenue, Suite 038</streetAddressLine>
-        <city>Lessu</city>
-        <state>LU</state>
-        <postalCode>37705</postalCode>
-        <country>YG</country>
+        <streetAddressLine>2230 Trade Avenue, Suite 899</streetAddressLine>
+        <city>Harnaidan</city>
+        <state>ON</state>
+        <postalCode>44067</postalCode>
+        <country>BL</country>
       </addr>
-      <telecom use="WP" value="tel:+4(563)724-9618"/>
+      <telecom use="WP" value="tel:+6(067)361-3635"/>
       <assignedAuthoringDevice>
         <manufacturerModelName displayName="APHL"/>
         <softwareName displayName="AIMS"/>
@@ -86,14 +86,14 @@
     <assignedCustodian>
       <representedCustodianOrganization>
         <id root="2.16.840.1.114222.4.1.217446"/>
-        <name>Academy of Mygeeto Neighbourhood Pharmacy.</name>
-        <telecom use="WP" value="tel:+4(563)724-9618"/>
+        <name>Agamar Neighbourhood Hospital &amp; Medical Center.</name>
+        <telecom use="WP" value="tel:+6(067)361-3635"/>
         <addr>
-          <streetAddressLine>6008 Sea Avenue, Suite 038</streetAddressLine>
-          <city>Lessu</city>
-          <state>LU</state>
-          <postalCode>37705</postalCode>
-          <country>YG</country>
+          <streetAddressLine>2230 Trade Avenue, Suite 899</streetAddressLine>
+          <city>Harnaidan</city>
+          <state>ON</state>
+          <postalCode>44067</postalCode>
+          <country>BL</country>
         </addr>
       </representedCustodianOrganization>
     </assignedCustodian>
@@ -107,24 +107,24 @@
   <informationRecipient typeCode="PRCP">
     <intendedRecipient>
       <!-- Provider ID (NPI) -->
-      <id extension="XX26766920" root="2.16.840.1.113883.4.6"/>
+      <id extension="XX20442026" root="2.16.840.1.113883.4.6"/>
       <addr use="H">
-        <streetAddressLine>445 City Street</streetAddressLine>
-        <city>Cloud City</city>
-        <state>Wild Space</state>
-        <postalCode>RY-438</postalCode>
-        <county>Kijimi</county>
-        <country>Trade Federation</country>
+        <streetAddressLine>040 Tusken Ridge Street</streetAddressLine>
+        <city>Theed</city>
+        <state>Unknown Regions</state>
+        <postalCode>TJ-389</postalCode>
+        <county>Mon Cala</county>
+        <country>Galactic Empire</country>
       </addr>
-      <telecom use="WP" value="tel:+1-776-939-3137"/>
-      <telecom use="WP" value="fax:+2-580-701-7496"/>
-      <telecom use="WP" value="mailto:nlby_2@example.com"/>
+      <telecom use="WP" value="tel:+3-049-394-3299"/>
+      <telecom use="WP" value="fax:+0-419-287-7253"/>
+      <telecom use="WP" value="mailto:itj@example.com"/>
       <!-- assignedPerson in the eICR (the provider) -->
       <informationRecipient>
         <name>
           <prefix>Dr</prefix>
-          <given>Hohass</given>
-          <family>Solo</family>
+          <given>Orson</given>
+          <family>Mar-Mas</family>
           <suffix>MD</suffix>
         </name>
       </informationRecipient>
@@ -132,16 +132,16 @@
       <!-- representedOrganization in the eICR -->
       <receivedOrganization>
         <!-- NPI for the facility -->
-        <id extension="XX92347846" root="2.16.840.1.113883.4.6"/>
+        <id extension="XX61183009" root="2.16.840.1.113883.4.6"/>
         <!-- Provider Facility/Office Name-->
-        <name> Jabiim University Medical Center &amp; Medical Center</name>
+        <name>Sissubo Health System + Health Center</name>
         <addr use="WP">
-          <streetAddressLine>431 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
-          <city>Cloud City</city>
-          <state>Wild Space</state>
-          <postalCode>RY-438</postalCode>
-          <county>Kijimi</county>
-          <country>Trade Federation</country>
+          <streetAddressLine>404 Refinery Outlander Plaza, Suite 3239</streetAddressLine>
+          <city>Theed</city>
+          <state>Unknown Regions</state>
+          <postalCode>TJ-389</postalCode>
+          <county>Mon Cala</county>
+          <country>Galactic Empire</country>
         </addr>
       </receivedOrganization>
     </intendedRecipient>
@@ -153,7 +153,7 @@
   <componentOf>
     <encompassingEncounter>
       <!-- eICR encounter ID - this is the id of the original encounter-->
-      <id extension="XX62773" root="2.16.840.1.113883.19"/>
+      <id extension="XX19572" root="2.16.840.1.113883.19"/>
       <code code="PHC2237" codeSystem="2.16.840.1.114222.4.5.274" codeSystemName="PHIN VS (CDC Local Coding System)" displayName="External Encounter"/>
       <!-- eICR encompassingEncounter time - this is the time of the original encounter from the
       eICR -->
@@ -165,38 +165,38 @@
       <responsibleParty>
         <assignedEntity>
           <!-- Provider ID (NPI) -->
-          <id extension="XX26766920" root="2.16.840.1.113883.4.6"/>
+          <id extension="XX20442026" root="2.16.840.1.113883.4.6"/>
           <addr use="H">
-            <streetAddressLine>445 City Street</streetAddressLine>
-            <city>Cloud City</city>
-            <state>Wild Space</state>
-            <postalCode>RY-438</postalCode>
-            <county>Kijimi</county>
-            <country>Trade Federation</country>
+            <streetAddressLine>040 Tusken Ridge Street</streetAddressLine>
+            <city>Theed</city>
+            <state>Unknown Regions</state>
+            <postalCode>TJ-389</postalCode>
+            <county>Mon Cala</county>
+            <country>Galactic Empire</country>
           </addr>
-          <telecom use="WP" value="tel:+1-776-939-3137"/>
-          <telecom use="WP" value="fax:+2-580-701-7496"/>
-          <telecom use="WP" value="mailto:wag2@example.com"/>
+          <telecom use="WP" value="tel:+3-049-394-3299"/>
+          <telecom use="WP" value="fax:+0-419-287-7253"/>
+          <telecom use="WP" value="mailto:at@example.com"/>
           <assignedPerson>
             <name>
               <prefix>Dr</prefix>
-              <given>Hohass</given>
-              <family>Solo</family>
+              <given>Orson</given>
+              <family>Mar-Mas</family>
               <suffix>MD</suffix>
             </name>
           </assignedPerson>
           <representedOrganization>
             <!-- Represented Organization-->
-            <id extension="XX92347846" root="2.16.840.1.113883.4.6"/>
+            <id extension="XX61183009" root="2.16.840.1.113883.4.6"/>
             <!-- Provider Facility/Office Name-->
-            <name> Jabiim University Medical Center &amp; Medical Center</name>
+            <name>Sissubo Health System + Health Center</name>
             <addr use="WP">
-              <streetAddressLine>431 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
-              <city>Cloud City</city>
-              <state>Wild Space</state>
-              <postalCode>RY-438</postalCode>
-              <county>Kijimi</county>
-              <country>Trade Federation</country>
+              <streetAddressLine>404 Refinery Outlander Plaza, Suite 3239</streetAddressLine>
+              <city>Theed</city>
+              <state>Unknown Regions</state>
+              <postalCode>TJ-389</postalCode>
+              <county>Mon Cala</county>
+              <country>Galactic Empire</country>
             </addr>
           </representedOrganization>
         </assignedEntity>
@@ -206,32 +206,32 @@
       <location>
         <healthCareFacility>
           <!-- Facility ID (NPI) -->
-          <id extension="XX26766920" root="2.16.840.1.113883.4.6"/>
+          <id extension="XX20442026" root="2.16.840.1.113883.4.6"/>
           <!-- Facility location within larger healthcare organization e.g Kaiser Vacaville within
           Kaiser North-->
           <code code="OF" codeSystem="2.16.840.1.113883.5.111" codeSystemName="HL7RoleCode" displayName="Outpatient Facility"/>
           <location>
             <addr use="WP">
-              <streetAddressLine>431 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
-              <city>Cloud City</city>
-              <state>Wild Space</state>
-              <postalCode>RY-438</postalCode>
-              <county>Kijimi</county>
-              <country>Trade Federation</country>
+              <streetAddressLine>404 Refinery Outlander Plaza, Suite 3239</streetAddressLine>
+              <city>Theed</city>
+              <state>Unknown Regions</state>
+              <postalCode>TJ-389</postalCode>
+              <county>Mon Cala</county>
+              <country>Galactic Empire</country>
             </addr>
           </location>
           <serviceProviderOrganization>
             <!-- Provider Facility/Office Name-->
-            <name> Jabiim University Medical Center &amp; Medical Center</name>
-            <telecom use="WP" value="tel:+0-920-551-0520"/>
-            <telecom use="WP" value="fax:+9-614-237-2841"/>
+            <name>Sissubo Health System + Health Center</name>
+            <telecom use="WP" value="tel:+9-658-106-0727"/>
+            <telecom use="WP" value="fax:+8-178-433-8754"/>
             <addr use="WP">
-              <streetAddressLine>431 Forest Moon Market Plaza, Suite 8038</streetAddressLine>
-              <city>Cloud City</city>
-              <state>Wild Space</state>
-              <postalCode>RY-438</postalCode>
-              <county>Kijimi</county>
-              <country>Trade Federation</country>
+              <streetAddressLine>404 Refinery Outlander Plaza, Suite 3239</streetAddressLine>
+              <city>Theed</city>
+              <state>Unknown Regions</state>
+              <postalCode>TJ-389</postalCode>
+              <county>Mon Cala</county>
+              <country>Galactic Empire</country>
             </addr>
           </serviceProviderOrganization>
         </healthCareFacility>
@@ -380,18 +380,18 @@
                       <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.10.20.15.2.4.2" extension="2017-04-01"/>
                         <participantRole>
-                          <id extension="XX889922" root="2.16.840.1.113883.4.6"/>
+                          <id extension="XX373471" root="2.16.840.1.113883.4.6"/>
                           <code code="RR8" displayName="Responsible Agency" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                           <addr>
-                            <city>Tarko-Se</city>
-                            <state>Wild Space</state>
-                            <postalCode>WK-07</postalCode>
-                            <county>Kijimi</county>
-                            <country>Trade Federation</country>
+                            <city>Garel City</city>
+                            <state>Unknown Regions</state>
+                            <postalCode>ED-34</postalCode>
+                            <county>Mon Cala</county>
+                            <country>Galactic Empire</country>
                           </addr>
-                          <telecom use="WP" value="tel:+8-232-751-2008"/>
+                          <telecom use="WP" value="tel:+6-562-212-2865"/>
                           <playingEntity>
-                            <name>College of Corellia Neighbourhood Medical Center + Clinic</name>
+                            <name>Academy Hospital of Kijimi</name>
                           </playingEntity>
                         </participantRole>
                       </participant>
@@ -399,18 +399,18 @@
                       <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.10.20.15.2.4.3" extension="2017-04-01"/>
                         <participantRole>
-                          <id extension="XX889922" root="2.16.840.1.113883.4.6"/>
+                          <id extension="XX373471" root="2.16.840.1.113883.4.6"/>
                           <code code="RR12" displayName="Rules Authoring Agency" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                           <addr>
-                            <city>Tarko-Se</city>
-                            <state>Wild Space</state>
-                            <postalCode>WK-07</postalCode>
-                            <county>Kijimi</county>
-                            <country>Trade Federation</country>
+                            <city>Garel City</city>
+                            <state>Unknown Regions</state>
+                            <postalCode>ED-34</postalCode>
+                            <county>Mon Cala</county>
+                            <country>Galactic Empire</country>
                           </addr>
-                          <telecom use="WP" value="tel:+8-232-751-2008"/>
+                          <telecom use="WP" value="tel:+6-562-212-2865"/>
                           <playingEntity>
-                            <name>College of Corellia Neighbourhood Medical Center + Clinic</name>
+                            <name>Academy Hospital of Kijimi</name>
                           </playingEntity>
                         </participantRole>
                       </participant>
@@ -418,18 +418,18 @@
                       <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.10.20.15.2.4.1" extension="2017-04-01"/>
                         <participantRole>
-                          <id extension="XX572687" root="2.16.840.1.113883.4.6"/>
+                          <id extension="XX472809" root="2.16.840.1.113883.4.6"/>
                           <code code="RR7" displayName="Routing Entity" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                           <addr>
-                            <city>Tarko-Se</city>
-                            <state>Wild Space</state>
-                            <postalCode>WK-07</postalCode>
-                            <county>Kijimi</county>
-                            <country>Trade Federation</country>
+                            <city>Garel City</city>
+                            <state>Unknown Regions</state>
+                            <postalCode>ED-34</postalCode>
+                            <county>Mon Cala</county>
+                            <country>Galactic Empire</country>
                           </addr>
-                          <telecom use="WP" value="tel:+8-232-751-2008"/>
+                          <telecom use="WP" value="tel:+6-562-212-2865"/>
                           <playingEntity>
-                            <name>College of Corellia Neighbourhood Medical Center + Clinic</name>
+                            <name>Academy Hospital of Kijimi</name>
                           </playingEntity>
                         </participantRole>
                       </participant>
@@ -503,7 +503,7 @@
                         <originalText>REMOVED</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://qhof.example9969.com"/>
+                        <reference value="https://zzsyo.example.com"/>
                       </text>
                     </externalDocument>
                   </reference>
@@ -525,7 +525,7 @@
                         <originalText>REMOVED</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://gxkwr.example.com/.png"/>
+                        <reference value="https://zzac.example8.com"/>
                       </text>
                     </externalDocument>
                   </reference>
@@ -547,7 +547,7 @@
                         <originalText>REMOVED</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://example136.com/qwv.jpeg"/>
+                        <reference value="https://u.example6541.com/t.png"/>
                       </text>
                     </externalDocument>
                   </reference>
@@ -569,7 +569,7 @@
                         <originalText>REMOVED</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://hfw.example.com/zcog.jpg"/>
+                        <reference value="https://hai.example37770.com"/>
                       </text>
                     </externalDocument>
                   </reference>
