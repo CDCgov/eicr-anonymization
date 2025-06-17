@@ -37,7 +37,6 @@ def _parse_arguments() -> Namespace:
 - Exposing original sensitive data in output
 
 Only use with sample/test data, never with real sensitive data.""",  # noqa: E501
-        epilog="The epilogue",
     )
     parser.add_argument(
         "input_location",
