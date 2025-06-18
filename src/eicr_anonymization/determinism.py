@@ -49,7 +49,7 @@ def deterministic(func):
             )
             seed = hash_params_to_seed(params_dict, self.seed)
             with isolated_random(seed):
-                return func(*args, **kwargs)
+                return func(self, *args, **kwargs)
             random.seed(seed)
         return func(self, *args, **kwargs)
 

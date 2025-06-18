@@ -19,7 +19,7 @@ xml_files = list(Path("tests/test_data").rglob("*.xml"))
 @freeze_time("2025-01-10 09:30:30")
 @pytest.mark.parametrize(
     ("xml_file", "config"),
-    list(product(xml_files, [(False, "full"), (True, "light")])),
+    list(product(xml_files, [(False, "full"), (True, "patient_only")])),
 )
 def test_snapshot(xml_file, config, snapshot):
     """
@@ -33,7 +33,7 @@ def test_snapshot(xml_file, config, snapshot):
     dir = xml_file.parent
 
     # Output anonymized XML tree
-    actual = anonymize_eicr_file(xml_file, anonymizer, Parser(light=config[0]))
+    actual = anonymize_eicr_file(xml_file, anonymizer, Parser(patient_only=config[0]))
     actual_xml = xml_tree_to_str(actual)
 
     # Snapshot return value

@@ -19,14 +19,16 @@ def _parse_arguments() -> Namespace:
         "-p",
         "--patient_only",
         action="store_true",
-        dest="light",
+        dest="patient_only",
         default=False,
         help="Use a lighter version of anonymization. Only the following patient fields with be anonymized: name, dates, race, ethnicity, emergency contacts, and clinical notes.",  # noqa: E501
     )
 
     parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.3.0")
 
-    subparsers = parser.add_subparsers(description="There is currently only one subcommand.", dest="command")
+    subparsers = parser.add_subparsers(
+        description="There is currently only one subcommand.", dest="command"
+    )
     debug_parser = subparsers.add_parser(
         "debug",
         help="Debugging/testing mode. WARNING: may expose sensitive data.",
