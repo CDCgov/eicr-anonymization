@@ -93,13 +93,12 @@ class DebugOptions:
     Should not be used in production or when real sensitive data is being used.
 
     Args:
-        reproducible (bool | int): Used to set the random seed. If True the seed will be set to `1`.
-        If an integer is provided, the seed will be set to that value.
+        seed (int): Set the random seed
         deterministic_functions (bool): If True, the same value will always be replaced with the
         same new value. This will also set the seed to its default `1`, if a seed is not provided.
     """
 
-    reproducible: bool | int | None = False
+    seed: int | None = None
     deterministic_functions: bool = False
 
 
@@ -120,11 +119,11 @@ class Anonymizer:
             self.is_deterministic = False
         else:
             self.is_deterministic = debugOptions.deterministic_functions
-            if debugOptions.reproducible is True or debugOptions.deterministic_functions is True:
+            if debugOptions.deterministic_functions is True and debugOptions.seed is None:
                 self.seed = 1
                 random.seed(self.seed)
-            elif isinstance(debugOptions.reproducible, int):
-                self.seed = debugOptions.reproducible
+            elif debugOptions.seed is not None:
+                self.seed = debugOptions.seed
                 random.seed(self.seed)
 
         SECONDS_IN_100_YEARS = int(100 * 60 * 60 * 24 * 365.25)

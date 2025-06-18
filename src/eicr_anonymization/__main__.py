@@ -55,10 +55,8 @@ Only use with sample/test data, never with real sensitive data.""",  # noqa: E50
         "-s",
         "--seed",
         type=int,
-        nargs="?",
-        const=1,
         default=None,
-        help="Set the random seed. If no value is provided, the seed will be set to `1`.",
+        help="Set the random seed.",
     )
     debug_parser.add_argument(
         "--siso",
@@ -66,7 +64,7 @@ Only use with sample/test data, never with real sensitive data.""",  # noqa: E50
         action="store_true",
         dest="deterministic_functions",
         default=False,
-        help="The same value will always be replaced with the same new value regardless of run or seed. This will set the seed to its default `1`, if a seed is not provided",  # noqa: E501
+        help="The same value will always be replaced with the same new value regardless of run or seed." # noqa: E501
     )
 
     return parser.parse_args()

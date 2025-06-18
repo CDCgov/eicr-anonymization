@@ -10,7 +10,7 @@ from lxml import etree
 from eicr_anonymization.anonymizer import Anonymizer, DebugOptions
 from eicr_anonymization.element_parser import Element
 
-debugOptions = DebugOptions(reproducible=True)
+debugOptions = DebugOptions(seed=1)
 
 
 @pytest.fixture
