@@ -64,7 +64,7 @@ This will create a copy of each eicr file prepended with `.anonymized.xml` in th
 
 #### Patient Only Configuration
 ```bash
-anonymize_eicr /path/to/eicrs -l
+anonymize_eicr /path/to/eicrs --patient_only
 ```
 In some cases the default behavior of the anonymizer may be too aggressive. The patient only configuration will keep all data, apart from data directly related to the patient (name, date of birth, contact, guardian, etc), dates related to the patient encounter, and clinical notes.
 
@@ -118,7 +118,7 @@ uv add <dependency>
 This is used for runtime dependencies. Add the `--dev` flag if you're adding is a development-only dependency.
 
 #### Updating CDA Structure YAML
-The `cda_structure.yaml` is created by running `uv run tools/cda_structure_generator.py`. To run that script the JSON FHIR `StructureDefinition`s for CDA need to be [downloaded from h17](https://build.fhir.org/ig/HL7/CDA-core-2.0/downloads.html) and unzipped into `tools/definitions`.
+The `cda_structure.yaml` is created by running `uv run tools/cda_structure_generator.py`. To run that script the JSON FHIR `StructureDefinition`s for CDA need to be [downloaded from hl7](https://build.fhir.org/ig/HL7/CDA-core-2.0/downloads.html) and unzipped into `tools/definitions`.
 
 #### Debugging
 You can add the following flags to `uv run anonymize_eicr /path/to/file` to help with debugging:
