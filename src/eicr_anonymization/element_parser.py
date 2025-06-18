@@ -152,7 +152,7 @@ class Parser:
                         subelement_structure = child_structure["elements"][subelement_tag]
                         subelement_type = subelement_structure["types"][0]
                         if children_safety[child_tag]["elements"][subelement_tag] == "SAFE":
-                            self.parse_element(child, child_type, True)
+                            self.parse_element(subelement, child_type, True)
                         else:
                             self.parse_element(subelement, subelement_type)
 
