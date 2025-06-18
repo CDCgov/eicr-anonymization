@@ -414,7 +414,7 @@ class Anonymizer:
         """
         return self._random_corpationName(element.text)
 
-    def _random_corpationName(self, value: str | None):
+    def _random_corporationName(self, value: str | None):
         """Generate a random corporation name."""
         if value is None:
             return value
