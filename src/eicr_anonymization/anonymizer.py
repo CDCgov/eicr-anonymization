@@ -412,7 +412,7 @@ class Anonymizer:
 
         https://parserator.datamade.us/probablepeople/
         """
-        return self._random_corpationName(element.text)
+        return self._random_corporationName(element.text)
 
     def _random_corporationName(self, value: str | None):
         """Generate a random corporation name."""
