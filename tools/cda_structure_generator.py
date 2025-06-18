@@ -1,6 +1,6 @@
 """Extracts the structure for a CDA from the FHIR definitions into a YAML.
 
-This expects the FHIR definitions to be in JSON format in the directory `tools/fhir_definitions` and
+This expects the FHIR definitions to be in JSON format in the directory `tools/definitions` and
 saves the output YAML into `src/eicr_anonymization`.
 """
 
@@ -81,7 +81,7 @@ def sanitize_name(name: str):
 
 if __name__ == "__main__":
     # Replace with your directory path
-    directory = "tools/fhir_definition"
+    directory = "tools/definitions"
 
     all_json_data = read_all_jsons(directory)
     data_types = {}
@@ -115,6 +115,7 @@ if __name__ == "__main__":
                     # Skip the element defining a choice group but we still need the elements
                     choice_group_element = element["id"].split(".")[-1]
                     is_choice_group = True
+                    continue
                 if is_choice_group:
                     continue
 

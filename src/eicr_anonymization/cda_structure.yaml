@@ -97,17 +97,8 @@ INT_POS:
   elements: {}
 OrganizationPartOf:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -138,18 +129,9 @@ OrganizationPartOf:
       default_type: null
 PlayingEntity:
   attributes:
-    nullFlavor: code
     classCode: code
     determinerCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -184,45 +166,10 @@ PQ:
       types:
         - PQR
       default_type: null
-PreconditionBase:
-  attributes:
-    nullFlavor: code
-    classCode: code
-    moodCode: code
-  elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
-    templateId:
-      types:
-        - II
-      default_type: null
-    id:
-      types:
-        - II
-      default_type: null
-    precondition:
-      types:
-        - Precondition2
-      default_type: null
 AssociatedEntity:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -336,17 +283,8 @@ InFulfillmentOf:
       default_type: null
 ParticipantRole:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -385,7 +323,6 @@ ParticipantRole:
       default_type: null
 Organizer:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
@@ -405,17 +342,9 @@ Organizer:
       types:
         - II
       default_type: null
-    category:
-      types:
-        - CD
-      default_type: null
     code:
       types:
         - CD
-      default_type: null
-    text:
-      types:
-        - ED
       default_type: null
     statusCode:
       types:
@@ -457,10 +386,6 @@ Organizer:
       types:
         - Precondition
       default_type: null
-    precondition2:
-      types:
-        - Precondition2
-      default_type: null
     component:
       types:
         - OrganizerComponent
@@ -468,7 +393,7 @@ Organizer:
 EIVL_TS:
   attributes:
     nullFlavor: code
-    value: dateTime
+    value: string
     operator: code
   elements:
     event:
@@ -481,7 +406,6 @@ EIVL_TS:
       default_type: null
 Encounter:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
@@ -561,18 +485,10 @@ Encounter:
       types:
         - Precondition
       default_type: null
-    precondition2:
-      types:
-        - Precondition2
-      default_type: null
-    inFulfillmentOf1:
-      types:
-        - InFulfillmentOf1
-      default_type: null
 IVL_TS:
   attributes:
     nullFlavor: code
-    value: dateTime
+    value: string
     operator: code
   elements:
     low:
@@ -593,17 +509,8 @@ IVL_TS:
       default_type: null
 RelatedEntity:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -660,17 +567,8 @@ Participant1:
       default_type: null
 IntendedRecipient:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -701,17 +599,8 @@ IntendedRecipient:
       default_type: null
 PatientRole:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -771,19 +660,11 @@ CR:
       default_type: null
 Section:
   attributes:
-    nullFlavor: code
     ID: id
+    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -855,18 +736,9 @@ Section:
           default_type: null
 Place:
   attributes:
-    nullFlavor: code
     classCode: code
     determinerCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -1029,27 +901,10 @@ Act:
       types:
         - Precondition
       default_type: null
-    precondition2:
-      types:
-        - Precondition2
-      default_type: null
-    inFulfillmentOf1:
-      types:
-        - InFulfillmentOf1
-      default_type: null
 HealthCareFacility:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -1130,17 +985,8 @@ PN:
       default_type: null
 Birthplace:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -1194,21 +1040,18 @@ Organization:
 MO:
   attributes:
     nullFlavor: code
-    currency: code
-    value: decimal
-  elements: {}
-LanguageCommunication:
-  attributes:
-    nullFlavor: code
   elements:
-    realmCode:
+    currency:
       types:
         - CS
       default_type: null
-    typeId:
+    value:
       types:
-        - II
+        - decimal
       default_type: null
+LanguageCommunication:
+  attributes: {}
+  elements:
     templateId:
       types:
         - II
@@ -1231,17 +1074,8 @@ LanguageCommunication:
       default_type: null
 AssignedAuthor:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -1292,7 +1126,6 @@ ADXP:
       default_type: null
 ObservationMedia:
   attributes:
-    nullFlavor: code
     ID: id
     classCode: code
     moodCode: code
@@ -1357,10 +1190,6 @@ ObservationMedia:
       types:
         - Precondition
       default_type: null
-    precondition2:
-      types:
-        - Precondition2
-      default_type: null
 ComponentOf:
   attributes:
     nullFlavor: code
@@ -1384,17 +1213,8 @@ ComponentOf:
       default_type: null
 SpecimenRole:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -1445,18 +1265,9 @@ IVXB_PQ:
       default_type: null
 Order:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -1513,14 +1324,6 @@ LabeledDrug:
     classCode: code
     determinerCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -1568,18 +1371,9 @@ LabeledDrug:
       default_type: null
 ParentDocument:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -1661,23 +1455,10 @@ TN:
       default_type: null
 SubjectPerson:
   attributes:
-    nullFlavor: code
     classCode: code
     determinerCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
-      types:
-        - II
-      default_type: null
-    id:
       types:
         - II
       default_type: null
@@ -1704,14 +1485,6 @@ SubjectPerson:
     deceasedTime:
       types:
         - TS
-      default_type: null
-    multipleBirthInd:
-      types:
-        - BL
-      default_type: null
-    multipleBirthOrderNumber:
-      types:
-        - INT_POS
       default_type: null
 StructuredBody:
   attributes:
@@ -1790,7 +1563,6 @@ PQR:
       default_type: null
 RegionOfInterest:
   attributes:
-    nullFlavor: code
     ID: id
     classCode: code
     moodCode: code
@@ -1855,24 +1627,11 @@ RegionOfInterest:
       types:
         - Precondition
       default_type: null
-    precondition2:
-      types:
-        - Precondition2
-      default_type: null
 Patient:
   attributes:
-    nullFlavor: code
     classCode: code
     determinerCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -1975,7 +1734,6 @@ AlternateIdentification:
       default_type: null
 ClinicalDocument:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
@@ -1995,10 +1753,6 @@ ClinicalDocument:
       types:
         - II
       default_type: null
-    category:
-      types:
-        - CD
-      default_type: null
     code:
       types:
         - CE
@@ -2006,10 +1760,6 @@ ClinicalDocument:
     title:
       types:
         - ST
-      default_type: null
-    statusCode:
-      types:
-        - CS
       default_type: null
     effectiveTime:
       types:
@@ -2124,7 +1874,7 @@ INT:
 SXCM_TS:
   attributes:
     nullFlavor: code
-    value: dateTime
+    value: string
     operator: code
   elements: {}
 Entry:
@@ -2204,7 +1954,6 @@ DocumentationOf:
       default_type: null
 SubstanceAdministration:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
     negationInd: boolean
@@ -2337,10 +2086,6 @@ SubstanceAdministration:
       types:
         - Precondition
       default_type: null
-    inFulfillmentOf1:
-      types:
-        - InFulfillmentOf1
-      default_type: null
 InfrastructureRoot:
   attributes:
     nullFlavor: code
@@ -2360,7 +2105,7 @@ InfrastructureRoot:
 SXPR_TS:
   attributes:
     nullFlavor: code
-    value: dateTime
+    value: string
     operator: code
   elements:
     comp:
@@ -2373,18 +2118,9 @@ SXPR_TS:
       default_type: null
 Criterion:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -2423,18 +2159,9 @@ Criterion:
       default_type: null
 ObservationRange:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -2455,7 +2182,6 @@ ObservationRange:
         - CD
         - CV
         - CE
-        - CO
         - SC
         - II
         - TEL
@@ -2476,23 +2202,10 @@ ObservationRange:
       types:
         - CE
       default_type: null
-    precondition1:
-      types:
-        - InfrastructureRoot
-      default_type: null
 ManufacturedProduct:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -2519,18 +2232,9 @@ ManufacturedProduct:
       default_type: null
 Entity:
   attributes:
-    nullFlavor: code
     classCode: code
     determinerCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -2550,73 +2254,14 @@ Entity:
 IVXB_TS:
   attributes:
     nullFlavor: code
-    value: dateTime
+    value: string
     inclusive: boolean
   elements: {}
-Precondition2:
-  attributes:
-    nullFlavor: code
-    typeCode: code
-    negationInd: boolean
-  elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
-    templateId:
-      types:
-        - II
-      default_type: null
-    conjunctionCode:
-      types:
-        - CS
-      default_type: null
-    allTrue:
-      types:
-        - PreconditionBase
-      default_type: null
-    allFalse:
-      types:
-        - PreconditionBase
-      default_type: null
-    atLeastOneTrue:
-      types:
-        - PreconditionBase
-      default_type: null
-    atLeastOneFalse:
-      types:
-        - PreconditionBase
-      default_type: null
-    onlyOneTrue:
-      types:
-        - PreconditionBase
-      default_type: null
-    onlyOneFalse:
-      types:
-        - PreconditionBase
-      default_type: null
-    criterion:
-      types:
-        - Criterion
-      default_type: null
 EncompassingEncounter:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -2693,54 +2338,8 @@ EncompassingEncounter:
           types:
             - HealthCareFacility
           default_type: null
-InFulfillmentOf1:
-  attributes:
-    nullFlavor: code
-    typeCode: code
-    inversionInd: boolean
-    negationInd: boolean
-  elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
-    templateId:
-      types:
-        - II
-      default_type: null
-    actReference:
-      types:
-        - InfrastructureRoot
-      default_type: null
-      attributes:
-        nullFlavor: code
-        classCode: code
-        moodCode: code
-        determinerCode: code
-      elements:
-        realmCode:
-          types:
-            - CS
-          default_type: null
-        typeId:
-          types:
-            - II
-          default_type: null
-        templateId:
-          types:
-            - II
-          default_type: null
-        id:
-          types:
-            - II
-          default_type: null
 Supply:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
@@ -2860,10 +2459,6 @@ Supply:
       types:
         - Precondition
       default_type: null
-    inFulfillmentOf1:
-      types:
-        - InFulfillmentOf1
-      default_type: null
 EN:
   attributes:
     nullFlavor: code
@@ -2928,18 +2523,9 @@ CV:
       default_type: null
 ExternalAct:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -2955,10 +2541,6 @@ ExternalAct:
     text:
       types:
         - ED
-      default_type: null
-    author:
-      types:
-        - Author
       default_type: null
 CO:
   attributes:
@@ -2985,17 +2567,8 @@ CO:
       default_type: null
 AssignedCustodian:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -3053,18 +2626,10 @@ Subject:
       default_type: null
 Material:
   attributes:
-    nullFlavor: code
     classCode: code
     determinerCode: code
+    nullFlavor: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -3083,17 +2648,8 @@ Material:
       default_type: null
 Guardian:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -3262,18 +2818,9 @@ Reference:
       default_type: null
 ServiceEvent:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -3330,18 +2877,9 @@ IdentifiedBy:
       default_type: null
 ExternalObservation:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -3357,10 +2895,6 @@ ExternalObservation:
     text:
       types:
         - ED
-      default_type: null
-    author:
-      types:
-        - Author
       default_type: null
 ENXP:
   attributes:
@@ -3451,10 +2985,13 @@ TEL:
       default_type: SXPR_TS
 AD:
   attributes:
-    nullFlavor: code
     isNotOrdered: boolean
     use: code
   elements:
+    nullFlavor:
+      types:
+        - code
+      default_type: null
     delimiter:
       types:
         - ADXP
@@ -3581,10 +3118,6 @@ IVL_PQ:
     value: decimal
     operator: code
   elements:
-    translation:
-      types:
-        - PQR
-      default_type: null
     low:
       types:
         - IVXB_PQ
@@ -3637,18 +3170,9 @@ Participant2:
       default_type: null
 ExternalProcedure:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -3665,24 +3189,11 @@ ExternalProcedure:
       types:
         - ED
       default_type: null
-    author:
-      types:
-        - Author
-      default_type: null
 Person:
   attributes:
-    nullFlavor: code
     classCode: code
     determinerCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -3691,32 +3202,15 @@ Person:
       types:
         - PN
       default_type: null
-    desc:
-      types:
-        - ED
-      default_type: null
     asPatientRelationship:
       types:
-        - InfrastructureRoot
+        - CE
       default_type: null
 RelatedSubject:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
-      types:
-        - II
-      default_type: null
-    id:
       types:
         - II
       default_type: null
@@ -3738,17 +3232,8 @@ RelatedSubject:
       default_type: null
 MaintainedEntity:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -3764,7 +3249,7 @@ MaintainedEntity:
 PIVL_TS:
   attributes:
     nullFlavor: code
-    value: dateTime
+    value: string
     operator: code
     alignment: code
     institutionSpecified: boolean
@@ -3779,18 +3264,9 @@ PIVL_TS:
       default_type: null
 ExternalDocument:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -3815,24 +3291,11 @@ ExternalDocument:
       types:
         - INT
       default_type: null
-    author:
-      types:
-        - Author
-      default_type: null
 Device:
   attributes:
-    nullFlavor: code
     classCode: code
     determinerCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -3851,18 +3314,9 @@ Device:
       default_type: null
 Consent:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -3882,6 +3336,7 @@ Consent:
 ED:
   attributes:
     nullFlavor: code
+    charset: code
     compression: code
     integrityCheck: base64Binary
     integrityCheckAlgorithm: code
@@ -3889,9 +3344,10 @@ ED:
     mediaType: code
     representation: code
   elements:
-    xmlText:
+    data[x]:
       types:
         - string
+        - base64Binary
       default_type: null
     reference:
       types:
@@ -3925,18 +3381,9 @@ IVL_INT:
       default_type: null
 AuthoringDevice:
   attributes:
-    nullFlavor: code
     classCode: code
     determinerCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -3971,7 +3418,7 @@ ST:
 TS:
   attributes:
     nullFlavor: code
-    value: dateTime
+    value: string
   elements: {}
 CE:
   attributes:
@@ -4002,7 +3449,6 @@ QTY:
   elements: {}
 Observation:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
     negationInd: boolean
@@ -4022,10 +3468,6 @@ Observation:
     id:
       types:
         - II
-      default_type: null
-    category:
-      types:
-        - CD
       default_type: null
     code:
       types:
@@ -4068,7 +3510,6 @@ Observation:
         - CD
         - CV
         - CE
-        - CO
         - SC
         - II
         - TEL
@@ -4134,10 +3575,6 @@ Observation:
       types:
         - Precondition
       default_type: null
-    precondition2:
-      types:
-        - Precondition2
-      default_type: null
     referenceRange:
       types:
         - InfrastructureRoot
@@ -4162,23 +3599,10 @@ Observation:
           types:
             - ObservationRange
           default_type: null
-    inFulfillmentOf1:
-      types:
-        - InFulfillmentOf1
-      default_type: null
 AssignedEntity:
   attributes:
-    nullFlavor: code
     classCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
@@ -4211,13 +3635,8 @@ AssignedEntity:
       types:
         - Organization
       default_type: null
-    patient:
-      types:
-        - Base
-      default_type: null
 Procedure:
   attributes:
-    nullFlavor: code
     classCode: code
     moodCode: code
     negationInd: boolean
@@ -4237,10 +3656,6 @@ Procedure:
     id:
       types:
         - II
-      default_type: null
-    category:
-      types:
-        - CD
       default_type: null
     code:
       types:
@@ -4313,14 +3728,6 @@ Procedure:
     precondition:
       types:
         - Precondition
-      default_type: null
-    precondition2:
-      types:
-        - Precondition2
-      default_type: null
-    inFulfillmentOf1:
-      types:
-        - InFulfillmentOf1
       default_type: null
 Authenticator:
   attributes:
@@ -4421,18 +3828,9 @@ EntryRelationship:
       default_type: null
 CustodianOrganization:
   attributes:
-    nullFlavor: code
     classCode: code
     determinerCode: code
   elements:
-    realmCode:
-      types:
-        - CS
-      default_type: null
-    typeId:
-      types:
-        - II
-      default_type: null
     templateId:
       types:
         - II
