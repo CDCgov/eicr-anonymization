@@ -52,7 +52,21 @@ class Element:
 
 
 class Parser:
-    """Class for finding sensitive elements in an XML document."""
+    """Class for finding sensitive elements in an XML document.
+
+    The parser is driven by several YAML configuration files:
+    - `cda_structure.yaml`: Defines the structure of the CDA document.
+    - `default.yaml`: Defines, for every element and attribute, wether they should be considered
+      sensitive or safe.
+
+    In addition the `default.yaml` configuration can be modified by an additional configuration
+    file. With the expectation that the end user will, in future updates, be able to create and use
+    their own configuration files, configuration files only need to define the elements and
+    attributes that are different from the default configuration.
+
+    Currently there is one additional configuration file that can be used with a parameter flag:
+    `patient_only.yaml`.
+    """
 
     def __init__(self, patient_only: bool = False):
         """Initialize the Parser with an empty list of sensitive elements."""
