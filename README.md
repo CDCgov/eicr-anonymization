@@ -118,7 +118,7 @@ uv add <dependency>
 This is used for runtime dependencies. Add the `--dev` flag if you're adding is a development-only dependency.
 
 #### Updating CDA Structure YAML
-The `cda_structure.yaml` is created by running `uv run tools/cda_structure_generator.py`. To run that script the JSON FHIR `StructureDefinition`s for CDA need to be [downloaded from h17](https://build.fhir.org/ig/HL7/CDA-core-2.0/downloads.html) and unzipped into `tools/definitions`.
+The `cda_structure.yaml` is created by running `uv run tools/cda_structure_generator.py`. To run that script the JSON FHIR `StructureDefinition`s for CDA need to be [downloaded from hl7](https://build.fhir.org/ig/HL7/CDA-core-2.0/downloads.html) and unzipped into `tools/definitions`.
 
 #### Debugging
 You can add the following flags to `uv run anonymize_eicr /path/to/file` to help with debugging:
