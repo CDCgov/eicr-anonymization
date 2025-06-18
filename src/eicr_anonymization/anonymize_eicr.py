@@ -212,7 +212,9 @@ def anonymize(args: Namespace) -> None:
             return
         print(f"Found {len(xml_files)} XML files in directory: {args.input_location}")
         for xml_file in xml_files:
-            anonymized_file = anonymize_eicr_file(xml_file, anonymizer, parser, show_debug_info=args.debug)
+            anonymized_file = anonymize_eicr_file(
+                xml_file, anonymizer, parser, show_debug_info=args.debug
+            )
             save_anonymized_file(anonymized_file, xml_file)
     elif os.path.isfile(args.input_location):
         # IF the previously anonymized file exists, delete it
