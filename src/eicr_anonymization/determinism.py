@@ -36,6 +36,8 @@ def isolated_random(seed_value):
 
 
 def deterministic(func):
+    """Make functions deterministic by temporarily setting the random seed based on the functions inputs."""
+
     @functools.wraps(func)
     def wrapper(self, *args, **kwargs):
         if hasattr(self, "is_deterministic") and self.is_deterministic:
