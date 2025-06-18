@@ -69,9 +69,7 @@ class Parser:
             with open("src/eicr_anonymization/configs/patient_only.yaml") as config_file:
                 new_config = yaml.safe_load(config_file)
             for element in new_config:
-                for child in new_config[element]["elements"]:
-                    new_value = new_config[element]["elements"][child]
-                    self.config[element]["elements"][child] = new_value
+                self.config[element]["elements"].update(new_config[element]["elements"])
 
     def add_safe_text(self, text: str):
         """Add a safe text element to the list."""
