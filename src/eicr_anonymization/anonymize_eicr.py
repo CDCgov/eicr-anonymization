@@ -42,7 +42,7 @@ def xml_tree_to_str(tree: _ElementTree) -> str:
 
 
 def anonymize_eicr_file(
-    xml_file: str, anonymizer: Anonymizer, parser: Parser, debug: bool = False
+    xml_file: str, anonymizer: Anonymizer, parser: Parser, show_debug_info: bool = False
 ) -> _ElementTree:
     """
     Anonymize a single EICR XML file.
@@ -149,15 +149,14 @@ def anonymize_eicr_file(
                     match.text = anonymizer.remove_unknown_text(match.text)
 
     print(f"Anonymized {len(sensitive_elements)} sensitive elements in file: {xml_file}")
-    dubug_output_table = tabulate(
-        # sorted(debug_output, key=lambda x: (x[0].name, x[0].cda_type, x[0].text)),
+    debug_output_table = tabulate(
         debug_output,
-        headers=("Orginal", "Replacement"),
+        headers=("Original", "Replacement"),
         tablefmt="fancy_outline",
     )
 
-    if debug:
-        print(dubug_output_table)
+    if show_debug_info:
+        print(debug_output_table)
 
     return tree
 
@@ -213,7 +212,7 @@ def anonymize(args: Namespace) -> None:
             return
         print(f"Found {len(xml_files)} XML files in directory: {args.input_location}")
         for xml_file in xml_files:
-            anonymized_file = anonymize_eicr_file(xml_file, anonymizer, parser, debug=args.debug)
+            anonymized_file = anonymize_eicr_file(xml_file, anonymizer, parser, show_debug_info=args.debug)
             save_anonymized_file(anonymized_file, xml_file)
     elif os.path.isfile(args.input_location):
         # IF the previously anonymized file exists, delete it
@@ -222,7 +221,7 @@ def anonymize(args: Namespace) -> None:
             print(f"Deleted previous anonymized file: {args.input_location}.anonymized.xml")
         print(f"Anonymizing file: {args.input_location}")
         anonymized_file = anonymize_eicr_file(
-            args.input_location, anonymizer, parser, debug=args.debug
+            args.input_location, anonymizer, parser, show_debug_info=args.debug
         )
         save_anonymized_file(anonymized_file, args.input_location)
     else:
