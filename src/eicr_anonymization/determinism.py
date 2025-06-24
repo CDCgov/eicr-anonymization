@@ -9,30 +9,12 @@ from contextlib import contextmanager
 @contextmanager
 def isolated_random(seed_value):
     """Context manager that temporarily replaces global random with seeded instance."""
-    func_random = random.Random(seed_value)
-
-    # Store original functions we're replacing
-    original_funcs = {
-        "random": random.random,
-        "randint": random.randint,
-        "choice": random.choice,
-        "choices": random.choices,
-        "shuffle": random.shuffle,
-    }
-
-    # Replace with our seeded instance
-    random.random = func_random.random
-    random.randint = func_random.randint
-    random.choice = func_random.choice
-    random.choices = func_random.choices
-    random.shuffle = func_random.shuffle
-
+    global_state = random.getstate()
+    random.seed(seed_value)
     try:
         yield
     finally:
-        # Restore original functions
-        for name, func in original_funcs.items():
-            setattr(random, name, func)
+        random.setstate(global_state)
 
 
 def deterministic(func):
@@ -50,7 +32,6 @@ def deterministic(func):
             seed = hash_params_to_seed(params_dict, self.seed)
             with isolated_random(seed):
                 return func(self, *args, **kwargs)
-            random.seed(seed)
         return func(self, *args, **kwargs)
 
     return wrapper
