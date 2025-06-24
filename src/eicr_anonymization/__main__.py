@@ -16,12 +16,9 @@ def _parse_arguments() -> Namespace:
         description="Anonymize eICR and RR XML files in a given directory. Always verify sensitive data has been properly anonymized before sharing processed files."  # noqa: E501
     )
     parser.add_argument(
-        "-p",
-        "--patient_only",
-        action="store_true",
-        dest="patient_only",
-        default=False,
-        help="Use a lighter version of anonymization. Only the following patient fields with be anonymized: name, dates, race, ethnicity, emergency contacts, and clinical notes.",  # noqa: E501
+        "-c",
+        "--config",
+        help="Path to custom config file.",
     )
 
     parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.3.0")

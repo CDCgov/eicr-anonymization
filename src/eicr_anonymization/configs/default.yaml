@@ -76,18 +76,6 @@ PQ:
     value: SAFE
   elements:
     translation: null
-PreconditionBase:
-  text_content: null
-  attributes:
-    nullFlavor: SAFE
-    classCode: SAFE
-    moodCode: SAFE
-  elements:
-    realmCode: SAFE
-    typeId: SAFE
-    templateId: SAFE
-    id: null
-    precondition: null
 AssociatedEntity:
   text_content: null
   attributes:

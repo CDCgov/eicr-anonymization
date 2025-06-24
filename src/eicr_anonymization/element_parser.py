@@ -68,7 +68,7 @@ class Parser:
     `patient_only.yaml`.
     """
 
-    def __init__(self, patient_only: bool = False):
+    def __init__(self, custom_config_path: str | None = None):
         """Initialize the Parser with an empty list of sensitive elements."""
         self.sensitive_elements: list[Element] = []
         self.safe_text: set[str] = set()
@@ -79,8 +79,8 @@ class Parser:
         with open("src/eicr_anonymization/configs/default.yaml") as config_file:
             self.config = yaml.safe_load(config_file)
 
-        if patient_only:
-            with open("src/eicr_anonymization/configs/patient_only.yaml") as config_file:
+        if custom_config_path:
+            with open(custom_config_path) as config_file:
                 new_config = yaml.safe_load(config_file)
             for element in new_config:
                 self.config[element]["elements"].update(new_config[element]["elements"])
