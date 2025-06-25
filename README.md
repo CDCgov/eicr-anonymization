@@ -31,6 +31,9 @@ The tool is designed around the following principles and requirements, in approx
    - Whenever the same value appears multiple times, it should be replaced by the same placeholder.
    - This includes when a value is formatted differently across instances.
 
+### How it Works
+The eICR Anonymizer has three main parts: The YAML configuration file, a parser, and an anonymizer. First the configuration lists whether or not an element or attribute of a [CDA object](https://build.fhir.org/ig/HL7/CDA-core-2.0/index.html) should be considered sensitive. See the [configuration](#custom-configuration) for more on how to write the configuration file. The configuration file is used by the parser as the parser steps through each element of the eICR. If it finds something that has not been labeled as safe it will add the element to a list of sensitive elements. Once all of the sensitive elements have been collected the anonymizer is used on each element to replace the sensitive data.
+
 ## How to Use
 
 ### Requirements
@@ -62,11 +65,28 @@ anonymize_eicr /path/to/eicrs
 ```
 This will create a copy of each eicr file prepended with `.anonymized.xml` in the same directory.
 
-#### Patient Only Configuration
+#### Custom Configuration
 ```bash
-anonymize_eicr /path/to/eicrs --patient_only
+anonymize_eicr /path/to/eicrs --config /path/to/custom/config.yaml
 ```
-In some cases the default behavior of the anonymizer may be too aggressive. The patient only configuration will keep all data, apart from data directly related to the patient (name, date of birth, contact, guardian, etc), dates related to the patient encounter, and clinical notes.
+The default behavior of the anonymizer is to flag all information that could identify any individual, or organization as sensitive. As explained in more detail in [above](#how-it-works) a YAML configuration file is used to list whether or not a field or an attribute of a [CDA data type](https://build.fhir.org/ig/HL7/CDA-core-2.0/index.html) is safe or sensitive. A custom configuration YAML file can be used. The YAML is expected to be in this format:
+```yml
+Person:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    name: null
+    Desc: null
+    AsPatientRelationship: null
+    code: null
+```
+The
 
 #### Help
 ```bash

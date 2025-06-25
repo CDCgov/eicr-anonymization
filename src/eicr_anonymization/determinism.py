@@ -62,7 +62,7 @@ def hash_params_to_seed(params, global_seed):
         seed = int(hash_hex[:8], 16)
 
         return seed
-    except (pickle.PicklingError, TypeError) as e:
+    except (pickle.PicklingError, TypeError):
         # Fallback: convert to string and hash
         params_str = str(sorted(params.items()))
         hash_obj = hashlib.sha256(params_str.encode("utf-8"))

@@ -169,7 +169,6 @@ def save_anonymized_file(tree: _ElementTree, xml_file: str) -> None:
         xml_file: Path to the original XML file that has been anonymized
 
     """
-
     # Save the anonymized XML file
     anonymized_file = os.path.join(
         os.path.dirname(xml_file),

@@ -1,7 +1,10 @@
 """Parse for stepping through XML elements of a CDA document to collect sensitive elements and safe text."""  # noqa: E501
 
+from pydantic_yaml import parse_yaml_raw_as
 import yaml
 from lxml.etree import _Element
+
+from eicr_anonymization.config import CustomConfig
 
 
 def has_text(element: _Element) -> bool:
@@ -81,9 +84,9 @@ class Parser:
 
         if custom_config_path:
             with open(custom_config_path) as config_file:
-                new_config = yaml.safe_load(config_file)
+                new_config =  parse_yaml_raw_as(CustomConfig, config_file)
             for element in new_config:
-                self.config[element]["elements"].update(new_config[element]["elements"])
+                self.config[element]["elements"].update(new_config[element].elements)
 
     def add_safe_text(self, text: str):
         """Add a safe text element to the list."""
