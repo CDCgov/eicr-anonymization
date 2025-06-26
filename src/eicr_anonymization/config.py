@@ -1,5 +1,7 @@
+"""Classes to define configuration files."""
+
+from collections.abc import Iterable
 from enum import Enum
-from typing import Iterable
 
 import yaml
 from pydantic import BaseModel, RootModel, model_validator
@@ -11,6 +13,8 @@ with open("src/eicr_anonymization/cda_structure.yaml") as f:
 
 
 class Sensitivity(Enum):
+    """Enum to define the sensitivity of a type, attribute, or element."""
+
     SAFE = "SAFE"
     SENSITIVE = None
 
@@ -30,23 +34,29 @@ class CustomTypeConfig(BaseModel):
 
 
 class CustomConfig(RootModel):
-    """Model for the default configuration."""
+    """Model for custom configurations.
+
+    Custom configurations can be used to override the default configuration and therefore does not
+    need to include all fields.
+    """
 
     root: dict[str, CustomTypeConfig]
 
     def __iter__(self):
+        """Return an iterator over the types in the configuration."""
         return iter(self.root)
 
     def __getitem__(self, item):
+        """Return the configuration for a type."""
         return self.root[item]
 
     def items(self):
+        """Return the items in the configuration."""
         return self.root.items()
 
     @model_validator(mode="after")
     def check_elements(self):
         """Check that all types, attributes, and elements in the configuration are known found in the structure."""
-        all_types = set(structure)
         all_in_config = set(self)
         _check_unknown_items(all_in_config, all_types, "types", "custom configuration")
 
@@ -95,7 +105,7 @@ class CustomConfig(RootModel):
 class DefaultTypeConfig(BaseModel):
     """Model for the default configuration of a type.
 
-    This is used to define the default configuration for types in the `CustomConfig`.
+    This is used to define the default configuration for types in the `DefaultConfig`.
     """
 
     text_content: Sensitivity
@@ -104,6 +114,11 @@ class DefaultTypeConfig(BaseModel):
 
 
 class DefaultConfig(CustomConfig):
+    """Model for the default configuration.
+
+    The default configuration should contain all types, attributes, and elements defined in the structure.
+    """
+
     @model_validator(mode="after")
     def check_elements(self):
         """Check that all types, attributes, and elements in the configuration are known found in the structure."""
