@@ -79,7 +79,7 @@ ClinicalDocument:
   elements:
     author: SAFE
 ```
-This means all fields underneath `clinicalDocument.author` will not be replaced even though the default configuration for `Author`. has several non-safe fields.
+This means all fields underneath `clinicalDocument.author` will not be replaced even though the default configuration for `Author`. has several non-safe fields by default.
 
 #### Help
 ```bash
