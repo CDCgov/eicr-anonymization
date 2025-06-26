@@ -31,6 +31,9 @@ The tool is designed around the following principles and requirements, in approx
    - Whenever the same value appears multiple times, it should be replaced by the same placeholder.
    - This includes when a value is formatted differently across instances.
 
+### How it Works
+The eICR Anonymizer has three main parts: The YAML configuration file, a parser, and an anonymizer. First the configuration lists whether or not an element or attribute of a [CDA object](https://build.fhir.org/ig/HL7/CDA-core-2.0/index.html) should be considered sensitive. See the [configuration](#custom-configuration) for more on how to write the configuration file. The configuration file is used by the parser as the parser steps through each element of the eICR. If it finds something that has not been labeled as safe it will add the element to a list of sensitive elements. Once all of the sensitive elements have been collected the anonymizer is used on each element to replace the sensitive data.
+
 ## How to Use
 
 ### Requirements
@@ -62,19 +65,41 @@ anonymize_eicr /path/to/eicrs
 ```
 This will create a copy of each eicr file prepended with `.anonymized.xml` in the same directory.
 
+#### Custom Configuration
+```bash
+anonymize_eicr /path/to/eicrs --config /path/to/custom/config.yaml
+```
+The default behavior of the anonymizer is to flag all information that could identify any individual, or organization as sensitive. As explained in more detail in [above](#how-it-works) a YAML configuration file is used to list whether or not a field or an attribute of a [CDA data type](https://build.fhir.org/ig/HL7/CDA-core-2.0/index.html) is safe or sensitive. A custom configuration YAML file can be used to customize the anonymizer. See the [`config_examples`](config_examples) directory for examples.
+
+##### Custom Configuration Rules
+- In a custom configuration only the fields that are different to the default need to be included.
+- Setting a field as `SAFE` will then make everything underneath that field in the XML structure also safe, regardless of other configurations. As an example for the custom configuration:
+```yaml
+ClinicalDocument:
+  elements:
+    author: SAFE
+```
+This means all fields underneath `clinicalDocument.author` will not be replaced even though the default configuration for `Author`. has several non-safe fields by default.
+
 #### Help
 ```bash
-anonymize --help
-usage: anonymize_eicr [-h] [--debug] input_location
+usage: anonymize_eicr [-h] [-c CONFIG] [-v] {debug} ... input_location
 
-Anonymize eICR XML files.
+Anonymize eICR and RR XML files in a given directory. Always verify sensitive data has been properly anonymized before sharing processed files.
 
 positional arguments:
-  input_location  Directory containing eICR XML files.
+  input_location       This can be either a directory or an xml file. If it is a directory the Anonymization tool will attempt to anonymize all XML files in the directory.
 
 options:
-  -h, --help      show this help message and exit
-  --debug, -d     Print table showing original and replacement tags. Will show sensitive information.
+  -h, --help           show this help message and exit
+  -c, --config CONFIG  Path to custom config file.
+  -v, --version        show program's version number and exit
+
+subcommands:
+  There is currently only one subcommand.
+
+  {debug}
+    debug              Debugging/testing mode. WARNING: may expose sensitive data.
 ```
 
 ### Development
@@ -82,7 +107,7 @@ options:
 - [uv (Python package manager)](https://docs.astral.sh/uv/)
 
 #### Set Up
-2. This repo uses `uv` as the Python package manager. Install at the root of the directory
+1. This repo uses `uv` as the Python package manager. Install at the root of the directory
    - With Pip:
    ```bash
    pip install uv
@@ -91,7 +116,7 @@ options:
    ```bash
    pipx install uv
    ```
-3. Install dependencies with `uv`:
+2. Install dependencies with `uv`:
    ```bash
    uv sync
    ```
@@ -111,13 +136,27 @@ uv add <dependency>
 ```
 This is used for runtime dependencies. Add the `--dev` flag if you're adding is a development-only dependency.
 
+#### Updating CDA Structure YAML
+The `cda_structure.yaml` is created by running `uv run tools/cda_structure_generator.py`. To run that script the JSON FHIR `StructureDefinition`s for CDA need to be [downloaded from hl7](https://build.fhir.org/ig/HL7/CDA-core-2.0/downloads.html) and unzip into `tools/definitions`.
+
 #### Debugging
-You can add the following flags to `uv run anonymize_eicr /path/to/file` to help with debugging:
+There are several debugging options hidden under the `debug` subcommand to print to stdout debugging information, or control the randomness of the script.
 ```bash
-  -h, --help      show this help message and exit
-  --debug, -d     Print table showing original and replacement tags. Will show sensitive information.
-  -s, --seed      Set random seed
-  -v, --version   Run specific version of anonymize_eicr
+usage: anonymize_eicr debug [-h] [-d] [-s SEED] [--siso]
+
+WARNING: Debug mode is intended for development, testing, and debugging only. These options can compromise the security of data anonymization by:
+
+- Making replacement data predictable and repeatable
+- Exposing original sensitive data in output
+
+Only use with sample/test data, never with real sensitive data.
+
+options:
+  -h, --help            show this help message and exit
+  -d, --debug           Print table showing original and replacement tags. Will show sensitive information.
+  -s, --seed SEED       Set the random seed.
+  --siso, --same_in_same_out
+                        The same value will always be replaced with the same new value regardless of run or seed.
 ```
 
 ## Related documents

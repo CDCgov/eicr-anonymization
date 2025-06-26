@@ -1,0 +1,59 @@
+ClinicalDocument:
+  elements:
+    effectiveTime: SAFE
+    author: SAFE
+    custodian: SAFE
+    informationRecipient: SAFE
+EncounterParticipant:
+  elements:
+    time: SAFE
+    assignedEntity: SAFE
+PatientRole:
+  elements:
+    providerOrganization: SAFE
+AssociatedEntity:
+  elements:
+    id: SAFE
+    scopingOrganization: SAFE
+EncompassingEncounter:
+  elements:
+    id: SAFE
+    location: SAFE
+    responsibleParty: SAFE
+SubstanceAdministration:
+  elements:
+    author: SAFE
+    performer: SAFE
+EntryRelationship:
+  elements:
+    supply: SAFE
+Act:
+  elements:
+    id: SAFE
+    reference: SAFE
+    author: SAFE
+Performer2:
+  elements:
+    assignedEntity: SAFE
+Organizer:
+  elements:
+    id: SAFE
+    author: SAFE
+    informant: SAFE
+    participant: SAFE
+Procedure:
+  elements:
+    participant: SAFE
+Observation:
+  elements:
+    performer: SAFE
+Patient:
+  elements:
+    raceCode: null
+    ethnicGroupCode: null
+OrganizationPartOf:
+  elements:
+    id: SAFE
+    identifiedBy: SAFE
+    effectiveTime: SAFE
+    wholeOrganization: SAFE

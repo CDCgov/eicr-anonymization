@@ -1,11 +1,18 @@
+- value: "COVID-19 Exposure"
+- value: "In the last month, have you been in contact with someone who was confirmed or suspected to have Coronavirus / COVID-19?"
 - value: "Last Assessment & Plan:"
+- value: "Overview:"
+- value: "Smoking Tobacco: Never Assessed"
 - value: "Smoking Tobacco: Never"
 - value: "Standard Drinks/Week"
 - value: "Travel History: Date(s)"
-- value: (if no high date, status was
+- value: Abnormal
+- value: Action Date
 - value: active
+- value: Active Problems
 - value: Administration Dates
 - value: Analysis Time
+- value: Anatomical Location / Laterality
 - value: Asbestos
 - value: Assertion Date
 - value: Associated Diagnoses
@@ -20,11 +27,15 @@
 - value: Code Lab Test Order
 - value: Code Problem Observation
 - value: Code Result Observation
+- value: Collection Method / Volume
+- value: Collection Time
 - value: Comments
 - value: Component
 - value: Concern Status
 - value: Country of Nationality
 - value: Country of Residence
+- value: COVID 19 AG
+- value: COVID 19 AG INTERNAL CONTROL
 - value: current at time of recording
 - value: Current Employer Address
 - value: Current Employer Name
@@ -49,6 +60,8 @@
 - value: Estimated Date of Delivery
 - value: Estimated Gestational Age of Pregnancy
 - value: Exposure/Contact Information
+- value: Formatting of this note might be different from the original.
+- value: Hospital Encounter
 - value: Immunization Date
 - value: Immunization Medication Activity
 - value: Information Date
@@ -59,10 +72,13 @@
 - value: Lab Interpretation
 - value: Lab Requisition
 - value: Location
+- value: Medication Order
 - value: Method of Delivery
 - value: Microbiology
 - value: mm[Hg]
+- value: Negative
 - value: Next Due
+- value: No / Unsure
 - value: Not Detected
 - value: Not on file
 - value: Noted Date
@@ -71,17 +87,24 @@
 - value: Occupational Exposure
 - value: Ordered Date
 - value: Packs/Day
+- value: Pass
 - value: Pathologist Signature
 - value: Performed At
 - value: Performing Organization
 - value: Phone Number
+- value: POINT OF CARE TESTS
+- value: Positive
 - value: Postpartum Status
 - value: Pregnancy Outcome
 - value: Pregnancy Status
 - value: Problem Type
+- value: Product Inserted
 - value: Pulse
+- value: Rate
 - value: RCTC OID
 - value: RCTC Version
+- value: Reason for determination of reportability
+- value: Received Time
 - value: Recorded Date
 - value: Ref Range
 - value: Reference Range
@@ -91,12 +114,16 @@
 - value: Results Panel
 - value: Route
 - value: Routine
+- value: Rule used in reportability determination
+- value: Site
+- value: Specimen (Source)
 - value: SpO2
 - value: STOOL SPECIMEN / Unknown
 - value: Term birth of newborn (finding)
 - value: Test Method
 - value: Time
 - value: to reference entry
+- value: Tobacco Use
 - value: TODO
 - value: Trigger Code codeSystem
 - value: Types

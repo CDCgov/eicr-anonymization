@@ -9,7 +9,7 @@ from lxml import etree
 from lxml.etree import _Element, _ElementTree
 from tabulate import tabulate
 
-from eicr_anonymization.anonymizer import Anonymizer
+from eicr_anonymization.anonymizer import Anonymizer, DebugOptions
 from eicr_anonymization.element_parser import Element, Parser
 
 logger = logging.getLogger(__name__)
@@ -33,16 +33,17 @@ def _delete_old_anonymized_files(input_location: str) -> None:
 
 def xml_tree_to_str(tree: _ElementTree) -> str:
     """
-    Generate string representation of XML element
+    Generate string representation of XML element.
 
     Args:
         tree: XML Element tree to be formatted
     """
-
     return etree.tostring(tree, pretty_print=True, encoding="unicode")
 
 
-def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = False) -> _ElementTree:
+def anonymize_eicr_file(
+    xml_file: str, anonymizer: Anonymizer, parser: Parser, show_debug_info: bool = False
+) -> _ElementTree:
     """
     Anonymize a single EICR XML file.
 
@@ -61,15 +62,13 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
     # Get the first element and pass it into th elementProcessor
     first_element = next(root.iter())
 
-    parser = Parser()
-
     sensitive_elements, safe_words = parser.collect_sensitive_elements_and_safe_words(first_element)
 
     debug_output: list[tuple[Element, Element | str]] = []
 
     for element in sensitive_elements:
         match element.cda_type:
-            case "TS" | "IVL_TS" | "PIVL_TS" | "IVXB_TS":
+            case "TS" | "IVL_TS" | "PIVL_TS" | "IVXB_TS" | "SXCM_TS":
                 match = _find_element(root, element.path)
                 match.attrib["value"] = anonymizer.anonymize_TS_value(element)
                 debug_output.append((element, Element(match, "TS")))
@@ -124,10 +123,10 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
                         match = _find_element(root, element.path)
                         match.text = "REMOVED"
                         debug_output.append((element, Element(match, "ENXP")))
-            case "EN" | "PN":
+            case "EN" | "PN" | "ON":
                 match = _find_element(root, element.path)
                 match.text = anonymizer.anonymize_EN_value(element)
-                debug_output.append((element, Element(match, "EN")))
+                debug_output.append((element, Element(match, element.cda_type)))
             case "xhtml":
                 match = _find_element(root, element.path)
                 anonymizer.anonymize_xhtml(match, safe_words)
@@ -144,35 +143,32 @@ def anonymize_eicr_file(xml_file: str, anonymizer: Anonymizer, debug: bool = Fal
             case _:
                 if element.attributes.get("value") is not None:
                     match = _find_element(root, element.path)
-                    match.attrib["value"] = "REMOVED"
-                if element.text is not None:
+                    match.attrib["value"] = anonymizer.remove_unknown_text(match.attrib["value"])
+                if element.text is not None and element.text.strip() != "":
                     match = _find_element(root, element.path)
-                    match.text = "REMOVED"
-                debug_output.append((element, Element(match, element.cda_type)))
+                    match.text = anonymizer.remove_unknown_text(match.text)
 
-    dubug_output = tabulate(
-        sorted(debug_output, key=lambda x: (x[0].name, x[0].cda_type, x[0].text)),
-        headers=("Orginal", "Replacement"),
+    print(f"Anonymized {len(sensitive_elements)} sensitive elements in file: {xml_file}")
+    debug_output_table = tabulate(
+        debug_output,
+        headers=("Original", "Replacement"),
         tablefmt="fancy_outline",
     )
 
-    if debug:
-        # with open(f"debug_output.txt{time.time()}", "w") as debug_file:
-        #     debug_file.write(dubug_output)
-        print(dubug_output)
+    if show_debug_info:
+        print(debug_output_table)
 
     return tree
 
 
 def save_anonymized_file(tree: _ElementTree, xml_file: str) -> None:
-    """Writes anonymized XML tree to file with .anonymized appended to original file name.
+    """Write an anonymized XML tree to file with .anonymized appended to original file name.
 
     Args:
         tree: Anonymized XML tree
         xml_file: Path to the original XML file that has been anonymized
 
     """
-
     # Save the anonymized XML file
     anonymized_file = os.path.join(
         os.path.dirname(xml_file),
@@ -181,7 +177,7 @@ def save_anonymized_file(tree: _ElementTree, xml_file: str) -> None:
 
     xml_string = xml_tree_to_str(tree)
 
-    with open(anonymized_file, "w", encoding='utf-8') as f:
+    with open(anonymized_file, "w", encoding="utf-8") as f:
         f.write(xml_string)
 
 
@@ -201,7 +197,11 @@ def _find_element(root: _Element, path: str):
 
 def anonymize(args: Namespace) -> None:
     """Run the EICR anonymization process."""
-    anonymizer = Anonymizer(seed=args.seed)
+    debugOptions = None
+    if args.command == "debug":
+        debugOptions = DebugOptions(args.seed, args.deterministic_functions)
+    anonymizer = Anonymizer(debugOptions)
+    parser = Parser(custom_config_path=args.config)
     if os.path.isdir(args.input_location):
         _delete_old_anonymized_files(args.input_location)
 
@@ -211,7 +211,9 @@ def anonymize(args: Namespace) -> None:
             return
         print(f"Found {len(xml_files)} XML files in directory: {args.input_location}")
         for xml_file in xml_files:
-            anonymized_file = anonymize_eicr_file(xml_file, anonymizer, debug=args.debug)
+            anonymized_file = anonymize_eicr_file(
+                xml_file, anonymizer, parser, show_debug_info=args.debug
+            )
             save_anonymized_file(anonymized_file, xml_file)
     elif os.path.isfile(args.input_location):
         # IF the previously anonymized file exists, delete it
@@ -219,7 +221,9 @@ def anonymize(args: Namespace) -> None:
             os.remove(f"{args.input_location}.anonymized.xml")
             print(f"Deleted previous anonymized file: {args.input_location}.anonymized.xml")
         print(f"Anonymizing file: {args.input_location}")
-        anonymized_file = anonymize_eicr_file(args.input_location, anonymizer, debug=args.debug)
+        anonymized_file = anonymize_eicr_file(
+            args.input_location, anonymizer, parser, show_debug_info=args.debug
+        )
         save_anonymized_file(anonymized_file, args.input_location)
     else:
         print(f"Input location is not a file or directory: {args.input_location}")

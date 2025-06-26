@@ -13,7 +13,7 @@
   <!-- Document Code -->
   <code code="55751-2" codeSystem="2.16.840.1.113883.6.1" displayName="Public Health Case Report"/>
   <title>Initial Public Health Case Report</title>
-  <effectiveTime value="20061112181545+0000"/>
+  <effectiveTime value="202502250132-0000"/>
   <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="Normal"/>
   <languageCode code="en-US"/>
   <setId extension="71b065e4-6339-45cd-88fa-a6ab3fe4946d" root="2.16.840.1.113883.19.5.99999.19"/>
@@ -22,26 +22,26 @@
     <!-- Patient demographic information -->
     <patientRole>
       <!-- Patient ID-->
-      <id extension="XXS-14177763" root="2.16.840.1.113883.19.5"/>
+      <id extension="XXP-47316805" root="2.16.840.1.113883.19.5"/>
       <!--SSN-->
-      <id extension="XX1-70-6690" root="2.16.840.1.113883.4.1"/>
+      <id extension="XX2-89-1199" root="2.16.840.1.113883.4.1"/>
       <addr use="H WP">
         <streetAddressLine>Recipient Recipient Recipient Recipient</streetAddressLine>
-        <city>Mos Espa</city>
-        <state>The Colonies</state>
-        <postalCode>DX-586</postalCode>
-        <county>Trandosha</county>
-        <country>Galactic Republic</country>
+        <city>Canto Bight</city>
+        <state>Unknown Regions</state>
+        <postalCode>BD-953</postalCode>
+        <county>Mon Cala</county>
+        <country>Galactic Empire</country>
       </addr>
-      <telecom use="MC WP" value="tel:+7-710-465-6341"/>
-      <telecom use="WP" value="mailto:xqg@example.com"/>
+      <telecom use="MC WP" value="tel:+5-089-457-2096"/>
+      <telecom use="WP" value="mailto:kj.x@example.com"/>
       <patient>
         <name use="L">
           <prefix>Master</prefix>
           <!-- yoda doesn't have a canonical given name but the person that came up with yoda's name
           use this as his first name -->
-          <given>Kestrel</given>
-          <family>Sevander</family>
+          <given>Anakin</given>
+          <family>Caleen</family>
         </name>
         <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male"/>
         <!-- yoda is 900 years old -->
@@ -67,40 +67,40 @@
   <!-- Author/authenticator may be software or may be a provider such as "infection control
   professional"-->
   <author>
-    <time value="20061112184525+0000"/>
+    <time value="20250225013242-0000"/>
     <assignedAuthor>
-      <id extension="XX14398754" root="2.16.840.1.113883.4.6"/>
+      <id extension="1234567890" root="2.16.840.1.113883.4.6"/>
       <addr use="H">
-        <streetAddressLine>283 Commerce Street</streetAddressLine>
-        <city>Canto Bight</city>
-        <state>The Colonies</state>
-        <postalCode>FT-137</postalCode>
-        <county>Trandosha</county>
-        <country>Galactic Republic</country>
+        <streetAddressLine>200 Corusca Street</streetAddressLine>
+        <city>Senate District</city>
+        <state>Galactic City</state>
+        <postalCode>GC-500</postalCode>
+        <county>Administrative Core</county>
+        <country>Coruscant</country>
       </addr>
-      <telecom use="WP" value="tel:+0-285-873-3577"/>
-      <telecom use="WP" value="fax:+3-658-943-0185"/>
-      <telecom use="WP" value="mailto:qy@example.com"/>
+      <telecom use="WP" value="tel:+1-555-777-0123"/>
+      <telecom use="WP" value="fax:+1-555-777-0987"/>
+      <telecom use="WP" value="mailto:dr.hemlock@grmfc.gc.example.com"/>
       <assignedPerson>
         <name>
           <prefix>Dr</prefix>
-          <given>Breha</given>
-          <family>Enneb</family>
+          <given>Royce</given>
+          <family>Hemlock</family>
           <suffix>MD</suffix>
         </name>
       </assignedPerson>
       <representedOrganization>
         <!-- NPI -->
-        <id extension="XX34448527" root="2.16.840.1.113883.4.6"/>
-        <name>Expansion Region Pharmacy &amp; Pharmacy</name>
-        <telecom use="WP" value="tel:+3-907-656-8280"/>
+        <id extension="1234567893" root="2.16.840.1.113883.4.6"/>
+        <name>Grand Republic Medical Facility Clinic</name>
+        <telecom use="WP" value="tel:+1-888-000-9999"/>
         <addr use="WP">
-          <streetAddressLine>814 Lake Jawa Market Plaza, Suite 1412</streetAddressLine>
-          <city>Canto Bight</city>
-          <state>The Colonies</state>
-          <postalCode>FT-137</postalCode>
-          <county>Trandosha</county>
-          <country>Galactic Republic</country>
+          <streetAddressLine>500 Republica Medical Plaza, Suite 1000</streetAddressLine>
+          <city>Senate District</city>
+          <state>Galactic City</state>
+          <postalCode>GC-500</postalCode>
+          <county>Administrative Core</county>
+          <country>Coruscant</country>
         </addr>
       </representedOrganization>
     </assignedAuthor>
@@ -112,16 +112,16 @@
     <assignedCustodian>
       <representedCustodianOrganization>
         <!-- Custodian ID (NPI) -->
-        <id extension="XX34448527" root="2.16.840.1.113883.4.6"/>
-        <name>Expansion Region Pharmacy &amp; Pharmacy</name>
-        <telecom use="WP" value="tel:+3-907-656-8280"/>
+        <id extension="1234567893" root="2.16.840.1.113883.4.6"/>
+        <name>Grand Republic Medical Facility Clinic</name>
+        <telecom use="WP" value="tel:+1-888-000-9999"/>
         <addr use="WP">
-          <streetAddressLine>814 Lake Jawa Market Plaza, Suite 1412</streetAddressLine>
-          <city>Canto Bight</city>
-          <state>The Colonies</state>
-          <postalCode>FT-137</postalCode>
-          <county>Trandosha</county>
-          <country>Galactic Republic</country>
+          <streetAddressLine>500 Republica Medical Plaza, Suite 1000</streetAddressLine>
+          <city>Senate District</city>
+          <state>Galactic City</state>
+          <postalCode>GC-500</postalCode>
+          <county>Administrative Core</county>
+          <country>Coruscant</country>
         </addr>
       </representedCustodianOrganization>
     </assignedCustodian>
@@ -244,7 +244,7 @@
                   <td>80825-3</td>
                   <td>LOINC</td>
                   <td>2.16.840.1.114222.4.11.7508</td>
-                  <td>REMOVED</td>
+                  <td>19/05/2016</td>
                   <td>REMOVED</td>
                 </tr>
               </tbody>
@@ -505,9 +505,9 @@
                               <td>80825-3</td>
                               <td>LOINC</td>
                               <td>2.16.840.1.114222.4.11.7508</td>
-                              <td>REMOVED</td>
+                              <td>19/05/2016</td>
                               <td>Positive</td>
-                              <td>High</td>
+                              <td>REMOVED</td>
                               <td>REMOVED</td>
                               <td>Abnormal</td>
                             </tr>
@@ -648,8 +648,7 @@
               <effectiveTime>
                 <low value="12560917"/>
               </effectiveTime>
-              <value xsi:type="ST">Jedi High Council Member, Jedi Temple, Temple District, Galactic
-                City, Coruscant</value>
+              <value xsi:type="ST">REMOVED</value>
             </observation>
           </entry>
           <!-- travel history -->

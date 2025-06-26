@@ -11,7 +11,7 @@
   <!-- Document Code -->
   <code code="88085-6" codeSystem="2.16.840.1.113883.6.1" displayName="Reportability response report Document Public health"/>
   <title>Reportability Response</title>
-  <effectiveTime value="20061113161345+0000"/>
+  <effectiveTime value="202502252312-0000"/>
   <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="Normal"/>
   <languageCode code="en-US"/>
   <!-- recordTarget: The patient -->
@@ -19,26 +19,26 @@
     <!-- Patient demographic information -->
     <patientRole>
       <!-- Patient ID-->
-      <id extension="XXS-14177763" root="2.16.840.1.113883.19.5"/>
+      <id extension="XXX-36873434" root="2.16.840.1.113883.19.5"/>
       <!--SSN-->
-      <id extension="XX1-70-6690" root="2.16.840.1.113883.4.1"/>
+      <id extension="XX4-93-0087" root="2.16.840.1.113883.4.1"/>
       <addr use="H WP">
         <streetAddressLine>Recipient Recipient Recipient Recipient</streetAddressLine>
-        <city>Mos Espa</city>
-        <state>The Colonies</state>
-        <postalCode>DX-586</postalCode>
-        <county>Trandosha</county>
-        <country>Galactic Republic</country>
+        <city>Canto Bight</city>
+        <state>Unknown Regions</state>
+        <postalCode>BD-953</postalCode>
+        <county>Mon Cala</county>
+        <country>Galactic Empire</country>
       </addr>
-      <telecom use="MC WP" value="tel:+7-710-465-6341"/>
-      <telecom use="WP" value="mailto:xqg@example.com"/>
+      <telecom use="MC WP" value="tel:+5-089-457-2096"/>
+      <telecom use="WP" value="mailto:an_3@example.com"/>
       <patient>
         <name use="L">
           <prefix>Master</prefix>
           <!-- yoda doesn't have a canonical given name but the person that came up with yoda's name
           use this as his first name -->
-          <given>Kestrel</given>
-          <family>Sevander</family>
+          <given>Anakin</given>
+          <family>Caleen</family>
         </name>
         <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male"/>
         <!-- yoda is 900 years old -->
@@ -63,17 +63,17 @@
 
   <!-- author for RRs is _always_ going to be AIMS -->
   <author>
-    <time value="20061113161345+0000"/>
+    <time value="202502252312-0000"/>
     <assignedAuthor>
       <id root="2.16.840.1.114222.4.1.217446"/>
       <addr>
-        <streetAddressLine>1439 Docking Bay Avenue, Suite 922</streetAddressLine>
-        <city>Canto Bight</city>
-        <state>II</state>
-        <postalCode>69629</postalCode>
-        <country>CH</country>
+        <streetAddressLine>8515 Georgia Avenue, Suite 700</streetAddressLine>
+        <city>Silver Spring</city>
+        <state>MD</state>
+        <postalCode>20910</postalCode>
+        <country>US</country>
       </addr>
-      <telecom use="WP" value="tel:+7(028)587-3357"/>
+      <telecom use="WP" value="tel:+1(844)836-8377"/>
       <assignedAuthoringDevice>
         <manufacturerModelName displayName="APHL"/>
         <softwareName displayName="AIMS"/>
@@ -86,14 +86,14 @@
     <assignedCustodian>
       <representedCustodianOrganization>
         <id root="2.16.840.1.114222.4.1.217446"/>
-        <name>Laboratory of First Order.</name>
-        <telecom use="WP" value="tel:+7(028)587-3357"/>
+        <name>APHL | Association of Public Health Laboratories.</name>
+        <telecom use="WP" value="tel:+1(844)836-8377"/>
         <addr>
-          <streetAddressLine>1439 Docking Bay Avenue, Suite 922</streetAddressLine>
-          <city>Canto Bight</city>
-          <state>II</state>
-          <postalCode>69629</postalCode>
-          <country>CH</country>
+          <streetAddressLine>8515 Georgia Avenue, Suite 700</streetAddressLine>
+          <city>Silver Spring</city>
+          <state>MD</state>
+          <postalCode>20910</postalCode>
+          <country>US</country>
         </addr>
       </representedCustodianOrganization>
     </assignedCustodian>
@@ -107,24 +107,24 @@
   <informationRecipient typeCode="PRCP">
     <intendedRecipient>
       <!-- Provider ID (NPI) -->
-      <id extension="XX43018528" root="2.16.840.1.113883.4.6"/>
+      <id extension="1234567890" root="2.16.840.1.113883.4.6"/>
       <addr use="H">
-        <streetAddressLine>344 Mine Street</streetAddressLine>
-        <city>Freetown</city>
-        <state>The Colonies</state>
-        <postalCode>WJ-852</postalCode>
-        <county>Trandosha</county>
-        <country>Galactic Republic</country>
+        <streetAddressLine>200 Corusca Street</streetAddressLine>
+        <city>Senate District</city>
+        <state>Galactic City</state>
+        <postalCode>GC-500</postalCode>
+        <county>Administrative Core</county>
+        <country>Coruscant</country>
       </addr>
-      <telecom use="WP" value="tel:+7-911-989-6224"/>
-      <telecom use="WP" value="fax:+6-390-765-6828"/>
-      <telecom use="WP" value="mailto:q@example.com"/>
+      <telecom use="WP" value="tel:+1-555-777-0123"/>
+      <telecom use="WP" value="fax:+1-555-777-0987"/>
+      <telecom use="WP" value="mailto:dr.hemlock@grmfc.gc.example.com"/>
       <!-- assignedPerson in the eICR (the provider) -->
       <informationRecipient>
         <name>
           <prefix>Dr</prefix>
-          <given>Breha</given>
-          <family>Enneb</family>
+          <given>Royce</given>
+          <family>Hemlock</family>
           <suffix>MD</suffix>
         </name>
       </informationRecipient>
@@ -132,16 +132,16 @@
       <!-- representedOrganization in the eICR -->
       <receivedOrganization>
         <!-- NPI for the facility -->
-        <id extension="XX41412917" root="2.16.840.1.113883.4.6"/>
+        <id extension="1234567893" root="2.16.840.1.113883.4.6"/>
         <!-- Provider Facility/Office Name-->
-        <name>Mandalore Pharmacy &amp; Research Institute</name>
+        <name>Grand Republic Medical Facility Clinic</name>
         <addr use="WP">
-          <streetAddressLine>297 Alderaan Memorial Landing Pad Plaza, Suite 3169</streetAddressLine>
-          <city>Freetown</city>
-          <state>The Colonies</state>
-          <postalCode>WJ-852</postalCode>
-          <county>Trandosha</county>
-          <country>Galactic Republic</country>
+          <streetAddressLine>500 Republica Medical Plaza, Suite 1000</streetAddressLine>
+          <city>Senate District</city>
+          <state>Galactic City</state>
+          <postalCode>GC-500</postalCode>
+          <county>Administrative Core</county>
+          <country>Coruscant</country>
         </addr>
       </receivedOrganization>
     </intendedRecipient>
@@ -153,7 +153,7 @@
   <componentOf>
     <encompassingEncounter>
       <!-- eICR encounter ID - this is the id of the original encounter-->
-      <id extension="XX86144" root="2.16.840.1.113883.19"/>
+      <id extension="9937012" root="2.16.840.1.113883.19"/>
       <code code="PHC2237" codeSystem="2.16.840.1.114222.4.5.274" codeSystemName="PHIN VS (CDC Local Coding System)" displayName="External Encounter"/>
       <!-- eICR encompassingEncounter time - this is the time of the original encounter from the
       eICR -->
@@ -165,38 +165,38 @@
       <responsibleParty>
         <assignedEntity>
           <!-- Provider ID (NPI) -->
-          <id extension="XX43018528" root="2.16.840.1.113883.4.6"/>
+          <id extension="1234567890" root="2.16.840.1.113883.4.6"/>
           <addr use="H">
-            <streetAddressLine>344 Mine Street</streetAddressLine>
-            <city>Freetown</city>
-            <state>The Colonies</state>
-            <postalCode>WJ-852</postalCode>
-            <county>Trandosha</county>
-            <country>Galactic Republic</country>
+            <streetAddressLine>200 Corusca Street</streetAddressLine>
+            <city>Senate District</city>
+            <state>Galactic City</state>
+            <postalCode>GC-500</postalCode>
+            <county>Administrative Core</county>
+            <country>Coruscant</country>
           </addr>
-          <telecom use="WP" value="tel:+7-911-989-6224"/>
-          <telecom use="WP" value="fax:+6-390-765-6828"/>
-          <telecom use="WP" value="mailto:mxosa@example.com"/>
+          <telecom use="WP" value="tel:+1-555-777-0123"/>
+          <telecom use="WP" value="fax:+1-555-777-0987"/>
+          <telecom use="WP" value="mailto:dr.hemlock@grmfc.gc.example.com"/>
           <assignedPerson>
             <name>
               <prefix>Dr</prefix>
-              <given>Breha</given>
-              <family>Enneb</family>
+              <given>Royce</given>
+              <family>Hemlock</family>
               <suffix>MD</suffix>
             </name>
           </assignedPerson>
           <representedOrganization>
             <!-- Represented Organization-->
-            <id extension="XX41412917" root="2.16.840.1.113883.4.6"/>
+            <id extension="1234567893" root="2.16.840.1.113883.4.6"/>
             <!-- Provider Facility/Office Name-->
-            <name>Mandalore Pharmacy &amp; Research Institute</name>
+            <name>Grand Republic Medical Facility Clinic</name>
             <addr use="WP">
-              <streetAddressLine>297 Alderaan Memorial Landing Pad Plaza, Suite 3169</streetAddressLine>
-              <city>Freetown</city>
-              <state>The Colonies</state>
-              <postalCode>WJ-852</postalCode>
-              <county>Trandosha</county>
-              <country>Galactic Republic</country>
+              <streetAddressLine>500 Republica Medical Plaza, Suite 1000</streetAddressLine>
+              <city>Senate District</city>
+              <state>Galactic City</state>
+              <postalCode>GC-500</postalCode>
+              <county>Administrative Core</county>
+              <country>Coruscant</country>
             </addr>
           </representedOrganization>
         </assignedEntity>
@@ -206,32 +206,32 @@
       <location>
         <healthCareFacility>
           <!-- Facility ID (NPI) -->
-          <id extension="XX43018528" root="2.16.840.1.113883.4.6"/>
+          <id extension="1234567890" root="2.16.840.1.113883.4.6"/>
           <!-- Facility location within larger healthcare organization e.g Kaiser Vacaville within
           Kaiser North-->
           <code code="OF" codeSystem="2.16.840.1.113883.5.111" codeSystemName="HL7RoleCode" displayName="Outpatient Facility"/>
           <location>
             <addr use="WP">
-              <streetAddressLine>297 Alderaan Memorial Landing Pad Plaza, Suite 3169</streetAddressLine>
-              <city>Freetown</city>
-              <state>The Colonies</state>
-              <postalCode>WJ-852</postalCode>
-              <county>Trandosha</county>
-              <country>Galactic Republic</country>
+              <streetAddressLine>500 Republica Medical Plaza, Suite 1000</streetAddressLine>
+              <city>Senate District</city>
+              <state>Galactic City</state>
+              <postalCode>GC-500</postalCode>
+              <county>Administrative Core</county>
+              <country>Coruscant</country>
             </addr>
           </location>
           <serviceProviderOrganization>
             <!-- Provider Facility/Office Name-->
-            <name>Mandalore Pharmacy &amp; Research Institute</name>
-            <telecom use="WP" value="tel:+0-934-324-2834"/>
-            <telecom use="WP" value="fax:+4-947-285-7613"/>
+            <name>Grand Republic Medical Facility Clinic</name>
+            <telecom use="WP" value="tel:+1-888-000-9999"/>
+            <telecom use="WP" value="fax:+1-888-000-1111"/>
             <addr use="WP">
-              <streetAddressLine>297 Alderaan Memorial Landing Pad Plaza, Suite 3169</streetAddressLine>
-              <city>Freetown</city>
-              <state>The Colonies</state>
-              <postalCode>WJ-852</postalCode>
-              <county>Trandosha</county>
-              <country>Galactic Republic</country>
+              <streetAddressLine>500 Republica Medical Plaza, Suite 1000</streetAddressLine>
+              <city>Senate District</city>
+              <state>Galactic City</state>
+              <postalCode>GC-500</postalCode>
+              <county>Administrative Core</county>
+              <country>Coruscant</country>
             </addr>
           </serviceProviderOrganization>
         </healthCareFacility>
@@ -380,18 +380,18 @@
                       <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.10.20.15.2.4.2" extension="2017-04-01"/>
                         <participantRole>
-                          <id extension="XX963410" root="2.16.840.1.113883.4.6"/>
+                          <id extension="12341234" root="2.16.840.1.113883.4.6"/>
                           <code code="RR8" displayName="Responsible Agency" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                           <addr>
-                            <city>Mos Eisley</city>
-                            <state>The Colonies</state>
-                            <postalCode>DS-08</postalCode>
-                            <county>Trandosha</county>
-                            <country>Galactic Republic</country>
+                            <city>Macrodata District</city>
+                            <state>Galactic City</state>
+                            <postalCode>GC-50</postalCode>
+                            <county>Administrative Core</county>
+                            <country>Coruscant</country>
                           </addr>
-                          <telecom use="WP" value="tel:+4-218-594-6858"/>
+                          <telecom use="WP" value="tel:+1-555-555-3555"/>
                           <playingEntity>
-                            <name>Academy Laboratory &amp; Laboratory of Wobani</name>
+                            <name>Coruscant Department of Health</name>
                           </playingEntity>
                         </participantRole>
                       </participant>
@@ -399,18 +399,18 @@
                       <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.10.20.15.2.4.3" extension="2017-04-01"/>
                         <participantRole>
-                          <id extension="XX963410" root="2.16.840.1.113883.4.6"/>
+                          <id extension="12341234" root="2.16.840.1.113883.4.6"/>
                           <code code="RR12" displayName="Rules Authoring Agency" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                           <addr>
-                            <city>Mos Eisley</city>
-                            <state>The Colonies</state>
-                            <postalCode>DS-08</postalCode>
-                            <county>Trandosha</county>
-                            <country>Galactic Republic</country>
+                            <city>Macrodata District</city>
+                            <state>Galactic City</state>
+                            <postalCode>GC-50</postalCode>
+                            <county>Administrative Core</county>
+                            <country>Coruscant</country>
                           </addr>
-                          <telecom use="WP" value="tel:+4-218-594-6858"/>
+                          <telecom use="WP" value="tel:+1-555-555-3555"/>
                           <playingEntity>
-                            <name>Academy Laboratory &amp; Laboratory of Wobani</name>
+                            <name>Coruscant Department of Health</name>
                           </playingEntity>
                         </participantRole>
                       </participant>
@@ -418,18 +418,18 @@
                       <participant typeCode="LOC">
                         <templateId root="2.16.840.1.113883.10.20.15.2.4.1" extension="2017-04-01"/>
                         <participantRole>
-                          <id extension="XX716638" root="2.16.840.1.113883.4.6"/>
+                          <id extension="43214321" root="2.16.840.1.113883.4.6"/>
                           <code code="RR7" displayName="Routing Entity" codeSystem="2.16.840.1.114222.4.5.232" codeSystemName="PHIN Questions"/>
                           <addr>
-                            <city>Mos Eisley</city>
-                            <state>The Colonies</state>
-                            <postalCode>DS-08</postalCode>
-                            <county>Trandosha</county>
-                            <country>Galactic Republic</country>
+                            <city>Macrodata District</city>
+                            <state>Galactic City</state>
+                            <postalCode>GC-50</postalCode>
+                            <county>Administrative Core</county>
+                            <country>Coruscant</country>
                           </addr>
-                          <telecom use="WP" value="tel:+4-218-594-6858"/>
+                          <telecom use="WP" value="tel:+1-555-555-3555"/>
                           <playingEntity>
-                            <name>Academy Laboratory &amp; Laboratory of Wobani</name>
+                            <name>Coruscant Department of Health</name>
                           </playingEntity>
                         </participantRole>
                       </participant>
@@ -504,7 +504,7 @@
                           surveillance and follow-up required.</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://example98.com/tqn.txt"/>
+                        <reference value="https://www.cdc.gov/zika/reporting/index.html"/>
                       </text>
                     </externalDocument>
                   </reference>
@@ -527,7 +527,7 @@
                           virus</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://fotvq.example5.com"/>
+                        <reference value="https://www.cdc.gov/zika/laboratories/lab-guidance.html"/>
                       </text>
                     </externalDocument>
                   </reference>
@@ -550,7 +550,7 @@
                           prevention</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://msnmk.example9173.com"/>
+                        <reference value="https://www.cdc.gov/zika/hc-providers/clinical-guidance/index.html"/>
                       </text>
                     </externalDocument>
                   </reference>
@@ -573,7 +573,7 @@
                           the Coruscant Department of Health</originalText>
                       </code>
                       <text mediaType="text/html">
-                        <reference value="https://juanx.example26421.com"/>
+                        <reference value="https://www.health.coruscant.gov/zika/reporting"/>
                       </text>
                     </externalDocument>
                   </reference>

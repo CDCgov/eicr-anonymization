@@ -5,8 +5,8 @@ This module handles logic around replacing data with similar but fake data.
 
 import random
 import re
+from dataclasses import dataclass
 from datetime import datetime, timedelta
-from random import choice, randint, shuffle
 from string import ascii_lowercase, ascii_uppercase
 from typing import Literal, NotRequired, TypedDict
 
@@ -14,6 +14,7 @@ import usaddress
 import yaml
 from lxml.etree import _Element
 
+from eicr_anonymization.determinism import deterministic
 from eicr_anonymization.element_parser import Element
 
 ONE_THIRD = 0.33
@@ -85,17 +86,49 @@ def _normalize_value(value: str):
     return value.lower()
 
 
+@dataclass
+class DebugOptions:
+    """Dataclass for holding options for setting the random seed and making functions deterministic.
+
+    Should not be used in production or when real sensitive data is being used.
+
+    Args:
+        seed (int): Set the random seed
+        deterministic_functions (bool): If True, the same value will always be replaced with the
+        same new value. This will also set the seed to its default `1`, if a seed is not provided.
+    """
+
+    seed: int | None = None
+    deterministic_functions: bool = False
+
+
 class Anonymizer:
     """Anonymizes the data."""
 
-    def __init__(self, seed: int | None = None):
-        """Initialize the Anonymizer class."""
-        if seed is not None:
-            # Set the seed for reproducibility
-            random.seed(seed)
+    def __init__(
+        self,
+        debugOptions: DebugOptions | None = None,
+    ):
+        """Initialize the Anonymizer class.
+
+        Args:
+            debugOptions: Options for setting the random seed and making functions deterministic.
+            Should not be used in production or when real sensitive data is being used.
+        """
+        if debugOptions is None:
+            self.is_deterministic = False
+        else:
+            self.is_deterministic = debugOptions.deterministic_functions
+            if debugOptions.deterministic_functions is True and debugOptions.seed is None:
+                self.seed = 1
+                random.seed(self.seed)
+            elif debugOptions.seed is not None:
+                self.seed = debugOptions.seed
+                random.seed(self.seed)
+
         SECONDS_IN_100_YEARS = int(100 * 60 * 60 * 24 * 365.25)
         # The main offset is a random number of seconds between 0 and 100 years
-        self.time_offset = randint(0, SECONDS_IN_100_YEARS)
+        self.time_offset = random.randint(0, SECONDS_IN_100_YEARS)
 
         self.ASSUMED_ABBR_LEN = 3
         self.NUM_X = 2
@@ -141,6 +174,7 @@ class Anonymizer:
             {_normalize_value(word["value"]) for word in _read_yaml("safe_words.yaml")}
         )
 
+    @deterministic
     def anonymize_TS_value(self, element: Element):
         """Anonymize TS elements."""
         value = element.attributes["value"]
@@ -174,6 +208,7 @@ class Anonymizer:
 
         return _match_formatting(value, date_time.strftime(fmt))
 
+    @deterministic
     def anonymize_II_value(self, element: Element):
         """Anonymize II elements."""
         extension = element.attributes["extension"]
@@ -192,11 +227,11 @@ class Anonymizer:
             ):
                 replacement += "X"
             elif char.isdigit():
-                replacement += str(randint(0, 9))
+                replacement += str(random.randint(0, 9))
             elif char.isalpha() and char.islower():
-                replacement += choice(ascii_lowercase)
+                replacement += random.choice(ascii_lowercase)
             elif char.isalpha() and char.isupper():
-                replacement += choice(ascii_uppercase)
+                replacement += random.choice(ascii_uppercase)
             else:
                 replacement += char
 
@@ -204,6 +239,7 @@ class Anonymizer:
 
         return _match_formatting(extension, replacement)
 
+    @deterministic
     def anonymize_streetAddressLine_value(self, element: Element):
         """Anonymize streetAddressLine elements.
 
@@ -228,7 +264,7 @@ class Anonymizer:
                         continue
                     replacement_AddressNumber = ""
                     for i in str(component):
-                        replacement_AddressNumber += str(randint(0, 9)) if i.isdigit() else i
+                        replacement_AddressNumber += str(random.randint(0, 9)) if i.isdigit() else i
                     self._set_mapping(component, "houseNumber", replacement_AddressNumber)
                     replacement.append(_match_formatting(component, replacement_AddressNumber))
                 case "AddressNumberPrefix":
@@ -320,6 +356,7 @@ class Anonymizer:
         normalized = _normalize_value(value)
         self.mappings[data_type][normalized] = replacement
 
+    @deterministic
     def replace_from_pool(self, value: str | None, data_type: str):
         """Anonymize using the pool-based replacement strategy."""
         if value is None:
@@ -329,12 +366,13 @@ class Anonymizer:
         replacement = self._get_mapping(value, data_type)
         if replacement is None:
             # Get a new replacement value
-            replacement = self.get_random_option(data_type)["value"]
+            replacement = self._get_random_option(data_type)["value"]
             # Store the mapping for future use
             self._set_mapping(value, data_type, replacement)
 
         return _match_formatting(value, replacement)
 
+    @deterministic
     def replace_with_like_chars(self, value: str, data_type: str):
         """Replace each character in a string with a random character of the same type."""
         replacement = self._get_mapping(value, data_type)
@@ -342,11 +380,11 @@ class Anonymizer:
             replacement = ""
             for char in str(value):
                 if char.isdigit():
-                    replacement += str(randint(0, 9))
+                    replacement += str(random.randint(0, 9))
                 elif char.isalpha() and char.islower():
-                    replacement += choice(ascii_lowercase)
+                    replacement += random.choice(ascii_lowercase)
                 elif char.isalpha() and char.isupper():
-                    replacement += choice(ascii_uppercase)
+                    replacement += random.choice(ascii_uppercase)
                 else:
                     replacement += char
 
@@ -354,7 +392,7 @@ class Anonymizer:
 
         return _match_formatting(value, replacement)
 
-    def get_random_option(self, data_type):
+    def _get_random_option(self, data_type):
         """Get a random item from the specified data type's available options."""
         options = self.available_options[data_type]
         pool = self.data_pools[data_type]
@@ -362,19 +400,20 @@ class Anonymizer:
         # If options are depleted, refill from the pool and shuffle
         if not options:
             options.extend(pool.copy())
-            shuffle(options)
+            random.shuffle(options)
 
         # Pop the first item
         return options.pop(0)
 
+    @deterministic
     def anonymize_EN_value(self, element: Element):
         """Anonymize EN elements.
 
         https://parserator.datamade.us/probablepeople/
         """
-        return self.random_corpationName(element.text)
+        return self._random_corporationName(element.text)
 
-    def random_corpationName(self, value: str | None):
+    def _random_corporationName(self, value: str | None):
         """Generate a random corporation name."""
         if value is None:
             return value
@@ -409,44 +448,47 @@ class Anonymizer:
 
         conjuctions = ["and", "&", "+"]
 
-        form_choice = randint(0, 1)
+        form_choice = random.randint(0, 1)
         replacement = "REMOVED"
         parts = []
         match form_choice:
             case 0:
                 form_choice = random.random()
                 if form_choice <= ONE_THIRD:
-                    parts.append(f" {choice(localitys)} {choice(organizationTypes)}")
+                    parts.append(f" {random.choice(localitys)} {random.choice(organizationTypes)}")
                 elif form_choice <= TWO_THIRDS:
-                    parts.append(f"{choice(organizationTypes)} of {choice(localitys)}")
+                    parts.append(
+                        f"{random.choice(organizationTypes)} of {random.choice(localitys)}"
+                    )
                 else:
-                    parts.append(choice(localitys))
+                    parts.append(random.choice(localitys))
 
                 if random.random() <= ONE_HALF:
-                    parts.append(f"{choice(scopes)} {choice(facilityTypes)}")
+                    parts.append(f"{random.choice(scopes)} {random.choice(facilityTypes)}")
                 else:
-                    parts.append(choice(facilityTypes))
+                    parts.append(random.choice(facilityTypes))
 
                 if random.random() <= ONE_HALF:
-                    parts.append(f"{choice(conjuctions)} {choice(facilityTypes)}")
+                    parts.append(f"{random.choice(conjuctions)} {random.choice(facilityTypes)}")
             case 1:
                 if random.random() <= ONE_HALF:
-                    parts.append(choice(organizationTypes))
+                    parts.append(random.choice(organizationTypes))
 
                 if random.random() <= ONE_HALF:
-                    parts.append(choice(scopes))
+                    parts.append(random.choice(scopes))
 
-                parts.append(choice(facilityTypes))
+                parts.append(random.choice(facilityTypes))
 
                 if random.random() <= ONE_HALF:
-                    parts.append(f"{choice(conjuctions)} {choice(facilityTypes)}")
+                    parts.append(f"{random.choice(conjuctions)} {random.choice(facilityTypes)}")
 
-                parts.append(f"of {choice(localitys)}")
+                parts.append(f"of {random.choice(localitys)}")
 
         replacement = " ".join(parts)
         self._set_mapping(value, "EN", replacement)
         return _match_formatting(value, replacement)
 
+    @deterministic
     def anonymize_TEL_value(self, element: Element):
         """Anonymize TEL elements."""
         value = element.attributes["value"]
@@ -458,7 +500,7 @@ class Anonymizer:
             return _match_formatting(value, replacement)
 
         if value.startswith("mailto:"):
-            replacement = self.random_email()
+            replacement = self._random_email()
         elif value.startswith("tel:"):
             replacement = value
             replacement = f"tel:{self.replace_with_like_chars(value[4:], 'TEL')}"
@@ -466,44 +508,47 @@ class Anonymizer:
             replacement = value
             replacement = f"fax:{self.replace_with_like_chars(value[4:], 'TEL')}"
         elif value.startswith("http://"):
-            replacement = self.random_web_address()
+            replacement = self._random_web_address()
         elif value.startswith("https://"):
-            replacement = self.random_web_address("https")
+            replacement = self._random_web_address("https")
         else:
             replacement = "REMOVED"
 
         return _match_formatting(value, replacement)
 
-    def random_web_address(self, protocol: str = "http"):
+    def _random_web_address(self, protocol: str = "http"):
         """Generate a random web address."""
-        prefix = "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
+        prefix = "".join(random.choice(ascii_lowercase) for _ in range(random.randint(0, 5)))
         if prefix != "":
             prefix += "."
-        suffix = "".join(choice("0123456789") for _ in range(randint(0, 5)))
+        suffix = "".join(random.choice("0123456789") for _ in range(random.randint(0, 5)))
         replacement = f"{protocol}://{prefix}example{suffix}.com"
         if random.random() <= ONE_HALF:
-            replacement += "/" + "".join(choice(ascii_lowercase) for _ in range(randint(0, 5)))
-            replacement += choice(
+            replacement += "/" + "".join(
+                random.choice(ascii_lowercase) for _ in range(random.randint(0, 5))
+            )
+            replacement += random.choice(
                 ["", ".pdf", ".html", ".xml", ".txt", ".jpg", ".png", ".gif", ".jpeg"]
             )
         return replacement
 
-    def random_email(self):
+    def _random_email(self):
         """Generate a random email address."""
         domain = "example.com"
 
         name = "mailto:"
 
-        name += "".join(choice(ascii_lowercase) for _ in range(randint(1, 5)))
+        name += "".join(random.choice(ascii_lowercase) for _ in range(random.randint(1, 5)))
         form_choice = random.random()
         if form_choice <= ONE_THIRD:
-            name += "".join(choice(["", "_", "."]))
-            name += "".join(choice("0123456789") for _ in range(randint(1, 3)))
+            name += "".join(random.choice(["", "_", "."]))
+            name += "".join(random.choice("0123456789") for _ in range(random.randint(1, 3)))
         elif form_choice <= TWO_THIRDS:
-            name += "".join(choice(["", "_", "."]))
-            name += "".join(choice(ascii_lowercase) for _ in range(randint(1, 3)))
+            name += "".join(random.choice(["", "_", "."]))
+            name += "".join(random.choice(ascii_lowercase) for _ in range(random.randint(1, 3)))
         return f"{name}@{domain}"
 
+    @deterministic
     def anonymize_text(self, value: str | None, data_type: str):
         """Anonymize text elements."""
         if (
@@ -516,6 +561,7 @@ class Anonymizer:
 
         return "REMOVED"
 
+    @deterministic
     def anonymize_xhtml(self, element: _Element, additional_safe_words: set[str] | None = None):
         """Anonymize xhtml elements."""
         if additional_safe_words is None:
@@ -551,3 +597,13 @@ class Anonymizer:
 
         for child in element:
             self.anonymize_xhtml(child)
+
+    def remove_unknown_text(self, text: str):
+        """Replace text of unknown data types with "REMOVED".
+
+        First check if text is a known value, if not, replace it with "REMOVED".
+        """
+        normalized_value = _normalize_value(text)
+        if normalized_value in self.safe_words or normalized_value.isnumeric():
+            return text
+        return "REMOVED"

@@ -1,0 +1,1572 @@
+TEST_TYPE:
+  text_content: null
+  attributes: {}
+  elements: {}
+OrganizerComponent:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+    contextConductionInd: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    sequenceNumber: SAFE
+    priorityNumber: SAFE
+    seperatableInd: SAFE
+    act: null
+    encounter: null
+    observation: null
+    observationMedia: null
+    organizer: null
+    procedure: null
+    regionOfInterest: null
+    substanceAdministration: null
+    supply: null
+Informant:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+    contextControlCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    assignedEntity: null
+    relatedEntity: null
+INT_POS:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    value: SAFE
+  elements: {}
+OrganizationPartOf:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    identifiedBy: null
+    code: SAFE
+    statusCode: SAFE
+    effectiveTime: null
+    wholeOrganization: null
+PlayingEntity:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    templateId: SAFE
+    code: SAFE
+    quantity: SAFE
+    name: null
+    birthTime: null
+    desc: null
+PQ:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    unit: SAFE
+    value: SAFE
+  elements:
+    translation: null
+AssociatedEntity:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    identifiedBy: null
+    code: SAFE
+    addr: null
+    telecom: null
+    associatedPerson: null
+    scopingOrganization: null
+CS:
+  text_content: SAFE
+  attributes:
+    nullFlavor: SAFE
+    code: SAFE
+    valueSet: SAFE
+    valueSetVersion: SAFE
+  elements: {}
+NonXMLBody:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    text: null
+    confidentialityCode: SAFE
+    languageCode: SAFE
+BL:
+  text_content: SAFE
+  attributes:
+    nullFlavor: SAFE
+    value: SAFE
+  elements: {}
+InFulfillmentOf:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    order: null
+ParticipantRole:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    identifiedBy: null
+    code: null
+    addr: null
+    telecom: null
+    playingDevice: null
+    playingEntity: null
+    scopingEntity: null
+Organizer:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    id: null
+    code: SAFE
+    statusCode: SAFE
+    effectiveTime: null
+    subject: null
+    specimen: null
+    performer: null
+    author: null
+    informant: null
+    participant: null
+    reference: null
+    precondition: null
+    component: null
+EIVL_TS:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    operator: SAFE
+  elements:
+    event: SAFE
+    offset: null
+Encounter:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    id: SAFE
+    code: SAFE
+    text: null
+    statusCode: SAFE
+    effectiveTime: null
+    dischargeDispositionCode: SAFE
+    priorityCode: SAFE
+    subject: null
+    specimen: null
+    performer: null
+    author: null
+    informant: null
+    participant: null
+    entryRelationship: null
+    reference: null
+    precondition: null
+IVL_TS:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    value: null
+    operator: SAFE
+  elements:
+    low: null
+    center: null
+    width: null
+    high: null
+RelatedEntity:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    code: SAFE
+    addr: null
+    telecom: null
+    effectiveTime: null
+    relatedPerson: null
+Participant1:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+    contextControlCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    functionCode: SAFE
+    time: null
+    associatedEntity: null
+IntendedRecipient:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    identifiedBy: null
+    addr: null
+    telecom: null
+    informationRecipient: null
+    receivedOrganization: null
+PatientRole:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    identifiedBy: null
+    addr: null
+    telecom: null
+    patient: null
+    providerOrganization: null
+SC:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    representation: SAFE
+    mediaType: SAFE
+    language: SAFE
+    code: SAFE
+    codeSystem: SAFE
+    codeSystemName: SAFE
+    codeSystemVersion: SAFE
+    displayName: SAFE
+  elements: {}
+CR:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    inverted: null
+  elements:
+    name: null
+    value: null
+Section:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    ID: null
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    code: null
+    title: SAFE
+    text: null
+    confidentialityCode: SAFE
+    languageCode: SAFE
+    subject: null
+    author: null
+    informant: null
+    entry: null
+    component:
+      attributes:
+        nullFlavor: SAFE
+        typeCode: SAFE
+        contextConductionInd: SAFE
+      elements:
+        realmCode: SAFE
+        typeId: SAFE
+        templateId: SAFE
+        section: null
+Place:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    templateId: SAFE
+    name: null
+    addr: null
+II:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    assigningAuthorityName: SAFE
+    displayable: SAFE
+    root: SAFE
+    extension: null
+  elements: {}
+Performer1:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    functionCode: SAFE
+    time: null
+    assignedEntity: null
+Author:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+    contextControlCode: null
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    functionCode: null
+    time: null
+    assignedAuthor: null
+Act:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    classCode: SAFE
+    moodCode: SAFE
+    negationInd: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    id: null
+    code: null
+    text: null
+    statusCode: SAFE
+    effectiveTime: null
+    priorityCode: null
+    languageCode: SAFE
+    subject: null
+    specimen: null
+    performer: null
+    author: null
+    informant: null
+    participant: null
+    entryRelationship: null
+    reference: null
+    precondition: null
+HealthCareFacility:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    identifiedBy: null
+    code: null
+    location: null
+    serviceProviderOrganization: null
+Custodian:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    assignedCustodian: null
+PN:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    use: SAFE
+  elements:
+    delimiter: SAFE
+    family: null
+    given: null
+    prefix: SAFE
+    suffix: SAFE
+    validTime: null
+Birthplace:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    place: null
+Organization:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    id: null
+    name: null
+    telecom: null
+    addr: null
+    standardIndustryClassCode: SAFE
+    asOrganizationPartOf: null
+MO:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+  elements:
+    currency: null
+    value: null
+LanguageCommunication:
+  text_content: null
+  attributes: {}
+  elements:
+    templateId: SAFE
+    languageCode: SAFE
+    modeCode: null
+    proficiencyLevelCode: null
+    preferenceInd: null
+AssignedAuthor:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    identifiedBy: null
+    code: null
+    addr: null
+    telecom: null
+    assignedPerson: null
+    assignedAuthoringDevice: null
+    representedOrganization: null
+ADXP:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    representation: SAFE
+    mediaType: SAFE
+    language: SAFE
+    partType: SAFE
+  elements: {}
+ObservationMedia:
+  text_content: null
+  attributes:
+    ID: null
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    id: null
+    languageCode: SAFE
+    value: null
+    subject: null
+    specimen: null
+    performer: null
+    author: null
+    informant: null
+    participant: null
+    entryRelationship: null
+    reference: null
+    precondition: null
+ComponentOf:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    encompassingEncounter: null
+SpecimenRole:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    identifiedBy: null
+    specimenPlayingEntity: null
+RelatedDocument:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    parentDocument: null
+IVXB_PQ:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    unit: null
+    value: null
+    inclusive: null
+  elements:
+    translation: null
+Order:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    code: null
+    priorityCode: null
+LegalAuthenticator:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+    contextControlCode: null
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    time: null
+    signatureCode: null
+    signatureText: null
+    assignedEntity: null
+LabeledDrug:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    templateId: SAFE
+    code: null
+    name: null
+"ON":
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    use: SAFE
+  elements:
+    delimiter: SAFE
+    prefix: SAFE
+    suffix: SAFE
+    validTime: null
+ParentDocument:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    code: null
+    text: null
+    setId: SAFE
+    versionNumber: SAFE
+RecordTarget:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+    contextControlCode: null
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    patientRole: null
+TN:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    use: SAFE
+  elements:
+    validTime: null
+SubjectPerson:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    templateId: SAFE
+    name: null
+    desc: null
+    administrativeGenderCode: null
+    birthTime: null
+    deceasedInd: null
+    deceasedTime: null
+StructuredBody:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    confidentialityCode: SAFE
+    languageCode: SAFE
+    component:
+      attributes:
+        nullFlavor: SAFE
+        typeCode: SAFE
+        contextConductionInd: SAFE
+      elements:
+        realmCode: SAFE
+        typeId: SAFE
+        templateId: SAFE
+        section: null
+PQR:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    code: null
+    codeSystem: SAFE
+    codeSystemName: SAFE
+    codeSystemVersion: SAFE
+    displayName: SAFE
+    valueSet: SAFE
+    valueSetVersion: SAFE
+    value: null
+  elements:
+    originalText: null
+RegionOfInterest:
+  text_content: null
+  attributes:
+    ID: null
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    id: null
+    code: null
+    value: null
+    subject: null
+    specimen: null
+    performer: null
+    author: null
+    informant: null
+    participant: null
+    entryRelationship: null
+    reference: null
+    precondition: null
+Patient:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    name: null
+    desc: null
+    administrativeGenderCode: null
+    birthTime: null
+    deceasedInd: null
+    deceasedTime: null
+    multipleBirthInd: null
+    multipleBirthOrderNumber: null
+    maritalStatusCode: SAFE
+    religiousAffiliationCode: null
+    raceCode: null
+    ethnicGroupCode: null
+    guardian: null
+    birthplace: null
+    languageCommunication: null
+RTO_PQ_PQ:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+  elements:
+    numerator: null
+    denominator: null
+AlternateIdentification:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    id: null
+    code: null
+    statusCode: SAFE
+    effectiveTime: null
+ClinicalDocument:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    id: SAFE
+    code: null
+    title: SAFE
+    effectiveTime: null
+    confidentialityCode: SAFE
+    languageCode: SAFE
+    setId: SAFE
+    versionNumber: SAFE
+    copyTime: null
+    recordTarget: null
+    author: null
+    dataEnterer: null
+    informant: null
+    custodian: null
+    informationRecipient: null
+    legalAuthenticator: null
+    authenticator: null
+    participant: null
+    inFulfillmentOf: null
+    documentationOf: null
+    relatedDocument: null
+    authorization: null
+    componentOf: null
+    component: null
+Specimen:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    specimenRole: null
+INT:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    value: null
+  elements: {}
+SXCM_TS:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    value: null
+    operator: SAFE
+  elements: {}
+Entry:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+    contextConductionInd: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    act: null
+    encounter: null
+    observation: null
+    observationMedia: null
+    organizer: null
+    procedure: null
+    regionOfInterest: null
+    substanceAdministration: null
+    supply: null
+DocumentationOf:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    serviceEvent: null
+SubstanceAdministration:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+    negationInd: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    id: null
+    code: null
+    text: null
+    statusCode: SAFE
+    effectiveTime: null
+    priorityCode: null
+    repeatNumber: null
+    routeCode: null
+    approachSiteCode: null
+    doseQuantity: null
+    rateQuantity: null
+    maxDoseQuantity: null
+    administrationUnitCode: null
+    consumable:
+      attributes:
+        nullFlavor: SAFE
+        typeCode: SAFE
+      elements:
+        realmCode: SAFE
+        templateId: SAFE
+        manufacturedProduct: null
+        typeId: SAFE
+    subject: null
+    specimen: null
+    performer: null
+    author: null
+    informant: null
+    participant: null
+    entryRelationship: null
+    reference: null
+    precondition: null
+InfrastructureRoot:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+SXPR_TS:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    value: null
+    operator: SAFE
+  elements:
+    comp: null
+Criterion:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    templateId: SAFE
+    code: null
+    text: null
+    value: null
+ObservationRange:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    templateId: SAFE
+    code: null
+    text: null
+    value: SAFE
+    interpretationCode: null
+ManufacturedProduct:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    identifiedBy: null
+    manufacturedLabeledDrug: null
+    manufacturedMaterial: null
+    manufacturerOrganization: null
+Entity:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    code: null
+    desc: null
+IVXB_TS:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    value: null
+    inclusive: null
+  elements: {}
+EncompassingEncounter:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    code: null
+    effectiveTime: null
+    admissionReferralSourceCode: null
+    dischargeDispositionCode: null
+    responsibleParty:
+      attributes:
+        nullFlavor: SAFE
+        typeCode: SAFE
+      elements:
+        realmCode: SAFE
+        typeId: SAFE
+        templateId: SAFE
+        assignedEntity: null
+    encounterParticipant: null
+    location:
+      attributes:
+        nullFlavor: SAFE
+        typeCode: SAFE
+      elements:
+        realmCode: SAFE
+        typeId: SAFE
+        templateId: SAFE
+        healthCareFacility: null
+Supply:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    id: null
+    code: null
+    text: null
+    statusCode: SAFE
+    effectiveTime: null
+    priorityCode: null
+    repeatNumber: null
+    independentInd: null
+    quantity: null
+    expectedUseTime: null
+    product:
+      attributes:
+        nullFlavor: SAFE
+        typeCode: SAFE
+      elements:
+        realmCode: SAFE
+        typeId: SAFE
+        templateId: SAFE
+        manufacturedProduct: null
+    subject: null
+    specimen: null
+    performer: null
+    author: null
+    informant: null
+    participant: null
+    entryRelationship: null
+    reference: null
+    precondition: null
+EN:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    use: SAFE
+  elements:
+    delimiter: SAFE
+    family: null
+    given: null
+    prefix: SAFE
+    suffix: SAFE
+    validTime: null
+IVXB_INT:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    value: null
+    inclusive: null
+  elements: {}
+CV:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    code: null
+    codeSystem: SAFE
+    codeSystemName: SAFE
+    codeSystemVersion: SAFE
+    displayName: SAFE
+    valueSet: SAFE
+    valueSetVersion: SAFE
+  elements:
+    originalText: null
+ExternalAct:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    code: null
+    text: null
+CO:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    code: null
+    codeSystem: SAFE
+    codeSystemName: SAFE
+    codeSystemVersion: SAFE
+    displayName: SAFE
+    valueSet: SAFE
+    valueSetVersion: SAFE
+  elements:
+    originalText: null
+AssignedCustodian:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    representedCustodianOrganization: null
+InformationRecipient:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    intendedRecipient: null
+Subject:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+    contextControlCode: null
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    awarenessCode: null
+    relatedSubject: null
+Material:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    templateId: SAFE
+    code: null
+    name: null
+    lotNumberText: null
+Guardian:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    identifiedBy: null
+    code: null
+    addr: null
+    telecom: null
+    guardianPerson: null
+    guardianOrganization: null
+EncounterParticipant:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    time: null
+    assignedEntity: null
+DataEnterer:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+    contextControlCode: null
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    time: null
+    assignedEntity: null
+ANY:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+  elements: {}
+Authorization:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    consent: null
+Precondition:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    criterion: null
+Reference:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    seperatableInd: null
+    externalAct: null
+    externalObservation: null
+    externalProcedure: null
+    externalDocument: null
+ServiceEvent:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    code: null
+    effectiveTime: null
+    performer: null
+Component:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+    contextConductionInd: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    nonXMLBody: null
+    structuredBody: null
+IdentifiedBy:
+  text_content: null
+  attributes:
+    typeCode: SAFE
+  elements:
+    alternateIdentification: null
+ExternalObservation:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    code: null
+    text: null
+ENXP:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    representation: SAFE
+    mediaType: SAFE
+    language: SAFE
+    partType: SAFE
+    qualifier: null
+  elements: {}
+Performer2:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    functionCode: null
+    time: null
+    modeCode: null
+    assignedEntity: null
+CD:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    code: null
+    codeSystem: SAFE
+    codeSystemName: SAFE
+    codeSystemVersion: SAFE
+    displayName: SAFE
+    valueSet: SAFE
+    valueSetVersion: SAFE
+  elements:
+    originalText: null
+    qualifier: null
+    translation: null
+REAL:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    value: null
+  elements: {}
+TEL:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    value: null
+    use: SAFE
+  elements:
+    useablePeriod: null
+AD:
+  text_content: null
+  attributes:
+    isNotOrdered: SAFE
+    use: SAFE
+  elements:
+    delimiter: SAFE
+    country: null
+    state: null
+    county: null
+    city: null
+    postalCode: null
+    streetAddressLine: null
+    houseNumber: null
+    houseNumberNumeric: null
+    direction: null
+    streetName: null
+    streetNameBase: null
+    streetNameType: null
+    additionalLocator: null
+    unitID: null
+    unitType: null
+    careOf: null
+    censusTract: null
+    deliveryAddressLine: null
+    deliveryInstallationType: null
+    deliveryInstallationArea: null
+    deliveryInstallationQualifier: null
+    deliveryMode: null
+    deliveryModeIdentifier: null
+    buildingNumberSuffix: SAFE
+    postBox: null
+    precinct: null
+    useablePeriod: null
+    nullFlavor: SAFE
+IVL_PQ:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    unit: SAFE
+    value: SAFE
+    operator: SAFE
+  elements:
+    low: null
+    center: null
+    width: null
+    high: null
+Participant2:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+    contextControlCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    functionCode: null
+    time: null
+    awarenessCode: null
+    participantRole: null
+ExternalProcedure:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    code: null
+    text: null
+Person:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    templateId: SAFE
+    name: null
+    asPatientRelationship: null
+RelatedSubject:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    code: null
+    addr: null
+    telecom: null
+    subject: null
+MaintainedEntity:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    effectiveTime: null
+    maintainingPerson: null
+PIVL_TS:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    operator: SAFE
+    alignment: null
+    institutionSpecified: SAFE
+  elements:
+    phase: null
+    period: SAFE
+ExternalDocument:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    code: null
+    text: null
+    setId: SAFE
+    versionNumber: SAFE
+Device:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    templateId: SAFE
+    code: null
+    manufacturerModelName: null
+    softwareName: null
+Consent:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    code: null
+    statusCode: SAFE
+ED:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    compression: null
+    integrityCheck: null
+    integrityCheckAlgorithm: null
+    language: SAFE
+    mediaType: SAFE
+    representation: SAFE
+    charset: SAFE
+  elements:
+    reference: null
+    thumbnail: null
+IVL_INT:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    value: null
+    operator: SAFE
+  elements:
+    low: null
+    center: null
+    width: null
+    high: null
+AuthoringDevice:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    templateId: SAFE
+    code: null
+    manufacturerModelName: null
+    softwareName: null
+    asMaintainedEntity: null
+ST:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    representation: SAFE
+    mediaType: SAFE
+    language: SAFE
+  elements: {}
+TS:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    value: null
+  elements: {}
+CE:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    code: null
+    codeSystem: SAFE
+    codeSystemName: SAFE
+    codeSystemVersion: SAFE
+    displayName: SAFE
+    valueSet: SAFE
+    valueSetVersion: SAFE
+  elements:
+    originalText: null
+    translation: null
+QTY:
+  text_content: SAFE
+  attributes:
+    nullFlavor: SAFE
+  elements: {}
+Observation:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+    negationInd: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    id: SAFE
+    code: SAFE
+    derivationExpr: SAFE
+    text: null
+    statusCode: SAFE
+    effectiveTime: null
+    priorityCode: SAFE
+    repeatNumber: SAFE
+    languageCode: SAFE
+    value: null
+    interpretationCode: SAFE
+    methodCode: SAFE
+    targetSiteCode: SAFE
+    subject: null
+    specimen: null
+    performer: null
+    author: null
+    informant: null
+    participant: null
+    entryRelationship: null
+    reference: null
+    precondition: null
+    referenceRange:
+      attributes:
+        nullFlavor: SAFE
+        typeCode: SAFE
+      elements:
+        realmCode: SAFE
+        typeId: SAFE
+        templateId: SAFE
+        observationRange: null
+AssignedEntity:
+  text_content: null
+  attributes:
+    classCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    identifiedBy: null
+    code: SAFE
+    addr: null
+    telecom: null
+    assignedPerson: null
+    representedOrganization: null
+Procedure:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    moodCode: SAFE
+    negationInd: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    id: SAFE
+    code: SAFE
+    text: null
+    statusCode: SAFE
+    effectiveTime: null
+    priorityCode: SAFE
+    languageCode: SAFE
+    methodCode: null
+    approachSiteCode: SAFE
+    targetSiteCode: SAFE
+    subject: null
+    specimen: null
+    performer: null
+    author: null
+    informant: null
+    participant: null
+    entryRelationship: null
+    reference: null
+    precondition: null
+Authenticator:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    time: null
+    signatureCode: SAFE
+    signatureText: null
+    assignedEntity: null
+EntryRelationship:
+  text_content: null
+  attributes:
+    nullFlavor: SAFE
+    typeCode: SAFE
+    inversionInd: SAFE
+    contextConductionInd: SAFE
+    negationInd: SAFE
+  elements:
+    realmCode: SAFE
+    typeId: SAFE
+    templateId: SAFE
+    sequenceNumber: SAFE
+    seperatableInd: SAFE
+    act: null
+    encounter: null
+    observation: null
+    observationMedia: null
+    organizer: null
+    procedure: null
+    regionOfInterest: null
+    substanceAdministration: null
+    supply: null
+CustodianOrganization:
+  text_content: null
+  attributes:
+    classCode: SAFE
+    determinerCode: SAFE
+  elements:
+    templateId: SAFE
+    id: null
+    name: null
+    telecom: null
+    addr: null
