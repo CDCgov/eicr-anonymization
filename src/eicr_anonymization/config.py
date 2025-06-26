@@ -122,7 +122,6 @@ class DefaultConfig(CustomConfig):
     @model_validator(mode="after")
     def check_elements(self):
         """Check that all types, attributes, and elements in the configuration are known found in the structure."""
-        all_types = set(structure)
         all_in_config = set(self)
         _check_unknown_items(all_in_config, all_types, "types", "default configuration")
         _check_missing_items(all_in_config, all_types, "types", "default configuration")
