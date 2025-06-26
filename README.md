@@ -83,17 +83,23 @@ This means all fields underneath `clinicalDocument.author` will not be replaced 
 
 #### Help
 ```bash
-anonymize --help
-usage: anonymize_eicr [-h] [--debug] input_location
+usage: anonymize_eicr [-h] [-c CONFIG] [-v] {debug} ... input_location
 
-Anonymize eICR XML files.
+Anonymize eICR and RR XML files in a given directory. Always verify sensitive data has been properly anonymized before sharing processed files.
 
 positional arguments:
-  input_location  Directory containing eICR XML files.
+  input_location       This can be either a directory or an xml file. If it is a directory the Anonymization tool will attempt to anonymize all XML files in the directory.
 
 options:
-  -h, --help      show this help message and exit
-  --debug, -d     Print table showing original and replacement tags. Will show sensitive information.
+  -h, --help           show this help message and exit
+  -c, --config CONFIG  Path to custom config file.
+  -v, --version        show program's version number and exit
+
+subcommands:
+  There is currently only one subcommand.
+
+  {debug}
+    debug              Debugging/testing mode. WARNING: may expose sensitive data.
 ```
 
 ### Development
@@ -131,14 +137,26 @@ uv add <dependency>
 This is used for runtime dependencies. Add the `--dev` flag if you're adding is a development-only dependency.
 
 #### Updating CDA Structure YAML
-The `cda_structure.yaml` is created by running `uv run tools/cda_structure_generator.py`. To run that script the JSON FHIR `StructureDefinition`s for CDA need to be [downloaded from hl7](https://build.fhir.org/ig/HL7/CDA-core-2.0/downloads.html) and unzipped into `tools/definitions`.
+The `cda_structure.yaml` is created by running `uv run tools/cda_structure_generator.py`. To run that script the JSON FHIR `StructureDefinition`s for CDA need to be [downloaded from hl7](https://build.fhir.org/ig/HL7/CDA-core-2.0/downloads.html) and unzip into `tools/definitions`.
 
 #### Debugging
-You can add the following flags to `uv run anonymize_eicr /path/to/file` to help with debugging:
+There are several debugging options hidden under the `debug` subcommand to print to stdout debugging information, or control the randomness of the script.
 ```bash
-  -d, --debug                Print table showing original and replacement tags. Will show sensitive information.
-  -s, --seed [SEED]          Set the random seed. If no value is provided, the seed will be set to `1`.
-  --siso, --same_in_same_out The same value will always be replaced with the same new value regardless of run or seed. This will set the seed to its default `1`, if a seed is not provided
+usage: anonymize_eicr debug [-h] [-d] [-s SEED] [--siso]
+
+WARNING: Debug mode is intended for development, testing, and debugging only. These options can compromise the security of data anonymization by:
+
+- Making replacement data predictable and repeatable
+- Exposing original sensitive data in output
+
+Only use with sample/test data, never with real sensitive data.
+
+options:
+  -h, --help            show this help message and exit
+  -d, --debug           Print table showing original and replacement tags. Will show sensitive information.
+  -s, --seed SEED       Set the random seed.
+  --siso, --same_in_same_out
+                        The same value will always be replaced with the same new value regardless of run or seed.
 ```
 
 ## Related documents
