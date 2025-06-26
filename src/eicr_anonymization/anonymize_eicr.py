@@ -201,7 +201,7 @@ def anonymize(args: Namespace) -> None:
     if args.command == "debug":
         debugOptions = DebugOptions(args.seed, args.deterministic_functions)
     anonymizer = Anonymizer(debugOptions)
-    parser = Parser(patient_only=args.config)
+    parser = Parser(custom_config_path=args.config)
     if os.path.isdir(args.input_location):
         _delete_old_anonymized_files(args.input_location)
 

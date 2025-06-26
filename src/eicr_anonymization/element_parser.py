@@ -65,9 +65,6 @@ class Parser:
     file. With the expectation that the end user will, in future updates, be able to create and use
     their own configuration files, configuration files only need to define the elements and
     attributes that are different from the default configuration.
-
-    Currently there is one additional configuration file that can be used with a parameter flag:
-    `patient_only.yaml`.
     """
 
     def __init__(self, custom_config_path: str | None = None):
