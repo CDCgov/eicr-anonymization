@@ -333,7 +333,7 @@ Author:
   attributes:
     nullFlavor: SAFE
     typeCode: SAFE
-    contextControlCode: null
+    contextControlCode: SAFE
   elements:
     realmCode: SAFE
     typeId: SAFE
@@ -429,17 +429,17 @@ MO:
   attributes:
     nullFlavor: SAFE
   elements:
-    currency: null
-    value: null
+    currency: SAFE
+    value: SAFE
 LanguageCommunication:
   text_content: null
   attributes: {}
   elements:
     templateId: SAFE
     languageCode: SAFE
-    modeCode: null
-    proficiencyLevelCode: null
-    preferenceInd: null
+    modeCode: SAFE
+    proficiencyLevelCode: SAFE
+    preferenceInd: SAFE
 AssignedAuthor:
   text_content: null
   attributes:

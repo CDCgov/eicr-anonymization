@@ -69,24 +69,17 @@ This will create a copy of each eicr file prepended with `.anonymized.xml` in th
 ```bash
 anonymize_eicr /path/to/eicrs --config /path/to/custom/config.yaml
 ```
-The default behavior of the anonymizer is to flag all information that could identify any individual, or organization as sensitive. As explained in more detail in [above](#how-it-works) a YAML configuration file is used to list whether or not a field or an attribute of a [CDA data type](https://build.fhir.org/ig/HL7/CDA-core-2.0/index.html) is safe or sensitive. A custom configuration YAML file can be used. The YAML is expected to be in this format:
-```yml
-Person:
-  text_content: null
-  attributes:
-    nullFlavor: SAFE
-    classCode: SAFE
-    determinerCode: SAFE
+The default behavior of the anonymizer is to flag all information that could identify any individual, or organization as sensitive. As explained in more detail in [above](#how-it-works) a YAML configuration file is used to list whether or not a field or an attribute of a [CDA data type](https://build.fhir.org/ig/HL7/CDA-core-2.0/index.html) is safe or sensitive. A custom configuration YAML file can be used to customize the anonymizer. See the [`config_examples`](config_examples) directory for examples.
+
+##### Custom Configuration Rules
+- In a custom configuration only the fields that are different to the default need to be included.
+- Setting a field as `SAFE` will then make everything underneath that field in the XML structure also safe, regardless of other configurations. As an example for the custom configuration:
+```yaml
+ClinicalDocument:
   elements:
-    realmCode: SAFE
-    typeId: SAFE
-    templateId: SAFE
-    name: null
-    Desc: null
-    AsPatientRelationship: null
-    code: null
+    author: SAFE
 ```
-The
+This will mean all fields underneath `clinicalDocument.author` will not be replaced even though the default configuration for `Author`. has several non-safe fields.
 
 #### Help
 ```bash

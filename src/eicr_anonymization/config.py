@@ -67,12 +67,29 @@ class CustomConfig(RootModel):
 
             for elem, elem_config in type_config.elements.items():
                 if isinstance(elem_config, dict):
-                    _check_section_partial(
-                        elem_config,
-                        structure[type_name]["elements"][elem],
-                        "sub-elements",
-                        f"element '{elem}' of type '{type_name}' in custom configuration",
-                    )
+                    if "attributes" not in elem_config and "elements" not in elem_config:
+                        _check_section_partial(
+                            elem_config,
+                            structure[type_name]["elements"][elem],
+                            "sub-elements",
+                            f"element '{elem}' of type '{type_name}' in custom configuration",
+                        )
+                        continue
+
+                    if "attributes" in elem_config:
+                        _check_section_partial(
+                            elem_config["attributes"],
+                            structure[type_name]["elements"][elem]["attributes"],
+                            "sub-element attributes",
+                            f"'{elem}' of type '{type_name}' in default configuration",
+                        )
+                    if "elements" in elem_config:
+                        _check_section_partial(
+                            elem_config["elements"],
+                            structure[type_name]["elements"][elem]["elements"],
+                            "sub-elements",
+                            f"'{elem}' of type '{type_name}' in default configuration",
+                        )
 
 
 class DefaultTypeConfig(BaseModel):
@@ -113,12 +130,13 @@ class DefaultConfig(CustomConfig):
             for elem, elem_config in type_config.elements.items():
                 if isinstance(elem_config, dict):
                     if "attributes" not in elem_config and "elements" not in elem_config:
-                        _check_section_partial(
+                        _check_section_complete(
                             elem_config,
                             structure[type_name]["elements"][elem],
                             "sub-elements",
                             f"element '{elem}' of type '{type_name}' in custom configuration",
                         )
+                        continue
 
                     if "attributes" in elem_config:
                         _check_section_complete(

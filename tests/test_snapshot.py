@@ -1,6 +1,6 @@
 """Snapshot tests for the output of anonymize_eicr_file function.
 
-There are two snapshot tests, one for the full anonymization and one for the light configuration.
+These snapshot tests also validate the example config files.
 """
 
 from itertools import product
@@ -14,7 +14,7 @@ from eicr_anonymization.anonymizer import Anonymizer, DebugOptions
 from eicr_anonymization.element_parser import Parser
 
 xml_files = list(Path("tests/test_data").rglob("*.xml"))
-config_files = [None, *list(Path("tests/test_data/configs/snapshot_configs").rglob("*.yaml"))]
+config_files = [None, *list(Path("config_examples/").rglob("*.yaml"))]
 
 
 @freeze_time("2025-01-10 09:30:30")

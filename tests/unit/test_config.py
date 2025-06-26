@@ -92,7 +92,7 @@ class TestDefaultConfig:
 
     def test_check_elements_unknown_type(self):
         """Test that validation for the default config fails on unknown types."""
-        with open("tests/test_data/configs/test_configs/default_with_unknown.yaml") as config_file:
+        with open("tests/test_data/configs/default_with_unknown.yaml") as config_file:
             default_config = yaml.safe_load(config_file)
         with pytest.raises(UnknownItem):
             _ = DefaultConfig(default_config)
