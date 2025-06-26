@@ -100,6 +100,9 @@ if __name__ == "__main__":
         choice_group_element = None
         has_subelements = []
         for element in definition["snapshot"]["element"]:
+            if element.get("max") == "0" or element.get("representation") == ["xmlText"]:
+                # Skip elements that are not present in the structure or are just text
+                continue
             is_choice_group = False
             path = element["path"].split(".")
             if choice_group_element and choice_group_element in path:

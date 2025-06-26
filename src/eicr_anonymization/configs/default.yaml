@@ -9,7 +9,7 @@ OrganizerComponent:
     typeId: SAFE
     templateId: SAFE
     sequenceNumber: SAFE
-    PriorityNumber: SAFE
+    priorityNumber: SAFE
     seperatableInd: SAFE
     act: null
     encounter: null
@@ -41,14 +41,11 @@ INT_POS:
 OrganizationPartOf:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
-    IdentifiedBy: null
+    identifiedBy: null
     code: SAFE
     statusCode: SAFE
     effectiveTime: null
@@ -56,17 +53,14 @@ OrganizationPartOf:
 PlayingEntity:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     determinerCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     code: SAFE
     quantity: SAFE
     name: null
-    BirthTime: null
+    birthTime: null
     desc: null
 PQ:
   text_content: null
@@ -79,14 +73,11 @@ PQ:
 AssociatedEntity:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
-    IdentifiedBy: null
+    identifiedBy: null
     code: SAFE
     addr: null
     telecom: null
@@ -132,14 +123,11 @@ InFulfillmentOf:
 ParticipantRole:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
-    IdentifiedBy: null
+    identifiedBy: null
     code: null
     addr: null
     telecom: null
@@ -149,17 +137,14 @@ ParticipantRole:
 Organizer:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
     realmCode: SAFE
     typeId: SAFE
     templateId: SAFE
-    id: SAFE
-    Category: SAFE
+    id: null
     code: SAFE
-    Text: null
     statusCode: SAFE
     effectiveTime: null
     subject: null
@@ -170,7 +155,6 @@ Organizer:
     participant: null
     reference: null
     precondition: null
-    Precondition2: null
     component: null
 EIVL_TS:
   text_content: null
@@ -183,7 +167,6 @@ EIVL_TS:
 Encounter:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
@@ -195,7 +178,7 @@ Encounter:
     text: null
     statusCode: SAFE
     effectiveTime: null
-    DischargeDispositionCode: SAFE
+    dischargeDispositionCode: SAFE
     priorityCode: SAFE
     subject: null
     specimen: null
@@ -206,8 +189,6 @@ Encounter:
     entryRelationship: null
     reference: null
     precondition: null
-    Precondition2: null
-    InFulfillmentOf1: null
 IVL_TS:
   text_content: null
   attributes:
@@ -222,11 +203,8 @@ IVL_TS:
 RelatedEntity:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     code: SAFE
     addr: null
@@ -249,14 +227,11 @@ Participant1:
 IntendedRecipient:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
-    IdentifiedBy: null
+    identifiedBy: null
     addr: null
     telecom: null
     informationRecipient: null
@@ -264,14 +239,11 @@ IntendedRecipient:
 PatientRole:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
-    IdentifiedBy: null
+    identifiedBy: null
     addr: null
     telecom: null
     patient: null
@@ -288,8 +260,7 @@ SC:
     codeSystemName: SAFE
     codeSystemVersion: SAFE
     displayName: SAFE
-  elements:
-    xmlText: null
+  elements: {}
 CR:
   text_content: null
   attributes:
@@ -306,8 +277,6 @@ Section:
     classCode: SAFE
     moodCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     code: null
@@ -319,17 +288,22 @@ Section:
     author: null
     informant: null
     entry: null
-    component: null
-    section: null
+    component:
+      attributes:
+        nullFlavor: SAFE
+        typeCode: SAFE
+        contextConductionInd: SAFE
+      elements:
+        realmCode: SAFE
+        typeId: SAFE
+        templateId: SAFE
+        section: null
 Place:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     determinerCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     name: null
     addr: null
@@ -394,19 +368,14 @@ Act:
     entryRelationship: null
     reference: null
     precondition: null
-    Precondition2: null
-    InFulfillmentOf1: null
 HealthCareFacility:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
-    IdentifiedBy: null
+    identifiedBy: null
     code: null
     location: null
     serviceProviderOrganization: null
@@ -431,16 +400,12 @@ PN:
     given: null
     prefix: SAFE
     suffix: SAFE
-    xmlText: null
     validTime: null
 Birthplace:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     place: null
 Organization:
@@ -457,22 +422,19 @@ Organization:
     name: null
     telecom: null
     addr: null
-    standardIndustryclassCode: SAFE
+    standardIndustryClassCode: SAFE
     asOrganizationPartOf: null
 MO:
   text_content: null
   attributes:
     nullFlavor: SAFE
+  elements:
     currency: null
     value: null
-  elements: {}
 LanguageCommunication:
   text_content: null
-  attributes:
-    nullFlavor: SAFE
+  attributes: {}
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     languageCode: SAFE
     modeCode: null
@@ -481,14 +443,11 @@ LanguageCommunication:
 AssignedAuthor:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
-    IdentifiedBy: null
+    identifiedBy: null
     code: null
     addr: null
     telecom: null
@@ -503,12 +462,10 @@ ADXP:
     mediaType: SAFE
     language: SAFE
     partType: SAFE
-  elements:
-    xmlText: null
+  elements: {}
 ObservationMedia:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     ID: null
     classCode: SAFE
     moodCode: SAFE
@@ -528,7 +485,6 @@ ObservationMedia:
     entryRelationship: null
     reference: null
     precondition: null
-    Precondition2: null
 ComponentOf:
   text_content: null
   attributes:
@@ -542,14 +498,11 @@ ComponentOf:
 SpecimenRole:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
-    IdentifiedBy: null
+    identifiedBy: null
     specimenPlayingEntity: null
 RelatedDocument:
   text_content: null
@@ -573,12 +526,9 @@ IVXB_PQ:
 Order:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     code: null
@@ -595,7 +545,7 @@ LegalAuthenticator:
     templateId: SAFE
     time: null
     signatureCode: null
-    SignatureText: null
+    signatureText: null
     assignedEntity: null
 LabeledDrug:
   text_content: null
@@ -604,8 +554,6 @@ LabeledDrug:
     classCode: SAFE
     determinerCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     code: null
     name: null
@@ -618,17 +566,13 @@ LabeledDrug:
     delimiter: SAFE
     prefix: SAFE
     suffix: SAFE
-    xmlText: null
     validTime: null
 ParentDocument:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     code: null
@@ -652,27 +596,20 @@ TN:
     nullFlavor: SAFE
     use: SAFE
   elements:
-    xmlText: null
     validTime: null
 SubjectPerson:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     determinerCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
-    Id: null
     name: null
-    Desc: null
+    desc: null
     administrativeGenderCode: null
     birthTime: null
     deceasedInd: null
     deceasedTime: null
-    multipleBirthInd: null
-    multipleBirthOrderNumber: null
 StructuredBody:
   text_content: null
   attributes:
@@ -689,6 +626,7 @@ StructuredBody:
       attributes:
         nullFlavor: SAFE
         typeCode: SAFE
+        contextConductionInd: SAFE
       elements:
         realmCode: SAFE
         typeId: SAFE
@@ -711,7 +649,6 @@ PQR:
 RegionOfInterest:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     ID: null
     classCode: SAFE
     moodCode: SAFE
@@ -731,20 +668,16 @@ RegionOfInterest:
     entryRelationship: null
     reference: null
     precondition: null
-    Precondition2: null
 Patient:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     determinerCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     name: null
-    Desc: null
+    desc: null
     administrativeGenderCode: null
     birthTime: null
     deceasedInd: null
@@ -754,9 +687,7 @@ Patient:
     maritalStatusCode: SAFE
     religiousAffiliationCode: null
     raceCode: null
-    RaceCode: null
     ethnicGroupCode: null
-    EthnicGroupCode: null
     guardian: null
     birthplace: null
     languageCommunication: null
@@ -779,7 +710,6 @@ AlternateIdentification:
 ClinicalDocument:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
@@ -787,10 +717,8 @@ ClinicalDocument:
     typeId: SAFE
     templateId: SAFE
     id: SAFE
-    Category: SAFE
     code: null
     title: SAFE
-    statusCode: SAFE
     effectiveTime: null
     confidentialityCode: SAFE
     languageCode: SAFE
@@ -867,7 +795,6 @@ DocumentationOf:
 SubstanceAdministration:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
     negationInd: SAFE
@@ -891,12 +818,12 @@ SubstanceAdministration:
     consumable:
       attributes:
         nullFlavor: SAFE
-        classCode: SAFE
+        typeCode: SAFE
       elements:
         realmCode: SAFE
-        typeId: SAFE
         templateId: SAFE
         manufacturedProduct: null
+        typeId: SAFE
     subject: null
     specimen: null
     performer: null
@@ -906,7 +833,6 @@ SubstanceAdministration:
     entryRelationship: null
     reference: null
     precondition: null
-    InFulfillmentOf1: null
 InfrastructureRoot:
   text_content: null
   attributes:
@@ -926,12 +852,9 @@ SXPR_TS:
 Criterion:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     code: null
     text: null
@@ -939,43 +862,31 @@ Criterion:
 ObservationRange:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     code: null
     text: null
     value: SAFE
     interpretationCode: null
-    Precondition1: null
-    conjunctionCode: null
-    criterion1: null
 ManufacturedProduct:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
-    IdentifiedBy: null
+    identifiedBy: null
     manufacturedLabeledDrug: null
     manufacturedMaterial: null
     manufacturerOrganization: null
 Entity:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     determinerCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     code: null
@@ -987,38 +898,17 @@ IVXB_TS:
     value: null
     inclusive: null
   elements: {}
-Precondition2:
-  text_content: null
-  attributes:
-    nullFlavor: SAFE
-    typeCode: SAFE
-    negationInd: SAFE
-  elements:
-    realmCode: SAFE
-    typeId: SAFE
-    templateId: SAFE
-    conjunctionCode: null
-    allTrue: null
-    allFalse: null
-    atLeastOneTrue: null
-    atLeastOneFalse: null
-    onlyOneTrue: null
-    onlyOneFalse: null
-    criterion: null
 EncompassingEncounter:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     code: null
     effectiveTime: null
-    AdmissionReferralSourceCode: null
+    admissionReferralSourceCode: null
     dischargeDispositionCode: null
     responsibleParty:
       attributes:
@@ -1029,7 +919,6 @@ EncompassingEncounter:
         typeId: SAFE
         templateId: SAFE
         assignedEntity: null
-    assignedEntity: null
     encounterParticipant: null
     location:
       attributes:
@@ -1040,23 +929,9 @@ EncompassingEncounter:
         typeId: SAFE
         templateId: SAFE
         healthCareFacility: null
-InFulfillmentOf1:
-  text_content: null
-  attributes:
-    nullFlavor: SAFE
-    typeCode: SAFE
-    inversionInd: SAFE
-    negationInd: SAFE
-  elements:
-    realmCode: SAFE
-    typeId: SAFE
-    templateId: SAFE
-    actReference: null
-    id: null
 Supply:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
@@ -1091,7 +966,6 @@ Supply:
     entryRelationship: null
     reference: null
     precondition: null
-    InFulfillmentOf1: null
 EN:
   text_content: null
   attributes:
@@ -1103,7 +977,6 @@ EN:
     given: null
     prefix: SAFE
     suffix: SAFE
-    xmlText: null
     validTime: null
 IVXB_INT:
   text_content: null
@@ -1128,17 +1001,13 @@ CV:
 ExternalAct:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     code: null
     text: null
-    Author: null
 CO:
   text_content: null
   attributes:
@@ -1155,11 +1024,8 @@ CO:
 AssignedCustodian:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     representedCustodianOrganization: null
 InformationRecipient:
@@ -1191,8 +1057,6 @@ Material:
     classCode: SAFE
     determinerCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     code: null
     name: null
@@ -1200,14 +1064,11 @@ Material:
 Guardian:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
-    IdentifiedBy: null
+    identifiedBy: null
     code: null
     addr: null
     telecom: null
@@ -1278,12 +1139,9 @@ Reference:
 ServiceEvent:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     code: null
@@ -1306,21 +1164,17 @@ IdentifiedBy:
   attributes:
     typeCode: SAFE
   elements:
-    AlternateIdentification: null
+    alternateIdentification: null
 ExternalObservation:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     code: null
     text: null
-    Author: null
 ENXP:
   text_content: null
   attributes:
@@ -1330,8 +1184,7 @@ ENXP:
     language: SAFE
     partType: SAFE
     qualifier: null
-  elements:
-    xmlText: null
+  elements: {}
 Performer2:
   text_content: null
   attributes:
@@ -1377,7 +1230,6 @@ TEL:
 AD:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     isNotOrdered: SAFE
     use: SAFE
   elements:
@@ -1405,10 +1257,11 @@ AD:
     deliveryInstallationQualifier: null
     deliveryMode: null
     deliveryModeIdentifier: null
-    buildingNumbersuffix: SAFE
+    buildingNumberSuffix: SAFE
     postBox: null
     precinct: null
     useablePeriod: null
+    nullFlavor: SAFE
 IVL_PQ:
   text_content: null
   attributes:
@@ -1417,7 +1270,6 @@ IVL_PQ:
     value: SAFE
     operator: SAFE
   elements:
-    translation: SAFE
     low: null
     center: null
     width: null
@@ -1439,41 +1291,28 @@ Participant2:
 ExternalProcedure:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     code: null
     text: null
-    Author: null
 Person:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     determinerCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     name: null
-    Desc: null
-    AsPatientRelationship: null
-    code: null
+    asPatientRelationship: null
 RelatedSubject:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
-    Id: null
     code: null
     addr: null
     telecom: null
@@ -1481,11 +1320,8 @@ RelatedSubject:
 MaintainedEntity:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     effectiveTime: null
     maintainingPerson: null
@@ -1493,7 +1329,6 @@ PIVL_TS:
   text_content: null
   attributes:
     nullFlavor: SAFE
-    value: null
     operator: SAFE
     alignment: null
     institutionSpecified: SAFE
@@ -1503,28 +1338,21 @@ PIVL_TS:
 ExternalDocument:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     code: null
     text: null
     setId: SAFE
     versionNumber: SAFE
-    Author: null
 Device:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     determinerCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     code: null
     manufacturerModelName: null
@@ -1532,12 +1360,9 @@ Device:
 Consent:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     code: null
@@ -1552,8 +1377,8 @@ ED:
     language: SAFE
     mediaType: SAFE
     representation: SAFE
+    charset: SAFE
   elements:
-    xmlText: null
     reference: null
     thumbnail: null
 IVL_INT:
@@ -1570,12 +1395,9 @@ IVL_INT:
 AuthoringDevice:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     determinerCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     code: null
     manufacturerModelName: null
@@ -1588,8 +1410,7 @@ ST:
     representation: SAFE
     mediaType: SAFE
     language: SAFE
-  elements:
-    xmlText: null
+  elements: {}
 TS:
   text_content: null
   attributes:
@@ -1618,7 +1439,6 @@ QTY:
 Observation:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
     negationInd: SAFE
@@ -1627,7 +1447,6 @@ Observation:
     typeId: SAFE
     templateId: SAFE
     id: SAFE
-    Category: SAFE
     code: SAFE
     derivationExpr: SAFE
     text: null
@@ -1649,7 +1468,6 @@ Observation:
     entryRelationship: null
     reference: null
     precondition: null
-    Precondition2: null
     referenceRange:
       attributes:
         nullFlavor: SAFE
@@ -1659,28 +1477,22 @@ Observation:
         typeId: SAFE
         templateId: SAFE
         observationRange: null
-    InFulfillmentOf1: null
 AssignedEntity:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
-    IdentifiedBy: null
+    identifiedBy: null
     code: SAFE
     addr: null
     telecom: null
     assignedPerson: null
     representedOrganization: null
-    Patient: null
 Procedure:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     moodCode: SAFE
     negationInd: SAFE
@@ -1689,7 +1501,6 @@ Procedure:
     typeId: SAFE
     templateId: SAFE
     id: SAFE
-    Category: SAFE
     code: SAFE
     text: null
     statusCode: SAFE
@@ -1708,8 +1519,6 @@ Procedure:
     entryRelationship: null
     reference: null
     precondition: null
-    Precondition2: null
-    InFulfillmentOf1: null
 Authenticator:
   text_content: null
   attributes:
@@ -1721,7 +1530,7 @@ Authenticator:
     templateId: SAFE
     time: null
     signatureCode: SAFE
-    SignatureText: null
+    signatureText: null
     assignedEntity: null
 EntryRelationship:
   text_content: null
@@ -1749,15 +1558,11 @@ EntryRelationship:
 CustodianOrganization:
   text_content: null
   attributes:
-    nullFlavor: SAFE
     classCode: SAFE
     determinerCode: SAFE
   elements:
-    realmCode: SAFE
-    typeId: SAFE
     templateId: SAFE
     id: null
     name: null
     telecom: null
-    Telecom: null
     addr: null

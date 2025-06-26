@@ -14,16 +14,16 @@ from eicr_anonymization.anonymizer import Anonymizer, DebugOptions
 from eicr_anonymization.element_parser import Parser
 
 xml_files = list(Path("tests/test_data").rglob("*.xml"))
-config_files = list(Path("tests/test_data/configs").rglob("*.yaml"))
+config_files = [None, *list(Path("tests/test_data/configs/snapshot_configs").rglob("*.yaml"))]
 
 
 @freeze_time("2025-01-10 09:30:30")
 @pytest.mark.parametrize(
     ("xml_file", "config_file"),
-    list(product(xml_files, [None, *config_files])),
+    list(product(xml_files, config_files)),
     ids=[
         f"{xml_file.stem}_{config_file.stem if config_file else 'default'}"
-        for xml_file, config_file in product(xml_files, [None, *config_files])
+        for xml_file, config_file in product(xml_files, config_files)
     ],
 )
 def test_snapshot(xml_file, config_file, snapshot):

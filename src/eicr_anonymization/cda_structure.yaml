@@ -206,25 +206,9 @@ CS:
   attributes:
     nullFlavor: code
     code: code
-    codeSystem: string
-    codeSystemName: string
-    codeSystemVersion: string
-    displayName: string
     valueSet: string
     valueSetVersion: string
-  elements:
-    originalText:
-      types:
-        - ED
-      default_type: null
-    qualifier:
-      types:
-        - CR
-      default_type: null
-    translation:
-      types:
-        - CD
-      default_type: null
+  elements: {}
 NonXMLBody:
   attributes:
     nullFlavor: code
@@ -393,7 +377,6 @@ Organizer:
 EIVL_TS:
   attributes:
     nullFlavor: code
-    value: string
     operator: code
   elements:
     event:
@@ -640,11 +623,7 @@ SC:
     codeSystemName: string
     codeSystemVersion: string
     displayName: string
-  elements:
-    xmlText:
-      types:
-        - string
-      default_type: null
+  elements: {}
 CR:
   attributes:
     nullFlavor: code
@@ -975,10 +954,6 @@ PN:
       types:
         - ENXP
       default_type: null
-    xmlText:
-      types:
-        - string
-      default_type: null
     validTime:
       types:
         - IVL_TS
@@ -1119,11 +1094,7 @@ ADXP:
     mediaType: code
     language: code
     partType: code
-  elements:
-    xmlText:
-      types:
-        - string
-      default_type: null
+  elements: {}
 ObservationMedia:
   attributes:
     ID: id
@@ -1345,14 +1316,6 @@ LabeledDrug:
       types:
         - ENXP
       default_type: null
-    family:
-      types:
-        - ENXP
-      default_type: null
-    given:
-      types:
-        - ENXP
-      default_type: null
     prefix:
       types:
         - ENXP
@@ -1360,10 +1323,6 @@ LabeledDrug:
     suffix:
       types:
         - ENXP
-      default_type: null
-    xmlText:
-      types:
-        - string
       default_type: null
     validTime:
       types:
@@ -1425,30 +1384,6 @@ TN:
     nullFlavor: code
     use: code
   elements:
-    delimiter:
-      types:
-        - ENXP
-      default_type: null
-    family:
-      types:
-        - ENXP
-      default_type: null
-    given:
-      types:
-        - ENXP
-      default_type: null
-    prefix:
-      types:
-        - ENXP
-      default_type: null
-    suffix:
-      types:
-        - ENXP
-      default_type: null
-    xmlText:
-      types:
-        - string
-      default_type: null
     validTime:
       types:
         - IVL_TS
@@ -1552,14 +1487,6 @@ PQR:
     originalText:
       types:
         - ED
-      default_type: null
-    qualifier:
-      types:
-        - CR
-      default_type: null
-    translation:
-      types:
-        - CD
       default_type: null
 RegionOfInterest:
   attributes:
@@ -2484,10 +2411,6 @@ EN:
       types:
         - ENXP
       default_type: null
-    xmlText:
-      types:
-        - string
-      default_type: null
     validTime:
       types:
         - IVL_TS
@@ -2512,14 +2435,6 @@ CV:
     originalText:
       types:
         - ED
-      default_type: null
-    qualifier:
-      types:
-        - CR
-      default_type: null
-    translation:
-      types:
-        - CD
       default_type: null
 ExternalAct:
   attributes:
@@ -2556,14 +2471,6 @@ CO:
     originalText:
       types:
         - ED
-      default_type: null
-    qualifier:
-      types:
-        - CR
-      default_type: null
-    translation:
-      types:
-        - CD
       default_type: null
 AssignedCustodian:
   attributes:
@@ -2904,11 +2811,7 @@ ENXP:
     language: code
     partType: code
     qualifier: code
-  elements:
-    xmlText:
-      types:
-        - string
-      default_type: null
+  elements: {}
 Performer2:
   attributes:
     nullFlavor: code
@@ -3100,10 +3003,6 @@ AD:
       types:
         - ADXP
       default_type: null
-    xmlText:
-      types:
-        - string
-      default_type: null
     useablePeriod:
       types:
         - IVL_TS
@@ -3249,7 +3148,6 @@ MaintainedEntity:
 PIVL_TS:
   attributes:
     nullFlavor: code
-    value: string
     operator: code
     alignment: code
     institutionSpecified: boolean
@@ -3344,11 +3242,6 @@ ED:
     mediaType: code
     representation: code
   elements:
-    data[x]:
-      types:
-        - string
-        - base64Binary
-      default_type: null
     reference:
       types:
         - TEL
@@ -3410,11 +3303,7 @@ ST:
     representation: code
     mediaType: code
     language: code
-  elements:
-    xmlText:
-      types:
-        - string
-      default_type: null
+  elements: {}
 TS:
   attributes:
     nullFlavor: code
@@ -3434,10 +3323,6 @@ CE:
     originalText:
       types:
         - ED
-      default_type: null
-    qualifier:
-      types:
-        - CR
       default_type: null
     translation:
       types:

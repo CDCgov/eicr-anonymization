@@ -15,6 +15,9 @@ class Sensitivity(Enum):
     SENSITIVE = None
 
 
+type ConfigSection = dict[str, Sensitivity]
+
+
 class CustomTypeConfig(BaseModel):
     """Model for the configuration of a type in a custom configuration.
 
@@ -22,8 +25,8 @@ class CustomTypeConfig(BaseModel):
     """
 
     text_content: Sensitivity | None = None
-    attributes: dict[str, Sensitivity] | None = None
-    elements: dict[str, Sensitivity | dict[str, Sensitivity]] | None = None
+    attributes: ConfigSection | None = None
+    elements: dict[str, Sensitivity | dict[str, Sensitivity | ConfigSection]] | None = None
 
 
 class CustomConfig(RootModel):
@@ -37,38 +40,39 @@ class CustomConfig(RootModel):
     def __getitem__(self, item):
         return self.root[item]
 
+    def items(self):
+        return self.root.items()
 
     @model_validator(mode="after")
     def check_elements(self):
         """Check that all types, attributes, and elements in the configuration are known found in the structure."""
         all_types = set(structure)
         all_in_config = set(self)
-        unknown_types = all_in_config - all_types
-        if unknown_types:
-            raise ValueError(f"Unknown types in default configuration: {', '.join(unknown_types)}")
+        _check_unknown_items(all_in_config, all_types, "types", "custom configuration")
 
         for type_name, type_config in self.items():
-            # Check attributes
-            all_attributes = set(structure[type_name]["attributes"])
-            all_attributes_in_config = set(type_config.attributes)
-            unknown_attributes = all_attributes_in_config - all_attributes
-            if unknown_attributes:
-                raise ValueError(f"Unknown attributes in type '{type_name}': {', '.join(unknown_attributes)}")
+            _check_section_partial(
+                type_config.attributes,
+                structure[type_name]["attributes"],
+                "attributes",
+                f"type '{type_name}' in custom custom configuration",
+            )
 
-            all_elements = set(structure[type_name]["elements"])
-            all_elements_in_config = set(type_config.elements)
-            unknown_elements = all_elements_in_config - all_elements
-            if unknown_elements:
-                raise ValueError(f"Unknown elements in type '{type_name}': {', '.join(unknown_elements)}")
+            _check_section_partial(
+                type_config.elements,
+                structure[type_name]["elements"],
+                "elements",
+                f"type '{type_name}' in custom configuration",
+            )
 
-            # Check elements
             for elem, elem_config in type_config.elements.items():
                 if isinstance(elem_config, dict):
-                    all_subelements = set(structure[type_name]["elements"][elem])
-                    all_subelements_in_config = set(elem_config)
-                    unknown_subelements = all_subelements_in_config - all_subelements
-                    if unknown_subelements:
-                        raise ValueError(f"Unknown sub-elements in element '{elem}' of type '{type_name}': {', '.join(unknown_subelements)}")
+                    _check_section_partial(
+                        elem_config,
+                        structure[type_name]["elements"][elem],
+                        "sub-elements",
+                        f"element '{elem}' of type '{type_name}' in custom configuration",
+                    )
 
 
 class DefaultTypeConfig(BaseModel):
@@ -78,52 +82,105 @@ class DefaultTypeConfig(BaseModel):
     """
 
     text_content: Sensitivity
-    attributes: dict[str, Sensitivity]
-    elements: dict[str, Sensitivity | dict[str, Sensitivity]]
+    attributes: ConfigSection
+    elements: dict[str, Sensitivity | dict[str, Sensitivity | ConfigSection]]
+
 
 class DefaultConfig(CustomConfig):
-
     @model_validator(mode="after")
     def check_elements(self):
         """Check that all types, attributes, and elements in the configuration are known found in the structure."""
         all_types = set(structure)
         all_in_config = set(self)
-        missing_types = all_types - all_in_config
-        if missing_types:
-            raise ValueError(f"Missing types in default configuration: {', '.join(missing_types)}")
-
-        unknown_types = all_in_config - all_types
-        if unknown_types:
-            raise ValueError(f"Unknown types in default configuration: {', '.join(unknown_types)}")
+        _check_unknown_items(all_in_config, all_types, "types", "default configuration")
+        _check_missing_items(all_in_config, all_types, "types", "default configuration")
 
         for type_name, type_config in self.items():
-            # Check attributes
-            all_attributes = set(structure[type_name]["attributes"])
-            all_attributes_in_config = set(type_config.attributes)
-            missing_attributes = all_attributes - all_attributes_in_config
-            if missing_attributes:
-                raise ValueError(f"Missing attributes in type '{type_name}': {', '.join(missing_attributes)}")
-            unknown_attributes = all_attributes_in_config - all_attributes
-            if unknown_attributes:
-                raise ValueError(f"Unknown attributes in type '{type_name}': {', '.join(unknown_attributes)}")
+            _check_section_complete(
+                type_config.attributes,
+                structure[type_name]["attributes"],
+                "attributes",
+                f"type '{type_name}' in default configuration",
+            )
 
-            all_elements = set(structure[type_name]["elements"])
-            all_elements_in_config = set(type_config.elements)
-            missing_elements = all_elements - all_elements_in_config
-            if missing_elements:
-                raise ValueError(f"Missing elements in type '{type_name}': {', '.join(missing_elements)}")
-            unknown_elements = all_elements_in_config - all_elements
-            if unknown_elements:
-                raise ValueError(f"Unknown elements in type '{type_name}': {', '.join(unknown_elements)}")
+            _check_section_complete(
+                type_config.elements,
+                structure[type_name]["elements"],
+                "elements",
+                f"type '{type_name}' in default configuration",
+            )
 
-            # Check elements
             for elem, elem_config in type_config.elements.items():
                 if isinstance(elem_config, dict):
-                    all_subelements = set(structure[type_name]["elements"][elem])
-                    all_subelements_in_config = set(elem_config)
-                    missing_subelements = all_subelements - all_subelements_in_config
-                    if missing_subelements:
-                        raise ValueError(f"Missing sub-elements in element '{elem}' of type '{type_name}': {', '.join(missing_subelements)}")
-                    unknown_subelements = all_subelements_in_config - all_subelements
-                    if unknown_subelements:
-                        raise ValueError(f"Unknown sub-elements in element '{elem}' of type '{type_name}': {', '.join(unknown_subelements)}")
+                    if "attributes" not in elem_config and "elements" not in elem_config:
+                        _check_section_partial(
+                            elem_config,
+                            structure[type_name]["elements"][elem],
+                            "sub-elements",
+                            f"element '{elem}' of type '{type_name}' in custom configuration",
+                        )
+
+                    if "attributes" in elem_config:
+                        _check_section_complete(
+                            elem_config["attributes"],
+                            structure[type_name]["elements"][elem]["attributes"],
+                            "sub-element attributes",
+                            f"'{elem}' of type '{type_name}' in default configuration",
+                        )
+                    if "elements" in elem_config:
+                        _check_section_complete(
+                            elem_config["elements"],
+                            structure[type_name]["elements"][elem]["elements"],
+                            "sub-elements",
+                            f"'{elem}' of type '{type_name}' in default configuration",
+                        )
+
+
+def _check_section_partial(
+    all_in_config, all_in_structure, section_name: str, context: str
+) -> None:
+    if all_in_config is None:
+        all_in_config = set()
+    _check_unknown_items(set(all_in_config), set(all_in_structure), section_name, context)
+
+
+def _check_section_complete(
+    all_in_config, all_in_structure, section_name: str, context: str
+) -> None:
+    """Check that all items in the configuration are known and raise error if not."""
+    if all_in_config is None:
+        all_in_config = set()
+    _check_unknown_items(set(all_in_config), set(all_in_structure), section_name, context)
+    _check_missing_items(set(all_in_config), set(all_in_structure), section_name, context)
+
+
+def _check_unknown_items(
+    all_in_config: set[str], all_in_structure: set[str], section_name: str, context: str
+) -> None:
+    """Check for unknown items and raise error if found."""
+    unknown_items = all_in_config - all_in_structure
+    if unknown_items:
+        raise UnknownItem(section_name, context, unknown_items)
+
+
+def _check_missing_items(
+    all_in_config: set[str], all_in_structure: set[str], section_name: str, context: str
+) -> None:
+    """Check for missing items and raise error if found."""
+    missing_items = all_in_structure - all_in_config
+    if missing_items:
+        raise MissingItem(section_name, context, missing_items)
+
+
+class UnknownItem(Exception):
+    """Exception raised when an unknown item is found in the configuration."""
+
+    def __init__(self, section_name, context: str, items: Iterable[str]):
+        super().__init__(f"Unknown {section_name} in {context}: {', '.join(items)}")
+
+
+class MissingItem(Exception):
+    """Exception raised when an item is missing in the configuration."""
+
+    def __init__(self, section_name, context: str, items: Iterable[str]):
+        super().__init__(f"Missing {section_name} in {context}: {', '.join(items)}")

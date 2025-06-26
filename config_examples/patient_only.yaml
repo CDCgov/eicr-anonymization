@@ -4,9 +4,6 @@ ClinicalDocument:
     author: SAFE
     custodian: SAFE
     informationRecipient: SAFE
-ComponentOf:
-  elements:
-    responsibleParty: SAFE
 EncounterParticipant:
   elements:
     time: SAFE
@@ -20,9 +17,6 @@ AssociatedEntity:
 EncompassingEncounter:
   elements:
     id: SAFE
-    addr: SAFE
-    telecom: SAFE
-    assignedPerson: SAFE
     location: SAFE
     responsibleParty: SAFE
 SubstanceAdministration:
@@ -31,9 +25,7 @@ SubstanceAdministration:
     performer: SAFE
 EntryRelationship:
   elements:
-    id: SAFE
     supply: SAFE
-    author: SAFE
 Act:
   elements:
     id: SAFE
@@ -58,9 +50,6 @@ Patient:
 OrganizationPartOf:
   elements:
     id: SAFE
-    IdentifiedBy: SAFE
+    identifiedBy: SAFE
     effectiveTime: SAFE
     wholeOrganization: SAFE
-PQ:
-  elements:
-    value: SAFE

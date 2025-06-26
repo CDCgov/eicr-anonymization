@@ -1,3 +1,7 @@
+TEST_TYPE:
+  text_content: null
+  attributes: {}
+  elements: {}
 OrganizerComponent:
   text_content: null
   attributes:

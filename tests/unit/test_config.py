@@ -1,10 +1,22 @@
-import pytest
+"""Unit tests for the configuration validation."""
 
-from eicr_anonymization.config import CustomConfig, DefaultConfig, Sensitivity
+import pytest
+import yaml
+
+from eicr_anonymization.config import (
+    CustomConfig,
+    DefaultConfig,
+    MissingItem,
+    Sensitivity,
+    UnknownItem,
+)
 
 
 class TestCustomConfig:
+    """Test the custom configuration validation."""
+
     def test_iter(self):
+        """Test that the configuration can be iterated over."""
         test_config = {
             "ClinicalDocument": {
                 "elements": {
@@ -19,6 +31,7 @@ class TestCustomConfig:
         assert first_item == "ClinicalDocument"
 
     def test_getitem(self):
+        """Test that the configuration can be accessed by key."""
         test_config = {
             "ClinicalDocument": {
                 "elements": {
@@ -41,37 +54,49 @@ class TestCustomConfig:
             }
         }
 
-        with pytest.raises(ValueError, match="Unknown type in configuration: UnknownType"):
+        with pytest.raises(UnknownItem):
             CustomConfig(test_config)
 
     def test_check_elements_unknown_attribute(self):
         """Test that the configuration checks for unknown attributes."""
         test_config = {
             "ClinicalDocument": {
-                "attributes": {
-                    "unknownAttribute": None
-                },
+                "attributes": {"unknownAttribute": None},
             }
         }
 
-        with pytest.raises(ValueError, match="Unknown attribute 'unknownAttribute' in type 'ClinicalDocument'"):
+        with pytest.raises(UnknownItem):
             CustomConfig(test_config)
 
     def test_check_elements_unknown_element(self):
         """Test that the configuration checks for unknown types, attributes, and elements."""
         test_config = {
             "ClinicalDocument": {
-                "elements": {
-                    "unknownElement": None
-                },
+                "elements": {"unknownElement": None},
             }
         }
 
-        with pytest.raises(ValueError, match="Unknown element 'unknownElement' in type 'ClinicalDocument'"):
+        with pytest.raises(UnknownItem):
             CustomConfig(test_config)
 
 
 class TestDefaultConfig:
+    """Test the default configuration validation."""
+
+    def test_good_default(self):
+        """Test that the default configuration is loaded correctly."""
+        with open("src/eicr_anonymization/configs/default.yaml") as config_file:
+            default_config = yaml.safe_load(config_file)
+        validated_config = DefaultConfig(default_config)
+        assert isinstance(validated_config, DefaultConfig)
+
+    def test_check_elements_unknown_type(self):
+        """Test that validation for the default config fails on unknown types."""
+        with open("tests/test_data/configs/test_configs/default_with_unknown.yaml") as config_file:
+            default_config = yaml.safe_load(config_file)
+        with pytest.raises(UnknownItem):
+            _ = DefaultConfig(default_config)
+
     def test_check_elements_missing_type(self):
         """Test that the default configuration is loaded correctly."""
         test_config = {
@@ -82,14 +107,5 @@ class TestDefaultConfig:
             }
         }
 
-        with pytest.raises(ValueError):
+        with pytest.raises(MissingItem):
             DefaultConfig(test_config)
-
-    def test_check_elements_unknown_type(self):
-        pass
-
-    def test_check_elements_unknown_attribute(self):
-        pass
-
-    def test_check_elements_unknown_element(self):
-        pass
